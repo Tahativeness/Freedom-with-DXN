@@ -1,17 +1,25 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { FiUsers, FiShoppingBag, FiPackage, FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi';
+import { FiUsers, FiShoppingBag, FiPackage, FiPlus, FiEdit, FiTrash2, FiX, FiFileText } from 'react-icons/fi';
+
+const EMPTY_FORM = { name: '', description: '', price: '', category: 'coffee', inStock: true, featured: false, image: '', images: ['', '', '', '', ''] };
+const EMPTY_BLOG_FORM = { title: '', excerpt: '', content: '', category: 'health', tags: '', image: '', published: true };
+const BLOG_CATEGORIES = ['health', 'business', 'products', 'success-stories', 'tips'];
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showProductForm, setShowProductForm] = useState(false);
-  const [productForm, setProductForm] = useState({ name: '', description: '', price: '', category: 'coffee', inStock: true, featured: false, image: '' });
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [productForm, setProductForm] = useState({ ...EMPTY_FORM });
+  const [blogs, setBlogs] = useState([]);
+  const [showBlogForm, setShowBlogForm] = useState(false);
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [blogForm, setBlogForm] = useState({ ...EMPTY_BLOG_FORM });
 
   useEffect(() => {
     loadData();
@@ -29,21 +37,57 @@ export default function AdminPanel() {
       } else if (activeTab === 'users') {
         const { data } = await axios.get('/api/distributors/all');
         setUsers(data);
+      } else if (activeTab === 'blogs') {
+        const { data } = await axios.get('/api/blog?limit=50');
+        setBlogs(data.posts || []);
       }
     } catch {}
     setLoading(false);
   };
 
-  const handleCreateProduct = async (e) => {
+  const resetForm = () => {
+    setProductForm({ ...EMPTY_FORM });
+    setEditingProduct(null);
+    setShowProductForm(false);
+  };
+
+  const handleEditProduct = (product) => {
+    const existingImages = product.images || [];
+    const paddedImages = [...existingImages, '', '', '', '', ''].slice(0, 5);
+    setProductForm({
+      name: product.name || '',
+      description: product.description || '',
+      price: product.price?.toString() || '',
+      category: product.category || 'coffee',
+      inStock: product.inStock ?? true,
+      featured: product.featured ?? false,
+      image: product.image || '',
+      images: paddedImages,
+    });
+    setEditingProduct(product._id);
+    setShowProductForm(true);
+  };
+
+  const handleSubmitProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/products', { ...productForm, price: Number(productForm.price) });
-      toast.success('Product created!');
-      setShowProductForm(false);
-      setProductForm({ name: '', description: '', price: '', category: 'coffee', inStock: true, featured: false, image: '' });
+      const data = {
+        ...productForm,
+        price: Number(productForm.price),
+        images: productForm.images.filter((url) => url.trim() !== ''),
+      };
+
+      if (editingProduct) {
+        await axios.put(`/api/products/${editingProduct}`, data);
+        toast.success('Product updated!');
+      } else {
+        await axios.post('/api/products', data);
+        toast.success('Product created!');
+      }
+      resetForm();
       loadData();
     } catch {
-      toast.error('Failed to create product');
+      toast.error(editingProduct ? 'Failed to update product' : 'Failed to create product');
     }
   };
 
@@ -52,6 +96,7 @@ export default function AdminPanel() {
     try {
       await axios.delete(`/api/products/${id}`);
       toast.success('Product deleted');
+      if (editingProduct === id) resetForm();
       loadData();
     } catch { toast.error('Failed'); }
   };
@@ -60,6 +105,57 @@ export default function AdminPanel() {
     try {
       await axios.put(`/api/orders/${id}/status`, { status });
       toast.success('Status updated');
+      loadData();
+    } catch { toast.error('Failed'); }
+  };
+
+  const resetBlogForm = () => {
+    setBlogForm({ ...EMPTY_BLOG_FORM });
+    setEditingBlog(null);
+    setShowBlogForm(false);
+  };
+
+  const handleEditBlog = (blog) => {
+    setBlogForm({
+      title: blog.title || '',
+      excerpt: blog.excerpt || '',
+      content: blog.content || '',
+      category: blog.category || 'health',
+      tags: (blog.tags || []).join(', '),
+      image: blog.image || '',
+      published: blog.published ?? true,
+    });
+    setEditingBlog(blog._id);
+    setShowBlogForm(true);
+  };
+
+  const handleSubmitBlog = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        ...blogForm,
+        tags: blogForm.tags.split(',').map((t) => t.trim()).filter(Boolean),
+      };
+      if (editingBlog) {
+        await axios.put(`/api/blog/${editingBlog}`, data);
+        toast.success('Blog post updated!');
+      } else {
+        await axios.post('/api/blog', data);
+        toast.success('Blog post created!');
+      }
+      resetBlogForm();
+      loadData();
+    } catch {
+      toast.error(editingBlog ? 'Failed to update post' : 'Failed to create post');
+    }
+  };
+
+  const handleDeleteBlog = async (id) => {
+    if (!window.confirm('Delete this blog post?')) return;
+    try {
+      await axios.delete(`/api/blog/${id}`);
+      toast.success('Blog post deleted');
+      if (editingBlog === id) resetBlogForm();
       loadData();
     } catch { toast.error('Failed'); }
   };
@@ -76,7 +172,7 @@ export default function AdminPanel() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
-          {[['products', FiPackage, 'Products'], ['orders', FiShoppingBag, 'Orders'], ['users', FiUsers, 'Users']].map(([tab, Icon, label]) => (
+          {[['products', FiPackage, 'Products'], ['blogs', FiFileText, 'Blog Posts'], ['orders', FiShoppingBag, 'Orders'], ['users', FiUsers, 'Users']].map(([tab, Icon, label]) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -98,14 +194,31 @@ export default function AdminPanel() {
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="font-bold text-dxn-darkgreen text-lg">Products ({products.length})</h2>
-                  <button onClick={() => setShowProductForm(!showProductForm)} className="btn-primary flex items-center gap-2 text-sm">
+                  <button
+                    onClick={() => {
+                      if (showProductForm && !editingProduct) {
+                        resetForm();
+                      } else {
+                        resetForm();
+                        setShowProductForm(true);
+                      }
+                    }}
+                    className="btn-primary flex items-center gap-2 text-sm"
+                  >
                     <FiPlus /> Add Product
                   </button>
                 </div>
 
                 {showProductForm && (
-                  <form onSubmit={handleCreateProduct} className="card p-6 mb-6 border-2 border-dxn-green/30">
-                    <h3 className="font-bold mb-4 text-dxn-darkgreen">New Product</h3>
+                  <form onSubmit={handleSubmitProduct} className="card p-6 mb-6 border-2 border-dxn-green/30">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="font-bold text-dxn-darkgreen">
+                        {editingProduct ? 'Edit Product' : 'New Product'}
+                      </h3>
+                      <button type="button" onClick={resetForm} className="text-gray-400 hover:text-gray-600">
+                        <FiX size={20} />
+                      </button>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium mb-1">Name *</label>
@@ -122,12 +235,31 @@ export default function AdminPanel() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">Image URL</label>
+                        <label className="block text-sm font-medium mb-1">Main Image URL</label>
                         <input value={productForm.image} onChange={(e) => setProductForm({...productForm, image: e.target.value})} className="input-field" placeholder="https://..." />
                       </div>
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium mb-1">Description *</label>
                         <textarea required rows={3} value={productForm.description} onChange={(e) => setProductForm({...productForm, description: e.target.value})} className="input-field resize-none" />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium mb-2">Additional Images (up to 5)</label>
+                        <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                          {productForm.images.map((url, idx) => (
+                            <input
+                              key={idx}
+                              value={url}
+                              onChange={(e) => {
+                                const newImages = [...productForm.images];
+                                newImages[idx] = e.target.value;
+                                setProductForm({...productForm, images: newImages});
+                              }}
+                              className="input-field text-sm"
+                              placeholder={`Image ${idx + 1} URL`}
+                            />
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-400 mt-1">Paste direct image URLs (e.g. https://i.imgur.com/example.jpg)</p>
                       </div>
                       <div className="flex gap-4">
                         <label className="flex items-center gap-2 text-sm">
@@ -141,8 +273,10 @@ export default function AdminPanel() {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button type="submit" className="btn-primary text-sm">Save Product</button>
-                      <button type="button" onClick={() => setShowProductForm(false)} className="btn-outline text-sm">Cancel</button>
+                      <button type="submit" className="btn-primary text-sm">
+                        {editingProduct ? 'Update Product' : 'Save Product'}
+                      </button>
+                      <button type="button" onClick={resetForm} className="btn-outline text-sm">Cancel</button>
                     </div>
                   </form>
                 )}
@@ -162,17 +296,151 @@ export default function AdminPanel() {
                       </thead>
                       <tbody>
                         {products.map((p) => (
-                          <tr key={p._id} className="border-b hover:bg-gray-50">
-                            <td className="px-4 py-3 font-medium">{p.name}</td>
+                          <tr key={p._id} className={`border-b hover:bg-gray-50 ${editingProduct === p._id ? 'bg-green-50' : ''}`}>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-3">
+                                <img
+                                  src={p.image || `https://placehold.co/40x40/1a5c2e/white?text=${encodeURIComponent(p.name?.charAt(0))}`}
+                                  alt={p.name}
+                                  className="w-10 h-10 rounded-lg object-cover bg-gray-100"
+                                />
+                                <span className="font-medium">{p.name}</span>
+                              </div>
+                            </td>
                             <td className="px-4 py-3 text-gray-500 capitalize">{p.category}</td>
                             <td className="px-4 py-3 font-semibold text-dxn-green">${p.price?.toFixed(2)}</td>
                             <td className="px-4 py-3"><span className={`badge ${p.inStock ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{p.inStock ? 'In Stock' : 'Out'}</span></td>
                             <td className="px-4 py-3"><span className={`badge ${p.featured ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-500'}`}>{p.featured ? 'Yes' : 'No'}</span></td>
                             <td className="px-4 py-3">
-                              <button onClick={() => handleDeleteProduct(p._id)} className="text-red-400 hover:text-red-600"><FiTrash2 /></button>
+                              <div className="flex items-center gap-2">
+                                <button onClick={() => handleEditProduct(p)} className="text-blue-500 hover:text-blue-700" title="Edit">
+                                  <FiEdit size={16} />
+                                </button>
+                                <button onClick={() => handleDeleteProduct(p._id)} className="text-red-400 hover:text-red-600" title="Delete">
+                                  <FiTrash2 size={16} />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Blogs Tab */}
+            {activeTab === 'blogs' && (
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="font-bold text-dxn-darkgreen text-lg">Blog Posts ({blogs.length})</h2>
+                  <button
+                    onClick={() => {
+                      if (showBlogForm && !editingBlog) { resetBlogForm(); } else { resetBlogForm(); setShowBlogForm(true); }
+                    }}
+                    className="btn-primary flex items-center gap-2 text-sm"
+                  >
+                    <FiPlus /> New Post
+                  </button>
+                </div>
+
+                {showBlogForm && (
+                  <form onSubmit={handleSubmitBlog} className="card p-6 mb-6 border-2 border-dxn-green/30">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="font-bold text-dxn-darkgreen">
+                        {editingBlog ? 'Edit Blog Post' : 'New Blog Post'}
+                      </h3>
+                      <button type="button" onClick={resetBlogForm} className="text-gray-400 hover:text-gray-600">
+                        <FiX size={20} />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium mb-1">Title *</label>
+                        <input required value={blogForm.title} onChange={(e) => setBlogForm({...blogForm, title: e.target.value})} className="input-field" placeholder="Blog post title" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Category *</label>
+                        <select value={blogForm.category} onChange={(e) => setBlogForm({...blogForm, category: e.target.value})} className="input-field">
+                          {BLOG_CATEGORIES.map((c) => <option key={c} value={c}>{c.replace('-', ' ')}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Cover Image URL</label>
+                        <input value={blogForm.image} onChange={(e) => setBlogForm({...blogForm, image: e.target.value})} className="input-field" placeholder="https://..." />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium mb-1">Excerpt / Summary *</label>
+                        <textarea required rows={2} value={blogForm.excerpt} onChange={(e) => setBlogForm({...blogForm, excerpt: e.target.value})} className="input-field resize-none" placeholder="Brief summary shown on blog listing..." />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium mb-1">Content *</label>
+                        <textarea required rows={12} value={blogForm.content} onChange={(e) => setBlogForm({...blogForm, content: e.target.value})} className="input-field resize-y" placeholder="Write your blog post content here. Use **bold** for headings." />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Tags (comma separated)</label>
+                        <input value={blogForm.tags} onChange={(e) => setBlogForm({...blogForm, tags: e.target.value})} className="input-field" placeholder="health, ganoderma, tips" />
+                      </div>
+                      <div className="flex items-center">
+                        <label className="flex items-center gap-2 text-sm">
+                          <input type="checkbox" checked={blogForm.published} onChange={(e) => setBlogForm({...blogForm, published: e.target.checked})} />
+                          Published
+                        </label>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 mt-4">
+                      <button type="submit" className="btn-primary text-sm">
+                        {editingBlog ? 'Update Post' : 'Publish Post'}
+                      </button>
+                      <button type="button" onClick={resetBlogForm} className="btn-outline text-sm">Cancel</button>
+                    </div>
+                  </form>
+                )}
+
+                <div className="card overflow-hidden">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead className="bg-gray-50">
+                        <tr className="border-b text-left text-gray-500">
+                          <th className="px-4 py-3">Title</th>
+                          <th className="px-4 py-3">Category</th>
+                          <th className="px-4 py-3">Views</th>
+                          <th className="px-4 py-3">Status</th>
+                          <th className="px-4 py-3">Date</th>
+                          <th className="px-4 py-3">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {blogs.map((b) => (
+                          <tr key={b._id} className={`border-b hover:bg-gray-50 ${editingBlog === b._id ? 'bg-green-50' : ''}`}>
+                            <td className="px-4 py-3">
+                              <span className="font-medium line-clamp-1">{b.title}</span>
+                              <span className="text-xs text-gray-400 block">/blog/{b.slug}</span>
+                            </td>
+                            <td className="px-4 py-3 text-gray-500 capitalize">{b.category?.replace('-', ' ')}</td>
+                            <td className="px-4 py-3 text-gray-500">{b.views || 0}</td>
+                            <td className="px-4 py-3">
+                              <span className={`badge ${b.published ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                                {b.published ? 'Published' : 'Draft'}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-gray-400">{new Date(b.createdAt).toLocaleDateString()}</td>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-2">
+                                <button onClick={() => handleEditBlog(b)} className="text-blue-500 hover:text-blue-700" title="Edit">
+                                  <FiEdit size={16} />
+                                </button>
+                                <button onClick={() => handleDeleteBlog(b._id)} className="text-red-400 hover:text-red-600" title="Delete">
+                                  <FiTrash2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                        {blogs.length === 0 && (
+                          <tr><td colSpan={6} className="px-4 py-8 text-center text-gray-400">No blog posts yet. Click "New Post" to create one.</td></tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -193,7 +461,7 @@ export default function AdminPanel() {
                         <th className="px-4 py-3">Amount</th>
                         <th className="px-4 py-3">Status</th>
                         <th className="px-4 py-3">Date</th>
-                        <th className="px-4 py-3">Actions</th>
+                        <th className="px-4 py-3">Payment</th>
                       </tr>
                     </thead>
                     <tbody>
