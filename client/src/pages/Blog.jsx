@@ -48,6 +48,48 @@ const DEMO_POSTS = [
     tags: ['spirulina', 'supplements', 'health'], createdAt: '2026-02-28T10:00:00Z',
     content: 'Spirulina is a blue-green algae that has been consumed for centuries...',
   },
+  {
+    _id: 'p7', title: 'DXN Cordyceps: The Energy Mushroom Explained', slug: 'cordyceps-energy-mushroom',
+    excerpt: 'Discover how Cordyceps mushroom can naturally boost your energy, athletic performance, and stamina. Learn why DXN\'s Cordyceps products are a game-changer.',
+    image: '', category: 'health', author: 'Grow with DXN', views: 720,
+    tags: ['cordyceps', 'energy', 'supplements'], createdAt: '2026-03-02T10:00:00Z',
+    content: 'Cordyceps is a unique medicinal mushroom that has been used in traditional medicine for centuries...',
+  },
+  {
+    _id: 'p8', title: 'How to Earn Passive Income with DXN', slug: 'passive-income-dxn',
+    excerpt: 'Learn the DXN compensation plan and how you can build multiple streams of passive income through product sales, team building, and leadership bonuses.',
+    image: '', category: 'business', author: 'Grow with DXN', views: 1580,
+    tags: ['income', 'compensation', 'passive'], createdAt: '2026-02-25T10:00:00Z',
+    content: 'One of the biggest attractions of the DXN business model is the potential for passive income...',
+  },
+  {
+    _id: 'p9', title: 'DXN Ganozhi Skincare: A Complete Review', slug: 'ganozhi-skincare-review',
+    excerpt: 'An honest, in-depth review of DXN\'s Ganozhi skincare line — from shampoo to toothpaste. Are Ganoderma-infused personal care products worth it?',
+    image: '', category: 'products', author: 'Grow with DXN', views: 1120,
+    tags: ['skincare', 'ganozhi', 'review'], createdAt: '2026-02-18T10:00:00Z',
+    content: 'DXN\'s Ganozhi line brings the power of Ganoderma to your daily personal care routine...',
+  },
+  {
+    _id: 'p10', title: 'From Housewife to Star Diamond: Aminah\'s Story', slug: 'housewife-to-star-diamond',
+    excerpt: 'How a stay-at-home mother from Malaysia built a global DXN empire from her kitchen table. Her inspiring journey from zero to Star Diamond rank.',
+    image: '', category: 'success-stories', author: 'Grow with DXN', views: 2450,
+    tags: ['success', 'women', 'inspiration'], createdAt: '2026-03-06T10:00:00Z',
+    content: 'Aminah never imagined she would build an international business from her living room...',
+  },
+  {
+    _id: 'p11', title: 'Morning Routine: Start Your Day the DXN Way', slug: 'morning-routine-dxn',
+    excerpt: 'The perfect morning routine using DXN products — from Lingzhi Coffee to Spirulina tablets. Boost your health, energy, and productivity every single day.',
+    image: '', category: 'tips', author: 'Grow with DXN', views: 1340,
+    tags: ['routine', 'health', 'coffee'], createdAt: '2026-03-04T10:00:00Z',
+    content: 'How you start your morning sets the tone for your entire day...',
+  },
+  {
+    _id: 'p12', title: 'DXN vs Other MLM Companies: Why DXN Wins', slug: 'dxn-vs-other-mlm',
+    excerpt: 'A fair comparison between DXN and other network marketing companies. No monthly quotas, single-line marketing, and one-world-one-market — here\'s why DXN stands out.',
+    image: '', category: 'business', author: 'Grow with DXN', views: 1890,
+    tags: ['mlm', 'comparison', 'business'], createdAt: '2026-02-22T10:00:00Z',
+    content: 'With thousands of MLM companies out there, what makes DXN different?...',
+  },
 ];
 
 export default function Blog() {

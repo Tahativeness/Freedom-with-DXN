@@ -188,6 +188,253 @@ Start with 2-3 tablets per day and gradually increase to 5-10 tablets. Take with
 
 Add DXN Spirulina to your daily routine and feel the difference!`,
   },
+  'cordyceps-energy-mushroom': {
+    title: 'DXN Cordyceps: The Energy Mushroom Explained',
+    category: 'health', author: 'Grow with DXN', views: 720,
+    createdAt: '2026-03-02T10:00:00Z',
+    tags: ['cordyceps', 'energy', 'supplements'],
+    content: `Cordyceps is a unique medicinal mushroom that has been used in traditional Chinese and Tibetan medicine for centuries. Known as the "energy mushroom," it has gained worldwide attention for its incredible health benefits.
+
+**What is Cordyceps?**
+Cordyceps is a genus of parasitic fungi that grows on insect larvae in the wild. DXN cultivates Cordyceps in a controlled, hygienic environment — no insects involved — ensuring purity and potency.
+
+**Top Benefits of Cordyceps:**
+
+**1. Boosts Energy & Stamina**
+Cordyceps increases the body's production of ATP (adenosine triphosphate), which is essential for delivering energy to muscles. Athletes around the world use it to enhance performance.
+
+**2. Improves Respiratory Health**
+Studies show Cordyceps can increase oxygen utilization, making it beneficial for people with asthma, bronchitis, or those who exercise at high altitudes.
+
+**3. Supports Kidney Health**
+In traditional Chinese medicine, Cordyceps is considered one of the best herbs for kidney health. Modern research supports its nephroprotective properties.
+
+**4. Anti-Aging Properties**
+Cordyceps contains powerful antioxidants that combat cellular aging. Elderly patients in studies showed improvements in energy, sleep, and memory after taking Cordyceps.
+
+**5. Enhances Libido**
+Cordyceps has been traditionally used as a natural aphrodisiac. Research suggests it may support reproductive health in both men and women.
+
+**6. Supports Heart Health**
+Cordyceps has been approved in China for treating arrhythmia (irregular heartbeat) and has shown promise in lowering LDL (bad) cholesterol.
+
+**DXN Cordyceps Products:**
+- DXN Cordyceps Capsules — Pure Cordyceps militaris extract
+- DXN Cordyceps Coffee 3-in-1 — Your daily coffee with Cordyceps boost
+- DXN Cordypine — Cordyceps with fermented pineapple juice
+
+Add Cordyceps to your daily routine alongside Reishi Gano for a powerful health combination!`,
+  },
+  'passive-income-dxn': {
+    title: 'How to Earn Passive Income with DXN',
+    category: 'business', author: 'Grow with DXN', views: 1580,
+    createdAt: '2026-02-25T10:00:00Z',
+    tags: ['income', 'compensation', 'passive'],
+    content: `One of the biggest attractions of the DXN business model is the potential for passive income. Here's how the DXN compensation plan works and how you can build wealth over time.
+
+**Understanding the DXN Compensation Plan:**
+
+**1. Direct Sales Profit (25-30%)**
+Buy DXN products at distributor price and sell at retail price. The margin is typically 25-30%, giving you immediate profit on every sale.
+
+**2. Group Bonus**
+As your team grows, you earn bonuses based on the total sales volume (SV) of your entire group. The deeper and wider your network, the bigger this bonus becomes.
+
+**3. Star Agent Bonus**
+When you reach Star Agent rank, you qualify for additional bonuses — a percentage of the company's total sales in your country. This is where the real passive income begins.
+
+**4. Leadership Bonus**
+Diamond and above ranks earn leadership bonuses from multiple levels of their organization. This creates a truly passive income stream.
+
+**5. Travel Incentives**
+DXN offers luxury travel incentives for top performers — all-expenses-paid trips to international destinations.
+
+**Why DXN's Plan is Different:**
+
+**No Monthly Purchase Quota**
+Unlike most MLM companies, DXN does NOT require you to buy products every month to stay active. This means zero pressure and zero wasted money.
+
+**One World, One Market**
+Your DXN business is global from day one. When someone joins through your link in another country, they're still in your team. No need for separate registrations.
+
+**Lifetime Membership**
+Once you register with DXN, you're a member for life. No annual renewals, no maintenance fees.
+
+**How to Get Started:**
+1. Register as a DXN distributor (small one-time fee)
+2. Start using and sharing the products
+3. Invite others to join your team
+4. Train and support your team members
+5. Watch your passive income grow month after month
+
+The key is patience and consistency. Most successful DXN leaders took 2-3 years to build significant passive income. But once built, it keeps flowing.`,
+  },
+  'ganozhi-skincare-review': {
+    title: 'DXN Ganozhi Skincare: A Complete Review',
+    category: 'products', author: 'Grow with DXN', views: 1120,
+    createdAt: '2026-02-18T10:00:00Z',
+    tags: ['skincare', 'ganozhi', 'review'],
+    content: `DXN's Ganozhi line brings the power of Ganoderma to your daily personal care routine. But are these products really worth it? Let's do an honest, comprehensive review.
+
+**DXN Ganozhi Toothpaste**
+- Contains Ganoderma extract and food gel base
+- No saccharin, no artificial coloring
+- Leaves mouth feeling clean and fresh
+- Rating: 4.5/5 — A genuinely great toothpaste
+
+**DXN Ganozhi Shampoo**
+- Enriched with Ganoderma extract and Vitamin B5
+- Gentle enough for daily use
+- Helps with dandruff and itchy scalp
+- Makes hair soft and manageable
+- Rating: 4.3/5 — Noticeable difference after 2 weeks
+
+**DXN Ganozhi Body Foam**
+- Mild cleansing formula with Ganoderma
+- Suitable for all skin types
+- Pleasant, subtle fragrance
+- Available in bottle or sachets (great for travel)
+- Rating: 4.2/5 — Gentle and effective
+
+**DXN Ganozhi Soap**
+- Enriched with Ganoderma extract and palm oil
+- Gentle on sensitive skin
+- Helps with minor skin irritations
+- Rating: 4.4/5 — Great value for quality
+
+**DXN Ganozhi Plus Series (New!)**
+The upgraded Ganozhi Plus line takes it further:
+- Plus Shampoo — No SLES/SLS/Paraben, extra gentle
+- Plus Body Foam — Added Vitamin E for skin nourishment
+- Plus Toothpaste — Enhanced with Xylitol for oral health
+
+**DXN Tea Tree Cream**
+- Formulated with tea tree oil
+- Great for pimples and mild skin irritation
+- A small tube lasts a long time
+- Rating: 4.6/5 — A must-have in your skincare kit
+
+**The Verdict:**
+DXN's personal care products are genuinely good. They're free from harsh chemicals, enriched with Ganoderma, and competitively priced. The Ganozhi Toothpaste and Tea Tree Cream are standout products that many users swear by.
+
+If you're looking to switch to cleaner, mushroom-powered personal care, DXN's Ganozhi line is a solid choice.`,
+  },
+  'housewife-to-star-diamond': {
+    title: 'From Housewife to Star Diamond: Aminah\'s Story',
+    category: 'success-stories', author: 'Grow with DXN', views: 2450,
+    createdAt: '2026-03-06T10:00:00Z',
+    tags: ['success', 'women', 'inspiration'],
+    content: `Aminah never imagined she would build an international business from her living room. As a stay-at-home mother of three in Malaysia, her world revolved around her family. Here's her inspiring journey from zero to Star Diamond.
+
+**The Spark:**
+In 2019, a neighbor invited Aminah to a DXN health talk. She was skeptical about "network marketing" but went for the free Lingzhi Coffee. That one cup changed everything.
+
+**First Steps:**
+After experiencing improved energy and better sleep from DXN products, Aminah registered as a distributor. Her husband was doubtful. "Just don't spend too much," he said.
+
+**The Kitchen Table Strategy:**
+Aminah didn't have a fancy office. She invited friends over for coffee — DXN Lingzhi Coffee. She'd share her health improvements while they sipped. One by one, friends started ordering products.
+
+**Going Digital:**
+When the pandemic hit in 2020, Aminah pivoted to social media. She started posting daily on Facebook and WhatsApp. Short videos about DXN products, her morning routine, health tips. Her audience grew from friends to strangers.
+
+**Building the Team:**
+By 2021, Aminah had 50 team members across Malaysia and Indonesia. She hosted weekly Zoom training sessions, always in her warm, motherly style. People loved her authenticity.
+
+**The Breakthrough:**
+In 2022, Aminah's team exploded to 500+ members across 8 countries. She reached Diamond rank and qualified for DXN's luxury travel incentive — an all-expenses-paid trip to Turkey.
+
+**Star Diamond:**
+By 2024, Aminah had over 2,000 members in her global network. She achieved Star Diamond rank, the highest tier in DXN. Her monthly passive income exceeded her husband's corporate salary.
+
+**Her Advice:**
+"I'm not special. I'm just a mother who believed in the products and never gave up. DXN gave me health, income, and freedom. If I can do it from my kitchen table, anyone can."
+
+**Today:**
+Aminah travels the world as a DXN speaker, inspiring thousands of women to start their own businesses. Her husband retired early to join her DXN journey full-time.`,
+  },
+  'morning-routine-dxn': {
+    title: 'Morning Routine: Start Your Day the DXN Way',
+    category: 'tips', author: 'Grow with DXN', views: 1340,
+    createdAt: '2026-03-04T10:00:00Z',
+    tags: ['routine', 'health', 'coffee'],
+    content: `How you start your morning sets the tone for your entire day. Here's the perfect morning routine using DXN products to maximize your health, energy, and productivity.
+
+**6:00 AM — Wake Up & Hydrate**
+Start with a glass of warm water. Add a few drops of DXN Morinzhi (noni juice) for an alkalizing, detoxifying boost. This kickstarts your metabolism and flushes out toxins.
+
+**6:15 AM — Supplements**
+Take your daily DXN supplements on an empty stomach:
+- 2 capsules of Reishi Gano (RG) — for immunity and overall wellness
+- 2 capsules of Ganocelium (GL) — for cellular nourishment
+- 3-5 Spirulina tablets — for vitamins, minerals, and energy
+
+**6:30 AM — Morning Coffee**
+Brew your DXN Lingzhi Coffee (choose your favorite variant):
+- Lingzhi Black Coffee — if you like it strong and sugar-free
+- Lingzhi 3-in-1 — if you prefer creamy and sweet
+- Cordyceps Coffee — if you need extra energy for the day
+
+Enjoy it mindfully. This is your daily dose of Ganoderma through a delicious cup of coffee.
+
+**7:00 AM — Personal Care**
+Shower with DXN Ganozhi Plus Body Foam and Shampoo. Brush your teeth with Ganozhi Toothpaste. These small switches replace chemical-laden products with Ganoderma-enriched alternatives.
+
+**7:15 AM — Skincare**
+Apply DXN Aloe V Moisturizer or Ganozhi E Series UV Defense Cream to protect your skin for the day.
+
+**7:30 AM — Breakfast**
+Have DXN Spirulina Cereal or Cordyceps Cereal for a nutritious, fiber-rich breakfast.
+
+**Why This Routine Works:**
+- You're nourishing your body with natural supplements
+- Ganoderma supports your immune system all day
+- No harsh chemicals touching your skin
+- Sustained energy without the crash of regular coffee
+
+**Pro Tips:**
+- Keep your RG, GL, and Spirulina by your bedside so you never forget
+- Prepare your Lingzhi Coffee the night before if you're short on time
+- Share your routine on social media — it's great content for your DXN business!
+
+Start tomorrow morning. Within a week, you'll feel the difference. Within a month, you won't go back.`,
+  },
+  'dxn-vs-other-mlm': {
+    title: 'DXN vs Other MLM Companies: Why DXN Wins',
+    category: 'business', author: 'Grow with DXN', views: 1890,
+    createdAt: '2026-02-22T10:00:00Z',
+    tags: ['mlm', 'comparison', 'business'],
+    content: `With thousands of MLM companies out there, what makes DXN different? Let's do a fair, honest comparison.
+
+**1. No Monthly Purchase Quota**
+Most MLM companies require you to buy $100-$300 worth of products every month to stay "active" and earn commissions. DXN has ZERO monthly quota. Buy when you want, what you want. This alone saves distributors thousands of dollars per year.
+
+**2. One World, One Market**
+In most MLMs, if you want to operate in another country, you need a separate registration and separate business. With DXN, your one membership works globally. Sign up someone in Germany, Japan, or Nigeria — they're all in your team under one account.
+
+**3. Lifetime Membership**
+Many MLMs charge annual renewal fees or deactivate your account after inactivity. DXN membership is for life. Even if you take a break for years, your position and downline remain intact.
+
+**4. Product Quality**
+DXN owns its own farms, factories, and research facilities. From Ganoderma cultivation to final packaging, everything is done in-house. This vertical integration ensures quality control and keeps prices affordable. Most MLMs outsource manufacturing.
+
+**5. Affordable Entry**
+DXN registration typically costs $10-$25 (varies by country). Many MLMs require starter kits costing $100-$500+. Lower barrier means more people can join, which means faster team growth.
+
+**6. Real, Consumable Products**
+DXN's products are daily consumables — coffee, supplements, toothpaste, soap. People use them every day and reorder naturally. You're not selling luxury items people buy once and forget.
+
+**7. 30+ Years in Business**
+Founded in 1993 by Dato' Dr. Lim Siow Jin, DXN has been operating for over 30 years across 180+ countries. This stability gives you confidence that the company will be here for the long run.
+
+**8. Simple Compensation Plan**
+DXN's plan is straightforward — accumulate points (SV/PV) through personal sales and team sales, climb the ranks, earn bonuses. No confusing binary matrices or forced legs.
+
+**The Honest Truth:**
+No MLM is perfect, and success requires real effort. But DXN removes the financial pressure that causes most people to fail in network marketing. No quotas means no wasted money. Global membership means unlimited potential.
+
+If you're going to choose an MLM, choose one that doesn't punish you for taking a month off. Choose DXN.`,
+  },
 };
 
 export default function BlogPost() {
