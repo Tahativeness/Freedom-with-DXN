@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { FiUsers, FiShoppingBag, FiPackage, FiPlus, FiEdit, FiTrash2, FiX, FiFileText } from 'react-icons/fi';
+import { useRef } from 'react';
+import { FiUsers, FiShoppingBag, FiPackage, FiPlus, FiEdit, FiTrash2, FiX, FiFileText, FiBold, FiItalic, FiList, FiLink, FiImage, FiMinus } from 'react-icons/fi';
 
 const EMPTY_FORM = { name: '', description: '', price: '', category: 'coffee', inStock: true, featured: false, image: '', images: ['', '', '', '', ''] };
 const EMPTY_BLOG_FORM = { title: '', excerpt: '', content: '', category: 'health', tags: '', image: '', published: true };
@@ -158,6 +159,26 @@ export default function AdminPanel() {
       if (editingBlog === id) resetBlogForm();
       loadData();
     } catch { toast.error('Failed'); }
+  };
+
+  const contentRef = useRef(null);
+  const excerptRef = useRef(null);
+
+  const insertFormat = (ref, before, after = '', placeholder = '') => {
+    const el = ref.current;
+    if (!el) return;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const text = el.value;
+    const selected = text.substring(start, end) || placeholder;
+    const newText = text.substring(0, start) + before + selected + after + text.substring(end);
+    const field = ref === contentRef ? 'content' : 'excerpt';
+    setBlogForm((prev) => ({ ...prev, [field]: newText }));
+    setTimeout(() => {
+      el.focus();
+      const cursorPos = start + before.length + selected.length + after.length;
+      el.setSelectionRange(cursorPos, cursorPos);
+    }, 0);
   };
 
   return (
@@ -372,11 +393,32 @@ export default function AdminPanel() {
                       </div>
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium mb-1">Excerpt / Summary *</label>
-                        <textarea required rows={2} value={blogForm.excerpt} onChange={(e) => setBlogForm({...blogForm, excerpt: e.target.value})} className="input-field resize-none" placeholder="Brief summary shown on blog listing..." />
+                        <div className="flex gap-1 mb-1 flex-wrap">
+                          <button type="button" onClick={() => insertFormat(excerptRef, '**', '**', 'bold text')} className="toolbar-btn" title="Bold"><FiBold size={14} /></button>
+                          <button type="button" onClick={() => insertFormat(excerptRef, '*', '*', 'italic text')} className="toolbar-btn" title="Italic"><FiItalic size={14} /></button>
+                        </div>
+                        <textarea ref={excerptRef} required rows={2} value={blogForm.excerpt} onChange={(e) => setBlogForm({...blogForm, excerpt: e.target.value})} className="input-field resize-none" placeholder="Brief summary shown on blog listing..." />
                       </div>
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium mb-1">Content *</label>
-                        <textarea required rows={12} value={blogForm.content} onChange={(e) => setBlogForm({...blogForm, content: e.target.value})} className="input-field resize-y" placeholder="Write your blog post content here. Use **bold** for headings." />
+                        <div className="flex gap-1 mb-1 flex-wrap bg-gray-50 p-2 rounded-lg border">
+                          <button type="button" onClick={() => insertFormat(contentRef, '**', '**', 'bold text')} className="toolbar-btn" title="Bold"><FiBold size={14} /></button>
+                          <button type="button" onClick={() => insertFormat(contentRef, '*', '*', 'italic text')} className="toolbar-btn" title="Italic"><FiItalic size={14} /></button>
+                          <span className="w-px bg-gray-300 mx-1" />
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n**', '**\n', 'Heading')} className="toolbar-btn text-xs font-bold" title="Heading">H</button>
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n## ', '\n', 'Subheading')} className="toolbar-btn text-xs font-bold" title="Subheading">H2</button>
+                          <span className="w-px bg-gray-300 mx-1" />
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n- ', '\n', 'list item')} className="toolbar-btn" title="Bullet List"><FiList size={14} /></button>
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n1. ', '\n', 'list item')} className="toolbar-btn text-xs font-bold" title="Numbered List">1.</button>
+                          <span className="w-px bg-gray-300 mx-1" />
+                          <button type="button" onClick={() => insertFormat(contentRef, '[', '](https://)', 'link text')} className="toolbar-btn" title="Insert Link"><FiLink size={14} /></button>
+                          <button type="button" onClick={() => insertFormat(contentRef, '![', '](https://image-url)', 'alt text')} className="toolbar-btn" title="Insert Image"><FiImage size={14} /></button>
+                          <span className="w-px bg-gray-300 mx-1" />
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n> ', '\n', 'quote text')} className="toolbar-btn text-lg leading-none" title="Blockquote">"</button>
+                          <button type="button" onClick={() => insertFormat(contentRef, '\n---\n', '', '')} className="toolbar-btn" title="Horizontal Rule"><FiMinus size={14} /></button>
+                        </div>
+                        <textarea ref={contentRef} required rows={12} value={blogForm.content} onChange={(e) => setBlogForm({...blogForm, content: e.target.value})} className="input-field resize-y font-mono text-sm" placeholder="Write your blog post content here...&#10;&#10;Use the toolbar above to format text." />
+                        <p className="text-xs text-gray-400 mt-1">Tip: Select text then click a toolbar button to wrap it with formatting.</p>
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-1">Tags (comma separated)</label>

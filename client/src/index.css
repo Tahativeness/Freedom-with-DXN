@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --gold-primary: #dfc378;
+  --gold-secondary: #dcca8b;
+  --green-primary: #16392d;
+  --green-deep: #0c3935;
+}
+
 @layer base {
   * {
     @apply box-border;
@@ -16,13 +23,29 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-dxn-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-dxn-darkgreen transition-all duration-200 shadow-md hover:shadow-lg;
+    background-color: var(--gold-primary);
+    color: var(--green-primary);
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+  .btn-primary:hover {
+    background-color: var(--gold-secondary);
   }
   .btn-gold {
-    @apply bg-dxn-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-dxn-lightgold transition-all duration-200 shadow-md hover:shadow-lg;
+    background-color: var(--gold-primary);
+    color: var(--green-primary);
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+  .btn-gold:hover {
+    background-color: var(--gold-secondary);
   }
   .btn-outline {
-    @apply border-2 border-dxn-green text-dxn-green px-6 py-3 rounded-lg font-semibold hover:bg-dxn-green hover:text-white transition-all duration-200;
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+    @apply border-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+  }
+  .btn-outline:hover {
+    background-color: var(--gold-primary);
+    color: var(--green-primary);
   }
   .card {
     @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300;
@@ -34,10 +57,17 @@
     @apply text-gray-600 text-center text-lg mb-12 max-w-2xl mx-auto;
   }
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-dxn-green focus:border-transparent transition-all;
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all;
+    --tw-ring-color: var(--gold-primary);
+  }
+  .input-field:focus {
+    --tw-ring-color: var(--gold-primary);
   }
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  .toolbar-btn {
+    @apply w-8 h-8 flex items-center justify-center rounded hover:bg-gray-200 text-gray-600 hover:text-dxn-darkgreen transition-colors cursor-pointer border border-transparent hover:border-gray-300;
   }
 }
 
@@ -46,7 +76,7 @@
     @apply bg-gradient-to-r from-dxn-green to-dxn-gold bg-clip-text text-transparent;
   }
   .bg-hero {
-    background: linear-gradient(135deg, #0f3d1e 0%, #1a5c2e 50%, #22863a 100%);
+    background: linear-gradient(135deg, #0c3935 0%, #16392d 50%, #1e4d3d 100%);
   }
 }
 
@@ -63,6 +93,6 @@ html {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a5c2e;
+  background: #16392d;
   border-radius: 4px;
 }
