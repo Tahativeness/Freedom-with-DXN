@@ -31,7 +31,22 @@ export default function Home() {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/products?featured=true&limit=4').then((r) => setFeatured(r.data.products)).catch(() => {});
+    axios.get('/api/products?featured=true&limit=4')
+      .then((r) => {
+        if (Array.isArray(r.data?.products) && r.data.products.length > 0) {
+          setFeatured(r.data.products);
+        } else {
+          throw new Error('No data');
+        }
+      })
+      .catch(() => {
+        setFeatured([
+          { _id: '1', name: 'Lingzhi Coffee 3 in 1', category: 'coffee', price: 24.99, rating: 4.8, featured: true, inStock: true, description: 'Classic DXN coffee blended with Ganoderma' },
+          { _id: '2', name: 'Reishi Gano (RG)', category: 'ganoderma', price: 38.99, rating: 4.9, featured: true, inStock: true, description: 'Premium Ganoderma Lucidum extract' },
+          { _id: '3', name: 'Spirulina Tablet', category: 'supplements', price: 29.99, rating: 4.6, featured: true, inStock: true, description: 'High quality spirulina supplement' },
+          { _id: '4', name: 'DXN Cocozhi', category: 'beverages', price: 22.99, rating: 4.5, featured: true, inStock: true, description: 'Delicious chocolate drink with Ganoderma' },
+        ]);
+      });
   }, []);
 
   return (

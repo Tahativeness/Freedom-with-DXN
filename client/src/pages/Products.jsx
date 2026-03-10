@@ -24,8 +24,9 @@ export default function Products() {
       if (category !== 'all') params.category = category;
       if (search) params.search = search;
       const { data } = await axios.get('/api/products', { params });
+      if (!data?.products || !Array.isArray(data.products)) throw new Error('Invalid response');
       setProducts(data.products);
-      setTotalPages(data.pages);
+      setTotalPages(data.pages || 1);
     } catch {
       // Use demo products if API not available
       setProducts([
