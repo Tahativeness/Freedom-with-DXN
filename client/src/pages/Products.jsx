@@ -30,14 +30,14 @@ export default function Products() {
     } catch {
       // Use demo products if API not available
       const demo = [
-        { _id: '1', name: 'Lingzhi Coffee 3 in 1', category: 'coffee', price: 24.99, rating: 4.8, featured: true, inStock: true, description: 'Classic DXN coffee blended with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/lingzhi-coffee-3in1.jpg' },
-        { _id: '2', name: 'Reishi Gano (RG)', category: 'ganoderma', price: 38.99, rating: 4.9, featured: true, inStock: true, description: 'Premium Ganoderma Lucidum extract', image: 'https://dxn2u.com/wp-content/uploads/2020/07/reishi-gano-rg.jpg' },
-        { _id: '3', name: 'Gano Massage Oil', category: 'skincare', price: 19.99, rating: 4.7, featured: false, inStock: true, description: 'Relaxing massage oil with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/gano-massage-oil.jpg' },
-        { _id: '4', name: 'Spirulina Tablet', category: 'supplements', price: 29.99, rating: 4.6, featured: true, inStock: true, description: 'High quality spirulina supplement', image: 'https://dxn2u.com/wp-content/uploads/2020/07/spirulina-tablet.jpg' },
-        { _id: '5', name: 'DXN Cocozhi', category: 'beverages', price: 22.99, rating: 4.5, featured: false, inStock: true, description: 'Delicious chocolate drink with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/cocozhi.jpg' },
-        { _id: '6', name: 'Lingzhi Black Coffee', category: 'coffee', price: 21.99, rating: 4.7, featured: false, inStock: true, description: 'Pure black coffee with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/lingzhi-black-coffee.jpg' },
-        { _id: '7', name: 'Ganozhi Toothpaste', category: 'other', price: 12.99, rating: 4.4, featured: false, inStock: true, description: 'Ganoderma-infused toothpaste', image: 'https://dxn2u.com/wp-content/uploads/2020/07/ganozhi-toothpaste.jpg' },
-        { _id: '8', name: 'Myco Vege', category: 'supplements', price: 34.99, rating: 4.8, featured: false, inStock: true, description: 'Mushroom and vegetable supplement', image: 'https://dxn2u.com/wp-content/uploads/2020/07/myco-vege.jpg' },
+        { _id: '1', name: 'Lingzhi Coffee 3 in 1', category: 'coffee', price: 24.99, rating: 4.8, featured: true, inStock: true, description: 'Classic DXN coffee blended with Ganoderma' },
+        { _id: '2', name: 'Reishi Gano (RG)', category: 'ganoderma', price: 38.99, rating: 4.9, featured: true, inStock: true, description: 'Premium Ganoderma Lucidum extract' },
+        { _id: '3', name: 'Gano Massage Oil', category: 'skincare', price: 19.99, rating: 4.7, featured: false, inStock: true, description: 'Relaxing massage oil with Ganoderma' },
+        { _id: '4', name: 'Spirulina Tablet', category: 'supplements', price: 29.99, rating: 4.6, featured: true, inStock: true, description: 'High quality spirulina supplement' },
+        { _id: '5', name: 'DXN Cocozhi', category: 'beverages', price: 22.99, rating: 4.5, featured: false, inStock: true, description: 'Delicious chocolate drink with Ganoderma' },
+        { _id: '6', name: 'Lingzhi Black Coffee', category: 'coffee', price: 21.99, rating: 4.7, featured: false, inStock: true, description: 'Pure black coffee with Ganoderma' },
+        { _id: '7', name: 'Ganozhi Toothpaste', category: 'other', price: 12.99, rating: 4.4, featured: false, inStock: true, description: 'Ganoderma-infused toothpaste' },
+        { _id: '8', name: 'Myco Vege', category: 'supplements', price: 34.99, rating: 4.8, featured: false, inStock: true, description: 'Mushroom and vegetable supplement' },
       ];
       const filtered = category === 'all' ? demo : demo.filter((p) => p.category === category);
       setProducts(filtered);

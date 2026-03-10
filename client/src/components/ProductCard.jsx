@@ -12,25 +12,32 @@ export default function ProductCard({ product }) {
     toast.success(`${product.name} added to cart!`);
   };
 
-  const mainImage = product.image || `https://placehold.co/400x400/16392d/white?text=${encodeURIComponent(product.name)}`;
+  const mainImage = product.image || '';
   const secondImage = product.images?.length > 0 ? product.images[0] : null;
 
   return (
     <Link to={`/products/${product._id}`} className="card group block overflow-hidden">
       <div className="relative overflow-hidden bg-gray-100 aspect-square">
-        {/* Main image */}
-        <img
-          src={mainImage}
-          alt={product.name}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${secondImage ? 'group-hover:opacity-0 group-hover:scale-105' : 'group-hover:scale-105'}`}
-        />
-        {/* Second image on hover */}
-        {secondImage && (
-          <img
-            src={secondImage}
-            alt={`${product.name} hover`}
-            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"
-          />
+        {mainImage ? (
+          <>
+            <img
+              src={mainImage}
+              alt={product.name}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${secondImage ? 'group-hover:opacity-0 group-hover:scale-105' : 'group-hover:scale-105'}`}
+            />
+            {secondImage && (
+              <img
+                src={secondImage}
+                alt={`${product.name} hover`}
+                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"
+              />
+            )}
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-dxn-darkgreen to-dxn-green flex flex-col items-center justify-center p-4 text-center">
+            <span className="text-dxn-gold text-4xl font-bold mb-2">DXN</span>
+            <span className="text-white/90 text-sm font-medium leading-tight">{product.name}</span>
+          </div>
         )}
         {product.featured && (
           <span className="absolute top-2 left-2 bg-dxn-gold text-white text-xs px-2 py-1 rounded-full font-semibold z-10">

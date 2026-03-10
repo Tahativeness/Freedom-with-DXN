@@ -41,10 +41,10 @@ export default function Home() {
       })
       .catch(() => {
         setFeatured([
-          { _id: '1', name: 'Lingzhi Coffee 3 in 1', category: 'coffee', price: 24.99, rating: 4.8, featured: true, inStock: true, description: 'Classic DXN coffee blended with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/lingzhi-coffee-3in1.jpg' },
-          { _id: '2', name: 'Reishi Gano (RG)', category: 'ganoderma', price: 38.99, rating: 4.9, featured: true, inStock: true, description: 'Premium Ganoderma Lucidum extract', image: 'https://dxn2u.com/wp-content/uploads/2020/07/reishi-gano-rg.jpg' },
-          { _id: '3', name: 'Spirulina Tablet', category: 'supplements', price: 29.99, rating: 4.6, featured: true, inStock: true, description: 'High quality spirulina supplement', image: 'https://dxn2u.com/wp-content/uploads/2020/07/spirulina-tablet.jpg' },
-          { _id: '4', name: 'DXN Cocozhi', category: 'beverages', price: 22.99, rating: 4.5, featured: true, inStock: true, description: 'Delicious chocolate drink with Ganoderma', image: 'https://dxn2u.com/wp-content/uploads/2020/07/cocozhi.jpg' },
+          { _id: '1', name: 'Lingzhi Coffee 3 in 1', category: 'coffee', price: 24.99, rating: 4.8, featured: true, inStock: true, description: 'Classic DXN coffee blended with Ganoderma' },
+          { _id: '2', name: 'Reishi Gano (RG)', category: 'ganoderma', price: 38.99, rating: 4.9, featured: true, inStock: true, description: 'Premium Ganoderma Lucidum extract' },
+          { _id: '3', name: 'Spirulina Tablet', category: 'supplements', price: 29.99, rating: 4.6, featured: true, inStock: true, description: 'High quality spirulina supplement' },
+          { _id: '4', name: 'DXN Cocozhi', category: 'beverages', price: 22.99, rating: 4.5, featured: true, inStock: true, description: 'Delicious chocolate drink with Ganoderma' },
         ]);
       });
   }, []);
