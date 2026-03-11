@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { useCart } from '../context/CartContext';
-import { FiShoppingCart, FiArrowLeft, FiStar, FiCheck } from 'react-icons/fi';
-import toast from 'react-hot-toast';
+import { FiArrowLeft, FiStar, FiCheck, FiMessageCircle } from 'react-icons/fi';
+import { useLang } from '../context/LanguageContext';
+
+const WHATSAPP_NUMBER = '971501234567';
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const { addToCart } = useCart();
+  const { lang } = useLang();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
   const [zoom, setZoom] = useState(false);
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
@@ -31,6 +31,13 @@ export default function ProductDetail() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  const handleWhatsApp = () => {
+    const msg = lang === 'ar'
+      ? `مرحباً، أنا مهتم بطلب: ${product.name}`
+      : `Hi, I'd like to order: ${product.name}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
   if (loading) return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="w-12 h-12 border-4 border-dxn-green border-t-transparent rounded-full animate-spin" />
@@ -48,7 +55,7 @@ export default function ProductDetail() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-10">
         <Link to="/products" className="inline-flex items-center gap-2 text-dxn-green hover:text-dxn-darkgreen mb-6">
-          <FiArrowLeft /> Back to Products
+          <FiArrowLeft /> {lang === 'ar' ? 'العودة للمنتجات' : 'Back to Products'}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white rounded-2xl shadow-lg overflow-hidden p-8">
@@ -56,31 +63,35 @@ export default function ProductDetail() {
           <div>
             <div
               ref={imgContainerRef}
-              className="bg-gray-100 rounded-xl overflow-hidden aspect-square mb-3 relative cursor-crosshair"
+              className="bg-gray-100 rounded-xl overflow-hidden aspect-square mb-3 relative"
+              style={{ cursor: zoom ? 'crosshair' : 'zoom-in' }}
               onMouseEnter={() => setZoom(true)}
               onMouseLeave={() => setZoom(false)}
               onMouseMove={handleMouseMove}
             >
+              {/* Base image — hidden when zooming */}
               <img
                 src={selectedImage || product.image || `https://placehold.co/600x600/16392d/white?text=${encodeURIComponent(product.name)}`}
                 alt={product.name}
                 className="w-full h-full object-cover"
+                style={{ opacity: zoom ? 0 : 1 }}
                 draggable={false}
               />
+              {/* Zoom overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: `url(${selectedImage || product.image || `https://placehold.co/600x600/16392d/white?text=${encodeURIComponent(product.name)}`})`,
+                  backgroundSize: '300%',
+                  backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                  backgroundRepeat: 'no-repeat',
+                  opacity: zoom ? 1 : 0,
+                  transition: 'opacity 0.15s ease',
+                }}
+              />
               {zoom && (
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    backgroundImage: `url(${selectedImage || product.image || `https://placehold.co/600x600/16392d/white?text=${encodeURIComponent(product.name)}`})`,
-                    backgroundSize: '250%',
-                    backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
-                    backgroundRepeat: 'no-repeat',
-                  }}
-                />
-              )}
-              {zoom && (
-                <span className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                  Move to zoom
+                <span className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded pointer-events-none">
+                  🔍 Move to zoom
                 </span>
               )}
             </div>
@@ -126,7 +137,7 @@ export default function ProductDetail() {
 
             {product.benefits?.length > 0 && (
               <div className="mb-6">
-                <h3 className="font-semibold text-gray-800 mb-3">Key Benefits</h3>
+                <h3 className="font-semibold text-gray-800 mb-3">{lang === 'ar' ? 'الفوائد الرئيسية' : 'Key Benefits'}</h3>
                 <ul className="space-y-2">
                   {product.benefits.map((b) => (
                     <li key={b} className="flex items-center gap-2 text-gray-600">
@@ -139,26 +150,25 @@ export default function ProductDetail() {
 
             {product.usage && (
               <div className="mb-6 p-4 bg-green-50 rounded-lg">
-                <h3 className="font-semibold text-gray-800 mb-1">How to Use</h3>
+                <h3 className="font-semibold text-gray-800 mb-1">{lang === 'ar' ? 'طريقة الاستخدام' : 'How to Use'}</h3>
                 <p className="text-gray-600 text-sm">{product.usage}</p>
               </div>
             )}
 
-            {/* Quantity & Add to Cart */}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center border rounded-lg overflow-hidden">
-                <button onClick={() => setQty(Math.max(1, qty - 1))} className="px-3 py-2 hover:bg-gray-100 font-bold text-lg">-</button>
-                <span className="px-4 py-2 font-semibold">{qty}</span>
-                <button onClick={() => setQty(qty + 1)} className="px-3 py-2 hover:bg-gray-100 font-bold text-lg">+</button>
-              </div>
-              <button
-                onClick={() => { addToCart(product, qty); toast.success('Added to cart!'); }}
-                disabled={!product.inStock}
-                className="btn-primary flex items-center gap-2 flex-1 justify-center disabled:opacity-50"
-              >
-                <FiShoppingCart /> {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-              </button>
-            </div>
+            {/* Order via WhatsApp */}
+            <button
+              onClick={handleWhatsApp}
+              disabled={!product.inStock}
+              className="w-full flex items-center justify-center gap-3 bg-[#dfc378] hover:bg-[#dcca8b] text-[#16392d] font-bold py-4 px-6 rounded-xl text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+            >
+              <FiMessageCircle size={22} />
+              {product.inStock
+                ? (lang === 'ar' ? 'اطلب عبر واتساب' : 'Order via WhatsApp')
+                : (lang === 'ar' ? 'غير متوفر' : 'Out of Stock')}
+            </button>
+            <p className="text-center text-sm text-gray-500 mt-2">
+              {lang === 'ar' ? 'سيتم تحويلك إلى واتساب لإتمام الطلب' : 'You will be redirected to WhatsApp to complete your order'}
+            </p>
           </div>
         </div>
       </div>

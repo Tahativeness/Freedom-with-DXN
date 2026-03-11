@@ -1,35 +1,57 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { FiShoppingCart, FiStar } from 'react-icons/fi';
-import toast from 'react-hot-toast';
+import { FiMessageCircle, FiStar } from 'react-icons/fi';
+import { useLang } from '../context/LanguageContext';
+
+const WHATSAPP_NUMBER = '971501234567';
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
-
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    addToCart(product);
-    toast.success(`${product.name} added to cart!`);
-  };
+  const { lang } = useLang();
+  const [hovered, setHovered] = useState(false);
 
   const mainImage = product.image || '';
   const secondImage = product.images?.length > 0 ? product.images[0] : null;
 
+  const handleWhatsApp = (e) => {
+    e.preventDefault();
+    const msg = lang === 'ar'
+      ? `مرحباً، أنا مهتم بمنتج: ${product.name}`
+      : `Hi, I'm interested in ordering: ${product.name}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
   return (
-    <Link to={`/products/${product._id}`} className="card group block overflow-hidden">
+    <Link
+      to={`/products/${product._id}`}
+      className="card group block overflow-hidden"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="relative overflow-hidden bg-gray-100 aspect-square">
         {mainImage ? (
           <>
+            {/* Main image */}
             <img
               src={mainImage}
               alt={product.name}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${secondImage ? 'group-hover:opacity-0 group-hover:scale-105' : 'group-hover:scale-105'}`}
+              style={{
+                opacity: hovered && secondImage ? 0 : 1,
+                transform: hovered && secondImage ? 'scale(1.05)' : 'scale(1)',
+                transition: 'opacity 0.4s ease, transform 0.4s ease',
+              }}
+              className="absolute inset-0 w-full h-full object-cover"
             />
+            {/* Second image */}
             {secondImage && (
               <img
                 src={secondImage}
-                alt={`${product.name} hover`}
-                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"
+                alt={`${product.name} alt`}
+                style={{
+                  opacity: hovered ? 1 : 0,
+                  transform: hovered ? 'scale(1)' : 'scale(1.05)',
+                  transition: 'opacity 0.4s ease, transform 0.4s ease',
+                }}
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
           </>
@@ -62,11 +84,11 @@ export default function ProductCard({ product }) {
         <div className="flex items-center justify-between">
           <span className="text-dxn-darkgreen font-bold text-lg">${product.price?.toFixed(2)}</span>
           <button
-            onClick={handleAddToCart}
+            onClick={handleWhatsApp}
             disabled={!product.inStock}
-            className="flex items-center gap-1 bg-dxn-green text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-dxn-darkgreen transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-1 bg-[#dfc378] text-[#16392d] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#dcca8b] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <FiShoppingCart size={14} /> Add
+            <FiMessageCircle size={14} /> {lang === 'ar' ? 'اطلب' : 'Order'}
           </button>
         </div>
       </div>
