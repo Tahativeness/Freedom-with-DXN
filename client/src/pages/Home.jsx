@@ -79,7 +79,6 @@ export default function Home() {
                 <FiVideo size={16} /> {t('heroBtn2')}
               </Link>
             </div>
-            <div className="mt-6"><WhatsAppButton /></div>
           </div>
           <div className="hidden lg:flex justify-center">
             <div className="w-80 h-80 bg-dxn-gold/20 rounded-full flex items-center justify-center">
