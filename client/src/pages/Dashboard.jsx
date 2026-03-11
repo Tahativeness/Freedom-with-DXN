@@ -9,6 +9,7 @@ export default function Dashboard() {
   const { user } = useAuth();
   const [data, setData] = useState(null);
   const [downlines, setDownlines] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -16,9 +17,11 @@ export default function Dashboard() {
     Promise.all([
       axios.get('/api/distributors/dashboard'),
       axios.get('/api/distributors/downlines'),
-    ]).then(([dashRes, downRes]) => {
+      axios.get('/api/orders/my'),
+    ]).then(([dashRes, downRes, ordersRes]) => {
       setData(dashRes.data);
       setDownlines(downRes.data);
+      setOrders(ordersRes.data?.orders || ordersRes.data || []);
     }).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
@@ -189,11 +192,45 @@ export default function Dashboard() {
         {activeTab === 'orders' && (
           <div className="card p-6">
             <h3 className="font-bold text-dxn-darkgreen mb-4">My Orders</h3>
-            <div className="text-center py-12 text-gray-400">
-              <FiShoppingBag size={40} className="mx-auto mb-3 opacity-50" />
-              <p>Your order history will appear here</p>
-              <Link to="/products" className="btn-primary inline-block mt-4 text-sm">Shop Now</Link>
-            </div>
+            {orders.length === 0 ? (
+              <div className="text-center py-12 text-gray-400">
+                <FiShoppingBag size={40} className="mx-auto mb-3 opacity-50" />
+                <p>Your order history will appear here</p>
+                <Link to="/products" className="btn-primary inline-block mt-4 text-sm">Shop Now</Link>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100">
+                      {['Order ID', 'Items', 'Total', 'Status', 'Date'].map(h => (
+                        <th key={h} className="text-left py-2 px-3 text-xs font-semibold text-gray-500 uppercase">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.map(o => (
+                      <tr key={o._id} className="border-b border-gray-50 hover:bg-gray-50">
+                        <td className="py-3 px-3 font-mono text-xs text-gray-500">#{o._id.slice(-6).toUpperCase()}</td>
+                        <td className="py-3 px-3 text-gray-700">{o.items?.length || 1} item{(o.items?.length || 1) > 1 ? 's' : ''}</td>
+                        <td className="py-3 px-3 font-bold text-gray-800">${o.totalAmount?.toFixed(2) || o.total?.toFixed(2)}</td>
+                        <td className="py-3 px-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                            o.status === 'delivered' ? 'bg-green-100 text-green-700' :
+                            o.status === 'shipped' ? 'bg-blue-100 text-blue-700' :
+                            o.status === 'cancelled' ? 'bg-red-100 text-red-500' :
+                            'bg-yellow-100 text-yellow-700'
+                          }`}>{o.status}</span>
+                        </td>
+                        <td className="py-3 px-3 text-gray-400 text-xs">
+                          {new Date(o.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
       </div>
