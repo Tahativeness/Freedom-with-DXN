@@ -27,7 +27,7 @@ export default function Contact() {
   };
 
   const contactItems = [
-    { icon: FiPhone, label: lang === 'ar' ? 'هاتف / واتساب' : 'Phone / WhatsApp', value: '+971 50 123 4567' },
+    { icon: FiPhone, label: lang === 'ar' ? 'هاتف / واتساب' : 'Phone / WhatsApp', value: '+971 50 666 2875' },
     { icon: FiMail, label: lang === 'ar' ? 'البريد الإلكتروني' : 'Email', value: 'info@freedomwithdxn.com' },
     { icon: FiMessageCircle, label: lang === 'ar' ? 'واتساب' : 'WhatsApp', value: 'wa.me/message/EFSQ2IDNVG3YB1' },
     { icon: FiMapPin, label: lang === 'ar' ? 'الموقع' : 'Location', value: lang === 'ar' ? 'الإمارات العربية المتحدة' : 'United Arab Emirates' },
