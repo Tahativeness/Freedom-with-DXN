@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiMessageCircle, FiStar } from 'react-icons/fi';
 import { useLang } from '../context/LanguageContext';
 
-const WHATSAPP_NUMBER = '971501234567';
+const WHATSAPP_URL = 'https://wa.me/message/EFSQ2IDNVG3YB1';
 
 export default function ProductCard({ product }) {
   const { lang } = useLang();
@@ -14,10 +14,7 @@ export default function ProductCard({ product }) {
 
   const handleWhatsApp = (e) => {
     e.preventDefault();
-    const msg = lang === 'ar'
-      ? `مرحباً، أنا مهتم بمنتج: ${product.name}`
-      : `Hi, I'm interested in ordering: ${product.name}`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(WHATSAPP_URL, '_blank');
   };
 
   return (

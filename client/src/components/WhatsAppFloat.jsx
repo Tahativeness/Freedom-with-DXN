@@ -1,14 +1,10 @@
 import { useLang } from '../context/LanguageContext';
 
-const WHATSAPP_NUMBER = '971501234567'; // Update to your UAE number
-const getMessage = (lang) =>
-  lang === 'ar'
-    ? 'مرحباً، أريد معرفة المزيد عن منتجات DXN وفرصة العمل.'
-    : "Hi! I'd like to learn more about DXN products and the business opportunity.";
+const WHATSAPP_URL = 'https://wa.me/message/EFSQ2IDNVG3YB1';
 
 export default function WhatsAppFloat() {
   const { lang, t } = useLang();
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(getMessage(lang))}`;
+  const url = WHATSAPP_URL;
 
   return (
     <a
@@ -29,7 +25,7 @@ export default function WhatsAppFloat() {
 
 export function WhatsAppButton({ className = '', label }) {
   const { lang, t } = useLang();
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(getMessage(lang))}`;
+  const url = WHATSAPP_URL;
   return (
     <a
       href={url}

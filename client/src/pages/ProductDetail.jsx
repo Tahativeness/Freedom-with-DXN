@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FiArrowLeft, FiStar, FiCheck, FiMessageCircle } from 'react-icons/fi';
 import { useLang } from '../context/LanguageContext';
 
-const WHATSAPP_NUMBER = '971501234567';
+const WHATSAPP_URL = 'https://wa.me/message/EFSQ2IDNVG3YB1';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -32,10 +32,7 @@ export default function ProductDetail() {
   }, [id]);
 
   const handleWhatsApp = () => {
-    const msg = lang === 'ar'
-      ? `مرحباً، أنا مهتم بطلب: ${product.name}`
-      : `Hi, I'd like to order: ${product.name}`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(WHATSAPP_URL, '_blank');
   };
 
   if (loading) return (
