@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { SiteProvider } from './context/SiteContext';
 import { CartProvider } from './context/CartContext';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
@@ -28,6 +29,7 @@ import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
+    <SiteProvider>
     <LanguageProvider>
       <AuthProvider>
         <CartProvider>
@@ -68,5 +70,6 @@ export default function App() {
         </CartProvider>
       </AuthProvider>
     </LanguageProvider>
+    </SiteProvider>
   );
 }

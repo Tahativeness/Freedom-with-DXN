@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import SiteEditorPage from './SiteEditorPage';
 import {
   LayoutDashboard, ShoppingCart, Package, Users, DollarSign,
   BarChart2, Megaphone, Settings, LogOut, Bell, Search,
@@ -95,6 +96,7 @@ const NAV = [
   { id: 'commissions',  label: 'Commissions',      Icon: DollarSign },
   { id: 'reports',      label: 'Reports',          Icon: BarChart2 },
   { id: 'marketing',    label: 'Marketing',        Icon: Megaphone },
+  { id: 'site-editor',  label: 'Site Editor',       Icon: Globe },
   { id: 'settings',     label: 'Settings',         Icon: Settings },
 ];
 
@@ -1192,6 +1194,7 @@ export default function AdminDashboard() {
     commissions: <CommissionsPage />,
     reports:     <ReportsPage />,
     marketing:   <MarketingPage showToast={showToast} />,
+    'site-editor': <SiteEditorPage showToast={showToast} />,
     settings:    <SettingsPage showToast={showToast} />,
   };
 

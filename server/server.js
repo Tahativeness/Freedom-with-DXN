@@ -23,6 +23,7 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/distributors', require('./routes/distributors'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/blog', require('./routes/blog'));
+app.use('/api/site-settings', require('./routes/siteSettings'));
 
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'OK', message: 'Grow with DXN API running' }));
