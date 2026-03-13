@@ -1,10 +1,12 @@
 import { useLang } from '../context/LanguageContext';
+import { useSite } from '../context/SiteContext';
 
-const WHATSAPP_URL = 'https://wa.me/message/EFSQ2IDNVG3YB1';
+const WHATSAPP_DEFAULT = 'https://wa.me/message/EFSQ2IDNVG3YB1';
 
 export default function WhatsAppFloat() {
   const { lang, t } = useLang();
-  const url = WHATSAPP_URL;
+  const { settings } = useSite();
+  const url = settings?.contact?.whatsapp || WHATSAPP_DEFAULT;
 
   return (
     <a
@@ -25,7 +27,8 @@ export default function WhatsAppFloat() {
 
 export function WhatsAppButton({ className = '', label }) {
   const { lang, t } = useLang();
-  const url = WHATSAPP_URL;
+  const { settings } = useSite();
+  const url = settings?.contact?.whatsapp || WHATSAPP_DEFAULT;
   return (
     <a
       href={url}

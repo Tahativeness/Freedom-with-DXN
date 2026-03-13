@@ -3,12 +3,14 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useLang } from '../context/LanguageContext';
+import { useSite } from '../context/SiteContext';
 import { FiShoppingCart, FiMenu, FiX, FiUser, FiLogOut, FiGrid } from 'react-icons/fi';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { cartCount } = useCart();
   const { lang, setLang, t } = useLang();
+  const { settings } = useSite();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,15 +21,17 @@ export default function Navbar() {
     setDropdownOpen(false);
   };
 
-  const navLinks = [
-    { to: '/', labelKey: 'home' },
-    { to: '/about', labelKey: 'about' },
-    { to: '/products', labelKey: 'products' },
-    { to: '/join', labelKey: 'joinDxn' },
-    { to: '/zoom', labelKey: 'zoom' },
-    { to: '/blog', labelKey: 'blog' },
-    { to: '/contact', labelKey: 'contact' },
+  const nb = settings?.navbar || {};
+  const allNavLinks = [
+    { to: '/',        labelKey: 'home',    show: nb.showHome     !== false },
+    { to: '/about',   labelKey: 'about',   show: nb.showAbout    !== false },
+    { to: '/products',labelKey: 'products',show: nb.showProducts !== false },
+    { to: '/join',    labelKey: 'joinDxn', show: nb.showJoin     !== false },
+    { to: '/zoom',    labelKey: 'zoom',    show: nb.showZoom     !== false },
+    { to: '/blog',    labelKey: 'blog',    show: nb.showBlog     !== false },
+    { to: '/contact', labelKey: 'contact', show: nb.showContact  !== false },
   ];
+  const navLinks = allNavLinks.filter(l => l.show);
 
   return (
     <nav className="bg-dxn-green shadow-lg sticky top-0 z-50">

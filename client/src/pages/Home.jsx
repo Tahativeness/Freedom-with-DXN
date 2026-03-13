@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import Bestsellers from '../components/Bestsellers';
 import { WhatsAppButton } from '../components/WhatsAppFloat';
 import { useLang } from '../context/LanguageContext';
+import { useSite } from '../context/SiteContext';
 import { FiArrowRight, FiStar, FiUsers, FiGlobe, FiAward, FiCheck, FiVideo, FiCalendar } from 'react-icons/fi';
 
 const STATS = [
@@ -36,6 +37,8 @@ const TESTI = {
 
 export default function Home() {
   const { lang, t } = useLang();
+  const { settings } = useSite();
+  const hero = settings?.hero || {};
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
@@ -64,19 +67,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block bg-dxn-gold/20 text-dxn-gold px-4 py-1 rounded-full text-sm font-medium mb-4">
-              {lang === 'ar' ? 'موزع مستقل معتمد من DXN' : 'Independent DXN Distributor'}
+              {lang === 'ar' ? 'موزع مستقل معتمد من DXN' : (hero.badge || 'Independent DXN Distributor')}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               {lang === 'ar'
                 ? <><span>نمّ صحتك و</span><span className="text-dxn-gold">ثروتك</span><span> مع DXN</span></>
-                : <><span>Grow Your Health &amp; </span><span className="text-dxn-gold">Wealth</span><span> with DXN</span></>
+                : hero.title || 'Grow Your Health & Wealth with DXN'
               }
             </h1>
-            <p className="text-gray-300 text-lg mb-8 max-w-lg">{t('heroSub')}</p>
+            <p className="text-gray-300 text-lg mb-8 max-w-lg">{lang === 'ar' ? t('heroSub') : (hero.subtitle || t('heroSub'))}</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/products" className="btn-gold text-center">{t('heroBtn1')}</Link>
-              <Link to="/join" className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
-                {lang === 'ar' ? 'انضم كموزع' : 'Join as a Distributor'}
+              <Link to={hero.btn1Link || '/products'} className="btn-gold text-center">{hero.btn1Text || t('heroBtn1')}</Link>
+              <Link to={hero.btn2Link || '/join'} className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
+                {lang === 'ar' ? 'انضم كموزع' : (hero.btn2Text || 'Join as a Distributor')}
               </Link>
             </div>
           </div>

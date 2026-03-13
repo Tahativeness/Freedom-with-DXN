@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import { FiFacebook, FiInstagram, FiYoutube, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { useSite } from '../context/SiteContext';
 
 export default function Footer() {
+  const { settings } = useSite();
+  const contact = settings?.contact || {};
+  const social  = settings?.social  || {};
+  const footer  = settings?.footer  || {};
+
   return (
     <footer className="bg-dxn-darkgreen text-gray-300">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -11,12 +17,12 @@ export default function Footer() {
             <img src="/logo.png" alt="Grow with DXN" className="h-10 w-auto object-contain" />
           </div>
           <p className="text-sm text-gray-400 mb-4">
-            Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products.
+            {footer.description || "Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products."}
           </p>
           <div className="flex gap-3">
-            <a href="#" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiFacebook size={20} /></a>
-            <a href="#" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiInstagram size={20} /></a>
-            <a href="#" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiYoutube size={20} /></a>
+            {social.facebook  && <a href={social.facebook}  target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiFacebook size={20} /></a>}
+            {social.instagram && <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiInstagram size={20} /></a>}
+            {social.youtube   && <a href={social.youtube}   target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-dxn-gold transition-colors"><FiYoutube size={20} /></a>}
           </div>
         </div>
 
@@ -52,22 +58,22 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
               <FiMapPin className="text-dxn-gold mt-0.5 shrink-0" />
-              <span className="text-gray-400">United Arab Emirates</span>
+              <span className="text-gray-400">{contact.location || 'United Arab Emirates'}</span>
             </li>
             <li className="flex items-center gap-2">
               <FiPhone className="text-dxn-gold shrink-0" />
-              <span className="text-gray-400">+971 50 666 2875</span>
+              <span className="text-gray-400">{contact.phone || '+971 50 666 2875'}</span>
             </li>
             <li className="flex items-center gap-2">
               <FiMail className="text-dxn-gold shrink-0" />
-              <span className="text-gray-400">info@freedomwithdxn.com</span>
+              <span className="text-gray-400">{contact.email || 'info@freedomwithdxn.com'}</span>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-dxn-green py-4 text-center text-sm text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Freedom with DXN. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {footer.copyright || 'Freedom with DXN. All rights reserved.'}</p>
         <p className="text-xs mt-1 text-gray-600">Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.</p>
       </div>
     </footer>
