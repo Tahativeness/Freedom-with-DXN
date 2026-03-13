@@ -26,6 +26,20 @@ router.put('/change-password', authMiddleware, async (req, res) => {
   }
 });
 
+// POST /api/auth/create-admin (admin only)
+router.post('/create-admin', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const { name, email, password, phone, country } = req.body;
+    if (!name || !email || !password) return res.status(400).json({ message: 'Name, email and password are required' });
+    const existing = await User.findOne({ email });
+    if (existing) return res.status(400).json({ message: 'Email already registered' });
+    const user = await User.create({ name, email, password, phone, country, role: 'admin' });
+    res.status(201).json({ message: 'Admin created successfully', user: { id: user._id, name: user.name, email: user.email, role: user.role } });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // GET /api/auth/users (admin only)
 router.get('/users', authMiddleware, adminMiddleware, async (req, res) => {
   try {

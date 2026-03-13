@@ -859,6 +859,82 @@ function ProductsPage({ showToast }) {
 // ══════════════════════════════════════════════════════════════
 // MEMBERS PAGE
 // ══════════════════════════════════════════════════════════════
+function CreateAdminModal({ onClose, onCreated, TOKEN }) {
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '', phone: '', country: '' });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setError('');
+    if (form.password !== form.confirm) { setError('Passwords do not match'); return; }
+    if (form.password.length < 6) { setError('Password must be at least 6 characters'); return; }
+    setSaving(true);
+    try {
+      const res = await fetch('/api/auth/create-admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN}` },
+        body: JSON.stringify({ name: form.name, email: form.email, password: form.password, phone: form.phone, country: form.country }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.message || 'Failed to create admin'); return; }
+      onCreated();
+      onClose();
+    } catch { setError('Network error'); }
+    finally { setSaving(false); }
+  };
+
+  const field = (label, key, type = 'text', placeholder = '') => (
+    <div>
+      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{label}</label>
+      <input type={type} value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+        placeholder={placeholder} required={['name','email','password','confirm'].includes(key)}
+        className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400/40" />
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.5)' }}>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: C.gold }}>
+              <Shield size={14} className="text-white" />
+            </div>
+            <h2 className="font-bold text-gray-800" style={{ fontFamily: 'Playfair Display, serif' }}>Create Admin Account</h2>
+          </div>
+          <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-gray-100"><X size={16} /></button>
+        </div>
+        <form onSubmit={submit} className="p-6 space-y-4">
+          {error && (
+            <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-100 rounded-xl text-sm text-red-600">
+              <AlertCircle size={14} /> {error}
+            </div>
+          )}
+          {field('Full Name', 'name', 'text', 'Admin full name')}
+          {field('Email', 'email', 'email', 'admin@example.com')}
+          <div className="grid grid-cols-2 gap-3">
+            {field('Password', 'password', 'password', '••••••••')}
+            {field('Confirm Password', 'confirm', 'password', '••••••••')}
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {field('Phone', 'phone', 'text', '+1 (optional)')}
+            {field('Country', 'country', 'text', 'Optional')}
+          </div>
+          <div className="flex gap-3 pt-2">
+            <button type="button" onClick={onClose} className="flex-1 py-2.5 text-sm font-semibold border border-gray-200 rounded-xl hover:bg-gray-50">Cancel</button>
+            <button type="submit" disabled={saving}
+              className="flex-1 py-2.5 text-sm font-semibold text-white rounded-xl disabled:opacity-60"
+              style={{ background: C.gold }}>
+              {saving ? 'Creating…' : 'Create Admin'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function MembersPage() {
   const [allMembers, setAllMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -866,6 +942,7 @@ function MembersPage() {
   const [sortBy, setSortBy] = useState('createdAt');
   const [sortDir, setSortDir] = useState('desc');
   const [expanded, setExpanded] = useState(null);
+  const [showCreateAdmin, setShowCreateAdmin] = useState(false);
   const TOKEN = localStorage.getItem('token');
 
   const fetchMembers = () => {
@@ -902,6 +979,10 @@ function MembersPage() {
 
   return (
     <div className="space-y-5">
+      {showCreateAdmin && (
+        <CreateAdminModal TOKEN={TOKEN} onClose={() => setShowCreateAdmin(false)} onCreated={fetchMembers} />
+      )}
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[['Total Members', allMembers.length, '#8b5cf6'], ['Active', activeCount, C.green],
           ['Distributors', distCount, C.gold], ['Admins', adminCount, '#3b82f6']].map(([l,v,c]) => (
@@ -922,6 +1003,11 @@ function MembersPage() {
           <button onClick={fetchMembers} className="p-2.5 rounded-xl border border-gray-200 hover:bg-gray-50"><RefreshCw size={14} /></button>
           <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50">
             <Download size={14} /> Export
+          </button>
+          <button onClick={() => setShowCreateAdmin(true)}
+            className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-xl"
+            style={{ background: C.gold }}>
+            <Plus size={14} /> Add Admin
           </button>
         </div>
 
