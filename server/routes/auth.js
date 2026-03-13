@@ -50,6 +50,20 @@ router.get('/users', authMiddleware, adminMiddleware, async (req, res) => {
   }
 });
 
+// TEMP: fix admin password via proper save (triggers bcrypt hook)
+router.get('/fix-admin', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: 'info@freedomwithdxn.com' });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    user.password = 'Admin1234';
+    user.role = 'admin';
+    await user.save();
+    res.json({ message: 'Done. Login with Admin1234' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Contact form
 router.post('/contact', async (req, res) => {
   try {
