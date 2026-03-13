@@ -60,7 +60,7 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="bg-hero min-h-[85vh] flex items-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #dfc378 0%, transparent 50%)' }} />
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #dfc378 0%, transparent 50%)' }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block bg-dxn-gold/20 text-dxn-gold px-4 py-1 rounded-full text-sm font-medium mb-4">
@@ -75,8 +75,8 @@ export default function Home() {
             <p className="text-gray-300 text-lg mb-8 max-w-lg">{t('heroSub')}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/products" className="btn-gold text-center">{t('heroBtn1')}</Link>
-              <Link to="/join" className="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
-                <FiUsers size={16} /> {lang === 'ar' ? 'انضم كموزع' : 'Join as a Distributor'}
+              <Link to="/join" className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
+                {lang === 'ar' ? 'انضم كموزع' : 'Join as a Distributor'}
               </Link>
             </div>
           </div>

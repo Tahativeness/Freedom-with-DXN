@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { FiSearch, FiFilter, FiGrid, FiList } from 'react-icons/fi';
@@ -23,9 +24,10 @@ const SORT_OPTIONS = [
 ];
 
 export default function Products() {
+  const [searchParams] = useSearchParams();
   const [products, setProducts]     = useState([]);
   const [loading, setLoading]       = useState(true);
-  const [category, setCategory]     = useState('all');
+  const [category, setCategory]     = useState(searchParams.get('category') || 'all');
   const [search, setSearch]         = useState('');
   const [sort, setSort]             = useState('default');
   const [page, setPage]             = useState(1);
