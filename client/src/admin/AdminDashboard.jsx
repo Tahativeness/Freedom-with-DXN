@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SiteEditorPage from './SiteEditorPage';
 import {
   LayoutDashboard, ShoppingCart, Package, Users, DollarSign,
@@ -457,48 +457,92 @@ function DashboardPage({ showToast }) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// ORDERS PAGE
+// ORDERS PAGE — live data from API
 // ══════════════════════════════════════════════════════════════
 function OrdersPage({ showToast }) {
+  const [allOrders, setAllOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState('date');
   const [sortDir, setSortDir] = useState('desc');
+  const [updatingId, setUpdatingId] = useState(null);
   const PER_PAGE = 8;
+  const TOKEN = localStorage.getItem('token');
 
-  const statuses = ['All', 'Pending', 'Shipped', 'Delivered', 'Cancelled'];
+  const fetchOrders = () => {
+    setLoading(true);
+    fetch('/api/orders', { headers: { Authorization: `Bearer ${TOKEN}` } })
+      .then(r => r.json())
+      .then(data => setAllOrders(Array.isArray(data) ? data : []))
+      .catch(() => showToast('Failed to load orders', 'error'))
+      .finally(() => setLoading(false));
+  };
+  useEffect(fetchOrders, []);
 
-  const filtered = orders
-    .filter(o => (statusFilter === 'All' || o.status === statusFilter) &&
-      (o.customer.toLowerCase().includes(search.toLowerCase()) || o.id.toLowerCase().includes(search.toLowerCase())))
+  const statuses = ['All', 'pending', 'processing', 'shipped', 'delivered', 'cancelled'];
+
+  const filtered = allOrders
+    .filter(o => {
+      const name = o.user?.name || '';
+      const email = o.user?.email || '';
+      const id = o._id || '';
+      const matchSearch = name.toLowerCase().includes(search.toLowerCase()) ||
+        email.toLowerCase().includes(search.toLowerCase()) ||
+        id.toLowerCase().includes(search.toLowerCase());
+      const matchStatus = statusFilter === 'All' || o.status === statusFilter;
+      return matchSearch && matchStatus;
+    })
     .sort((a, b) => {
       const dir = sortDir === 'asc' ? 1 : -1;
-      if (sortBy === 'amount') return (a.amount - b.amount) * dir;
-      if (sortBy === 'date') return (new Date(a.date) - new Date(b.date)) * dir;
-      return a.customer.localeCompare(b.customer) * dir;
+      if (sortBy === 'amount') return (a.totalAmount - b.totalAmount) * dir;
+      return (new Date(a.createdAt) - new Date(b.createdAt)) * dir;
     });
 
-  const pages = Math.ceil(filtered.length / PER_PAGE);
+  const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   const toggle = (col) => { if (sortBy === col) setSortDir(d => d === 'asc' ? 'desc' : 'asc'); else { setSortBy(col); setSortDir('desc'); } };
-  const SortIcon = ({ col }) => sortBy === col ? (sortDir === 'asc' ? <ChevronUp size={12} /> : <ChevronDown size={12} />) : null;
+
+  const updateStatus = async (id, status) => {
+    setUpdatingId(id);
+    try {
+      const r = await fetch(`/api/orders/${id}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN}` },
+        body: JSON.stringify({ status }),
+      });
+      if (!r.ok) throw new Error();
+      setAllOrders(prev => prev.map(o => o._id === id ? { ...o, status } : o));
+      showToast('Order status updated!', 'success');
+    } catch {
+      showToast('Failed to update status', 'error');
+    } finally {
+      setUpdatingId(null);
+    }
+  };
 
   const exportCSV = () => {
-    const rows = [['Order ID','Customer','Product','Amount','Status','Date'],...filtered.map(o => [o.id,o.customer,o.product,o.amount,o.status,o.date])];
+    const rows = [['Order ID','Customer','Email','Amount','Status','Date'],
+      ...filtered.map(o => [o._id, o.user?.name||'', o.user?.email||'', o.totalAmount, o.status, o.createdAt])];
     const csv = rows.map(r => r.join(',')).join('\n');
     const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv); a.download = 'orders.csv'; a.click();
     showToast('Orders exported as CSV');
   };
 
+  const statCounts = {
+    total: allOrders.length,
+    pending: allOrders.filter(o => o.status === 'pending').length,
+    shipped: allOrders.filter(o => o.status === 'shipped').length,
+    delivered: allOrders.filter(o => o.status === 'delivered').length,
+  };
+
   return (
     <div className="space-y-5">
-      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[['Total', orders.length, '#6366f1'], ['Pending', orders.filter(o=>o.status==='Pending').length, '#f59e0b'],
-          ['Shipped', orders.filter(o=>o.status==='Shipped').length, '#3b82f6'],
-          ['Delivered', orders.filter(o=>o.status==='Delivered').length, '#10b981']].map(([l, v, c]) => (
+        {[['Total', statCounts.total, '#6366f1'], ['Pending', statCounts.pending, '#f59e0b'],
+          ['Shipped', statCounts.shipped, '#3b82f6'], ['Delivered', statCounts.delivered, '#10b981']].map(([l, v, c]) => (
           <div key={l} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: c + '18' }}>
               <ShoppingCart size={16} style={{ color: c }} />
@@ -509,81 +553,91 @@ function OrdersPage({ showToast }) {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        {/* Toolbar */}
         <div className="flex flex-col md:flex-row gap-3 p-4 border-b border-gray-100">
           <div className="relative flex-1">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input value={search} onChange={e => { setSearch(e.target.value); setPage(1); }}
-              placeholder="Search by name or order ID…"
+              placeholder="Search by name, email or order ID…"
               className="w-full pl-9 pr-4 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none" />
           </div>
           <div className="flex gap-2 flex-wrap">
             {statuses.map(s => (
               <button key={s} onClick={() => { setStatusFilter(s); setPage(1); }}
-                className={`px-3 py-2 text-xs font-semibold rounded-xl transition-colors ${statusFilter === s ? 'text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                className={`px-3 py-2 text-xs font-semibold rounded-xl capitalize transition-colors ${statusFilter === s ? 'text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                 style={statusFilter === s ? { background: C.gold } : {}}>
                 {s}
               </button>
             ))}
           </div>
-          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors whitespace-nowrap">
-            <Download size={14} /> Export CSV
-          </button>
-        </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-gray-50">
-                {[['Order ID', null], ['Customer', 'customer'], ['Product', null], ['Amount', 'amount'], ['Status', null], ['Date', 'date'], ['', null]].map(([h, col]) => (
-                  <th key={h} onClick={() => col && toggle(col)}
-                    className={`text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide ${col ? 'cursor-pointer hover:text-gray-700 select-none' : ''}`}>
-                    <span className="flex items-center gap-1">{h}{col && <SortIcon col={col} />}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {paginated.map(o => (
-                <tr key={o.id} className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors">
-                  <td className="px-4 py-3.5 font-mono text-xs font-semibold text-gray-500">{o.id}</td>
-                  <td className="px-4 py-3.5">
-                    <div className="font-semibold text-gray-800">{o.customer}</div>
-                    <div className="text-xs text-gray-400">{o.email}</div>
-                  </td>
-                  <td className="px-4 py-3.5 text-gray-600 max-w-[180px] truncate">{o.product}</td>
-                  <td className="px-4 py-3.5 font-bold text-gray-800">${o.amount.toFixed(2)}</td>
-                  <td className="px-4 py-3.5"><StatusBadge status={o.status} /></td>
-                  <td className="px-4 py-3.5 text-gray-500 text-xs">{fmtD(o.date)}</td>
-                  <td className="px-4 py-3.5">
-                    <button className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"><Eye size={14} /></button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
-          <span className="text-xs text-gray-400">Showing {(page-1)*PER_PAGE+1}–{Math.min(page*PER_PAGE, filtered.length)} of {filtered.length}</span>
-          <div className="flex gap-1">
-            <button onClick={() => setPage(p => Math.max(1,p-1))} disabled={page===1} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30">
-              <ChevronLeft size={14} />
+          <div className="flex gap-2">
+            <button onClick={fetchOrders} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors">
+              <RefreshCw size={14} />
             </button>
-            {[...Array(pages)].map((_,i) => (
-              <button key={i} onClick={() => setPage(i+1)}
-                className={`w-8 h-8 text-xs rounded-lg font-medium ${page===i+1 ? 'text-white' : 'hover:bg-gray-100 text-gray-600'}`}
-                style={page===i+1 ? { background: C.gold } : {}}>
-                {i+1}
-              </button>
-            ))}
-            <button onClick={() => setPage(p => Math.min(pages,p+1))} disabled={page===pages} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30">
-              <ChevronRight size={14} />
+            <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors whitespace-nowrap">
+              <Download size={14} /> Export CSV
             </button>
           </div>
         </div>
+
+        {loading ? (
+          <div className="p-8 text-center text-gray-400 text-sm">Loading orders…</div>
+        ) : filtered.length === 0 ? (
+          <div className="p-8 text-center text-gray-400 text-sm">No orders found.</div>
+        ) : (
+          <>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50">
+                    {[['Order ID', null], ['Customer', null], ['Items', null], ['Amount', 'amount'], ['Status', null], ['Date', 'date'], ['Update Status', null]].map(([h, col]) => (
+                      <th key={h} onClick={() => col && toggle(col)}
+                        className={`text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide ${col ? 'cursor-pointer hover:text-gray-700 select-none' : ''}`}>
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {paginated.map(o => (
+                    <tr key={o._id} className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors">
+                      <td className="px-4 py-3.5 font-mono text-xs font-semibold text-gray-400">{o._id.slice(-8).toUpperCase()}</td>
+                      <td className="px-4 py-3.5">
+                        <div className="font-semibold text-gray-800">{o.user?.name || 'Unknown'}</div>
+                        <div className="text-xs text-gray-400">{o.user?.email || ''}</div>
+                      </td>
+                      <td className="px-4 py-3.5 text-gray-500 text-xs">{o.items?.length || 0} item{o.items?.length !== 1 ? 's' : ''}</td>
+                      <td className="px-4 py-3.5 font-bold text-gray-800">${(o.totalAmount || 0).toFixed(2)}</td>
+                      <td className="px-4 py-3.5"><StatusBadge status={o.status} /></td>
+                      <td className="px-4 py-3.5 text-gray-500 text-xs">{fmtD(o.createdAt)}</td>
+                      <td className="px-4 py-3.5">
+                        <select value={o.status} onChange={e => updateStatus(o._id, e.target.value)}
+                          disabled={updatingId === o._id}
+                          className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none bg-white disabled:opacity-50 capitalize">
+                          {['pending','processing','shipped','delivered','cancelled'].map(s => (
+                            <option key={s} value={s} className="capitalize">{s}</option>
+                          ))}
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
+              <span className="text-xs text-gray-400">Showing {(page-1)*PER_PAGE+1}–{Math.min(page*PER_PAGE, filtered.length)} of {filtered.length}</span>
+              <div className="flex gap-1">
+                <button onClick={() => setPage(p => Math.max(1,p-1))} disabled={page===1} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30"><ChevronLeft size={14} /></button>
+                {[...Array(totalPages)].map((_,i) => (
+                  <button key={i} onClick={() => setPage(i+1)}
+                    className={`w-8 h-8 text-xs rounded-lg font-medium ${page===i+1 ? 'text-white' : 'hover:bg-gray-100 text-gray-600'}`}
+                    style={page===i+1 ? { background: C.gold } : {}}>{i+1}</button>
+                ))}
+                <button onClick={() => setPage(p => Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30"><ChevronRight size={14} /></button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -766,29 +820,51 @@ function ProductsPage({ showToast }) {
 // MEMBERS PAGE
 // ══════════════════════════════════════════════════════════════
 function MembersPage() {
+  const [allMembers, setAllMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState('totalSales');
+  const [sortBy, setSortBy] = useState('createdAt');
   const [sortDir, setSortDir] = useState('desc');
   const [expanded, setExpanded] = useState(null);
+  const TOKEN = localStorage.getItem('token');
 
-  const filtered = members.filter(m =>
-    m.name.toLowerCase().includes(search.toLowerCase()) || m.email.toLowerCase().includes(search.toLowerCase())
-  ).sort((a, b) => {
-    const dir = sortDir === 'asc' ? 1 : -1;
-    if (sortBy === 'totalSales') return (a.totalSales - b.totalSales) * dir;
-    if (sortBy === 'joinDate') return (new Date(a.joinDate) - new Date(b.joinDate)) * dir;
-    return a.name.localeCompare(b.name) * dir;
-  });
+  const fetchMembers = () => {
+    setLoading(true);
+    fetch('/api/auth/users', { headers: { Authorization: `Bearer ${TOKEN}` } })
+      .then(r => r.json())
+      .then(data => setAllMembers(Array.isArray(data) ? data : []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  };
+  useEffect(fetchMembers, []);
+
+  const filtered = allMembers
+    .filter(m => m.name?.toLowerCase().includes(search.toLowerCase()) || m.email?.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => {
+      const dir = sortDir === 'asc' ? 1 : -1;
+      if (sortBy === 'totalSales') return ((a.totalSales||0) - (b.totalSales||0)) * dir;
+      if (sortBy === 'createdAt') return (new Date(a.createdAt) - new Date(b.createdAt)) * dir;
+      return (a.name||'').localeCompare(b.name||'') * dir;
+    });
 
   const toggle = (col) => { if (sortBy === col) setSortDir(d => d === 'asc' ? 'desc' : 'asc'); else { setSortBy(col); setSortDir('desc'); } };
 
+  const exportCSV = () => {
+    const rows = [['Name','Email','Phone','Country','Role','DXN ID','Referral Code','Joined'],
+      ...filtered.map(m => [m.name,m.email,m.phone||'',m.country||'',m.role,m.dxnMemberId||'',m.referralCode||'',m.createdAt])];
+    const csv = rows.map(r => r.join(',')).join('\n');
+    const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv); a.download = 'members.csv'; a.click();
+  };
+
+  const activeCount = allMembers.filter(m => m.isActive).length;
+  const adminCount  = allMembers.filter(m => m.role === 'admin').length;
+  const distCount   = allMembers.filter(m => m.role === 'distributor').length;
+
   return (
     <div className="space-y-5">
-      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[['Total Members', members.length, '#8b5cf6'], ['Active', members.filter(m=>m.status==='Active').length, C.green],
-          ['Gold Rank', members.filter(m=>m.rank==='Gold').length, C.gold],
-          ['Total Downlines', members.reduce((a,m)=>a+m.downlines,0), '#3b82f6']].map(([l,v,c]) => (
+        {[['Total Members', allMembers.length, '#8b5cf6'], ['Active', activeCount, C.green],
+          ['Distributors', distCount, C.gold], ['Admins', adminCount, '#3b82f6']].map(([l,v,c]) => (
           <div key={l} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
             <div className="text-2xl font-bold" style={{ color: c }}>{v}</div>
             <div className="text-xs text-gray-400 mt-0.5">{l}</div>
@@ -803,66 +879,72 @@ function MembersPage() {
             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search members…"
               className="w-full pl-9 pr-4 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none" />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50">
+          <button onClick={fetchMembers} className="p-2.5 rounded-xl border border-gray-200 hover:bg-gray-50"><RefreshCw size={14} /></button>
+          <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl border border-gray-200 hover:bg-gray-50">
             <Download size={14} /> Export
           </button>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-gray-50">
-                {[['Member', 'name'], ['Country', null], ['Join Date', 'joinDate'], ['Rank', null], ['Total Sales', 'totalSales'], ['Downlines', null], ['Status', null], ['', null]].map(([h, col]) => (
-                  <th key={h} onClick={() => col && toggle(col)}
-                    className={`text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide ${col ? 'cursor-pointer hover:text-gray-700' : ''}`}>
-                    <span className="flex items-center gap-1">{h}{col && sortBy === col && (sortDir==='asc' ? <ChevronUp size={11}/> : <ChevronDown size={11}/>)}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map(m => (
-                <>
-                  <tr key={m.id} className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors">
-                    <td className="px-4 py-3.5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ background: C.gold }}>
-                          {m.name.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-gray-800">{m.name}</div>
-                          <div className="text-xs text-gray-400">{m.email}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3.5 text-gray-500 text-xs">{m.country}</td>
-                    <td className="px-4 py-3.5 text-gray-500 text-xs">{fmtD(m.joinDate)}</td>
-                    <td className="px-4 py-3.5"><StatusBadge status={m.rank} /></td>
-                    <td className="px-4 py-3.5 font-bold text-gray-800">{fmt(m.totalSales)}</td>
-                    <td className="px-4 py-3.5 text-center font-semibold text-gray-600">{m.downlines}</td>
-                    <td className="px-4 py-3.5"><StatusBadge status={m.status} /></td>
-                    <td className="px-4 py-3.5">
-                      <button onClick={() => setExpanded(expanded === m.id ? null : m.id)} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400">
-                        {expanded === m.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                      </button>
-                    </td>
-                  </tr>
-                  {expanded === m.id && (
-                    <tr key={m.id+'exp'} className="bg-amber-50/30">
-                      <td colSpan={8} className="px-6 py-4">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                          <div><span className="text-gray-400 text-xs">Phone</span><p className="font-medium text-gray-700">{m.phone}</p></div>
-                          <div><span className="text-gray-400 text-xs">Member ID</span><p className="font-medium text-gray-700">{m.id}</p></div>
-                          <div><span className="text-gray-400 text-xs">Direct Downlines</span><p className="font-bold" style={{ color: C.gold }}>{m.downlines}</p></div>
-                          <div><span className="text-gray-400 text-xs">Total Revenue</span><p className="font-bold" style={{ color: C.green }}>{fmt(m.totalSales)}</p></div>
+
+        {loading ? (
+          <div className="p-8 text-center text-gray-400 text-sm">Loading members…</div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  {[['Member', 'name'], ['Country', null], ['Joined', 'createdAt'], ['Role', null], ['DXN ID', null], ['Total Sales', 'totalSales'], ['Status', null], ['', null]].map(([h, col]) => (
+                    <th key={h} onClick={() => col && toggle(col)}
+                      className={`text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide ${col ? 'cursor-pointer hover:text-gray-700' : ''}`}>
+                      <span className="flex items-center gap-1">{h}{col && sortBy === col && (sortDir==='asc' ? <ChevronUp size={11}/> : <ChevronDown size={11}/>)}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map(m => (
+                  <React.Fragment key={m._id}>
+                    <tr className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors">
+                      <td className="px-4 py-3.5">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ background: C.gold }}>
+                            {(m.name||'?').charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-800">{m.name}</div>
+                            <div className="text-xs text-gray-400">{m.email}</div>
+                          </div>
                         </div>
                       </td>
+                      <td className="px-4 py-3.5 text-gray-500 text-xs">{m.country || '—'}</td>
+                      <td className="px-4 py-3.5 text-gray-500 text-xs">{fmtD(m.createdAt)}</td>
+                      <td className="px-4 py-3.5"><StatusBadge status={m.role} /></td>
+                      <td className="px-4 py-3.5 font-mono text-xs text-gray-500">{m.dxnMemberId || '—'}</td>
+                      <td className="px-4 py-3.5 font-bold text-gray-800">{fmt(m.totalSales || 0)}</td>
+                      <td className="px-4 py-3.5"><StatusBadge status={m.isActive ? 'Active' : 'Inactive'} /></td>
+                      <td className="px-4 py-3.5">
+                        <button onClick={() => setExpanded(expanded === m._id ? null : m._id)} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400">
+                          {expanded === m._id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </button>
+                      </td>
                     </tr>
-                  )}
-                </>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    {expanded === m._id && (
+                      <tr className="bg-amber-50/30">
+                        <td colSpan={8} className="px-6 py-4">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                            <div><span className="text-gray-400 text-xs">Phone</span><p className="font-medium text-gray-700">{m.phone || '—'}</p></div>
+                            <div><span className="text-gray-400 text-xs">Referral Code</span><p className="font-medium font-mono text-gray-700">{m.referralCode || '—'}</p></div>
+                            <div><span className="text-gray-400 text-xs">Downlines</span><p className="font-bold" style={{ color: C.gold }}>{m.totalDownlines || 0}</p></div>
+                            <div><span className="text-gray-400 text-xs">Bio</span><p className="text-gray-500 text-xs">{m.bio || '—'}</p></div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1067,15 +1149,68 @@ function MarketingPage({ showToast }) {
 // SETTINGS PAGE
 // ══════════════════════════════════════════════════════════════
 function SettingsPage({ showToast }) {
-  const [profile, setProfile] = useState({ name: 'Taha Mina', email: 'tahamina@ecommerized.com', phone: '+60-12-345-6789', country: 'Malaysia', dxnId: 'DXN-2026-TAHA', bio: 'DXN Independent Distributor | Health & Wellness Advocate' });
+  const TOKEN = localStorage.getItem('token');
+  const [profile, setProfile] = useState({ name: '', email: '', phone: '', country: '', dxnMemberId: '', bio: '', referralCode: '' });
   const [pass, setPass] = useState({ current: '', newPass: '', confirm: '' });
   const [activeTab, setActiveTab] = useState('profile');
+  const [savingProfile, setSavingProfile] = useState(false);
+  const [savingPass, setSavingPass] = useState(false);
 
+  useEffect(() => {
+    fetch('/api/auth/me', { headers: { Authorization: `Bearer ${TOKEN}` } })
+      .then(r => r.json())
+      .then(u => setProfile({
+        name: u.name || '', email: u.email || '', phone: u.phone || '',
+        country: u.country || '', dxnMemberId: u.dxnMemberId || '',
+        bio: u.bio || '', referralCode: u.referralCode || '',
+      }))
+      .catch(() => {});
+  }, []);
+
+  const saveProfile = async () => {
+    setSavingProfile(true);
+    try {
+      const r = await fetch('/api/auth/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN}` },
+        body: JSON.stringify({ name: profile.name, phone: profile.phone, country: profile.country, dxnMemberId: profile.dxnMemberId, bio: profile.bio }),
+      });
+      if (!r.ok) throw new Error();
+      showToast('Profile saved successfully!');
+    } catch {
+      showToast('Failed to save profile');
+    } finally {
+      setSavingProfile(false);
+    }
+  };
+
+  const changePassword = async () => {
+    if (!pass.current || !pass.newPass) return showToast('Please fill all fields');
+    if (pass.newPass !== pass.confirm) return showToast('Passwords do not match');
+    if (pass.newPass.length < 6) return showToast('Password must be at least 6 characters');
+    setSavingPass(true);
+    try {
+      const r = await fetch('/api/auth/change-password', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN}` },
+        body: JSON.stringify({ currentPassword: pass.current, newPassword: pass.newPass }),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.message);
+      setPass({ current: '', newPass: '', confirm: '' });
+      showToast('Password updated successfully!');
+    } catch (err) {
+      showToast(err.message || 'Failed to update password');
+    } finally {
+      setSavingPass(false);
+    }
+  };
+
+  const referralLink = `https://freedomwithdxn.com/join?ref=${profile.referralCode}`;
   const tabs = [{ id: 'profile', label: 'Profile', Icon: User }, { id: 'security', label: 'Security', Icon: Lock }, { id: 'referral', label: 'Referral', Icon: Link }];
 
   return (
     <div className="max-w-2xl space-y-5">
-      {/* Tabs */}
       <div className="flex gap-2 bg-white rounded-2xl p-1.5 shadow-sm border border-gray-100 w-fit">
         {tabs.map(({ id, label, Icon }) => (
           <button key={id} onClick={() => setActiveTab(id)}
@@ -1088,37 +1223,37 @@ function SettingsPage({ showToast }) {
 
       {activeTab === 'profile' && (
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-5">
-          {/* Avatar */}
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-2xl font-bold" style={{ background: C.gold }}>T</div>
-              <button className="absolute -bottom-1 -right-1 w-7 h-7 rounded-lg flex items-center justify-center shadow-md bg-white border border-gray-200 hover:bg-gray-50">
-                <Camera size={12} className="text-gray-500" />
-              </button>
+            <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-2xl font-bold" style={{ background: C.gold }}>
+              {profile.name?.charAt(0)?.toUpperCase() || '?'}
             </div>
             <div>
-              <h3 className="font-bold text-gray-800 text-lg">{profile.name}</h3>
-              <p className="text-sm text-gray-400">Admin • Gold Distributor</p>
+              <h3 className="font-bold text-gray-800 text-lg">{profile.name || 'Loading…'}</h3>
+              <p className="text-sm text-gray-400">{profile.email}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[['Full Name', 'name', 'text'], ['Email', 'email', 'email'], ['Phone', 'phone', 'tel'], ['Country', 'country', 'text'], ['DXN Member ID', 'dxnId', 'text']].map(([l, k, t]) => (
-              <div key={k} className={k === 'dxnId' ? 'md:col-span-2' : ''}>
+            {[['Full Name', 'name', 'text'], ['Phone', 'phone', 'tel'], ['Country', 'country', 'text'], ['DXN Member ID', 'dxnMemberId', 'text']].map(([l, k, t]) => (
+              <div key={k}>
                 <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{l}</label>
-                <input type={t} value={profile[k]} onChange={e => setProfile(p => ({ ...p, [k]: e.target.value }))}
+                <input type={t} value={profile[k] || ''} onChange={e => setProfile(p => ({ ...p, [k]: e.target.value }))}
                   className="w-full mt-1 px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none" />
               </div>
             ))}
             <div className="md:col-span-2">
+              <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Email (read-only)</label>
+              <input readOnly value={profile.email} className="w-full mt-1 px-3 py-2.5 text-sm border border-gray-100 rounded-xl bg-gray-50 text-gray-400" />
+            </div>
+            <div className="md:col-span-2">
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Bio</label>
-              <textarea value={profile.bio} onChange={e => setProfile(p => ({ ...p, bio: e.target.value }))} rows={2}
+              <textarea value={profile.bio || ''} onChange={e => setProfile(p => ({ ...p, bio: e.target.value }))} rows={2}
                 className="w-full mt-1 px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none resize-none" />
             </div>
           </div>
-          <button onClick={() => showToast('Profile saved successfully!')}
-            className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl"
+          <button onClick={saveProfile} disabled={savingProfile}
+            className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl disabled:opacity-50"
             style={{ background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})` }}>
-            Save Changes
+            {savingProfile ? 'Saving…' : 'Save Changes'}
           </button>
         </div>
       )}
@@ -1129,7 +1264,7 @@ function SettingsPage({ showToast }) {
             <Shield size={18} className="text-green-500" />
             <div>
               <p className="text-sm font-semibold text-green-700">Account Secured</p>
-              <p className="text-xs text-green-500">Two-factor authentication available</p>
+              <p className="text-xs text-green-500">Change your password below</p>
             </div>
           </div>
           {[['Current Password', 'current'], ['New Password', 'newPass'], ['Confirm New Password', 'confirm']].map(([l, k]) => (
@@ -1139,10 +1274,10 @@ function SettingsPage({ showToast }) {
                 className="w-full mt-1 px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none" />
             </div>
           ))}
-          <button onClick={() => showToast('Password updated!')}
-            className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl"
+          <button onClick={changePassword} disabled={savingPass}
+            className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl disabled:opacity-50"
             style={{ background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})` }}>
-            Update Password
+            {savingPass ? 'Updating…' : 'Update Password'}
           </button>
         </div>
       )}
@@ -1152,8 +1287,8 @@ function SettingsPage({ showToast }) {
           <div className="rounded-2xl p-5" style={{ background: C.sidebar }}>
             <p className="text-xs text-gray-400 mb-1">Your Referral Code</p>
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold tracking-widest" style={{ color: C.gold }}>TAHA2026</span>
-              <button onClick={() => { navigator.clipboard.writeText('TAHA2026'); showToast('Code copied!'); }}
+              <span className="text-2xl font-bold tracking-widest" style={{ color: C.gold }}>{profile.referralCode || '—'}</span>
+              <button onClick={() => { navigator.clipboard.writeText(profile.referralCode); showToast('Code copied!'); }}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: C.gold + '30', color: C.gold }}>
                 <Copy size={11} /> Copy
               </button>
@@ -1162,9 +1297,9 @@ function SettingsPage({ showToast }) {
           <div>
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Full Referral Link</p>
             <div className="flex gap-2">
-              <input readOnly value="https://freedomwithdxn.com/join?ref=TAHA2026"
+              <input readOnly value={referralLink}
                 className="flex-1 px-3 py-2.5 text-xs border border-gray-200 rounded-xl bg-gray-50 text-gray-600 min-w-0" />
-              <button onClick={() => { navigator.clipboard.writeText('https://freedomwithdxn.com/join?ref=TAHA2026'); showToast('Link copied!'); }}
+              <button onClick={() => { navigator.clipboard.writeText(referralLink); showToast('Link copied!'); }}
                 className="px-4 py-2.5 text-sm font-semibold text-white rounded-xl whitespace-nowrap" style={{ background: C.gold }}>
                 Copy
               </button>

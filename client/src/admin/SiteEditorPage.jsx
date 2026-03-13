@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSite } from '../context/SiteContext';
 
 const C = { gold: '#c9a84c', goldLight: '#dfc378', green: '#1a3a2e' };
@@ -17,6 +17,20 @@ const SECTIONS = [
 
 const HEADING_FONTS = ['Playfair Display','Lora','Merriweather','Cormorant Garamond','EB Garamond','Libre Baskerville','Abril Fatface'];
 const BODY_FONTS    = ['Inter','Roboto','Open Sans','Lato','Nunito','Poppins','DM Sans','Source Sans 3','Raleway'];
+
+const DEFAULT_SETTINGS = {
+  colors:  { primary: '#dfc378', accent: '#1a3a2e', background: '#ffffff', text: '#1a2e25', heroBg: '#0c3935' },
+  fonts:   { headingFont: 'Playfair Display', bodyFont: 'Inter', baseSize: '16px', headingSize: '2.5rem' },
+  hero:    { badge: 'Independent DXN Distributor', title: 'Grow Your Health & Wealth with DXN',
+             subtitle: 'Discover premium Ganoderma products that transform your health, and a business opportunity that can transform your life.',
+             btn1Text: 'Shop Products', btn1Link: '/products', btn2Text: 'Join as a Distributor', btn2Link: '/join' },
+  contact: { phone: '+971 50 666 2875', email: 'info@freedomwithdxn.com', whatsapp: 'https://wa.me/message/EFSQ2IDNVG3YB1', location: 'United Arab Emirates' },
+  social:  { facebook: '', instagram: '', youtube: '' },
+  seo:     { pageTitle: 'Freedom with DXN - Health & Business Opportunity', description: '', keywords: '' },
+  footer:  { description: "Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products.", copyright: 'Freedom with DXN. All rights reserved.' },
+  navbar:  { showHome: true, showAbout: true, showProducts: true, showJoin: true, showZoom: true, showBlog: true, showContact: true },
+  charts:  { salesChartType: 'line', categoryChartType: 'pie', revenueChartType: 'bar' },
+};
 
 function Section({ title, children }) {
   return (
@@ -101,8 +115,16 @@ export default function SiteEditorPage({ showToast }) {
   const [active, setActive] = useState('colors');
   const [draft, setDraft] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const savedRef = useRef(null);
 
-  useEffect(() => { if (settings) setDraft(JSON.parse(JSON.stringify(settings))); }, [settings]);
+  useEffect(() => {
+    if (settings) {
+      const copy = JSON.parse(JSON.stringify(settings));
+      setDraft(copy);
+      savedRef.current = copy;
+    }
+  }, [settings]);
 
   if (!draft) return <div className="text-gray-400 text-sm p-6">Loading settings…</div>;
 
@@ -112,10 +134,33 @@ export default function SiteEditorPage({ showToast }) {
   const save = async () => {
     setSaving(true);
     try {
-      await updateSettings(draft);
+      const saved = await updateSettings(draft);
+      savedRef.current = JSON.parse(JSON.stringify(saved));
       if (showToast) showToast('Site settings saved successfully!', 'success');
     } catch {
       if (showToast) showToast('Error saving settings', 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const discardChanges = () => {
+    if (savedRef.current) {
+      setDraft(JSON.parse(JSON.stringify(savedRef.current)));
+      if (showToast) showToast('Changes discarded — reverted to last saved state', 'info');
+    }
+  };
+
+  const resetToDefaults = async () => {
+    setConfirmReset(false);
+    setSaving(true);
+    try {
+      const saved = await updateSettings(DEFAULT_SETTINGS);
+      savedRef.current = JSON.parse(JSON.stringify(saved));
+      setDraft(JSON.parse(JSON.stringify(saved)));
+      if (showToast) showToast('Reset to defaults successfully!', 'success');
+    } catch {
+      if (showToast) showToast('Error resetting settings', 'error');
     } finally {
       setSaving(false);
     }
@@ -315,15 +360,50 @@ export default function SiteEditorPage({ showToast }) {
         </Section>
       )}
 
-      {/* Save bar */}
-      <div className="flex items-center justify-between bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <p className="text-xs text-gray-400">Changes are saved to the database and applied to your live site instantly.</p>
-        <button onClick={save} disabled={saving}
-          className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl disabled:opacity-50 transition-opacity"
-          style={{ background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})` }}>
-          {saving ? 'Saving…' : 'Save Changes'}
-        </button>
+      {/* Save / Undo bar */}
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 space-y-3">
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <p className="text-xs text-gray-400">Changes are saved to the database and applied to your live site instantly.</p>
+          <div className="flex items-center gap-2">
+            <button onClick={discardChanges} disabled={saving}
+              className="px-4 py-2.5 text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl disabled:opacity-50 transition-colors">
+              Discard Changes
+            </button>
+            <button onClick={() => setConfirmReset(true)} disabled={saving}
+              className="px-4 py-2.5 text-sm font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-xl disabled:opacity-50 transition-colors">
+              Reset to Defaults
+            </button>
+            <button onClick={save} disabled={saving}
+              className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl disabled:opacity-50 transition-opacity"
+              style={{ background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})` }}>
+              {saving ? 'Saving…' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+        <p className="text-xs text-gray-400">
+          <strong>Discard Changes</strong> reverts to your last saved version. <strong>Reset to Defaults</strong> wipes all customizations.
+        </p>
       </div>
+
+      {/* Reset confirmation modal */}
+      {confirmReset && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-sm w-full mx-4">
+            <h3 className="font-bold text-lg text-gray-800 mb-2">Reset to Defaults?</h3>
+            <p className="text-sm text-gray-500 mb-5">This will permanently overwrite all your customizations (colors, fonts, hero text, contact info, etc.) with the original default values. This cannot be undone.</p>
+            <div className="flex gap-3 justify-end">
+              <button onClick={() => setConfirmReset(false)}
+                className="px-4 py-2 text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors">
+                Cancel
+              </button>
+              <button onClick={resetToDefaults}
+                className="px-4 py-2 text-sm font-semibold text-white bg-red-500 hover:bg-red-600 rounded-xl transition-colors">
+                Yes, Reset Everything
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
