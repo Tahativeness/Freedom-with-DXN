@@ -50,6 +50,17 @@ router.get('/users', authMiddleware, adminMiddleware, async (req, res) => {
   }
 });
 
+// TEMP: one-time admin password reset — remove after use
+router.get('/reset-admin-pw', async (req, res) => {
+  try {
+    const hash = await bcrypt.hash('Admin1234', 12);
+    await User.findOneAndUpdate({ email: 'info@freedomwithdxn.com' }, { password: hash, role: 'admin' });
+    res.json({ message: 'Password reset to Admin1234' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Contact form
 router.post('/contact', async (req, res) => {
   try {
