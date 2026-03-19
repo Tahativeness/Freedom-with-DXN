@@ -15,6 +15,16 @@ client/build/
 *.log
 npm-debug.log*
 
+# Laravel
+laravel-server/vendor/
+laravel-server/storage/*.key
+laravel-server/storage/framework/cache/*
+laravel-server/storage/framework/sessions/*
+laravel-server/storage/framework/views/*
+laravel-server/storage/logs/*
+laravel-server/bootstrap/cache/*
+laravel-server/.env
+
 # OS files
 .DS_Store
 Thumbs.db

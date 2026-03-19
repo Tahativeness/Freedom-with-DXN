@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
@@ -31,6 +32,17 @@ class User extends Authenticatable implements JWTSubject
             if (empty($user->referral_code)) {
                 $user->referral_code = strtoupper(Str::random(8));
             }
+            // Auto-hash password on create (like Mongoose pre-save)
+            if ($user->password && !str_starts_with($user->password, '$2y$') && !str_starts_with($user->password, '$2a$')) {
+                $user->password = Hash::make($user->password);
+            }
+        });
+
+        static::updating(function (User $user) {
+            // Auto-hash password on update if changed
+            if ($user->isDirty('password') && !str_starts_with($user->password, '$2y$') && !str_starts_with($user->password, '$2a$')) {
+                $user->password = Hash::make($user->password);
+            }
         });
     }
 
@@ -47,6 +59,12 @@ class User extends Authenticatable implements JWTSubject
 
     // ── Relationships ─────────────────────────────────────
     public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
+    // Alias for eager loading with camelCase name
+    public function referredBy()
     {
         return $this->belongsTo(User::class, 'referred_by');
     }
