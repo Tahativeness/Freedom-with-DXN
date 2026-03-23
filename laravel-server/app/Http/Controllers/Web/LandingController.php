@@ -3,17 +3,24 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\LandingPage;
 
 class LandingController extends Controller
 {
     public function show(string $slug)
     {
-        $viewName = 'landing.' . $slug;
+        $page = LandingPage::where('slug', $slug)->where('published', true)->first();
 
-        if (!view()->exists($viewName)) {
-            abort(404);
+        if ($page) {
+            return view('landing.dynamic', compact('page'));
         }
 
-        return view($viewName);
+        // Fallback to static Blade view
+        $viewName = 'landing.' . $slug;
+        if (view()->exists($viewName)) {
+            return view($viewName);
+        }
+
+        abort(404);
     }
 }

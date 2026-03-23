@@ -31,7 +31,7 @@
     </div>
 
     {{-- Quick Links --}}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
         <a href="{{ route('admin.products') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
             <div class="text-3xl mb-2">📦</div>
             <h3 class="font-bold text-dxn-darkgreen">Products</h3>
@@ -51,6 +51,11 @@
             <div class="text-3xl mb-2">📝</div>
             <h3 class="font-bold text-dxn-darkgreen">Blog</h3>
             <p class="text-sm text-gray-500">Write & edit</p>
+        </a>
+        <a href="{{ route('admin.landing-pages') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-2">🚀</div>
+            <h3 class="font-bold text-dxn-darkgreen">Landing Pages</h3>
+            <p class="text-sm text-gray-500">Product pages</p>
         </a>
     </div>
 </div>

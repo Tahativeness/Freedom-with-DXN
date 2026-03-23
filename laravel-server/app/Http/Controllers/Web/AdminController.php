@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\LandingPage;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\SiteSettings;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -117,6 +119,115 @@ class AdminController extends Controller
     {
         $blog->delete();
         return back()->with('success', 'Blog post deleted.');
+    }
+
+    // ── Landing Pages ──────────────────────────────────
+    public function landingPages()
+    {
+        $pages = LandingPage::with('product')->orderByDesc('created_at')->paginate(20);
+        $products = Product::orderBy('name')->get();
+        return view('admin.landing-pages', compact('pages', 'products'));
+    }
+
+    public function landingPageCreate()
+    {
+        $products = Product::orderBy('name')->get();
+        return view('admin.landing-page-form', ['page' => null, 'products' => $products]);
+    }
+
+    public function landingPageStore(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hero_title' => 'required|string',
+        ]);
+
+        $data = $request->only([
+            'title', 'product_id', 'hero_image', 'hero_title', 'hero_subtitle',
+            'hero_bg_color', 'cta_text', 'cta_link', 'custom_css', 'custom_html', 'published',
+        ]);
+        $data['slug'] = Str::slug($request->title);
+        $data['published'] = $request->has('published');
+
+        // Handle JSON arrays
+        if ($request->filled('features_text')) {
+            $data['features'] = array_filter(array_map('trim', explode("\n", $request->features_text)));
+        }
+        if ($request->filled('benefits_text')) {
+            $data['benefits'] = array_filter(array_map('trim', explode("\n", $request->benefits_text)));
+        }
+        if ($request->filled('gallery_text')) {
+            $data['gallery'] = array_filter(array_map('trim', explode("\n", $request->gallery_text)));
+        }
+
+        $landing = LandingPage::create($data);
+
+        // Auto-link product to this landing page
+        if ($landing->product_id) {
+            Product::where('id', $landing->product_id)->update([
+                'landing_page' => '/landing/' . $landing->slug,
+            ]);
+        }
+
+        return redirect()->route('admin.landing-pages')->with('success', 'Landing page created!');
+    }
+
+    public function landingPageEdit(LandingPage $landingPage)
+    {
+        $products = Product::orderBy('name')->get();
+        return view('admin.landing-page-form', ['page' => $landingPage, 'products' => $products]);
+    }
+
+    public function landingPageUpdate(Request $request, LandingPage $landingPage)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'hero_title' => 'required|string',
+        ]);
+
+        $data = $request->only([
+            'title', 'product_id', 'hero_image', 'hero_title', 'hero_subtitle',
+            'hero_bg_color', 'cta_text', 'cta_link', 'custom_css', 'custom_html',
+        ]);
+        $data['slug'] = Str::slug($request->title);
+        $data['published'] = $request->has('published');
+
+        if ($request->filled('features_text')) {
+            $data['features'] = array_filter(array_map('trim', explode("\n", $request->features_text)));
+        } else {
+            $data['features'] = [];
+        }
+        if ($request->filled('benefits_text')) {
+            $data['benefits'] = array_filter(array_map('trim', explode("\n", $request->benefits_text)));
+        } else {
+            $data['benefits'] = [];
+        }
+        if ($request->filled('gallery_text')) {
+            $data['gallery'] = array_filter(array_map('trim', explode("\n", $request->gallery_text)));
+        } else {
+            $data['gallery'] = [];
+        }
+
+        $landingPage->update($data);
+
+        // Auto-link product
+        if ($landingPage->product_id) {
+            Product::where('id', $landingPage->product_id)->update([
+                'landing_page' => '/landing/' . $landingPage->slug,
+            ]);
+        }
+
+        return redirect()->route('admin.landing-pages')->with('success', 'Landing page updated!');
+    }
+
+    public function landingPageDestroy(LandingPage $landingPage)
+    {
+        // Unlink product
+        if ($landingPage->product_id) {
+            Product::where('id', $landingPage->product_id)->update(['landing_page' => '']);
+        }
+        $landingPage->delete();
+        return back()->with('success', 'Landing page deleted.');
     }
 
     public function settings()

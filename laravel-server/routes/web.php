@@ -67,6 +67,12 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::delete('/blogs/{blog}', [AdminController::class, 'blogDestroy'])->name('blogs.destroy');
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
     Route::put('/settings', [AdminController::class, 'settingsUpdate'])->name('settings.update');
+    Route::get('/landing-pages', [AdminController::class, 'landingPages'])->name('landing-pages');
+    Route::get('/landing-pages/create', [AdminController::class, 'landingPageCreate'])->name('landing-pages.create');
+    Route::post('/landing-pages', [AdminController::class, 'landingPageStore'])->name('landing-pages.store');
+    Route::get('/landing-pages/{landingPage}/edit', [AdminController::class, 'landingPageEdit'])->name('landing-pages.edit');
+    Route::put('/landing-pages/{landingPage}', [AdminController::class, 'landingPageUpdate'])->name('landing-pages.update');
+    Route::delete('/landing-pages/{landingPage}', [AdminController::class, 'landingPageDestroy'])->name('landing-pages.destroy');
 });
 
 // Landing pages
