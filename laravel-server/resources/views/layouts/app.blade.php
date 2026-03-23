@@ -7,6 +7,7 @@
     <title>@yield('title', $settings->seo['pageTitle'] ?? 'Freedom with DXN')</title>
     <meta name="description" content="@yield('description', $settings->seo['description'] ?? '')">
     <meta name="keywords" content="{{ $settings->seo['keywords'] ?? '' }}">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
