@@ -27,7 +27,7 @@ export default function Navbar() {
     { to: '/about',   labelKey: 'about',   show: nb.showAbout    !== false },
     { to: '/products',labelKey: 'products',show: nb.showProducts !== false },
     { to: '/join',    labelKey: 'joinDxn', show: nb.showJoin     !== false },
-    { to: '/zoom',    labelKey: 'zoom',    show: nb.showZoom     !== false },
+    { to: 'https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn', labelKey: 'zoom', show: nb.showZoom !== false, external: true },
     { to: '/blog',    labelKey: 'blog',    show: nb.showBlog     !== false },
     { to: '/contact', labelKey: 'contact', show: nb.showContact  !== false },
   ];
@@ -45,16 +45,23 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-5">
             {navLinks.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-colors whitespace-nowrap ${isActive ? 'text-dxn-gold font-bold' : 'text-white hover:text-dxn-gold'}`
-                }
-                end={l.to === '/'}
-              >
-                {t(l.labelKey)}
-              </NavLink>
+              l.external ? (
+                <a key={l.to} href={l.to} target="_blank" rel="noopener noreferrer"
+                  className="text-sm font-medium transition-colors whitespace-nowrap text-white hover:text-dxn-gold">
+                  {t(l.labelKey)}
+                </a>
+              ) : (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors whitespace-nowrap ${isActive ? 'text-dxn-gold font-bold' : 'text-white hover:text-dxn-gold'}`
+                  }
+                  end={l.to === '/'}
+                >
+                  {t(l.labelKey)}
+                </NavLink>
+              )
             ))}
           </div>
 
@@ -131,10 +138,17 @@ export default function Navbar() {
           <div className="lg:hidden pb-4 border-t border-dxn-gold/30 mt-2">
             <div className="flex flex-col gap-1 pt-3">
               {navLinks.map((l) => (
-                <NavLink key={l.to} to={l.to} onClick={() => setMenuOpen(false)}
-                  className="text-white hover:text-dxn-gold px-2 py-2 text-sm font-medium" end={l.to === '/'}>
-                  {t(l.labelKey)}
-                </NavLink>
+                l.external ? (
+                  <a key={l.to} href={l.to} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}
+                    className="text-white hover:text-dxn-gold px-2 py-2 text-sm font-medium">
+                    {t(l.labelKey)}
+                  </a>
+                ) : (
+                  <NavLink key={l.to} to={l.to} onClick={() => setMenuOpen(false)}
+                    className="text-white hover:text-dxn-gold px-2 py-2 text-sm font-medium" end={l.to === '/'}>
+                    {t(l.labelKey)}
+                  </NavLink>
+                )
               ))}
               {!user && (
                 <>

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { FiUsers, FiShoppingBag, FiPackage, FiPlus, FiEdit, FiTrash2, FiX, FiFileText } from 'react-icons/fi';
 import RichTextEditor from '../components/RichTextEditor';
 
-const EMPTY_FORM = { name: '', description: '', price: '', category: 'coffee', inStock: true, featured: false, image: '', landingImage: '', landingPage: '', images: ['', '', '', '', ''] };
+const EMPTY_FORM = { name: '', nameAr: '', description: '', descriptionAr: '', price: '', category: 'coffee', inStock: true, featured: false, image: '', landingImage: '', landingPage: '', images: ['', '', '', '', ''] };
 const EMPTY_BLOG_FORM = { title: '', excerpt: '', content: '', category: 'health', tags: '', image: '', published: true };
 const BLOG_CATEGORIES = ['health', 'business', 'products', 'success-stories', 'tips'];
 
@@ -57,7 +57,9 @@ export default function AdminPanel() {
     const paddedImages = [...existingImages, '', '', '', '', ''].slice(0, 5);
     setProductForm({
       name: product.name || '',
+      nameAr: product.nameAr || '',
       description: product.description || '',
+      descriptionAr: product.descriptionAr || '',
       price: product.price?.toString() || '',
       category: product.category || 'coffee',
       inStock: product.inStock ?? true,
@@ -228,6 +230,10 @@ export default function AdminPanel() {
                         <input required value={productForm.name} onChange={(e) => setProductForm({...productForm, name: e.target.value})} className="input-field" />
                       </div>
                       <div>
+                        <label className="block text-sm font-medium mb-1">Name (Arabic)</label>
+                        <input value={productForm.nameAr} onChange={(e) => setProductForm({...productForm, nameAr: e.target.value})} className="input-field" dir="rtl" placeholder="الاسم بالعربية" />
+                      </div>
+                      <div>
                         <label className="block text-sm font-medium mb-1">Price *</label>
                         <input type="number" step="0.01" required value={productForm.price} onChange={(e) => setProductForm({...productForm, price: e.target.value})} className="input-field" />
                       </div>
@@ -254,6 +260,10 @@ export default function AdminPanel() {
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium mb-1">Description *</label>
                         <textarea required rows={3} value={productForm.description} onChange={(e) => setProductForm({...productForm, description: e.target.value})} className="input-field resize-none" />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium mb-1">Description (Arabic)</label>
+                        <textarea rows={3} value={productForm.descriptionAr} onChange={(e) => setProductForm({...productForm, descriptionAr: e.target.value})} className="input-field resize-none" dir="rtl" placeholder="الوصف بالعربية" />
                       </div>
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium mb-2">Additional Images (up to 5)</label>

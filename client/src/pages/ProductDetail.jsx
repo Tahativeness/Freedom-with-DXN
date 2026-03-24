@@ -136,8 +136,8 @@ export default function ProductDetail() {
 
           {/* Info */}
           <div>
-            <span className="text-sm text-dxn-gold font-semibold uppercase tracking-widest">{product.category}</span>
-            <h1 className="text-3xl font-bold text-dxn-darkgreen mt-2 mb-3">{product.name}</h1>
+            <span className="text-sm text-dxn-gold font-semibold uppercase tracking-widest">{displayCategory}</span>
+            <h1 className="text-3xl font-bold text-dxn-darkgreen mt-2 mb-3">{displayName}</h1>
 
             <div className="flex items-center gap-2 mb-4">
               {[...Array(5)].map((_, i) => (
@@ -147,13 +147,13 @@ export default function ProductDetail() {
             </div>
 
             <p className="text-3xl font-bold text-dxn-green mb-4">${product.price?.toFixed(2)}</p>
-            <p className="text-gray-600 mb-6">{product.description}</p>
+            <p className="text-gray-600 mb-6">{displayDesc}</p>
 
-            {product.benefits?.length > 0 && (
+            {displayBenefits?.length > 0 && (
               <div className="mb-6">
                 <h3 className="font-semibold text-gray-800 mb-3">{lang === 'ar' ? 'الفوائد الرئيسية' : 'Key Benefits'}</h3>
                 <ul className="space-y-2">
-                  {product.benefits.map((b) => (
+                  {displayBenefits.map((b) => (
                     <li key={b} className="flex items-center gap-2 text-gray-600">
                       <FiCheck className="text-dxn-green shrink-0" /> {b}
                     </li>
@@ -162,10 +162,10 @@ export default function ProductDetail() {
               </div>
             )}
 
-            {product.usage && (
+            {displayUsage && (
               <div className="mb-6 p-4 bg-green-50 rounded-lg">
                 <h3 className="font-semibold text-gray-800 mb-1">{lang === 'ar' ? 'طريقة الاستخدام' : 'How to Use'}</h3>
-                <p className="text-gray-600 text-sm">{product.usage}</p>
+                <p className="text-gray-600 text-sm">{displayUsage}</p>
               </div>
             )}
 

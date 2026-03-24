@@ -3,27 +3,29 @@ import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { FiSearch, FiFilter, FiGrid, FiList } from 'react-icons/fi';
+import { useLang } from '../context/LanguageContext';
 
 const CATEGORIES = [
-  { value: 'all',           label: 'All Products',   icon: '🌿' },
-  { value: 'coffee',        label: 'Coffee',          icon: '☕' },
-  { value: 'beverages',     label: 'Beverages',       icon: '🧃' },
-  { value: 'supplements',   label: 'Supplements',     icon: '💊' },
-  { value: 'personal-care', label: 'Personal Care',   icon: '🧴' },
-  { value: 'skincare',      label: 'Skin Care',       icon: '✨' },
-  { value: 'ganoderma',     label: 'Ganoderma',       icon: '🍄' },
-  { value: 'other',         label: 'Other',           icon: '📦' },
+  { value: 'all',           label: 'All Products',   labelAr: 'جميع المنتجات', icon: '🌿' },
+  { value: 'coffee',        label: 'Coffee',          labelAr: 'قهوة',          icon: '☕' },
+  { value: 'beverages',     label: 'Beverages',       labelAr: 'مشروبات',       icon: '🧃' },
+  { value: 'supplements',   label: 'Supplements',     labelAr: 'مكملات',        icon: '💊' },
+  { value: 'personal-care', label: 'Personal Care',   labelAr: 'العناية الشخصية', icon: '🧴' },
+  { value: 'skincare',      label: 'Skin Care',       labelAr: 'العناية بالبشرة', icon: '✨' },
+  { value: 'ganoderma',     label: 'Ganoderma',       labelAr: 'غانوديرما',     icon: '🍄' },
+  { value: 'other',         label: 'Other',           labelAr: 'أخرى',          icon: '📦' },
 ];
 
 const SORT_OPTIONS = [
-  { value: 'default',     label: 'Default'       },
-  { value: 'price-asc',   label: 'Price: Low → High' },
-  { value: 'price-desc',  label: 'Price: High → Low' },
-  { value: 'rating-desc', label: 'Top Rated'     },
-  { value: 'name-asc',    label: 'Name A → Z'    },
+  { value: 'default',     label: 'Default',            labelAr: 'افتراضي' },
+  { value: 'price-asc',   label: 'Price: Low → High',  labelAr: 'السعر: من الأقل' },
+  { value: 'price-desc',  label: 'Price: High → Low',  labelAr: 'السعر: من الأعلى' },
+  { value: 'rating-desc', label: 'Top Rated',           labelAr: 'الأعلى تقييماً' },
+  { value: 'name-asc',    label: 'Name A → Z',          labelAr: 'الاسم أ → ي' },
 ];
 
 export default function Products() {
+  const { lang } = useLang();
   const [searchParams] = useSearchParams();
   const [products, setProducts]     = useState([]);
   const [loading, setLoading]       = useState(true);
@@ -84,10 +86,10 @@ export default function Products() {
       <div className="bg-dxn-darkgreen py-14 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <span className="inline-block bg-dxn-gold/20 text-dxn-gold px-4 py-1 rounded-full text-sm font-medium mb-4">
-            Official DXN Products
+            {lang === 'ar' ? 'منتجات DXN الرسمية' : 'Official DXN Products'}
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">DXN Product Catalog</h1>
-          <p className="text-gray-300">Premium health products powered by Ganoderma Lucidum</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{lang === 'ar' ? 'كتالوج منتجات DXN' : 'DXN Product Catalog'}</h1>
+          <p className="text-gray-300">{lang === 'ar' ? 'منتجات صحية فاخرة مدعومة بفطر غانوديرما لوسيدوم' : 'Premium health products powered by Ganoderma Lucidum'}</p>
         </div>
       </div>
 
@@ -106,7 +108,7 @@ export default function Products() {
                 }`}
               >
                 <span>{cat.icon}</span>
-                {cat.label}
+                {lang === 'ar' ? cat.labelAr : cat.label}
               </button>
             ))}
           </div>
@@ -122,13 +124,13 @@ export default function Products() {
               <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={lang === 'ar' ? 'ابحث عن منتج...' : 'Search products...'}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-dxn-green bg-white"
               />
             </div>
-            <button type="submit" className="btn-primary px-5 py-2.5 rounded-xl">Search</button>
+            <button type="submit" className="btn-primary px-5 py-2.5 rounded-xl">{lang === 'ar' ? 'بحث' : 'Search'}</button>
           </form>
 
           {/* Sort */}
@@ -139,7 +141,7 @@ export default function Products() {
               className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-dxn-green"
             >
               {SORT_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>{o.label}</option>
+                <option key={o.value} value={o.value}>{lang === 'ar' ? o.labelAr : o.label}</option>
               ))}
             </select>
 
@@ -164,8 +166,8 @@ export default function Products() {
         {/* Results bar */}
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-bold text-dxn-darkgreen">
-            {activeCat?.icon} {activeCat?.label}
-            {total > 0 && <span className="text-sm font-normal text-gray-400 ml-2">({total} products)</span>}
+            {activeCat?.icon} {lang === 'ar' ? activeCat?.labelAr : activeCat?.label}
+            {total > 0 && <span className="text-sm font-normal text-gray-400 ml-2">({total} {lang === 'ar' ? 'منتج' : 'products'})</span>}
           </h2>
         </div>
 
@@ -194,7 +196,7 @@ export default function Products() {
                   disabled={page === 1}
                   className="px-4 py-2 rounded-xl border bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-40"
                 >
-                  ← Prev
+                  {lang === 'ar' ? 'السابق ←' : '← Prev'}
                 </button>
                 {[...Array(totalPages)].map((_, i) => (
                   <button
@@ -212,7 +214,7 @@ export default function Products() {
                   disabled={page === totalPages}
                   className="px-4 py-2 rounded-xl border bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-40"
                 >
-                  Next →
+                  {lang === 'ar' ? '→ التالي' : 'Next →'}
                 </button>
               </div>
             )}
@@ -220,13 +222,13 @@ export default function Products() {
         ) : (
           <div className="text-center py-24 text-gray-400">
             <div className="text-5xl mb-4">🔍</div>
-            <p className="text-xl font-medium">No products found</p>
-            <p className="text-sm mt-1">Try a different category or search term</p>
+            <p className="text-xl font-medium">{lang === 'ar' ? 'لم يتم العثور على منتجات' : 'No products found'}</p>
+            <p className="text-sm mt-1">{lang === 'ar' ? 'جرب فئة أو كلمة بحث مختلفة' : 'Try a different category or search term'}</p>
             <button
               onClick={() => { setCategory('all'); setSearch(''); setPage(1); }}
               className="mt-4 btn-primary px-6 py-2"
             >
-              View All Products
+              {lang === 'ar' ? 'عرض جميع المنتجات' : 'View All Products'}
             </button>
           </div>
         )}

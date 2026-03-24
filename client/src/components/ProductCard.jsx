@@ -75,12 +75,12 @@ export default function ProductCard({ product }) {
         )}
         {product.featured && (
           <span className="absolute top-2 left-2 bg-dxn-gold text-white text-xs px-2 py-1 rounded-full font-semibold z-10">
-            Featured
+            {lang === 'ar' ? 'مميز' : 'Featured'}
           </span>
         )}
         {!product.inStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-            <span className="text-white font-bold text-lg">Out of Stock</span>
+            <span className="text-white font-bold text-lg">{lang === 'ar' ? 'غير متوفر' : 'Out of Stock'}</span>
           </div>
         )}
       </div>
