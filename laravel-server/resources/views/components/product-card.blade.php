@@ -4,50 +4,90 @@
     $lang = session('lang', 'en');
     $mainImage = $product->landing_image ?: ($product->image ?: '');
     $link = $product->landing_page ?: route('products.show', $product);
-    $whatsapp = 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = 'https://wa.me/+971506662875';
+    $rating = $product->rating ?? 0;
+    $displayName = ($lang === 'ar' && $product->name_ar) ? $product->name_ar : $product->name;
+    $catLabelsAr = [
+        'coffee' => 'قهوة', 'beverages' => 'مشروبات', 'supplements' => 'مكملات',
+        'skincare' => 'العناية بالبشرة', 'personal-care' => 'العناية الشخصية',
+        'ganoderma' => 'غانوديرما', 'other' => 'أخرى',
+    ];
+    $displayCategory = ($lang === 'ar') ? ($catLabelsAr[$product->category] ?? $product->category) : $product->category;
+
+    // Arabic numeral converter
+    $toAr = function($num) use ($lang) {
+        if ($lang !== 'ar') return $num;
+        $arabic = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        return str_replace(range('0','9'), $arabic, $num);
+    };
+
+    $displayPrice = $lang === 'ar'
+        ? $toAr(number_format($product->price, 2)) . ' $'
+        : '$' . number_format($product->price, 2);
+    $displayRating = $toAr(number_format($rating, 1));
 @endphp
 
-<a href="{{ $link }}" class="card group block overflow-hidden">
-    <div class="relative overflow-hidden bg-gray-100 aspect-square">
-        @if($mainImage)
-            <img src="{{ $mainImage }}" alt="{{ $product->name }}"
-                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-400">
-        @else
-            <div class="absolute inset-0 bg-gradient-to-br from-dxn-darkgreen to-dxn-green flex flex-col items-center justify-center p-4 text-center">
-                <span class="text-dxn-gold text-4xl font-bold mb-2">DXN</span>
-                <span class="text-white/90 text-sm font-medium leading-tight">{{ $product->name }}</span>
-            </div>
-        @endif
+<div class="group bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full"
+     style="box-shadow: 0 1px 8px rgba(0,0,0,0.06);"
+     onmouseenter="this.style.boxShadow='0 8px 30px rgba(0,0,0,0.12)'; this.style.transform='translateY(-4px)'"
+     onmouseleave="this.style.boxShadow='0 1px 8px rgba(0,0,0,0.06)'; this.style.transform='translateY(0)'">
 
-        @if($product->featured)
-            <span class="absolute top-2 left-2 bg-dxn-gold text-white text-xs px-2 py-1 rounded-full font-semibold z-10">
-                Featured
-            </span>
-        @endif
+    <a href="{{ $link }}" class="block flex-1 flex flex-col">
+        {{-- Image --}}
+        <div class="relative overflow-hidden bg-gray-50">
+            @if($mainImage)
+                <img src="{{ $mainImage }}" alt="{{ $product->name }}"
+                     class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            @else
+                <div class="w-full h-52 flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
+                    <span class="text-3xl font-bold" style="color: #43af73;">DXN</span>
+                    <span class="text-white/70 text-xs mt-1 px-4 text-center line-clamp-2">{{ $product->name }}</span>
+                </div>
+            @endif
 
-        @if(!$product->in_stock)
-            <div class="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                <span class="text-white font-bold text-lg">Out of Stock</span>
-            </div>
-        @endif
-    </div>
-    <div class="p-4">
-        <span class="text-xs text-dxn-green font-medium uppercase tracking-wide">{{ $product->category }}</span>
-        <h3 class="font-semibold text-gray-800 mt-1 mb-1 line-clamp-2 group-hover:text-dxn-green transition-colors">
-            {{ $product->name }}
-        </h3>
-        <div class="flex items-center gap-1 mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span class="text-sm text-gray-500">{{ number_format($product->rating ?? 0, 1) }}</span>
+            @if($product->featured)
+                <span class="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1 whitespace-nowrap" style="background-color: #bf3c36;">
+                    <svg style="width: 12px; height: 12px;" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    {{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Best Seller' }}
+                </span>
+            @endif
+
+            @if(!$product->in_stock)
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <span class="bg-white/90 text-red-600 font-bold text-sm px-4 py-1.5 rounded-full">{{ $lang === 'ar' ? 'غير متوفر' : 'Out of Stock' }}</span>
+                </div>
+            @endif
         </div>
-        <div class="flex items-center justify-between">
-            <span class="text-dxn-darkgreen font-bold text-lg">${{ number_format($product->price, 2) }}</span>
-            <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer"
-               onclick="event.stopPropagation()"
-               class="flex items-center gap-1 bg-[#dfc378] text-[#16392d] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#dcca8b] transition-colors {{ !$product->in_stock ? 'opacity-50 pointer-events-none' : '' }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                {{ $lang === 'ar' ? 'اطلب' : 'Order' }}
-            </a>
+
+        {{-- Info --}}
+        <div class="px-4 pt-3 flex-1 flex flex-col">
+            <span class="inline-block text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(67,175,115,0.1); color: #43af73;">{{ $displayCategory }}</span>
+            <h3 class="text-sm font-bold mt-2 mb-2 line-clamp-2 leading-snug group-hover:text-brand-green transition-colors" style="color: #452aa8; min-height: 2.5rem;">{{ $displayName }}</h3>
+
+            {{-- Rating + Price pushed to bottom --}}
+            <div class="mt-auto"></div>
+            @if($rating > 0)
+                <div class="flex items-center gap-0.5 mb-2">
+                    <svg style="width: 12px; height: 12px; min-width: 12px; color: #bf3c36;" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <span class="text-xs text-gray-500">{{ $displayRating }}</span>
+                </div>
+            @endif
+
+            <span class="text-xl font-bold" style="color: #43af73;">{{ $displayPrice }}</span>
         </div>
+    </a>
+
+    {{-- Order Button --}}
+    <div class="px-4 pt-2 pb-4">
+        <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer"
+           class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
+           style="background-color: #43af73;"
+           onmouseenter="this.style.backgroundColor='#369a60'"
+           onmouseleave="this.style.backgroundColor='#43af73'">
+            {{ $lang === 'ar' ? 'اطلب عبر واتساب' : 'Order via WhatsApp' }}
+        </a>
     </div>
-</a>
+
+    {{-- Green accent on hover --}}
+    <div class="h-0.5 bg-brand-green opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+</div>

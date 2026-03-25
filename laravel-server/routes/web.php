@@ -12,6 +12,29 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
 use Illuminate\Support\Facades\Route;
 
+// Debug: test auth
+Route::get('/test-auth', function () {
+    return response()->json([
+        'logged_in' => auth()->check(),
+        'user' => auth()->user()?->only('id', 'name', 'email', 'role'),
+        'session_id' => session()->getId(),
+        'guard' => config('auth.defaults.guard'),
+        'driver' => config('auth.guards.web.driver'),
+        'session_driver' => config('session.driver'),
+        'session_data' => session()->all(),
+    ]);
+});
+
+// Debug: force login test
+Route::get('/test-login', function () {
+    $user = \App\Models\User::where('email', 'info@freedomwithdxn.com')->first();
+    auth()->login($user);
+    return response()->json([
+        'after_login' => auth()->check(),
+        'user' => auth()->user()?->only('id', 'name', 'email', 'role'),
+    ]);
+});
+
 // Language toggle
 Route::get('/lang/{locale}', function (string $locale) {
     if (in_array($locale, ['en', 'ar'])) {

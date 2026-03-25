@@ -25,15 +25,21 @@ class AuthController extends Controller
         // Manual auth check because User model auto-hashes passwords
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()->withErrors(['email' => 'Invalid email or password'])->withInput();
+        if (!$user) {
+            return back()->withErrors(['email' => 'No account found with this email'])->withInput();
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['email' => 'Incorrect password'])->withInput();
         }
 
         Auth::login($user, $request->boolean('remember'));
 
-        return redirect()->intended(
-            $user->role === 'admin' ? route('admin.index') : route('dashboard')
-        );
+        if (!Auth::check()) {
+            return back()->withErrors(['email' => 'Login failed - session error'])->withInput();
+        }
+
+        return redirect('/admin');
     }
 
     public function showRegister(Request $request)

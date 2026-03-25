@@ -23,32 +23,34 @@
 @section('content')
 {{-- Hero --}}
 <section class="bg-hero min-h-[85vh] flex items-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 30% 50%, #dfc378 0%, transparent 50%)"></div>
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 30% 50%, #43af73 0%, transparent 50%)"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-            <span class="inline-block bg-dxn-gold/20 text-dxn-gold px-4 py-1 rounded-full text-sm font-medium mb-4">
+            <span class="inline-block bg-white/15 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-white/20">
                 {{ $lang === 'ar' ? 'موزع مستقل معتمد من DXN' : ($hero['badge'] ?? 'Independent DXN Distributor') }}
             </span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
                 {{ $lang === 'ar' ? 'نمّ صحتك وثروتك مع DXN' : ($hero['title'] ?? 'Grow Your Health & Wealth with DXN') }}
             </h1>
-            <p class="text-gray-300 text-lg mb-8 max-w-lg">
+            <p class="text-white/80 text-lg mb-8 max-w-lg">
                 {{ $lang === 'ar' ? 'اكتشف منتجات الغانودرما المتميزة التي تحوّل صحتك، وفرصة عمل يمكن أن تحوّل حياتك.' : ($hero['subtitle'] ?? 'Discover premium Ganoderma products that transform your health, and a business opportunity that can transform your life.') }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="btn-gold text-center">{{ $hero['btn1Text'] ?? ($lang === 'ar' ? 'تسوق المنتجات' : 'Shop Products') }}</a>
-                <a href="{{ $hero['btn2Link'] ?? route('join') }}" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
-                    {{ $lang === 'ar' ? 'انضم كموزع' : ($hero['btn2Text'] ?? 'Join as a Distributor') }}
+                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="text-center text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-lg" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+                    {{ $lang === 'ar' ? 'تسوق المنتجات' : ($hero['btn1Text'] ?? 'Shop Now') }}
+                </a>
+                <a href="{{ $hero['btn2Link'] ?? route('join') }}" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-brand-violet hover:border-brand-violet px-8 py-3.5 rounded-xl font-semibold transition-all">
+                    {{ $lang === 'ar' ? 'ابدأ رحلتي' : ($hero['btn2Text'] ?? 'Start My Journey') }}
                 </a>
             </div>
         </div>
         <div class="hidden lg:flex justify-center">
-            <div class="w-80 h-80 bg-dxn-gold/20 rounded-full flex items-center justify-center">
-                <div class="w-64 h-64 bg-dxn-gold/30 rounded-full flex items-center justify-center">
+            <div class="w-80 h-80 rounded-full flex items-center justify-center backdrop-blur-sm" style="background: rgba(67,175,115,0.2);">
+                <div class="w-64 h-64 rounded-full flex items-center justify-center" style="background: rgba(67,175,115,0.3);">
                     <div class="text-center text-white">
-                        <div class="text-6xl font-bold text-dxn-gold">DXN</div>
+                        <div class="text-6xl font-bold" style="color: #43af73;">DXN</div>
                         <div class="text-xl mt-2">Ganoderma</div>
-                        <div class="text-sm text-gray-300 mt-1">{{ $lang === 'ar' ? 'منذ 1993' : 'Since 1993' }}</div>
+                        <div class="text-sm text-white/60 mt-1">{{ $lang === 'ar' ? 'منذ 1993' : 'Since 1993' }}</div>
                     </div>
                 </div>
             </div>
@@ -57,7 +59,7 @@
 </section>
 
 {{-- Stats --}}
-<section class="bg-dxn-green py-12">
+<section class="py-12" style="background-color: #452aa8;">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
         @foreach([
             ['v' => '180+', 'l' => $lang === 'ar' ? 'دولة' : 'Countries'],
@@ -66,8 +68,8 @@
             ['v' => '1000+', 'l' => $lang === 'ar' ? 'منتج' : 'Products'],
         ] as $stat)
             <div class="text-center text-white">
-                <div class="text-3xl font-bold text-dxn-gold">{{ $stat['v'] }}</div>
-                <div class="text-gray-300 text-sm">{{ $stat['l'] }}</div>
+                <div class="text-3xl font-bold" style="color: #43af73;">{{ $stat['v'] }}</div>
+                <div class="text-white/60 text-sm">{{ $stat['l'] }}</div>
             </div>
         @endforeach
     </div>
@@ -84,10 +86,7 @@
             @endforeach
         </div>
         <div class="text-center mt-10">
-            <a href="{{ route('products') }}" class="btn-primary inline-flex items-center gap-2">
-                {{ $lang === 'ar' ? 'عرض الكل' : 'View All Products' }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+            <a href="{{ route('products') }}" class="btn-secondary">{{ $lang === 'ar' ? 'عرض الكل' : 'View All Products' }}</a>
         </div>
     </div>
 </section>
@@ -107,20 +106,20 @@
 @endif
 
 {{-- Zoom Banner --}}
-<section class="py-16 bg-blue-50 border-y border-blue-100">
+<section class="py-16 border-y" style="background-color: #eeeaf8; border-color: rgba(55,28,155,0.1);">
     <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-semibold mb-3">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-semibold mb-3" style="background: rgba(55,28,155,0.1); color: #452aa8;">
                 {{ $lang === 'ar' ? 'مجاني 100%' : '100% Free' }}
             </div>
-            <h2 class="text-2xl md:text-3xl font-bold text-dxn-darkgreen mb-3">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3" style="color: #452aa8;">
                 {{ $lang === 'ar' ? 'احضر جلسة زووم مجانية' : 'Attend a Free Zoom Session' }}
             </h2>
             <p class="text-gray-600 mb-4">
                 {{ $lang === 'ar' ? 'تعرف على منتجات DXN وفرصة العمل. جلسات أسبوعية بالعربية والإنجليزية.' : 'Learn about DXN products and the business opportunity. Weekly sessions in Arabic and English.' }}
             </p>
             <div class="flex flex-wrap gap-3">
-                <a href="{{ route('zoom') }}" class="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-all">
+                <a href="{{ route('zoom') }}" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-all" style="background-color: #452aa8;" onmouseenter="this.style.backgroundColor='#4a2db5'" onmouseleave="this.style.backgroundColor='#452aa8'">
                     {{ $lang === 'ar' ? 'عرض الجدول' : 'View Schedule' }}
                 </a>
                 <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">{{ $lang === 'ar' ? 'احصل على الرابط' : 'Get the Link' }}</a>
@@ -133,9 +132,9 @@
                 ['d' => $lang === 'ar' ? 'الجمعة' : 'Friday', 'b' => 'AR/EN'],
                 ['d' => $lang === 'ar' ? 'السبت' : 'Saturday', 'b' => 'English'],
             ] as $s)
-                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
-                    <p class="font-bold text-dxn-darkgreen">{{ $s['d'] }}</p>
-                    <span class="inline-block bg-blue-50 text-blue-600 text-xs px-2 py-0.5 rounded-full mt-1">{{ $s['b'] }}</span>
+                <div class="bg-white rounded-xl p-4 shadow-sm" style="border: 1px solid rgba(55,28,155,0.1);">
+                    <p class="font-bold" style="color: #452aa8;">{{ $s['d'] }}</p>
+                    <span class="inline-block text-xs px-2 py-0.5 rounded-full mt-1 font-medium" style="background: rgba(67,175,115,0.1); color: #43af73;">{{ $s['b'] }}</span>
                 </div>
             @endforeach
         </div>
@@ -143,15 +142,15 @@
 </section>
 
 {{-- Why Join --}}
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-            <span class="text-dxn-gold font-semibold text-sm uppercase tracking-widest">{{ $lang === 'ar' ? 'فرصة العمل' : 'Business Opportunity' }}</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-dxn-darkgreen mt-2 mb-6">{{ $lang === 'ar' ? 'لماذا تنضم إلى DXN؟' : 'Why Join DXN?' }}</h2>
+            <span class="font-semibold text-sm uppercase tracking-widest" style="color: #43af73;">{{ $lang === 'ar' ? 'فرصة العمل' : 'Business Opportunity' }}</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6" style="color: #452aa8;">{{ $lang === 'ar' ? 'لماذا تنضم إلى DXN؟' : 'Why Join DXN?' }}</h2>
             <ul class="space-y-3 mb-8">
                 @foreach($why as $item)
                     <li class="flex items-start gap-3">
-                        <div class="w-5 h-5 bg-dxn-green rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                        <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background-color: #43af73;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                         </div>
                         <span class="text-gray-600">{{ $item }}</span>
@@ -159,19 +158,22 @@
                 @endforeach
             </ul>
             <div class="flex flex-wrap gap-3">
-                <a href="{{ route('join') }}" class="btn-primary">{{ $lang === 'ar' ? 'انضم كموزع' : 'Join as Distributor' }}</a>
-                <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">{{ $lang === 'ar' ? 'اسألني الآن' : 'Ask Me Now' }}</a>
+                <a href="{{ route('join') }}" class="btn-primary inline-flex items-center gap-2">
+                    {{ $lang === 'ar' ? 'ابدأ رحلتي' : 'Start My Journey' }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="{{ $whatsapp }}" target="_blank" class="btn-secondary">{{ $lang === 'ar' ? 'اسألني الآن' : 'Ask Me Now' }}</a>
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
             @foreach([
-                ['t' => $lang === 'ar' ? 'الصحة' : 'Health', 'd' => $lang === 'ar' ? 'حوّل صحتك بالغانودرما' : 'Transform health with Ganoderma', 'c' => 'bg-green-50 border-green-200'],
-                ['t' => $lang === 'ar' ? 'الثروة' : 'Wealth', 'd' => $lang === 'ar' ? 'ابنِ دخلاً سلبياً' : 'Build passive income', 'c' => 'bg-yellow-50 border-yellow-200'],
-                ['t' => $lang === 'ar' ? 'الشبكة' : 'Network', 'd' => $lang === 'ar' ? 'مجتمع موزعين عالمي' : 'Global distributor community', 'c' => 'bg-blue-50 border-blue-200'],
-                ['t' => $lang === 'ar' ? 'الحرية' : 'Freedom', 'd' => $lang === 'ar' ? 'اعمل وفق جدولك' : 'Work on your schedule', 'c' => 'bg-purple-50 border-purple-200'],
+                ['t' => $lang === 'ar' ? 'الصحة' : 'Health', 'd' => $lang === 'ar' ? 'حوّل صحتك بالغانودرما' : 'Transform health with Ganoderma', 'c' => 'background: #e8f5ee; border-color: rgba(67,175,115,0.2);'],
+                ['t' => $lang === 'ar' ? 'الثروة' : 'Wealth', 'd' => $lang === 'ar' ? 'ابنِ دخلاً سلبياً' : 'Build passive income', 'c' => 'background: #eeeaf8; border-color: rgba(55,28,155,0.2);'],
+                ['t' => $lang === 'ar' ? 'الشبكة' : 'Network', 'd' => $lang === 'ar' ? 'مجتمع موزعين عالمي' : 'Global distributor community', 'c' => 'background: #e8f5ee; border-color: rgba(67,175,115,0.2);'],
+                ['t' => $lang === 'ar' ? 'الحرية' : 'Freedom', 'd' => $lang === 'ar' ? 'اعمل وفق جدولك' : 'Work on your schedule', 'c' => 'background: #eeeaf8; border-color: rgba(55,28,155,0.2);'],
             ] as $card)
-                <div class="p-6 rounded-xl border-2 {{ $card['c'] }}">
-                    <h3 class="font-bold text-dxn-darkgreen text-xl mb-2">{{ $card['t'] }}</h3>
+                <div class="p-6 rounded-xl border-2" style="{{ $card['c'] }}">
+                    <h3 class="font-bold text-xl mb-2" style="color: #452aa8;">{{ $card['t'] }}</h3>
                     <p class="text-gray-600 text-sm">{{ $card['d'] }}</p>
                 </div>
             @endforeach
@@ -186,18 +188,18 @@
         <p class="section-subtitle">{{ $lang === 'ar' ? 'أشخاص حقيقيون. نتائج حقيقية.' : 'Real people. Real results.' }}</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($testi as $t)
-                <div class="card p-6">
+                <div class="card p-6" style="border-top: 4px solid #43af73;">
                     <div class="flex items-center gap-1 mb-4">
                         @for($i = 0; $i < 5; $i++)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#bf3c36" stroke="#bf3c36" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         @endfor
                     </div>
                     <p class="text-gray-600 italic mb-6">"{{ $t['text'] }}"</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-dxn-green rounded-full flex items-center justify-center text-white font-bold">{{ $t['avatar'] }}</div>
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #452aa8;">{{ $t['avatar'] }}</div>
                         <div>
                             <p class="font-semibold text-gray-800">{{ $t['name'] }}</p>
-                            <p class="text-sm text-dxn-gold">{{ $t['role'] }}</p>
+                            <p class="text-sm" style="color: #43af73;">{{ $t['role'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -210,11 +212,16 @@
 <section class="bg-hero py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'هل أنت مستعد للبدء؟' : 'Ready to Get Started?' }}</h2>
-        <p class="text-gray-300 text-lg mb-8">{{ $lang === 'ar' ? 'انضم لآلاف الأشخاص الذين حوّلوا صحتهم وحياتهم مع DXN' : 'Join thousands who have transformed their health and lives with DXN' }}</p>
+        <p class="text-white/70 text-lg mb-8">{{ $lang === 'ar' ? 'انضم لآلاف الأشخاص الذين حوّلوا صحتهم وحياتهم مع DXN' : 'Join thousands who have transformed their health and lives with DXN' }}</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('join') }}" class="btn-gold">{{ $lang === 'ar' ? 'انضم مجاناً' : 'Join For Free' }}</a>
-            <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">WhatsApp Us</a>
-            <a href="{{ route('zoom') }}" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all">
+            <a href="{{ route('join') }}" class="text-center text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-lg" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+                {{ $lang === 'ar' ? 'انضم مجاناً' : 'Join For Free' }}
+            </a>
+            <a href="{{ $whatsapp }}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#20ba5a] transition-all">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                {{ $lang === 'ar' ? 'واتساب' : 'WhatsApp Us' }}
+            </a>
+            <a href="{{ route('zoom') }}" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-brand-violet px-6 py-3 rounded-xl font-semibold transition-all">
                 {{ $lang === 'ar' ? 'احضر زووم' : 'Free Zoom' }}
             </a>
         </div>

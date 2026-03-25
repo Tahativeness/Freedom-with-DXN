@@ -13,6 +13,11 @@
         <div class="bg-white rounded-2xl shadow-lg p-8">
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
                 @csrf
+                @if($errors->any())
+                    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                     <input type="email" name="email" required value="{{ old('email') }}" class="input-field" placeholder="you@example.com">

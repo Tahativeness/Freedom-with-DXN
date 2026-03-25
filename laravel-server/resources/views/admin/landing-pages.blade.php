@@ -31,7 +31,11 @@
                             <a href="{{ route('landing', $page->slug) }}" target="_blank" class="text-dxn-green hover:underline text-xs">/landing/{{ $page->slug }}</a>
                         </td>
                         <td class="px-4 py-3">
-                            <span class="badge {{ $page->published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700' }}">{{ $page->published ? 'Live' : 'Draft' }}</span>
+                            @if($page->published)
+                                <a href="{{ route('landing', $page->slug) }}" target="_blank" class="inline-block bg-brand-green text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-brand-green-dark transition-colors">Live ↗</a>
+                            @else
+                                <span class="badge bg-gray-100 text-gray-700">Draft</span>
+                            @endif
                         </td>
                         <td class="px-4 py-3 flex items-center gap-3">
                             <a href="{{ route('admin.landing-pages.edit', $page) }}" class="text-dxn-green hover:underline text-sm">Edit</a>

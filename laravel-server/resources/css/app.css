@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../views";
 
 @theme {
     --color-primary-50: #f0fdf4;
@@ -17,94 +18,127 @@
     --color-gold-500: #dfc378;
     --color-gold-600: #dcca8b;
 
-    --color-dxn-green: #16392d;
-    --color-dxn-darkgreen: #0c3935;
-    --color-dxn-gold: #dfc378;
-    --color-dxn-lightgold: #dcca8b;
+    /* New brand colors */
+    --color-brand-green: #43af73;
+    --color-brand-green-light: #5bc48a;
+    --color-brand-green-dark: #369a60;
+    --color-brand-red: #bf3c36;
+    --color-brand-red-light: #d05550;
+    --color-brand-red-dark: #a3322d;
+    --color-brand-violet: #452aa8;
+    --color-brand-violet-light: #4a2db5;
+    --color-brand-violet-dark: #3a2290;
 
-    --font-family-sans: 'Inter', system-ui, sans-serif;
+    /* Legacy aliases pointing to new colors */
+    --color-dxn-green: #43af73;
+    --color-dxn-darkgreen: #452aa8;
+    --color-dxn-gold: #43af73;
+    --color-dxn-lightgold: #5bc48a;
+
+    --font-family-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
 }
 
 :root {
-    --gold-primary: #dfc378;
-    --gold-secondary: #dcca8b;
-    --green-primary: #16392d;
-    --green-deep: #0c3935;
+    --brand-green: #43af73;
+    --brand-green-light: #5bc48a;
+    --brand-green-dark: #369a60;
+    --brand-red: #bf3c36;
+    --brand-red-dark: #a3322d;
+    --brand-violet: #452aa8;
+    --brand-violet-dark: #3a2290;
 }
 
 /* Base styles */
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', 'Inter', sans-serif;
     font-size: 16px;
-    color: #1a2e25;
+    color: #1a1a2e;
     background-color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', 'Inter', sans-serif;
     font-weight: 600;
 }
 
-/* Component classes */
+/* ── Button System ────────────────────────────────────── */
+
+/* Primary CTA — red */
 .btn-primary {
-    background-color: var(--gold-primary);
-    color: var(--green-primary);
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+    background-color: var(--brand-red);
+    color: #fff;
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
 }
 .btn-primary:hover {
-    background-color: var(--gold-secondary);
+    background-color: var(--brand-red-dark);
 }
 
+/* Secondary — green */
+.btn-secondary {
+    background-color: var(--brand-green);
+    color: #fff;
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+}
+.btn-secondary:hover {
+    background-color: var(--brand-green-dark);
+}
+
+/* Legacy btn-gold → now red CTA */
 .btn-gold {
-    background-color: var(--gold-primary);
-    color: var(--green-primary);
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+    background-color: var(--brand-red);
+    color: #fff;
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
 }
 .btn-gold:hover {
-    background-color: var(--gold-secondary);
+    background-color: var(--brand-red-dark);
 }
 
+/* Outline — violet */
 .btn-outline {
-    border-color: var(--gold-primary);
-    color: var(--gold-primary);
-    @apply border-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 inline-block text-center;
+    border-color: var(--brand-violet);
+    color: var(--brand-violet);
+    @apply border-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 inline-block text-center;
 }
 .btn-outline:hover {
-    background-color: var(--gold-primary);
-    color: var(--green-primary);
+    background-color: var(--brand-violet);
+    color: #fff;
 }
 
+/* ── Component classes ────────────────────────────────── */
+
 .card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300;
 }
 
 .section-title {
-    @apply text-3xl md:text-4xl font-bold text-dxn-darkgreen text-center mb-4;
+    color: var(--brand-violet);
+    @apply text-3xl md:text-4xl font-bold text-center mb-4;
 }
 
 .section-subtitle {
-    @apply text-gray-600 text-center text-lg mb-12 max-w-2xl mx-auto;
+    @apply text-gray-500 text-center text-lg mb-12 max-w-2xl mx-auto;
 }
 
 .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all;
-    --tw-ring-color: var(--gold-primary);
+    @apply w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all;
+    --tw-ring-color: var(--brand-green);
 }
 .input-field:focus {
-    --tw-ring-color: var(--gold-primary);
+    --tw-ring-color: var(--brand-green);
 }
 
 .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
 }
 
-/* Utility classes */
+/* ── Utility classes ──────────────────────────────────── */
+
 .text-gradient {
-    @apply bg-gradient-to-r from-dxn-green to-dxn-gold bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-green to-brand-violet bg-clip-text text-transparent;
 }
 
 .bg-hero {
-    background: linear-gradient(135deg, #0c3935 0%, #16392d 50%, #1e4d3d 100%);
+    background: linear-gradient(135deg, #452aa8 0%, #3a2290 50%, #43af73 100%);
 }
 
 /* Smooth scrolling */
@@ -120,24 +154,24 @@ html {
     background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background: #16392d;
+    background: var(--brand-violet);
     border-radius: 4px;
 }
 
 /* Rich text / blog content styles */
-.blog-html-content h1 { font-size: 2em; font-weight: 700; margin: 0.8em 0 0.4em; color: #0c3935; }
-.blog-html-content h2 { font-size: 1.5em; font-weight: 700; margin: 0.8em 0 0.4em; color: #16392d; }
-.blog-html-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.6em 0 0.3em; color: #16392d; }
+.blog-html-content h1 { font-size: 2em; font-weight: 700; margin: 0.8em 0 0.4em; color: #452aa8; }
+.blog-html-content h2 { font-size: 1.5em; font-weight: 700; margin: 0.8em 0 0.4em; color: #452aa8; }
+.blog-html-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.6em 0 0.3em; color: #452aa8; }
 .blog-html-content p { margin: 0.5em 0; color: #4b5563; line-height: 1.8; }
 .blog-html-content ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0; color: #4b5563; }
 .blog-html-content ol { list-style: decimal; padding-left: 1.5em; margin: 0.5em 0; color: #4b5563; }
 .blog-html-content li { margin: 0.3em 0; line-height: 1.7; }
-.blog-html-content blockquote { border-left: 4px solid #dfc378; padding: 1em 1.25em; margin: 1em 0; background: #faf8f3; color: #555; font-style: italic; border-radius: 0 8px 8px 0; }
-.blog-html-content a { color: #2563eb; text-decoration: underline; }
-.blog-html-content a:hover { color: #1d4ed8; }
+.blog-html-content blockquote { border-left: 4px solid #43af73; padding: 1em 1.25em; margin: 1em 0; background: #e8f5ee; color: #555; font-style: italic; border-radius: 0 8px 8px 0; }
+.blog-html-content a { color: #452aa8; text-decoration: underline; }
+.blog-html-content a:hover { color: #4a2db5; }
 .blog-html-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; }
 .blog-html-content hr { border: none; border-top: 2px solid #e5e7eb; margin: 24px 0; }
-.blog-html-content strong, .blog-html-content b { color: #0c3935; font-weight: 700; }
+.blog-html-content strong, .blog-html-content b { color: #452aa8; font-weight: 700; }
 
 /* RTL (Arabic) support */
 [dir="rtl"] .section-title,
@@ -146,7 +180,7 @@ html {
 [dir="rtl"] .list-decimal { padding-right: 1.5em; padding-left: 0; }
 [dir="rtl"] .blog-html-content ul,
 [dir="rtl"] .blog-html-content ol { padding-right: 1.5em; padding-left: 0; }
-[dir="rtl"] .blog-html-content blockquote { border-right: 4px solid #dfc378; border-left: none; border-radius: 8px 0 0 8px; }
+[dir="rtl"] .blog-html-content blockquote { border-right: 4px solid #43af73; border-left: none; border-radius: 8px 0 0 8px; }
 
 /* Arabic font support */
 [dir="rtl"] { font-family: 'Segoe UI', 'Arial', 'Tahoma', sans-serif; }

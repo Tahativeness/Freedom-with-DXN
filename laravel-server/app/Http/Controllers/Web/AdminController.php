@@ -41,22 +41,28 @@ class AdminController extends Controller
             'category' => 'required|string',
         ]);
 
-        Product::create($request->only([
-            'name', 'description', 'price', 'category', 'image', 'landing_image',
+        $data = $request->only([
+            'name', 'name_ar', 'description', 'description_ar', 'price', 'category', 'image', 'landing_image',
             'in_stock', 'stock_count', 'sku', 'ingredients', 'usage',
-            'featured', 'dxn_id', 'source_url', 'landing_page', 'dxn_category',
-        ]));
+            'featured', 'dxn_id', 'source_url', 'landing_page', 'dxn_category', 'rating',
+        ]);
+        $data['in_stock'] = $request->has('in_stock');
+        $data['featured'] = $request->has('featured');
+        Product::create($data);
 
         return back()->with('success', 'Product created successfully!');
     }
 
     public function productUpdate(Request $request, Product $product)
     {
-        $product->update($request->only([
-            'name', 'description', 'price', 'category', 'image', 'landing_image',
+        $data = $request->only([
+            'name', 'name_ar', 'description', 'description_ar', 'price', 'category', 'image', 'landing_image',
             'in_stock', 'stock_count', 'sku', 'ingredients', 'usage',
-            'featured', 'dxn_id', 'source_url', 'landing_page', 'dxn_category',
-        ]));
+            'featured', 'dxn_id', 'source_url', 'landing_page', 'dxn_category', 'rating',
+        ]);
+        $data['in_stock'] = $request->has('in_stock');
+        $data['featured'] = $request->has('featured');
+        $product->update($data);
 
         return back()->with('success', 'Product updated successfully!');
     }
@@ -142,12 +148,27 @@ class AdminController extends Controller
             'hero_title' => 'required|string',
         ]);
 
-        $data = $request->only([
-            'title', 'product_id', 'hero_image', 'hero_title', 'hero_subtitle',
-            'hero_bg_color', 'cta_text', 'cta_link', 'custom_css', 'custom_html', 'published',
-        ]);
-        $data['slug'] = Str::slug($request->title);
-        $data['published'] = $request->has('published');
+        $slug = Str::slug($request->input('title'));
+        $originalSlug = $slug;
+        $counter = 1;
+        while (LandingPage::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter++;
+        }
+
+        $data = [
+            'title'        => $request->input('title'),
+            'slug'         => $slug,
+            'product_id'   => $request->input('product_id') ?: null,
+            'hero_image'   => $request->input('hero_image', ''),
+            'hero_title'   => $request->input('hero_title', ''),
+            'hero_subtitle'=> $request->input('hero_subtitle', ''),
+            'hero_bg_color'=> $request->input('hero_bg_color', '#2c1878'),
+            'cta_text'     => $request->input('cta_text', ''),
+            'cta_link'     => $request->input('cta_link', ''),
+            'custom_css'   => $request->input('custom_css', ''),
+            'custom_html'  => $request->input('custom_html', ''),
+            'published'    => $request->has('published'),
+        ];
 
         // Handle JSON arrays
         if ($request->filled('features_text')) {
@@ -189,8 +210,19 @@ class AdminController extends Controller
             'title', 'product_id', 'hero_image', 'hero_title', 'hero_subtitle',
             'hero_bg_color', 'cta_text', 'cta_link', 'custom_css', 'custom_html',
         ]);
-        $data['slug'] = Str::slug($request->title);
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $counter = 1;
+        while (LandingPage::where('slug', $slug)->where('id', '!=', $landingPage->id)->exists()) {
+            $slug = $originalSlug . '-' . $counter++;
+        }
+
+        $data['slug'] = $slug;
         $data['published'] = $request->has('published');
+        $data['hero_image'] = $data['hero_image'] ?? '';
+        $data['hero_bg_color'] = $data['hero_bg_color'] ?? '#2c1878';
+        $data['cta_text'] = $data['cta_text'] ?? '';
+        $data['cta_link'] = $data['cta_link'] ?? '';
 
         if ($request->filled('features_text')) {
             $data['features'] = array_filter(array_map('trim', explode("\n", $request->features_text)));

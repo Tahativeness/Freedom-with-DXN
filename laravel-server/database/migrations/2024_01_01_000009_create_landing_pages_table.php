@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('hero_image')->default('');
             $table->string('hero_title');
             $table->text('hero_subtitle')->default('');
-            $table->string('hero_bg_color')->default('#0c3935');
+            $table->string('hero_bg_color')->default('#371c9b');
             $table->string('cta_text')->default('Order Now via WhatsApp');
             $table->string('cta_link')->default('https://wa.me/message/EFSQ2IDNVG3YB1');
             $table->text('features')->nullable(); // JSON array of features

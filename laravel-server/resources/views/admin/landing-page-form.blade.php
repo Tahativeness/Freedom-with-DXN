@@ -12,6 +12,16 @@
         <a href="{{ route('admin.landing-pages') }}" class="text-dxn-green hover:underline text-sm">← Back to Landing Pages</a>
     </div>
 
+    @if($errors->any())
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
+            <ul class="list-disc list-inside text-sm">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="{{ $isEdit ? route('admin.landing-pages.update', $page) : route('admin.landing-pages.store') }}" class="space-y-6">
         @csrf
         @if($isEdit) @method('PUT') @endif
@@ -64,8 +74,8 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Hero Background Color</label>
                         <div class="flex items-center gap-2">
-                            <input type="color" name="hero_bg_color" value="{{ old('hero_bg_color', $page->hero_bg_color ?? '#0c3935') }}" class="w-10 h-10 rounded border cursor-pointer">
-                            <input type="text" value="{{ old('hero_bg_color', $page->hero_bg_color ?? '#0c3935') }}" class="input-field flex-1" readonly>
+                            <input type="color" id="hero_bg_color_picker" name="hero_bg_color" value="{{ old('hero_bg_color', $page->hero_bg_color ?? '#452aa8') }}" class="w-10 h-10 rounded border cursor-pointer" oninput="document.getElementById('hero_bg_color_text').value = this.value">
+                            <input type="text" id="hero_bg_color_text" value="{{ old('hero_bg_color', $page->hero_bg_color ?? '#452aa8') }}" class="input-field flex-1" oninput="document.getElementById('hero_bg_color_picker').value = this.value; document.getElementById('hero_bg_color_picker').name = ''; this.name = 'hero_bg_color';">
                         </div>
                     </div>
                 </div>

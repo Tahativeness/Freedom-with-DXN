@@ -3,10 +3,19 @@
 
 @php
     $lang = session('lang', 'en');
-    $whatsapp = 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = 'https://wa.me/+971506662875';
     $mainImage = $product->landing_image ?: ($product->image ?: '');
     $images = is_array($product->images) ? $product->images : [];
-    $benefits = is_array($product->benefits) ? $product->benefits : [];
+    $benefits = ($lang === 'ar' && $product->benefits_ar) ? $product->benefits_ar : (is_array($product->benefits) ? $product->benefits : []);
+    $displayName = ($lang === 'ar' && $product->name_ar) ? $product->name_ar : $product->name;
+    $displayDesc = ($lang === 'ar' && $product->description_ar) ? $product->description_ar : $product->description;
+    $displayUsage = ($lang === 'ar' && $product->usage_ar) ? $product->usage_ar : $product->usage;
+    $catLabelsAr = [
+        'coffee' => 'قهوة', 'beverages' => 'مشروبات', 'supplements' => 'مكملات',
+        'skincare' => 'العناية بالبشرة', 'personal-care' => 'العناية الشخصية',
+        'ganoderma' => 'غانوديرما', 'other' => 'أخرى',
+    ];
+    $displayCategory = ($lang === 'ar') ? ($catLabelsAr[$product->category] ?? $product->category) : $product->category;
 @endphp
 
 @section('content')
@@ -42,8 +51,8 @@
 
             {{-- Info --}}
             <div>
-                <span class="text-sm text-dxn-gold font-semibold uppercase tracking-widest">{{ $product->category }}</span>
-                <h1 class="text-3xl font-bold text-dxn-darkgreen mt-2 mb-3">{{ $product->name }}</h1>
+                <span class="text-sm text-dxn-gold font-semibold uppercase tracking-widest">{{ $displayCategory }}</span>
+                <h1 class="text-3xl font-bold text-dxn-darkgreen mt-2 mb-3">{{ $displayName }}</h1>
 
                 <div class="flex items-center gap-2 mb-4">
                     @for($i = 0; $i < 5; $i++)
@@ -56,7 +65,7 @@
                 </div>
 
                 <p class="text-3xl font-bold text-dxn-green mb-4">${{ number_format($product->price, 2) }}</p>
-                <p class="text-gray-600 mb-6">{{ $product->description }}</p>
+                <p class="text-gray-600 mb-6">{{ $displayDesc }}</p>
 
                 @if(count($benefits) > 0)
                     <div class="mb-6">
@@ -72,10 +81,10 @@
                     </div>
                 @endif
 
-                @if($product->usage)
+                @if($displayUsage)
                     <div class="mb-6 p-4 bg-green-50 rounded-lg">
                         <h3 class="font-semibold text-gray-800 mb-1">{{ $lang === 'ar' ? 'طريقة الاستخدام' : 'How to Use' }}</h3>
-                        <p class="text-gray-600 text-sm">{{ $product->usage }}</p>
+                        <p class="text-gray-600 text-sm">{{ $displayUsage }}</p>
                     </div>
                 @endif
 
