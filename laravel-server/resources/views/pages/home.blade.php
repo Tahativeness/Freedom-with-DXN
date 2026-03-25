@@ -75,35 +75,43 @@
     </div>
 </section>
 
-{{-- Featured Products --}}
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4">
-        <h2 class="section-title">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
-        <p class="section-subtitle">{{ $lang === 'ar' ? 'منتجات صحية عالية الجودة مدعومة بالغانودرما' : 'Premium health products powered by Ganoderma Lucidum' }}</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($featured as $product)
-                @include('components.product-card', ['product' => $product])
-            @endforeach
-        </div>
-        <div class="text-center mt-10">
-            <a href="{{ route('products') }}" class="btn-secondary">{{ $lang === 'ar' ? 'عرض الكل' : 'View All Products' }}</a>
-        </div>
-    </div>
-</section>
+{{-- Featured Products + Bestsellers with background image --}}
+<div class="relative">
+    {{-- Fixed background image — replace /images/products-bg.jpg with your own image --}}
+    <div class="absolute inset-0 bg-fixed bg-center bg-cover" style="background-image: url('/images/products-bg.jpg');"></div>
+    <div class="absolute inset-0" style="background: rgba(255,255,255,0.88);"></div>
 
-{{-- Bestsellers --}}
-@if($bestsellers->count() > 0)
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-        <h2 class="section-title">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($bestsellers as $product)
-                @include('components.product-card', ['product' => $product])
-            @endforeach
+    {{-- Featured Products --}}
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="section-title">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
+            <p class="section-subtitle">{{ $lang === 'ar' ? 'منتجات صحية عالية الجودة مدعومة بالغانودرما' : 'Premium health products powered by Ganoderma Lucidum' }}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach($featured as $product)
+                    @include('components.product-card', ['product' => $product])
+                @endforeach
+            </div>
+            <div class="text-center mt-10">
+                <a href="{{ route('products') }}" class="btn-secondary">{{ $lang === 'ar' ? 'عرض الكل' : 'View All Products' }}</a>
+            </div>
         </div>
-    </div>
-</section>
-@endif
+    </section>
+
+    {{-- Bestsellers --}}
+    @if($bestsellers->count() > 0)
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="section-title">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
+            <p class="section-subtitle">{{ $lang === 'ar' ? 'الخيارات الأكثر شعبية بين عملائنا' : 'Most popular choices among our customers' }}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach($bestsellers as $product)
+                    @include('components.product-card', ['product' => $product])
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+</div>
 
 {{-- Zoom Banner --}}
 <section class="py-16 border-y" style="background-color: #eeeaf8; border-color: rgba(55,28,155,0.1);">
@@ -158,10 +166,7 @@
                 @endforeach
             </ul>
             <div class="flex flex-wrap gap-3">
-                <a href="{{ route('join') }}" class="btn-primary inline-flex items-center gap-2">
-                    {{ $lang === 'ar' ? 'ابدأ رحلتي' : 'Start My Journey' }}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <a href="{{ route('join') }}" class="btn-primary">{{ $lang === 'ar' ? 'ابدأ رحلتي' : 'Start My Journey' }}</a>
                 <a href="{{ $whatsapp }}" target="_blank" class="btn-secondary">{{ $lang === 'ar' ? 'اسألني الآن' : 'Ask Me Now' }}</a>
             </div>
         </div>
