@@ -15,6 +15,7 @@
         <table class="w-full text-sm">
             <thead class="bg-gray-50">
                 <tr>
+                    <th class="px-4 py-3 text-left w-12">#</th>
                     <th class="px-4 py-3 text-left">Title</th>
                     <th class="px-4 py-3 text-left">Product</th>
                     <th class="px-4 py-3 text-left">URL</th>
@@ -25,6 +26,7 @@
             <tbody>
                 @forelse($pages as $page)
                     <tr class="border-t">
+                        <td class="px-4 py-3 text-gray-400 text-xs">{{ $pages->firstItem() + $loop->index }}</td>
                         <td class="px-4 py-3 font-medium">{{ $page->title }}</td>
                         <td class="px-4 py-3 text-gray-500">{{ $page->product->name ?? '—' }}</td>
                         <td class="px-4 py-3">
@@ -46,7 +48,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="5" class="px-4 py-8 text-center text-gray-400">No landing pages yet. Create one!</td></tr>
+                    <tr><td colspan="6" class="px-4 py-8 text-center text-gray-400">No landing pages yet. Create one!</td></tr>
                 @endforelse
             </tbody>
         </table>

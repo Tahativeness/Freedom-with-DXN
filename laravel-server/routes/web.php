@@ -50,7 +50,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/business', [PageController::class, 'business'])->name('business');
 Route::get('/join', [PageController::class, 'joinDxn'])->name('join');
-Route::get('/zoom', [PageController::class, 'zoomTraining'])->name('zoom');
+Route::get('/zoom', function () { return redirect(route('join') . '#zoom'); })->name('zoom');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');

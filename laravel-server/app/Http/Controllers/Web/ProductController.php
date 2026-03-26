@@ -42,11 +42,15 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $product->load('reviews.user');
+
+        $landingPage = \App\Models\LandingPage::where('product_id', $product->id)->where('published', true)->first();
+
         $related = Product::where('category', $product->category)
             ->where('id', '!=', $product->id)
             ->take(4)
             ->get();
 
-        return view('pages.products.show', compact('product', 'related'));
+        return view('pages.products.show', compact('product', 'related', 'landingPage'));
     }
 }

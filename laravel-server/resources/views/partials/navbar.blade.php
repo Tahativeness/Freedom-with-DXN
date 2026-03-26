@@ -6,7 +6,6 @@
         ['url' => route('about'),    'label' => $lang === 'ar' ? 'من نحن' : 'About',          'show' => $nb['showAbout'] ?? true],
         ['url' => route('products'), 'label' => $lang === 'ar' ? 'المنتجات' : 'Products',     'show' => $nb['showProducts'] ?? true],
         ['url' => route('join'),     'label' => $lang === 'ar' ? 'انضم لـ DXN' : 'Join DXN',  'show' => $nb['showJoin'] ?? true],
-        ['url' => route('zoom'),     'label' => $lang === 'ar' ? 'تدريب زوم' : 'Zoom Training','show' => $nb['showZoom'] ?? true],
         ['url' => route('blog'),     'label' => $lang === 'ar' ? 'المدونة' : 'Blog',          'show' => $nb['showBlog'] ?? true],
         ['url' => route('contact'),  'label' => $lang === 'ar' ? 'اتصل بنا' : 'Contact',     'show' => $nb['showContact'] ?? true],
     ])->where('show', true);

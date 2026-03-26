@@ -82,6 +82,68 @@
             </div>
         </div>
 
+        {{-- Description --}}
+        <div class="card p-6">
+            <h2 class="font-bold text-dxn-darkgreen text-lg mb-4">Product Description</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description (English)</label>
+                    <textarea name="description" rows="4" class="input-field" placeholder="Detailed product description...">{{ old('description', $page->description ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description (Arabic)</label>
+                    <textarea name="description_ar" rows="4" class="input-field" dir="rtl" placeholder="وصف المنتج بالعربية...">{{ old('description_ar', $page->description_ar ?? '') }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        {{-- Ingredients --}}
+        <div class="card p-6">
+            <h2 class="font-bold text-dxn-darkgreen text-lg mb-4">Ingredients</h2>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Ingredients List</label>
+                <textarea name="ingredients" rows="4" class="input-field" placeholder="Non-dairy creamer, sugar, instant coffee powder, Ganoderma lucidum extract...">{{ old('ingredients', $page->ingredients ?? '') }}</textarea>
+            </div>
+        </div>
+
+        {{-- Usage / How to Use --}}
+        <div class="card p-6">
+            <h2 class="font-bold text-dxn-darkgreen text-lg mb-4">How to Use</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Usage Directions (English)</label>
+                    <textarea name="usage_directions" rows="3" class="input-field" placeholder="Mix one sachet with hot water...">{{ old('usage_directions', $page->usage_directions ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Usage Directions (Arabic)</label>
+                    <textarea name="usage_directions_ar" rows="3" class="input-field" dir="rtl" placeholder="طريقة الاستخدام بالعربية...">{{ old('usage_directions_ar', $page->usage_directions_ar ?? '') }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        {{-- Q&A --}}
+        <div class="card p-6" x-data="{ qnas: {{ json_encode(old('qna', $page->qna ?? [['q' => '', 'a' => '']])) }} }">
+            <h2 class="font-bold text-dxn-darkgreen text-lg mb-4">Questions & Answers</h2>
+            <div class="space-y-4">
+                <template x-for="(item, index) in qnas" :key="index">
+                    <div class="border border-gray-200 rounded-xl p-4 relative">
+                        <button type="button" @click="qnas.splice(index, 1)" class="absolute top-2 right-2 text-red-400 hover:text-red-600 text-sm">✕ Remove</button>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-500 mb-1">Question</label>
+                                <input type="text" :name="'qna['+index+'][q]'" x-model="item.q" class="input-field text-sm" placeholder="Is this product suitable for...?">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-500 mb-1">Answer</label>
+                                <textarea :name="'qna['+index+'][a]'" x-model="item.a" rows="2" class="input-field text-sm" placeholder="Yes, this product is..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <button type="button" @click="qnas.push({q: '', a: ''})" class="text-sm text-brand-green hover:underline font-medium">+ Add Question</button>
+            </div>
+        </div>
+
         {{-- CTA --}}
         <div class="card p-6">
             <h2 class="font-bold text-dxn-darkgreen text-lg mb-4">Call to Action</h2>

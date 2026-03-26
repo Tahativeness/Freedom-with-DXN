@@ -11,7 +11,7 @@
     {{-- Add Product Form --}}
     <details class="card p-6 mb-8">
         <summary class="font-bold text-dxn-darkgreen cursor-pointer">+ Add New Product</summary>
-        <form method="POST" action="{{ route('admin.products.store') }}" class="mt-4 space-y-4">
+        <form method="POST" action="{{ route('admin.products.store') }}" class="mt-4 space-y-4" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Name *</label><input type="text" name="name" required class="input-field"></div>
@@ -24,6 +24,7 @@
                 </div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Price *</label><input type="number" name="price" step="0.01" required class="input-field"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label><input type="text" name="image" class="input-field"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Or Upload Image</label><input type="file" name="image_file" accept="image/*" class="input-field"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Landing Image URL</label><input type="text" name="landing_image" class="input-field"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Landing Page URL</label><input type="text" name="landing_page" class="input-field"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Name (Arabic)</label><input type="text" name="name_ar" class="input-field" dir="rtl" placeholder="الاسم بالعربية"></div>
@@ -66,7 +67,7 @@
                     {{-- Inline Edit Row --}}
                     <tr id="edit-{{ $product->id }}" class="hidden border-t bg-gray-50">
                         <td colspan="5" class="px-4 py-4">
-                            <form method="POST" action="{{ route('admin.products.update', $product) }}" class="space-y-3">
+                            <form method="POST" action="{{ route('admin.products.update', $product) }}" class="space-y-3" enctype="multipart/form-data">
                                 @csrf @method('PUT')
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                                     <div><label class="block text-xs font-medium text-gray-500 mb-1">Name</label><input type="text" name="name" value="{{ $product->name }}" class="input-field text-sm"></div>
@@ -81,6 +82,7 @@
                                         </select>
                                     </div>
                                     <div><label class="block text-xs font-medium text-gray-500 mb-1">Image URL</label><input type="text" name="image" value="{{ $product->image }}" class="input-field text-sm"></div>
+                                    <div><label class="block text-xs font-medium text-gray-500 mb-1">Upload Image</label><input type="file" name="image_file" accept="image/*" class="input-field text-sm"></div>
                                     <div><label class="block text-xs font-medium text-gray-500 mb-1">Landing Page URL</label><input type="text" name="landing_page" value="{{ $product->landing_page }}" class="input-field text-sm"></div>
                                     <div><label class="block text-xs font-medium text-gray-500 mb-1">Landing Image</label><input type="text" name="landing_image" value="{{ $product->landing_image }}" class="input-field text-sm"></div>
                                 </div>

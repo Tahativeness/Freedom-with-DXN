@@ -25,7 +25,7 @@
                 <div class="flex items-center pt-6"><label class="flex items-center gap-2"><input type="checkbox" name="published" value="1" checked> Published</label></div>
             </div>
             <div><label class="block text-sm font-medium text-gray-700 mb-1">Excerpt</label><input type="text" name="excerpt" class="input-field"></div>
-            <div><label class="block text-sm font-medium text-gray-700 mb-1">Content *</label><textarea name="content" required rows="8" class="input-field"></textarea></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">Content *</label><textarea id="content" name="content" required rows="8" class="input-field"></textarea></div>
             <button type="submit" class="btn-primary">Publish Post</button>
         </form>
     </details>
@@ -55,4 +55,24 @@
         <div class="p-4">{{ $blogs->links() }}</div>
     </div>
 </div>
+
+<!-- TinyMCE Rich Text Editor -->
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        plugins: 'lists link image',
+        toolbar: 'undo redo | h1 h2 h3 | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image | removeformat',
+        menubar: false,
+        height: 400,
+        content_css: false,
+        body_class: 'prose',
+        setup: function(editor) {
+            // Optional: ensure content is updated in the textarea before form submit
+            editor.on('change', function() {
+                tinymce.triggerSave();
+            });
+        }
+    });
+</script>
 @endsection

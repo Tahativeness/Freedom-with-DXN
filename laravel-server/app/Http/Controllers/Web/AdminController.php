@@ -48,6 +48,12 @@ class AdminController extends Controller
         ]);
         $data['in_stock'] = $request->has('in_stock');
         $data['featured'] = $request->has('featured');
+
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('products', 'public');
+            $data['image'] = '/storage/' . $path;
+        }
+
         Product::create($data);
 
         return back()->with('success', 'Product created successfully!');
@@ -62,6 +68,12 @@ class AdminController extends Controller
         ]);
         $data['in_stock'] = $request->has('in_stock');
         $data['featured'] = $request->has('featured');
+
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('products', 'public');
+            $data['image'] = '/storage/' . $path;
+        }
+
         $product->update($data);
 
         return back()->with('success', 'Product updated successfully!');
@@ -156,18 +168,23 @@ class AdminController extends Controller
         }
 
         $data = [
-            'title'        => $request->input('title'),
-            'slug'         => $slug,
-            'product_id'   => $request->input('product_id') ?: null,
-            'hero_image'   => $request->input('hero_image', ''),
-            'hero_title'   => $request->input('hero_title', ''),
-            'hero_subtitle'=> $request->input('hero_subtitle', ''),
-            'hero_bg_color'=> $request->input('hero_bg_color', '#2c1878'),
-            'cta_text'     => $request->input('cta_text', ''),
-            'cta_link'     => $request->input('cta_link', ''),
-            'custom_css'   => $request->input('custom_css', ''),
-            'custom_html'  => $request->input('custom_html', ''),
-            'published'    => $request->has('published'),
+            'title'            => $request->input('title'),
+            'slug'             => $slug,
+            'product_id'       => $request->input('product_id') ?: null,
+            'hero_image'       => $request->input('hero_image', ''),
+            'hero_title'       => $request->input('hero_title', ''),
+            'hero_subtitle'    => $request->input('hero_subtitle', ''),
+            'hero_bg_color'    => $request->input('hero_bg_color', '#2c1878'),
+            'description'      => $request->input('description', ''),
+            'description_ar'   => $request->input('description_ar', ''),
+            'ingredients'      => $request->input('ingredients', ''),
+            'usage_directions' => $request->input('usage_directions', ''),
+            'usage_directions_ar' => $request->input('usage_directions_ar', ''),
+            'cta_text'         => $request->input('cta_text', ''),
+            'cta_link'         => $request->input('cta_link', ''),
+            'custom_css'       => $request->input('custom_css', ''),
+            'custom_html'      => $request->input('custom_html', ''),
+            'published'        => $request->has('published'),
         ];
 
         // Handle JSON arrays
@@ -179,6 +196,9 @@ class AdminController extends Controller
         }
         if ($request->filled('gallery_text')) {
             $data['gallery'] = array_filter(array_map('trim', explode("\n", $request->gallery_text)));
+        }
+        if ($request->has('qna')) {
+            $data['qna'] = array_filter($request->input('qna', []), fn($item) => !empty($item['q']) && !empty($item['a']));
         }
 
         $landing = LandingPage::create($data);
@@ -208,7 +228,9 @@ class AdminController extends Controller
 
         $data = $request->only([
             'title', 'product_id', 'hero_image', 'hero_title', 'hero_subtitle',
-            'hero_bg_color', 'cta_text', 'cta_link', 'custom_css', 'custom_html',
+            'hero_bg_color', 'description', 'description_ar', 'ingredients',
+            'usage_directions', 'usage_directions_ar',
+            'cta_text', 'cta_link', 'custom_css', 'custom_html',
         ]);
         $slug = Str::slug($request->title);
         $originalSlug = $slug;
@@ -238,6 +260,11 @@ class AdminController extends Controller
             $data['gallery'] = array_filter(array_map('trim', explode("\n", $request->gallery_text)));
         } else {
             $data['gallery'] = [];
+        }
+        if ($request->has('qna')) {
+            $data['qna'] = array_filter($request->input('qna', []), fn($item) => !empty($item['q']) && !empty($item['a']));
+        } else {
+            $data['qna'] = [];
         }
 
         $landingPage->update($data);
