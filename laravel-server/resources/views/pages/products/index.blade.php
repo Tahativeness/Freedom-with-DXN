@@ -17,8 +17,8 @@
         'skincare' => 'العناية بالبشرة', 'ganoderma' => 'غانوديرما', 'other' => 'أخرى',
     ];
     $catIcons = [
-        'all' => '', 'coffee' => '', 'beverages' => '', 'supplements' => '',
-        'personal-care' => '', 'skincare' => '', 'ganoderma' => '', 'other' => '',
+        'all' => '🌿', 'coffee' => '☕', 'beverages' => '🧃', 'supplements' => '💊',
+        'personal-care' => '🧴', 'skincare' => '✨', 'ganoderma' => '🍄', 'other' => '📦',
     ];
 @endphp
 
@@ -50,6 +50,7 @@
                 <a href="{{ route('products', array_merge(request()->query(), ['category' => $cat, 'page' => 1])) }}"
                    class="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ $currentCategory === $cat ? 'text-white shadow-md' : 'text-brand-violet border border-gray-200 hover:bg-[#e8f5ee]' }}"
                    style="{{ $currentCategory === $cat ? 'background-color: #43af73;' : '' }}">
+                    <span>{{ $catIcons[$cat] ?? '📦' }}</span>
                     {{ $lang === 'ar' ? ($catLabelsAr[$cat] ?? $cat) : ($catLabels[$cat] ?? ucfirst($cat)) }}
                 </a>
             @endforeach
@@ -64,6 +65,7 @@
         {{-- Section Heading --}}
         <div class="text-center mb-8">
             <h2 class="text-2xl md:text-3xl font-extrabold inline-block" style="color: #452aa8;">
+                {{ $catIcons[$currentCategory] ?? '🌿' }}
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
             </h2>
             <div class="w-16 h-1 mx-auto mt-2 rounded-full" style="background: linear-gradient(90deg, #43af73, #5bc48a);"></div>
