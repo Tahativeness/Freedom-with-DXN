@@ -447,8 +447,8 @@
                                     {{-- Date + Verified --}}
                                     <div class="flex items-center gap-3 mb-3 text-xs text-gray-400">
                                         <span>{{ $lang === 'ar' ? 'تمت المراجعة في' : 'Reviewed on' }} {{ \Carbon\Carbon::parse($review->created_at)->format('F j, Y') }}</span>
-                                        <span class="inline-flex items-center gap-1 text-orange-600 font-medium">
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <span class="inline-flex items-center gap-1 text-white font-medium px-3 py-1 rounded-full" style="background-color: #43af73;">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                                             {{ $lang === 'ar' ? 'عملية شراء موثقة' : 'Verified Purchase' }}
                                         </span>
                                     </div>
