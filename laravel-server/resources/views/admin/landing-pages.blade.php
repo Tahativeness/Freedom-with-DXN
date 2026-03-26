@@ -34,7 +34,7 @@
                         </td>
                         <td class="px-4 py-3">
                             @if($page->published)
-                                <a href="{{ route('landing', $page->slug) }}" target="_blank" class="inline-block bg-brand-green text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-brand-green-dark transition-colors">Live ↗</a>
+                                <a href="{{ route('landing', $page->slug) }}" target="_blank" class="inline-flex items-center gap-1 bg-brand-green text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-brand-green-dark transition-colors whitespace-nowrap">Live ↗</a>
                             @else
                                 <span class="badge bg-gray-100 text-gray-700">Draft</span>
                             @endif
