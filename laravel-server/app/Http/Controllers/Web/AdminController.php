@@ -110,6 +110,11 @@ class AdminController extends Controller
         return view('admin.blogs', compact('blogs'));
     }
 
+    public function blogEdit(Blog $blog)
+    {
+        return view('admin.blog-edit', compact('blog'));
+    }
+
     public function blogStore(Request $request)
     {
         $isFullHtml = $request->input('content_type') === 'full_html';

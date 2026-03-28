@@ -86,6 +86,7 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::get('/users', [AdminController::class, 'users'])->name('users');
     Route::get('/blogs', [AdminController::class, 'blogs'])->name('blogs');
     Route::post('/blogs', [AdminController::class, 'blogStore'])->name('blogs.store');
+    Route::get('/blogs/{blog}/edit', [AdminController::class, 'blogEdit'])->name('blogs.edit');
     Route::put('/blogs/{blog}', [AdminController::class, 'blogUpdate'])->name('blogs.update');
     Route::delete('/blogs/{blog}', [AdminController::class, 'blogDestroy'])->name('blogs.destroy');
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
