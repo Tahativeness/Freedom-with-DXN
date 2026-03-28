@@ -75,6 +75,29 @@
             </div>
         </div>
 
+        {{-- Navbar Links --}}
+        <div class="card p-6">
+            <h2 class="font-bold text-lg mb-4" style="color: #452aa8;">Navbar Links</h2>
+            <p class="text-sm text-gray-500 mb-4">Toggle which links appear in the navigation bar.</p>
+            @php $nb = $settings->navbar ?? []; @endphp
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                @foreach([
+                    ['key' => 'showHome', 'label' => 'Home'],
+                    ['key' => 'showAbout', 'label' => 'About'],
+                    ['key' => 'showProducts', 'label' => 'Products'],
+                    ['key' => 'showJoin', 'label' => 'Join DXN'],
+                    ['key' => 'showBlog', 'label' => 'Blog'],
+                    ['key' => 'showContact', 'label' => 'Contact'],
+                ] as $item)
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="hidden" name="navbar[{{ $item['key'] }}]" value="0">
+                        <input type="checkbox" name="navbar[{{ $item['key'] }}]" value="1" {{ ($nb[$item['key']] ?? true) ? 'checked' : '' }} class="rounded">
+                        <span class="text-sm font-medium text-gray-700">{{ $item['label'] }}</span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
+
         <button type="submit" class="btn-primary">Save Settings</button>
     </form>
 </div>
