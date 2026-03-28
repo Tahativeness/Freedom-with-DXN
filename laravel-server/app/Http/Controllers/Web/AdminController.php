@@ -117,6 +117,7 @@ class AdminController extends Controller
 
     public function blogStore(Request $request)
     {
+        set_time_limit(120);
         $isFullHtml = $request->input('content_type') === 'full_html';
 
         $request->validate([
@@ -143,6 +144,7 @@ class AdminController extends Controller
 
     public function blogUpdate(Request $request, Blog $blog)
     {
+        set_time_limit(120);
         $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
         if (($data['content_type'] ?? $blog->content_type) === 'full_html' && $request->filled('content_html')) {
             $data['content'] = $request->input('content_html');
