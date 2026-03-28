@@ -148,6 +148,8 @@ class AdminController extends Controller
     {
         set_time_limit(120);
         $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
+        $data['excerpt'] = $data['excerpt'] ?? $blog->excerpt ?? '';
+        $data['image'] = $data['image'] ?? $blog->image ?? '';
         if (($data['content_type'] ?? $blog->content_type) === 'full_html' && $request->filled('content_html')) {
             $data['content'] = $request->input('content_html');
         }
