@@ -45,7 +45,7 @@
             {{-- Rich Text Editor (default) --}}
             <div id="editor-rich">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Content *</label>
-                <textarea id="content" name="content" required rows="8" class="input-field"></textarea>
+                <textarea id="content" name="content" rows="8" class="input-field"></textarea>
             </div>
 
             {{-- Full HTML Editor (hidden by default) --}}
