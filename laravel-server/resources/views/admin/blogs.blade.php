@@ -138,8 +138,9 @@
             htmlEditor.classList.remove('hidden');
             hintRich.classList.add('hidden');
             hintHtml.classList.remove('hidden');
-            // Remove required from rich text, add to html
+            // Remove required and set placeholder value so form submits
             contentField.removeAttribute('required');
+            contentField.value = 'full_html';
             htmlField.setAttribute('required', 'required');
             // Destroy TinyMCE if active
             if (tinyEditor) {
@@ -152,6 +153,7 @@
             hintRich.classList.remove('hidden');
             hintHtml.classList.add('hidden');
             contentField.setAttribute('required', 'required');
+            if (contentField.value === 'full_html') contentField.value = '';
             htmlField.removeAttribute('required');
             // Re-init TinyMCE
             initTinyMCE();
