@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div>
+        <div style="background: rgba(67, 175, 115, 0.65); backdrop-filter: blur(6px); border-radius: 16px; padding: 32px;">
             <span class="font-extrabold text-lg uppercase tracking-widest" style="color: #ffffff;">
                 {{ $lang === 'ar' ? 'كيف بدأ كل شيء' : 'How It All Started' }}
             </span>

@@ -112,15 +112,24 @@ class AdminController extends Controller
 
     public function blogStore(Request $request)
     {
+        $isFullHtml = $request->input('content_type') === 'full_html';
+
         $request->validate([
             'title' => 'required|string',
-            'content' => 'required|string',
+            'content' => $isFullHtml ? 'nullable' : 'required|string',
+            'content_html' => $isFullHtml ? 'required|string' : 'nullable',
             'category' => 'required|string',
         ]);
 
-        $data = $request->only(['title', 'content', 'category', 'excerpt', 'image', 'tags', 'published']);
+        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
         $data['author_id'] = auth()->id();
+        $data['content_type'] = $data['content_type'] ?? 'rich_text';
+
+        // For full HTML mode, use the content_html field
+        if ($isFullHtml) {
+            $data['content'] = $request->input('content_html', '');
+        }
 
         Blog::create($data);
 
@@ -129,7 +138,11 @@ class AdminController extends Controller
 
     public function blogUpdate(Request $request, Blog $blog)
     {
-        $blog->update($request->only(['title', 'content', 'category', 'excerpt', 'image', 'tags', 'published']));
+        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
+        if (($data['content_type'] ?? $blog->content_type) === 'full_html' && $request->filled('content_html')) {
+            $data['content'] = $request->input('content_html');
+        }
+        $blog->update($data);
         return back()->with('success', 'Blog post updated!');
     }
 

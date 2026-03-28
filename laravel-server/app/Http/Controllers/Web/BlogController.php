@@ -25,6 +25,11 @@ class BlogController extends Controller
     {
         $blog->increment('views');
 
+        // Full HTML pages render as standalone documents
+        if ($blog->content_type === 'full_html') {
+            return response($blog->content);
+        }
+
         $related = Blog::where('published', true)
             ->where('id', '!=', $blog->id)
             ->where('category', $blog->category)

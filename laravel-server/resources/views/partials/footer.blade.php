@@ -10,9 +10,7 @@
     <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
         {{-- Brand --}}
         <div class="col-span-1 md:col-span-1">
-            <div class="flex items-center gap-2 mb-4">
-                <img src="/footer-lg.png" alt="Grow with DXN" class="h-28 w-auto object-contain">
-            </div>
+            <img src="/footer-lg.png" alt="Grow with DXN" class="h-16 w-auto object-contain mb-4">
             <p class="text-sm text-[#452aa8]/60 mb-4">
                 {{ $lang === 'ar' ? 'موزع DXN الموثوق. نساعدك على تحقيق الصحة والحرية المالية من خلال منتجات DXN العالمية.' : ($footer['description'] ?? "Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products.") }}
             </p>
