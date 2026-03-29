@@ -22,8 +22,8 @@
 
 @section('content')
 {{-- Hero --}}
-<section class="bg-hero min-h-[70vh] md:min-h-screen flex items-center relative overflow-hidden">
-    <video id="heroVideo" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-contain md:object-cover">
+<section class="bg-hero min-h-screen flex items-center relative overflow-hidden">
+    <video id="heroVideo" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover">
         <source src="{{ asset('Video/hero.mp4') }}" type="video/mp4">
     </video>
     <script>
