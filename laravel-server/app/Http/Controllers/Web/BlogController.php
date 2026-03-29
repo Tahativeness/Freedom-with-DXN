@@ -58,6 +58,8 @@ class BlogController extends Controller
             .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
             .hero-placeholder { display: none !important; }
             .sidebar .zoom-card { display: none !important; }
+            .bottom-cards { display: none; }
+            @media (max-width: 860px) { .bottom-cards { display: block; } }
             .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to left, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
             .hero-content { position: relative !important; z-index: 2 !important; margin-left: auto !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
             .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
@@ -74,8 +76,6 @@ class BlogController extends Controller
             }
             @media (max-width: 860px) {
                 .sidebar { display: none !important; }
-                .sidebar .zoom-card { display: none !important; }
-                .zoom-card.mobile-inserted { display: block !important; margin-bottom: 28px !important; }
                 .mobile-inserted { margin-bottom: 28px !important; }
             }
             @media (max-width: 540px) {
@@ -124,19 +124,50 @@ class BlogController extends Controller
                 $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
             }
 
-            // Inject mobile JS to move sidebar cards after intro
+            // Inject products card BEFORE CTA banner via PHP
+            $productsCard = '
+            <div class="bottom-cards">
+                <div class="sidebar-card">
+                    <h4>' . ($isArabic ? 'ابدأ بهذه المنتجات' : 'Start With These Products') . '</h4>
+                    <ul class="fact-list">
+                        <li>' . ($isArabic ? 'كبسولات RG/GL غانوديرما' : 'RG/GL Ganoderma capsules') . '</li>
+                        <li>' . ($isArabic ? 'قهوة ليندزهي السوداء' : 'Lingzhi Black Coffee') . '</li>
+                        <li>' . ($isArabic ? 'عصير مورينزهي' : 'Morinzhi juice') . '</li>
+                        <li>' . ($isArabic ? 'معجون أسنان غانوزهي' : 'Ganozhi toothpaste') . '</li>
+                        <li>' . ($isArabic ? 'حبوب سبيرولينا' : 'Spirulina cereal') . '</li>
+                    </ul>
+                </div>
+            </div>';
+
+            // Insert AFTER CTA banner (find closing </div> of cta-banner)
+            $ctaPos = strpos($html, 'class="cta-banner"');
+            if ($ctaPos !== false) {
+                // Find the opening <div of cta-banner
+                $divStart = strrpos(substr($html, 0, $ctaPos), '<div');
+                if ($divStart !== false) {
+                    // Count divs to find matching close
+                    $depth = 0;
+                    $end = false;
+                    for ($i = $divStart; $i < strlen($html) - 5; $i++) {
+                        if (substr($html, $i, 4) === '<div') $depth++;
+                        if (substr($html, $i, 6) === '</div>') { $depth--; if ($depth === 0) { $end = $i + 6; break; } }
+                    }
+                    if ($end) {
+                        $html = substr($html, 0, $end) . $productsCard . substr($html, $end);
+                    }
+                }
+            }
+
+            // Inject JS to move TOC after intro on mobile
             $mobileJS = '
             <script>
             document.addEventListener("DOMContentLoaded",function(){
                 if(window.innerWidth>860)return;
                 var intro=document.querySelector(".article-intro");
                 var sidebar=document.querySelector(".sidebar");
-                var article=document.querySelector(".article");
-                if(!intro||!sidebar||!article)return;
-                var ch=Array.from(sidebar.children);
-                var toc=ch[0],zoom=ch[1],products=ch[3];
-                if(toc)intro.after(toc);
-                if(products)article.appendChild(products);
+                if(!intro||!sidebar)return;
+                var toc=sidebar.children[0];
+                if(toc){toc.classList.add("mobile-inserted");intro.after(toc);}
                 sidebar.style.display="none";
             });
             </script>';
