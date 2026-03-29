@@ -131,8 +131,9 @@
 </section>
 
 {{-- FAQs --}}
-<section class="py-20 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4">
+<section class="py-20 relative bg-cover bg-center bg-no-repeat" style="background-image: url('/images/faq-bg.png')">
+    <div class="absolute inset-0 bg-gray-50/90"></div>
+    <div class="max-w-3xl mx-auto px-4 relative">
         <h2 class="text-3xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions' }}</h2>
         <div class="space-y-4">
             @foreach($faqs as $faq)

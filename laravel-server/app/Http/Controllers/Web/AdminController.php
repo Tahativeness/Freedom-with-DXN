@@ -127,12 +127,13 @@ class AdminController extends Controller
             'category' => 'required|string',
         ]);
 
-        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
+        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'sub_image', 'tags', 'published']);
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
         $data['author_id'] = auth()->id();
         $data['content_type'] = $data['content_type'] ?? 'rich_text';
         $data['excerpt'] = $data['excerpt'] ?? '';
         $data['image'] = $data['image'] ?? '';
+        $data['sub_image'] = $data['sub_image'] ?? '';
 
         // For full HTML mode, use the content_html field
         if ($isFullHtml) {
@@ -147,18 +148,30 @@ class AdminController extends Controller
     public function blogUpdate(Request $request, Blog $blog)
     {
         set_time_limit(120);
-        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'tags', 'published']);
+        $data = $request->only(['title', 'content', 'content_ar', 'content_type', 'category', 'excerpt', 'image', 'sub_image', 'tags', 'published']);
         $data['excerpt'] = $data['excerpt'] ?? $blog->excerpt ?? '';
         $data['image'] = $data['image'] ?? $blog->image ?? '';
+        $data['sub_image'] = $data['sub_image'] ?? $blog->sub_image ?? '';
         if (($data['content_type'] ?? $blog->content_type) === 'full_html' && $request->filled('content_html')) {
             $data['content'] = $request->input('content_html');
         }
         $blog->update($data);
-        return back()->with('success', 'Blog post updated!');
+        return redirect()->route('admin.blogs')->with('success', 'Blog post updated!');
     }
 
     public function blogUploadImage(Request $request, Blog $blog)
     {
+        // DELETE request - remove image
+        if ($request->isMethod('delete')) {
+            $url = $request->input('url');
+            $path = public_path(ltrim($url, '/'));
+            if (file_exists($path) && str_contains($url, '/images/blog/' . $blog->id . '/')) {
+                unlink($path);
+                return response()->json(['success' => true]);
+            }
+            return response()->json(['success' => false, 'error' => 'File not found'], 404);
+        }
+
         $request->validate(['image' => 'required|image|max:5120']);
 
         $dir = 'images/blog/' . $blog->id;

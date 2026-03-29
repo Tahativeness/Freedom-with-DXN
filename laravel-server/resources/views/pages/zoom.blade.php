@@ -16,53 +16,57 @@
     </div>
 </div>
 
-{{-- What You'll Learn --}}
-<section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-2xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'ماذا ستتعلم؟' : "What You'll Learn" }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            @foreach([
-                $lang === 'ar' ? 'ما هي الغانودرما وفوائدها الصحية' : 'What is Ganoderma and its health benefits',
-                $lang === 'ar' ? 'استعراض منتجات DXN الأساسية' : 'Overview of DXN core products',
-                $lang === 'ar' ? 'كيف يعمل نموذج عمل DXN' : 'How the DXN business model works',
-                $lang === 'ar' ? 'خطة التعويض والمكافآت' : 'Compensation plan and bonuses',
-                $lang === 'ar' ? 'كيف تبدأ وتبني فريقك' : 'How to get started and build your team',
-                $lang === 'ar' ? 'قصص نجاح حقيقية' : 'Real success stories',
-            ] as $item)
-                <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16392d" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span class="text-gray-700">{{ $item }}</span>
+{{-- What You'll Learn + Schedule --}}
+<div class="relative bg-cover bg-center bg-no-repeat" style="background-image: url('/images/zoom-bg.jpg')">
+    <div class="absolute inset-0 bg-white/90"></div>
+    <div class="relative">
+        <section class="py-16">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-2xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'ماذا ستتعلم؟' : "What You'll Learn" }}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach([
+                        $lang === 'ar' ? 'ما هي الغانودرما وفوائدها الصحية' : 'What is Ganoderma and its health benefits',
+                        $lang === 'ar' ? 'استعراض منتجات DXN الأساسية' : 'Overview of DXN core products',
+                        $lang === 'ar' ? 'كيف يعمل نموذج عمل DXN' : 'How the DXN business model works',
+                        $lang === 'ar' ? 'خطة التعويض والمكافآت' : 'Compensation plan and bonuses',
+                        $lang === 'ar' ? 'كيف تبدأ وتبني فريقك' : 'How to get started and build your team',
+                        $lang === 'ar' ? 'قصص نجاح حقيقية' : 'Real success stories',
+                    ] as $item)
+                        <div class="flex items-center gap-3 p-3 bg-green-50/80 rounded-lg backdrop-blur-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16392d" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="text-gray-700">{{ $item }}</span>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
-    </div>
-</section>
+            </div>
+        </section>
 
-{{-- Schedule --}}
-<section class="py-16 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-2xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'الجدول الأسبوعي' : 'Weekly Schedule' }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            @foreach([
-                ['day' => $lang === 'ar' ? 'الاثنين' : 'Monday', 'time' => '8:00 PM GST', 'lang_label' => $lang === 'ar' ? 'عربي' : 'Arabic', 'c' => 'border-green-300 bg-green-50'],
-                ['day' => $lang === 'ar' ? 'الأربعاء' : 'Wednesday', 'time' => '8:00 PM GST', 'lang_label' => 'English', 'c' => 'border-blue-300 bg-blue-50'],
-                ['day' => $lang === 'ar' ? 'الجمعة' : 'Friday', 'time' => '5:00 PM GST', 'lang_label' => 'AR/EN', 'c' => 'border-purple-300 bg-purple-50'],
-                ['day' => $lang === 'ar' ? 'السبت' : 'Saturday', 'time' => '10:00 AM GST', 'lang_label' => 'English', 'c' => 'border-blue-300 bg-blue-50'],
-            ] as $session)
-                <div class="border-2 rounded-xl p-5 {{ $session['c'] }}">
-                    <h3 class="font-bold text-dxn-darkgreen text-lg">{{ $session['day'] }}</h3>
-                    <p class="text-gray-600 text-sm mt-1">{{ $session['time'] }}</p>
-                    <span class="inline-block bg-white text-sm px-3 py-1 rounded-full mt-2 font-medium">{{ $session['lang_label'] }}</span>
+        <section class="py-16">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-2xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'الجدول الأسبوعي' : 'Weekly Schedule' }}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach([
+                        ['day' => $lang === 'ar' ? 'الاثنين' : 'Monday', 'time' => '8:00 PM GST', 'lang_label' => $lang === 'ar' ? 'عربي' : 'Arabic', 'c' => 'border-green-300 bg-green-50/80'],
+                        ['day' => $lang === 'ar' ? 'الأربعاء' : 'Wednesday', 'time' => '8:00 PM GST', 'lang_label' => 'English', 'c' => 'border-blue-300 bg-blue-50/80'],
+                        ['day' => $lang === 'ar' ? 'الجمعة' : 'Friday', 'time' => '5:00 PM GST', 'lang_label' => 'AR/EN', 'c' => 'border-purple-300 bg-purple-50/80'],
+                        ['day' => $lang === 'ar' ? 'السبت' : 'Saturday', 'time' => '10:00 AM GST', 'lang_label' => 'English', 'c' => 'border-blue-300 bg-blue-50/80'],
+                    ] as $session)
+                        <div class="border-2 rounded-xl p-5 backdrop-blur-sm {{ $session['c'] }}">
+                            <h3 class="font-bold text-dxn-darkgreen text-lg">{{ $session['day'] }}</h3>
+                            <p class="text-gray-600 text-sm mt-1">{{ $session['time'] }}</p>
+                            <span class="inline-block bg-white text-sm px-3 py-1 rounded-full mt-2 font-medium">{{ $session['lang_label'] }}</span>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-8">
-            <a href="{{ $whatsapp }}" target="_blank" class="btn-gold inline-flex items-center gap-2">
-                {{ $lang === 'ar' ? 'احصل على رابط الزووم' : 'Get Zoom Link via WhatsApp' }}
-            </a>
-        </div>
+                <div class="text-center mt-8">
+                    <a href="{{ $whatsapp }}" target="_blank" class="btn-gold inline-flex items-center gap-2">
+                        {{ $lang === 'ar' ? 'احصل على رابط الزووم' : 'Get Zoom Link via WhatsApp' }}
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
-</section>
+</div>
 
 <section class="bg-hero py-16 px-4">
     <div class="max-w-2xl mx-auto text-center">

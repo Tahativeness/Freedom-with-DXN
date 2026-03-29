@@ -44,6 +44,140 @@ class BlogController extends Controller
         if ($blog->content_type !== 'full_html') {
             return redirect()->route('blog.show', $blog);
         }
-        return response($blog->content)->header('Content-Type', 'text/html');
+
+        $lang = session('lang', 'en');
+        $isArabic = ($lang === 'ar' && $blog->content_ar);
+        $html = $isArabic ? $blog->content_ar : $blog->content;
+
+        // Arabic content: apply hero sizing and image injection
+        if ($isArabic) {
+            $heroUrl = e($blog->image ?? '');
+            // Full-cover hero: image as background, text on right (RTL)
+            $heroCSS = '
+            .hero { height: 1000px !important; min-height: 0 !important; max-height: 1000px !important; display: flex !important; align-items: flex-end !important; overflow: hidden !important; }
+            .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
+            .hero-placeholder { display: none !important; }
+            .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to left, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
+            .hero-content { position: relative !important; z-index: 2 !important; margin-right: 0 !important; margin-left: auto !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
+            .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
+            .hero-title { opacity: 0; animation: fadeRight 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
+            .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; }
+            @keyframes fadeRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+            @media (max-width: 768px) {
+                .hero { height: 350px !important; max-height: 350px !important; }
+                .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(44,24,120,0.5) 50%, transparent 100%) !important; }
+                .hero-content { max-width: 100% !important; margin-left: 0 !important; padding: 0 20px 32px !important; }
+            }
+            ';
+            $html = str_replace('</style>', $heroCSS . '</style>', $html);
+
+            // Replace hero-placeholder with image if exists
+            if ($heroUrl) {
+                $start = strpos($html, '<div class="hero-placeholder">');
+                if ($start !== false) {
+                    $depth = 0; $end = false;
+                    for ($i = $start; $i < strlen($html) - 5; $i++) {
+                        if (substr($html, $i, 4) === '<div') $depth++;
+                        if (substr($html, $i, 6) === '</div>') { $depth--; if ($depth === 0) { $end = $i + 6; break; } }
+                    }
+                    if ($end) {
+                        $html = substr($html, 0, $start) . '<img class="hero-img" src="' . $heroUrl . '" alt="' . e($blog->title) . '">' . substr($html, $end);
+                    }
+                }
+            }
+
+            // Replace img-placeholder blocks: #2 gets sub image, #1 and #3 removed
+            $subUrl = e($blog->sub_image ?? '');
+            $placeholderCount = 0;
+            while (($pos = strpos($html, '<div class="img-placeholder">')) !== false) {
+                $depth = 0; $end = false;
+                for ($i = $pos; $i < strlen($html) - 5; $i++) {
+                    if (substr($html, $i, 4) === '<div') $depth++;
+                    if (substr($html, $i, 6) === '</div>') { $depth--; if ($depth === 0) { $end = $i + 6; break; } }
+                }
+                if (!$end) break;
+                $placeholderCount++;
+                if ($placeholderCount === 1 && $subUrl) {
+                    $replacement = '<div class="blog-img-block"><img src="' . $subUrl . '" alt="' . e($blog->title) . '"></div>';
+                } else {
+                    $replacement = '';
+                }
+                $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
+            }
+
+            return response($html)->header('Content-Type', 'text/html');
+        }
+
+        $heroUrl = e($blog->image ?? '');
+        $subUrl = e($blog->sub_image ?? '');
+        $alt = e($blog->title);
+
+        // Full-cover hero: image as background, text on left (LTR)
+        $heroCSS = '
+        .hero { height: 1000px !important; min-height: 0 !important; max-height: 1000px !important; display: flex !important; align-items: flex-end !important; overflow: hidden !important; }
+        .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
+        .hero-placeholder { display: none !important; }
+        .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to right, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
+        .hero-content { position: relative !important; z-index: 2 !important; margin-left: auto !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
+        .hero-tag { opacity: 0; animation: fadeLeft 0.7s ease 0.2s forwards !important; }
+        .hero-title { opacity: 0; animation: fadeLeft 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
+        .hero-meta { opacity: 0; animation: fadeLeft 0.8s ease 0.6s forwards !important; justify-content: flex-end !important; }
+        @keyframes fadeLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @media (max-width: 768px) {
+            .hero { height: 350px !important; max-height: 350px !important; }
+            .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(44,24,120,0.5) 50%, transparent 100%) !important; }
+            .hero-content { max-width: 100% !important; margin-right: 0 !important; padding: 0 20px 32px !important; }
+        }
+        ';
+        $html = str_replace('</style>', $heroCSS . '</style>', $html);
+
+        // Replace hero placeholder with hero image
+        if ($heroUrl) {
+            // Remove everything between hero-placeholder opening and closing
+            $start = strpos($html, '<div class="hero-placeholder">');
+            if ($start !== false) {
+                // Find the matching closing: count nested divs
+                $searchFrom = $start;
+                $depth = 0;
+                $end = false;
+                for ($i = $start; $i < strlen($html) - 5; $i++) {
+                    if (substr($html, $i, 4) === '<div') $depth++;
+                    if (substr($html, $i, 6) === '</div>') {
+                        $depth--;
+                        if ($depth === 0) { $end = $i + 6; break; }
+                    }
+                }
+                if ($end) {
+                    $html = substr($html, 0, $start)
+                        . '<img class="hero-img" src="' . $heroUrl . '" alt="' . $alt . '">'
+                        . substr($html, $end);
+                }
+            }
+        }
+
+        // Replace img-placeholder blocks: #2 gets sub image, #1 and #3 removed
+        $placeholderCount = 0;
+        while (($pos = strpos($html, '<div class="img-placeholder">')) !== false) {
+            $depth = 0;
+            $end = false;
+            for ($i = $pos; $i < strlen($html) - 5; $i++) {
+                if (substr($html, $i, 4) === '<div') $depth++;
+                if (substr($html, $i, 6) === '</div>') {
+                    $depth--;
+                    if ($depth === 0) { $end = $i + 6; break; }
+                }
+            }
+            if (!$end) break;
+
+            $placeholderCount++;
+            if ($placeholderCount === 1 && $subUrl) {
+                $replacement = '<div class="blog-img-block"><img src="' . $subUrl . '" alt="' . $alt . '"></div>';
+            } else {
+                $replacement = '';
+            }
+            $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
+        }
+
+        return response($html)->header('Content-Type', 'text/html');
     }
 }
