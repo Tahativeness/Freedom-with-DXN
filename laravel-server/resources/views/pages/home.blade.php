@@ -66,7 +66,7 @@
             <span class="inline-block bg-white/15 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-white/20">
                 {{ $lang === 'ar' ? 'موزع مستقل معتمد من DXN' : ($hero['badge'] ?? 'Independent DXN Distributor') }}
             </span>
-            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
                 {{ $lang === 'ar' ? 'نمّ صحتك وثروتك مع DXN' : ($hero['title'] ?? 'Grow Your Health & Wealth with DXN') }}
             </h1>
             <p class="text-white/80 text-lg mb-8 max-w-lg">

@@ -7,11 +7,11 @@
 
 <footer style="background-color: #ffffff; color: #452aa8;">
     <div class="w-full h-px" style="background-color: rgba(69,42,168,0.1);"></div>
-    <div class="max-w-7xl mx-auto px-4 py-10" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {{-- Brand --}}
-        <div style="width: 22%;">
+        <div>
             <img src="/footer-lg.png" alt="Grow with DXN" class="h-14 w-auto object-contain mb-2">
-            <p class="text-sm text-[#452aa8]/60 mb-2" style="text-align: justify;">
+            <p class="text-sm text-[#452aa8]/60 mb-2">
                 {{ $lang === 'ar' ? 'موزع DXN الموثوق. نساعدك على تحقيق الصحة والحرية المالية من خلال منتجات DXN العالمية.' : ($footer['description'] ?? "Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products.") }}
             </p>
             {{-- Social Media Icons --}}
@@ -55,7 +55,7 @@
         </div>
 
         {{-- Quick Links --}}
-        <div style="width: 18%;">
+        <div>
             <h3 class="text-brand-green font-semibold mb-4">{{ $lang === 'ar' ? 'روابط سريعة' : 'Quick Links' }}</h3>
             <ul class="space-y-2 text-sm">
                 <li><a href="{{ route('home') }}" class="transition-colors" style="color: #452aa8; opacity: 0.7; font-weight: 600;" onmouseenter="this.style.color='#43af73'; this.style.opacity='1'" onmouseleave="this.style.color='#452aa8'; this.style.opacity='0.7'">{{ $lang === 'ar' ? 'الرئيسية' : 'Home' }}</a></li>
@@ -67,7 +67,7 @@
         </div>
 
         {{-- Products --}}
-        <div style="width: 18%;">
+        <div>
             <h3 class="text-brand-green font-semibold mb-4">{{ $lang === 'ar' ? 'المنتجات' : 'Products' }}</h3>
             <ul class="space-y-2 text-sm">
                 @foreach([
@@ -83,7 +83,7 @@
         </div>
 
         {{-- Contact --}}
-        <div style="width: 28%;">
+        <div>
             <h3 class="text-brand-green font-semibold mb-4">{{ $lang === 'ar' ? 'اتصل بنا' : 'Contact' }}</h3>
             <ul class="space-y-3 text-sm">
                 <li class="flex items-start gap-2">

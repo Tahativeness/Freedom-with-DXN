@@ -37,9 +37,9 @@
         <div class="relative overflow-hidden bg-gray-50">
             @if($mainImage)
                 <img src="{{ $mainImage }}" alt="{{ $product->name }}"
-                     class="w-full h-52 object-contain p-2 group-hover:scale-105 transition-transform duration-500">
+                     class="w-full h-40 sm:h-52 object-contain p-2 group-hover:scale-105 transition-transform duration-500">
             @else
-                <div class="w-full h-52 flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
+                <div class="w-full h-40 sm:h-52 flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
                     <span class="text-3xl font-bold" style="color: #43af73;">DXN</span>
                     <span class="text-white/70 text-xs mt-1 px-4 text-center line-clamp-2">{{ $product->name }}</span>
                 </div>
@@ -60,9 +60,9 @@
         </div>
 
         {{-- Info --}}
-        <div class="px-4 pt-3 flex-1 flex flex-col">
-            <span class="inline-block text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(67,175,115,0.1); color: #43af73;">{{ $displayCategory }}</span>
-            <h3 class="text-sm font-bold mt-2 mb-2 line-clamp-2 leading-snug group-hover:text-brand-green transition-colors" style="color: #452aa8; min-height: 2.5rem;">{{ $displayName }}</h3>
+        <div class="px-3 sm:px-4 pt-3 flex-1 flex flex-col">
+            <span class="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(67,175,115,0.1); color: #43af73;">{{ $displayCategory }}</span>
+            <h3 class="text-xs sm:text-sm font-bold mt-1.5 sm:mt-2 mb-2 line-clamp-2 leading-snug group-hover:text-brand-green transition-colors" style="color: #452aa8; min-height: 2rem;">{{ $displayName }}</h3>
 
             {{-- Rating + Price pushed to bottom --}}
             <div class="mt-auto"></div>
@@ -73,14 +73,14 @@
                 </div>
             @endif
 
-            <span class="text-xl font-bold" style="color: #43af73;">{{ $displayPrice }}</span>
+            <span class="text-base sm:text-xl font-bold" style="color: #43af73;">{{ $displayPrice }}</span>
         </div>
     </a>
 
     {{-- Order Button --}}
-    <div class="px-4 pt-2 pb-4">
+    <div class="px-3 sm:px-4 pt-2 pb-3 sm:pb-4">
         <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer"
-           class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
+           class="block w-full text-center text-white text-xs sm:text-sm font-semibold py-2 sm:py-2.5 rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
            style="background-color: #43af73;"
            onmouseenter="this.style.backgroundColor='#369a60'"
            onmouseleave="this.style.backgroundColor='#43af73'">

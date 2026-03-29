@@ -17,10 +17,10 @@
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
      :class="scrolled ? 'shadow-lg' : 'shadow-sm'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-28">
+        <div class="flex items-center justify-between h-16 sm:h-20 lg:h-28">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
-                <img src="/footer-lg.png" alt="Grow with DXN" class="h-24 w-auto object-contain">
+                <img src="/footer-lg.png" alt="Grow with DXN" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
             </a>
 
             {{-- Desktop Nav --}}

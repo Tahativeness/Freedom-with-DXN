@@ -184,3 +184,18 @@ html {
 
 /* Arabic font support */
 [dir="rtl"] { font-family: 'Segoe UI', 'Arial', 'Tahoma', sans-serif; }
+
+/* RTL section titles should stay centered */
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle { text-align: center; }
+
+/* Mobile-specific fixes */
+@media (max-width: 640px) {
+    .btn-primary, .btn-secondary, .btn-gold, .btn-outline {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        font-size: 0.875rem;
+    }
+}
