@@ -57,16 +57,35 @@ class BlogController extends Controller
             .hero { height: 1000px !important; min-height: 0 !important; max-height: 1000px !important; display: flex !important; align-items: flex-end !important; overflow: hidden !important; }
             .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
             .hero-placeholder { display: none !important; }
+            .sidebar .zoom-card { display: none !important; }
             .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to left, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
-            .hero-content { position: relative !important; z-index: 2 !important; margin-right: 0 !important; margin-left: auto !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
+            .hero-content { position: relative !important; z-index: 2 !important; margin-left: auto !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
             .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
             .hero-title { opacity: 0; animation: fadeRight 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
-            .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; }
+            .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; justify-content: flex-end !important; }
             @keyframes fadeRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-            @media (max-width: 768px) {
-                .hero { height: 350px !important; max-height: 350px !important; }
-                .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(44,24,120,0.5) 50%, transparent 100%) !important; }
-                .hero-content { max-width: 100% !important; margin-left: 0 !important; padding: 0 20px 32px !important; }
+            @media (max-width: 1024px) {
+                .hero { height: 500px !important; max-height: 500px !important; }
+                .hero-img { object-fit: contain !important; object-position: center !important; background: var(--forest) !important; }
+                .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.92) 0%, rgba(70,56,123,0.5) 50%, rgba(70,56,123,0.2) 100%) !important; }
+                .hero-content { max-width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(20px, 4vw, 48px) 40px !important; }
+                .hero-meta { justify-content: flex-end !important; }
+                .hero-title { font-size: clamp(26px, 5vw, 42px) !important; }
+            }
+            @media (max-width: 860px) {
+                .sidebar { display: none !important; }
+                .sidebar .zoom-card { display: none !important; }
+                .zoom-card.mobile-inserted { display: block !important; margin-bottom: 28px !important; }
+                .mobile-inserted { margin-bottom: 28px !important; }
+            }
+            @media (max-width: 540px) {
+                .hero { height: auto !important; max-height: none !important; flex-direction: column !important; align-items: stretch !important; }
+                .hero-img { position: relative !important; width: 100% !important; height: 250px !important; object-fit: contain !important; object-position: center !important; background: var(--forest) !important; }
+                .hero-overlay { position: relative !important; background: var(--forest) !important; }
+                .hero-content { position: relative !important; padding: 24px 20px 32px !important; text-align: center !important; margin: 0 !important; max-width: 100% !important; background: var(--forest) !important; }
+                .hero-title { font-size: 28px !important; margin-bottom: 12px !important; }
+                .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; }
+                .hero-meta { font-size: 12px !important; gap: 12px !important; justify-content: center !important; }
             }
             ';
             $html = str_replace('</style>', $heroCSS . '</style>', $html);
@@ -105,6 +124,24 @@ class BlogController extends Controller
                 $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
             }
 
+            // Inject mobile JS to move sidebar cards after intro
+            $mobileJS = '
+            <script>
+            document.addEventListener("DOMContentLoaded",function(){
+                if(window.innerWidth>860)return;
+                var intro=document.querySelector(".article-intro");
+                var sidebar=document.querySelector(".sidebar");
+                var article=document.querySelector(".article");
+                if(!intro||!sidebar||!article)return;
+                var ch=Array.from(sidebar.children);
+                var toc=ch[0],zoom=ch[1],products=ch[3];
+                if(toc)intro.after(toc);
+                if(products)article.appendChild(products);
+                sidebar.style.display="none";
+            });
+            </script>';
+            $html = str_replace('</body>', $mobileJS . '</body>', $html);
+
             return response($html)->header('Content-Type', 'text/html');
         }
 
@@ -112,21 +149,39 @@ class BlogController extends Controller
         $subUrl = e($blog->sub_image ?? '');
         $alt = e($blog->title);
 
-        // Full-cover hero: image as background, text on left (LTR)
+        // Full-cover hero: image as background, text on right (LTR)
         $heroCSS = '
         .hero { height: 1000px !important; min-height: 0 !important; max-height: 1000px !important; display: flex !important; align-items: flex-end !important; overflow: hidden !important; }
         .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
         .hero-placeholder { display: none !important; }
+            .sidebar .zoom-card { display: none !important; }
         .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to right, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
         .hero-content { position: relative !important; z-index: 2 !important; margin-left: auto !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
-        .hero-tag { opacity: 0; animation: fadeLeft 0.7s ease 0.2s forwards !important; }
-        .hero-title { opacity: 0; animation: fadeLeft 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
-        .hero-meta { opacity: 0; animation: fadeLeft 0.8s ease 0.6s forwards !important; justify-content: flex-end !important; }
-        @keyframes fadeLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-        @media (max-width: 768px) {
-            .hero { height: 350px !important; max-height: 350px !important; }
-            .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(44,24,120,0.5) 50%, transparent 100%) !important; }
-            .hero-content { max-width: 100% !important; margin-right: 0 !important; padding: 0 20px 32px !important; }
+        .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
+        .hero-title { opacity: 0; animation: fadeRight 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
+        .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; justify-content: flex-end !important; }
+        @keyframes fadeRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @media (max-width: 1024px) {
+            .hero { height: 500px !important; max-height: 500px !important; }
+            .hero-img { object-fit: contain !important; object-position: center !important; background: var(--forest) !important; }
+            .hero-overlay { background: linear-gradient(to top, rgba(44,24,120,0.92) 0%, rgba(70,56,123,0.5) 50%, rgba(70,56,123,0.2) 100%) !important; }
+            .hero-content { max-width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(20px, 4vw, 48px) 40px !important; }
+            .hero-meta { justify-content: flex-end !important; }
+            .hero-title { font-size: clamp(26px, 5vw, 42px) !important; }
+        }
+        @media (max-width: 860px) {
+            .sidebar { display: none !important; }
+            .zoom-card { display: none !important; }
+            .mobile-inserted { margin-bottom: 28px !important; }
+        }
+        @media (max-width: 540px) {
+            .hero { height: auto !important; max-height: none !important; flex-direction: column !important; align-items: stretch !important; }
+            .hero-img { position: relative !important; width: 100% !important; height: 250px !important; object-fit: contain !important; object-position: center !important; background: var(--forest) !important; }
+            .hero-overlay { position: relative !important; background: var(--forest) !important; }
+            .hero-content { position: relative !important; padding: 24px 20px 32px !important; text-align: center !important; margin: 0 !important; max-width: 100% !important; background: var(--forest) !important; }
+            .hero-title { font-size: 28px !important; margin-bottom: 12px !important; }
+            .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; }
+            .hero-meta { font-size: 12px !important; gap: 12px !important; justify-content: center !important; }
         }
         ';
         $html = str_replace('</style>', $heroCSS . '</style>', $html);
@@ -177,6 +232,25 @@ class BlogController extends Controller
             }
             $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
         }
+
+        // Inject mobile JS to move sidebar cards after intro
+        $mobileJS = '
+        <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            if(window.innerWidth>860)return;
+            var intro=document.querySelector(".article-intro");
+            var sidebar=document.querySelector(".sidebar");
+            var article=document.querySelector(".article");
+            if(!intro||!sidebar||!article)return;
+            var ch=Array.from(sidebar.children);
+            var toc=ch[0],zoom=ch[1],products=ch[3];
+            if(toc){toc.classList.add("mobile-inserted");intro.after(toc);}
+            if(products){products.classList.add("mobile-inserted");article.appendChild(products);}
+            if(zoom){zoom.classList.add("mobile-inserted");zoom.style.display="block";article.appendChild(zoom);}
+            sidebar.style.display="none";
+        });
+        </script>';
+        $html = str_replace('</body>', $mobileJS . '</body>', $html);
 
         return response($html)->header('Content-Type', 'text/html');
     }
