@@ -27,7 +27,7 @@
     $displayRating = $toAr(number_format($rating, 1));
 @endphp
 
-<div class="group bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full"
+<div class="group bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full"
      style="box-shadow: inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s, transform 0.3s;"
      onmouseenter="this.style.boxShadow='inset 0 -4px 0 0px #bf3c36, 0 8px 30px rgba(0,0,0,0.12)'; this.style.transform='translateY(-4px)'"
      onmouseleave="this.style.boxShadow='inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06)'; this.style.transform='translateY(0)'">
@@ -37,50 +37,50 @@
         <div class="relative overflow-hidden bg-gray-50">
             @if($mainImage)
                 <img src="{{ $mainImage }}" alt="{{ $product->name }}"
-                     class="w-full h-32 sm:h-44 md:h-52 object-contain p-1.5 sm:p-2 group-hover:scale-105 transition-transform duration-500">
+                     class="w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" style="height: 13rem;">
             @else
-                <div class="w-full h-32 sm:h-44 md:h-52 flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
-                    <span class="text-2xl sm:text-3xl font-bold" style="color: #43af73;">DXN</span>
+                <div class="w-full flex flex-col items-center justify-center" style="height: 13rem; background: linear-gradient(135deg, #452aa8, #3a2290);">
+                    <span class="text-3xl font-bold" style="color: #43af73;">DXN</span>
                     <span class="text-white/70 text-xs mt-1 px-4 text-center line-clamp-2">{{ $product->name }}</span>
                 </div>
             @endif
 
             @if($product->featured)
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-md flex items-center gap-1 whitespace-nowrap" style="background-color: #bf3c36;">
-                    <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <span class="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1 whitespace-nowrap" style="background-color: #bf3c36;">
+                    <svg style="width: 12px; height: 12px; min-width: 12px;" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     {{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Best Seller' }}
                 </span>
             @endif
 
             @if(!$product->in_stock)
                 <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <span class="bg-white/90 text-red-600 font-bold text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full">{{ $lang === 'ar' ? 'غير متوفر' : 'Out of Stock' }}</span>
+                    <span class="bg-white/90 text-red-600 font-bold text-sm px-4 py-1.5 rounded-full">{{ $lang === 'ar' ? 'غير متوفر' : 'Out of Stock' }}</span>
                 </div>
             @endif
         </div>
 
         {{-- Info --}}
-        <div class="px-2.5 sm:px-4 pt-2 sm:pt-3 flex-1 flex flex-col">
-            <span class="inline-block text-[9px] sm:text-xs font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(67,175,115,0.1); color: #43af73;">{{ $displayCategory }}</span>
-            <h3 class="text-[11px] sm:text-sm font-bold mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 leading-tight sm:leading-snug group-hover:text-brand-green transition-colors" style="color: #452aa8;">{{ $displayName }}</h3>
+        <div class="px-4 pt-3 flex-1 flex flex-col">
+            <span class="inline-block text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full w-fit" style="background-color: rgba(67,175,115,0.1); color: #43af73;">{{ $displayCategory }}</span>
+            <h3 class="text-sm font-bold mt-2 mb-2 line-clamp-2 leading-snug group-hover:text-brand-green transition-colors" style="color: #452aa8; min-height: 2.5rem;">{{ $displayName }}</h3>
 
             {{-- Rating + Price pushed to bottom --}}
             <div class="mt-auto"></div>
             @if($rating > 0)
-                <div class="flex items-center gap-0.5 mb-1 sm:mb-2">
-                    <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3" style="color: #bf3c36;" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    <span class="text-[10px] sm:text-xs text-gray-500">{{ $displayRating }}</span>
+                <div class="flex items-center gap-0.5 mb-2">
+                    <svg style="width: 12px; height: 12px; min-width: 12px; color: #bf3c36;" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <span class="text-xs text-gray-500">{{ $displayRating }}</span>
                 </div>
             @endif
 
-            <span class="text-sm sm:text-lg md:text-xl font-bold" style="color: #43af73;">{{ $displayPrice }}</span>
+            <span class="text-xl font-bold" style="color: #43af73;">{{ $displayPrice }}</span>
         </div>
     </a>
 
     {{-- Order Button --}}
-    <div class="px-2.5 sm:px-4 pt-1.5 sm:pt-2 pb-2.5 sm:pb-4">
+    <div class="px-4 pt-2 pb-4">
         <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer"
-           class="block w-full text-center text-white text-[11px] sm:text-sm font-semibold py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
+           class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
            style="background-color: #43af73;"
            onmouseenter="this.style.backgroundColor='#369a60'"
            onmouseleave="this.style.backgroundColor='#43af73'">
