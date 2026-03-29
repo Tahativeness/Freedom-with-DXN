@@ -1,0 +1,2264 @@
+INSERT INTO `blogs` (`id`,`title`,`slug`,`content`,`content_ar`,`content_type`,`excerpt`,`image`,`sub_image`,`category`,`author`,`tags`,`published`,`views`,`created_at`,`updated_at`) VALUES ('1','How to Become a DXN Distributor in the UAE','how-to-become-a-dxn-distributor-in-the-uae','<!DOCTYPE html>
+<html lang=\"en\" dir=\"ltr\">
+<head>
+<meta charset=\"UTF-8\">
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>How to Become a DXN Distributor in UAE | Freedom with DXN</title>
+<meta name=\"description\" content=\"A complete step-by-step guide to becoming a DXN distributor in the UAE. Low startup cost, flexible work, and a global wellness brand with 30+ years of history.\">
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap\" rel=\"stylesheet\">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: \'DM Sans\', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 92vh;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: saturate(1.1);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-placeholder-text {
+    color: rgba(255,255,255,0.15);
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    text-align: center;
+    padding: 24px;
+    max-width: 600px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(34px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: \'·\'; margin-right: 20px; }
+  .hero-meta span:first-child::before { content: \'\'; margin-right: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 100px;
+  }
+
+  /* ── ARTICLE ── */
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-left: 4px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p {
+    margin-bottom: 22px;
+    color: #3a3a3a;
+  }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .section-head::after {
+    content: \'\';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .blog-img-block {
+    margin: 36px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .blog-img-block img {
+    width: 100%;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  .img-placeholder {
+    background: linear-gradient(135deg, #e8f5ee, #d0eddc);
+    border: 1.5px dashed #43af73;
+    border-radius: 6px;
+    padding: 32px 24px;
+    margin: 36px 0;
+  }
+
+  .img-placeholder-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .img-placeholder-prompt {
+    font-size: 13.5px;
+    color: #2d8a55;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* Steps */
+  .steps { counter-reset: step; margin: 28px 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    width: 48px;
+    height: 48px;
+    background: var(--forest);
+    color: var(--gold);
+    font-family: \'Playfair Display\', serif;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body h3 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .step-body p { margin-bottom: 0; color: #4a4a4a; }
+
+  /* FAQ */
+  .faq { margin: 8px 0; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .faq-q::before {
+    content: \'Q\';
+    background: var(--gold);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-left: 32px; margin-bottom: 0; }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--forest);
+    border-radius: 10px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: \'\';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    padding: 15px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(191,60,54,0.4);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+
+  .toc li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0ebe3;
+    font-size: 14px;
+  }
+
+  .toc li:last-child { border-bottom: none; }
+
+  .toc a {
+    color: var(--emerald);
+    text-decoration: none;
+    display: flex;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: \'\\2192\'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+
+  .fact-list li {
+    font-size: 14px;
+    color: #4a4a4a;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0ebe3;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: \'\\2713\'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest);
+    color: #fff;
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+
+  .zoom-card h4 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block;
+    background: var(--sage);
+    color: #fff;
+    padding: 11px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  /* ── FOOTER STRIP ── */
+  .footer-strip {
+    background: var(--forest);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-strip a { color: var(--emerald); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .sidebar { order: -1; }
+    .hero { height: 70vh; }
+  }
+</style>
+</head>
+<body>
+
+<header class=\"hero\">
+  <div class=\"hero-placeholder\">
+    <div class=\"hero-placeholder-text\">
+      HERO IMAGE GOES HERE
+    </div>
+  </div>
+  <div class=\"hero-overlay\"></div>
+  <div class=\"hero-content\">
+    <div class=\"hero-tag\">Business Guide · UAE</div>
+    <h1 class=\"hero-title\">How to Become a<br><em>DXN Distributor</em><br>in the UAE</h1>
+    <div class=\"hero-meta\">
+      <span>Freedom with DXN</span>
+      <span>10 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class=\"page-wrap\">
+
+  <article class=\"article\">
+
+    <p class=\"article-intro\">
+      If you have been searching for a flexible way to earn extra income in the UAE while promoting products you genuinely believe in — this guide will walk you through everything you need to know. Clearly, honestly, and without the hype.
+    </p>
+
+    <div class=\"section-head\" id=\"what-is-dxn\">
+      <h2>What is DXN?</h2>
+    </div>
+
+    <p>DXN is a Malaysian-founded global health and wellness company established in 1993 by Dr. Lim Siow Jin, a graduate of the prestigious Indian Institute of Technology. The company specialises in Ganoderma-based products — including coffee, tea, supplements, and personal care items — all manufactured in DXN\'s own certified facilities.</p>
+
+    <p>What makes DXN different from many other wellness brands is its single-level marketing structure and strict quality control. DXN operates in <strong>over 180 countries</strong>, has more than <strong>10 million registered distributors</strong> worldwide, and maintains its own Ganoderma cultivation farms — ensuring quality from soil to shelf.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"why-uae\">
+      <h2>Why Join DXN in the UAE?</h2>
+    </div>
+
+    <p>The UAE is one of the most entrepreneurial markets in the world. People here are always looking for legitimate ways to build side income, and DXN fits naturally into that mindset.</p>
+
+    <div class=\"steps\">
+      <div class=\"step\">
+        <div class=\"step-num\">1</div>
+        <div class=\"step-body\">
+          <h3>Low Startup Cost</h3>
+          <p>Joining DXN requires a small one-time registration fee with no large inventory purchase required upfront.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">2</div>
+        <div class=\"step-body\">
+          <h3>Work From Anywhere</h3>
+          <p>Build your DXN business entirely online — through social media, WhatsApp, and Zoom — without needing a physical shop or office.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">3</div>
+        <div class=\"step-body\">
+          <h3>Products People Actually Use</h3>
+          <p>DXN\'s Ganoderma coffee and supplements are daily-use products with genuine repeat buyers. You are not selling something people buy once and forget.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">4</div>
+        <div class=\"step-body\">
+          <h3>A Global Network</h3>
+          <p>Whether you are based in Dubai or Abu Dhabi, your network is not limited to the UAE. DXN\'s international structure means your business can grow across borders.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">5</div>
+        <div class=\"step-body\">
+          <h3>Training & Community Support</h3>
+          <p>DXN UAE has an active community running regular training sessions, Zoom meetings, and WhatsApp groups to help new members get started.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class=\"section-head\" id=\"registration\">
+      <h2>Step-by-Step Registration</h2>
+    </div>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"steps\">
+      <div class=\"step\">
+        <div class=\"step-num\">1</div>
+        <div class=\"step-body\">
+          <h3>Find a Sponsor</h3>
+          <p>Register under an existing DXN distributor who acts as your sponsor. Your sponsor guides you through the process and supports your growth. If you don\'t have one yet, join our free Zoom meeting.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">2</div>
+        <div class=\"step-body\">
+          <h3>Complete the Registration Form</h3>
+          <p>Fill in the DXN registration form with your personal details — name, Emirates ID or passport number, contact information, and your sponsor\'s DXN ID number.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">3</div>
+        <div class=\"step-body\">
+          <h3>Pay the Registration Fee</h3>
+          <p>The registration fee is minimal and covers your starter membership — giving you access to your DXN back office, distributor pricing, and your unique distributor ID.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">4</div>
+        <div class=\"step-body\">
+          <h3>Receive Your DXN ID</h3>
+          <p>Your personal DXN distributor ID is your business identity within the system. Use it to place orders, track your points, and register new members under you.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">5</div>
+        <div class=\"step-body\">
+          <h3>Order Your First Products</h3>
+          <p>You are not required to purchase large stock upfront. Most distributors start by ordering products for personal use, learning them thoroughly, then sharing genuine experiences with others.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class=\"section-head\" id=\"after\">
+      <h2>What Happens After You Register?</h2>
+    </div>
+
+    <p>Registration is just the beginning. Once you join, you will get access to the DXN online portal where you can track your points, commissions, and team growth. Your sponsor will introduce you to training resources and community groups.</p>
+
+    <p>Most new distributors begin with DXN\'s Ganoderma coffee range — it is the easiest to introduce to friends and family. From there, many start sharing content on social media, attending weekly Zoom meetings to bring guests, and gradually building a small team of their own.</p>
+
+    <p>The income grows as your network grows — there is no ceiling, but there is also no shortcut. Consistent effort over time is what builds real results.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"faq\">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class=\"faq\">
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Is DXN halal?</p>
+        <p class=\"faq-a\">Yes. DXN products are halal certified, making them suitable for Muslim consumers across the UAE and the wider MENA region.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Do I need to quit my job to join?</p>
+        <p class=\"faq-a\">Absolutely not. Most DXN distributors in the UAE run their business part-time alongside full-time employment. The flexibility is one of the main reasons people choose DXN.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">How much can I earn?</p>
+        <p class=\"faq-a\">Income varies depending on your activity level, team size, and how consistently you promote products and support new members. DXN rewards people who show up consistently over months and years.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Is DXN legal in the UAE?</p>
+        <p class=\"faq-a\">Yes. DXN operates fully within UAE regulations and has an established local presence.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">What if I have no sales experience?</p>
+        <p class=\"faq-a\">No experience is needed. DXN provides training, and your sponsor is there to guide you. Many successful distributors started with zero sales background.</p>
+      </div>
+    </div>
+
+    <div class=\"cta-banner\">
+      <h3>Join Our Free Weekly Zoom Meeting</h3>
+      <p>Every week we host a free session in Arabic and English — covering products, the business opportunity, and the registration process. Attend, ask anything, leave with no obligation.</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-gold\">Register via WhatsApp</a>
+    </div>
+
+  </article>
+
+  <aside class=\"sidebar\">
+
+    <div class=\"sidebar-card\">
+      <h4>In This Article</h4>
+      <ul class=\"toc\">
+        <li><a href=\"#what-is-dxn\">What is DXN?</a></li>
+        <li><a href=\"#why-uae\">Why Join in the UAE?</a></li>
+        <li><a href=\"#registration\">Step-by-Step Registration</a></li>
+        <li><a href=\"#after\">After Registration</a></li>
+        <li><a href=\"#faq\">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class=\"zoom-card\">
+      <div class=\"icon\">📹</div>
+      <h4>Free Zoom Training</h4>
+      <p>Every week · Arabic & English · No obligation</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-sage\">Get the Link</a>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>DXN Quick Facts</h4>
+      <ul class=\"fact-list\">
+        <li>Founded 1993, Malaysia</li>
+        <li>180+ countries worldwide</li>
+        <li>10 million+ distributors</li>
+        <li>Halal certified products</li>
+        <li>Own Ganoderma farms</li>
+        <li>Low startup cost</li>
+        <li>Legal in the UAE</li>
+      </ul>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>Start With These Products</h4>
+      <ul class=\"fact-list\">
+        <li>RG/GL Ganoderma capsules</li>
+        <li>Lingzhi Black Coffee</li>
+        <li>Morinzhi juice</li>
+        <li>Ganozhi toothpaste</li>
+        <li>Spirulina cereal</li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+</body>
+</html>','<!DOCTYPE html>
+<html lang=\"ar\" dir=\"rtl\">
+<head>
+<meta charset=\"UTF-8\">
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>كيف تصبح موزع DXN في الإمارات | Freedom with DXN</title>
+<meta name=\"description\" content=\"دليل شامل خطوة بخطوة لتصبح موزع DXN في الإمارات. تكلفة بدء منخفضة، عمل مرن، وعلامة تجارية عالمية للصحة والعافية بتاريخ يتجاوز 30 عامًا.\">
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap\" rel=\"stylesheet\">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: \'DM Sans\', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  .hero {
+    position: relative;
+    height: 92vh;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: saturate(1.1);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(34px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: \'·\'; margin-left: 20px; }
+  .hero-meta span:first-child::before { content: \'\'; margin-left: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 60px;
+  }
+
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-right: 4px solid var(--gold);
+    padding-right: 20px;
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p { margin-bottom: 22px; color: #3a3a3a; }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .section-head::after { content: \'\'; flex: 1; height: 1px; background: var(--border); }
+
+  .blog-img-block {
+    margin: 36px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .blog-img-block img { width: 100%; display: block; max-height: 400px; object-fit: cover; }
+
+  .steps { counter-reset: step; margin: 28px 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    width: 48px; height: 48px;
+    background: var(--forest);
+    color: #ffffff;
+    font-family: \'Playfair Display\', serif;
+    font-size: 20px; font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-body h3 { font-family: \'Playfair Display\', serif; font-size: 18px; font-weight: 700; color: var(--forest); margin-bottom: 6px; }
+  .step-body p { margin-bottom: 0; color: #4a4a4a; }
+
+  .faq { margin: 8px 0; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px; font-weight: 700; color: var(--forest);
+    margin-bottom: 8px; display: flex; gap: 10px;
+  }
+
+  .faq-q::before {
+    content: \'س\'; background: var(--gold); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 2px 7px;
+    border-radius: 3px; flex-shrink: 0; margin-top: 3px; height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-right: 32px; margin-bottom: 0; }
+
+  .cta-banner {
+    background: var(--forest); border-radius: 10px;
+    padding: 48px 40px; text-align: center;
+    margin-top: 56px; position: relative; overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: \'\'; position: absolute; top: -60px; left: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 { font-family: \'Playfair Display\', serif; font-size: 26px; color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block; background: var(--gold); color: #fff;
+    padding: 15px 36px; border-radius: 4px; text-decoration: none;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(191,60,54,0.4); }
+
+  .sidebar-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 28px 24px; margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: \'Playfair Display\', serif; font-size: 16px; font-weight: 700;
+    color: var(--forest); margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+  .toc li { padding: 8px 0; border-bottom: 1px solid #f0ebe3; font-size: 14px; }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { color: var(--emerald); text-decoration: none; display: flex; gap: 8px; align-items: start; }
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: \'\\2190\'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+  .fact-list li { font-size: 14px; color: #4a4a4a; padding: 7px 0; border-bottom: 1px solid #f0ebe3; display: flex; gap: 10px; align-items: center; }
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: \'\\2713\'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest); color: #fff; border-radius: 8px;
+    padding: 28px 24px; text-align: center; margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+  .zoom-card h4 { font-family: \'Playfair Display\', serif; font-size: 17px; margin-bottom: 8px; }
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block; background: var(--sage); color: #fff;
+    padding: 11px 24px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  .footer-strip {
+    background: var(--forest); text-align: center; padding: 20px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+  }
+
+  .footer-strip a { color: var(--emerald); text-decoration: none; }
+
+  .sidebar { order: -1; }
+
+  /* Tablet */
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
+    .sidebar { order: 1; }
+    .hero { height: 65vh; min-height: 400px; }
+    .hero-content { padding-bottom: 48px; }
+    .hero-title { font-size: clamp(30px, 5vw, 52px); }
+    .cta-banner { padding: 36px 28px; }
+    .cta-banner h3 { font-size: 22px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 540px) {
+    body { font-size: 15px; line-height: 1.7; }
+    .hero { height: 55vh; min-height: 340px; }
+    .hero-content { padding: 0 20px 36px; }
+    .hero-title { font-size: 28px; margin-bottom: 14px; }
+    .hero-tag { font-size: 10px; padding: 5px 12px; margin-bottom: 16px; }
+    .hero-meta { font-size: 12px; gap: 12px; }
+    .hero-meta span::before { margin-left: 12px; }
+    .page-wrap { padding: 0 16px; padding-top: 40px; padding-bottom: 40px; gap: 32px; }
+    .article-intro { font-size: 16px; padding-right: 14px; margin-bottom: 28px; }
+    .section-head { margin: 36px 0 14px; }
+    .section-head h2 { font-size: 20px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; margin-bottom: 20px; }
+    .step-num { width: 40px; height: 40px; font-size: 17px; }
+    .step-body h3 { font-size: 16px; }
+    .step-body p { font-size: 14px; }
+    .faq-q { font-size: 15px; }
+    .faq-a { font-size: 14px; padding-right: 24px; }
+    .cta-banner { padding: 28px 20px; margin-top: 36px; }
+    .cta-banner h3 { font-size: 20px; }
+    .cta-banner p { font-size: 13px; margin-bottom: 20px; }
+    .btn-gold { padding: 12px 28px; font-size: 14px; }
+    .sidebar-card { padding: 20px 16px; }
+    .sidebar-card h4 { font-size: 15px; }
+    .zoom-card { padding: 20px 16px; }
+    .zoom-card h4 { font-size: 15px; }
+    .blog-img-block { margin: 24px 0; }
+    .blog-img-block img { max-height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<header class=\"hero\">
+  <div class=\"hero-placeholder\">
+    <div class=\"hero-placeholder-text\">
+      HERO IMAGE GOES HERE
+    </div>
+  </div>
+  <div class=\"hero-overlay\"></div>
+  <div class=\"hero-content\">
+    <div class=\"hero-tag\">دليل الأعمال · الإمارات</div>
+    <h1 class=\"hero-title\">كيف تصبح<br><em>موزع DXN</em><br>في الإمارات</h1>
+    <div class=\"hero-meta\">
+      <span>Freedom with DXN</span>
+      <span>١٠ دقائق قراءة</span>
+    </div>
+  </div>
+</header>
+
+<main class=\"page-wrap\">
+
+  <article class=\"article\">
+
+    <p class=\"article-intro\">
+      إذا كنت تبحث عن طريقة مرنة لكسب دخل إضافي في الإمارات مع الترويج لمنتجات تؤمن بها حقًا — فهذا الدليل سيرشدك إلى كل ما تحتاج معرفته. بوضوح وصدق وبدون مبالغة.
+    </p>
+
+    <div class=\"section-head\" id=\"what-is-dxn\"><h2>ما هي DXN؟</h2></div>
+
+    <p>DXN هي شركة ماليزية عالمية للصحة والعافية تأسست عام 1993 على يد الدكتور ليم سيو جين، خريج المعهد الهندي المرموق للتكنولوجيا. تتخصص الشركة في المنتجات القائمة على فطر الغانوديرما — بما في ذلك القهوة والشاي والمكملات الغذائية ومنتجات العناية الشخصية — وجميعها مصنعة في مرافق DXN المعتمدة.</p>
+
+    <p>ما يميز DXN عن العديد من العلامات التجارية الأخرى هو هيكلها التسويقي أحادي المستوى ورقابتها الصارمة على الجودة. تعمل DXN في <strong>أكثر من 180 دولة</strong>، ولديها أكثر من <strong>10 ملايين موزع مسجل</strong> حول العالم، وتمتلك مزارع غانوديرما خاصة بها — مما يضمن الجودة من التربة إلى الرف.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"why-uae\"><h2>لماذا تنضم إلى DXN في الإمارات؟</h2></div>
+
+    <p>الإمارات واحدة من أكثر الأسواق ريادية في العالم. الناس هنا يبحثون دائمًا عن طرق مشروعة لبناء دخل إضافي، وDXN تتناسب بشكل طبيعي مع هذه العقلية.</p>
+
+    <div class=\"steps\">
+      <div class=\"step\"><div class=\"step-num\">١</div><div class=\"step-body\"><h3>تكلفة بدء منخفضة</h3><p>الانضمام إلى DXN يتطلب رسوم تسجيل بسيطة لمرة واحدة دون الحاجة لشراء مخزون كبير مقدمًا.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٢</div><div class=\"step-body\"><h3>اعمل من أي مكان</h3><p>ابنِ عملك مع DXN بالكامل عبر الإنترنت — من خلال وسائل التواصل الاجتماعي والواتساب وزووم — دون الحاجة لمتجر أو مكتب.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٣</div><div class=\"step-body\"><h3>منتجات يستخدمها الناس فعلًا</h3><p>قهوة الغانوديرما والمكملات من DXN هي منتجات استخدام يومي مع مشترين متكررين حقيقيين. أنت لا تبيع شيئًا يشتريه الناس مرة وينسونه.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٤</div><div class=\"step-body\"><h3>شبكة عالمية</h3><p>سواء كنت في دبي أو أبوظبي، شبكتك لا تقتصر على الإمارات. الهيكل الدولي لـ DXN يعني أن عملك يمكن أن ينمو عبر الحدود.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٥</div><div class=\"step-body\"><h3>التدريب ودعم المجتمع</h3><p>مجتمع DXN في الإمارات نشط ويقدم جلسات تدريبية منتظمة واجتماعات زووم ومجموعات واتساب لمساعدة الأعضاء الجدد على البدء.</p></div></div>
+    </div>
+
+    <div class=\"section-head\" id=\"registration\"><h2>خطوات التسجيل</h2></div>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"steps\">
+      <div class=\"step\"><div class=\"step-num\">١</div><div class=\"step-body\"><h3>ابحث عن راعٍ</h3><p>سجّل تحت موزع DXN حالي يكون راعيك. راعيك يرشدك خلال العملية ويدعم نموك. إذا لم يكن لديك راعٍ بعد، انضم إلى اجتماع زووم المجاني.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٢</div><div class=\"step-body\"><h3>أكمل نموذج التسجيل</h3><p>املأ نموذج تسجيل DXN ببياناتك الشخصية — الاسم، رقم الهوية الإماراتية أو جواز السفر، معلومات الاتصال، ورقم معرّف DXN الخاص براعيك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٣</div><div class=\"step-body\"><h3>ادفع رسوم التسجيل</h3><p>رسوم التسجيل بسيطة وتغطي عضويتك الأولية — مما يمنحك الوصول إلى مكتب DXN الإلكتروني وأسعار الموزعين ومعرّف الموزع الخاص بك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٤</div><div class=\"step-body\"><h3>استلم معرّف DXN الخاص بك</h3><p>معرّف موزع DXN الشخصي هو هويتك التجارية داخل النظام. استخدمه لتقديم الطلبات وتتبع نقاطك وتسجيل أعضاء جدد تحتك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٥</div><div class=\"step-body\"><h3>اطلب منتجاتك الأولى</h3><p>لا يُطلب منك شراء مخزون كبير مقدمًا. معظم الموزعين يبدأون بطلب منتجات للاستخدام الشخصي، ويتعلمونها جيدًا، ثم يشاركون تجاربهم الحقيقية مع الآخرين.</p></div></div>
+    </div>
+
+    <div class=\"section-head\" id=\"after\"><h2>ماذا يحدث بعد التسجيل؟</h2></div>
+
+    <p>التسجيل هو مجرد البداية. بمجرد انضمامك، ستحصل على وصول إلى بوابة DXN الإلكترونية حيث يمكنك تتبع نقاطك وعمولاتك ونمو فريقك. سيعرّفك راعيك على موارد التدريب ومجموعات المجتمع.</p>
+
+    <p>يبدأ معظم الموزعين الجدد بمجموعة قهوة الغانوديرما من DXN — فهي الأسهل للتعريف بها للأصدقاء والعائلة. من هناك، يبدأ الكثيرون بمشاركة المحتوى على وسائل التواصل الاجتماعي، وحضور اجتماعات زووم الأسبوعية لجلب ضيوف، وبناء فريق صغير تدريجيًا.</p>
+
+    <p>الدخل ينمو مع نمو شبكتك — لا يوجد سقف، ولكن لا يوجد اختصار أيضًا. الجهد المستمر مع الوقت هو ما يبني نتائج حقيقية.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"faq\"><h2>الأسئلة الشائعة</h2></div>
+
+    <div class=\"faq\">
+      <div class=\"faq-item\"><p class=\"faq-q\">هل منتجات DXN حلال؟</p><p class=\"faq-a\">نعم. منتجات DXN حاصلة على شهادة حلال، مما يجعلها مناسبة للمستهلكين المسلمين في الإمارات ومنطقة الشرق الأوسط وشمال أفريقيا.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">هل أحتاج لترك وظيفتي للانضمام؟</p><p class=\"faq-a\">بالتأكيد لا. معظم موزعي DXN في الإمارات يديرون أعمالهم بدوام جزئي إلى جانب عملهم بدوام كامل. المرونة هي أحد الأسباب الرئيسية لاختيار الناس لـ DXN.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">كم يمكنني أن أكسب؟</p><p class=\"faq-a\">يختلف الدخل حسب مستوى نشاطك وحجم فريقك ومدى استمرارك في الترويج للمنتجات ودعم الأعضاء الجدد. DXN تكافئ من يلتزم باستمرار على مدى أشهر وسنوات.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">هل DXN قانونية في الإمارات؟</p><p class=\"faq-a\">نعم. تعمل DXN بالكامل ضمن اللوائح الإماراتية ولديها حضور محلي راسخ.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">ماذا لو لم يكن لدي خبرة في المبيعات؟</p><p class=\"faq-a\">لا تحتاج لأي خبرة. توفر DXN التدريب، وراعيك موجود لإرشادك. العديد من الموزعين الناجحين بدأوا بدون أي خلفية في المبيعات.</p></div>
+    </div>
+
+    <div class=\"cta-banner\">
+      <h3>انضم إلى اجتماع زووم الأسبوعي المجاني</h3>
+      <p>كل أسبوع نستضيف جلسة مجانية بالعربية والإنجليزية — تغطي المنتجات وفرصة العمل وعملية التسجيل. احضر، اسأل أي شيء، وغادر بدون أي التزام.</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-gold\">سجّل عبر واتساب</a>
+    </div>
+
+  </article>
+
+  <aside class=\"sidebar\">
+    <div class=\"sidebar-card\">
+      <h4>في هذا المقال</h4>
+      <ul class=\"toc\">
+        <li><a href=\"#what-is-dxn\">ما هي DXN؟</a></li>
+        <li><a href=\"#why-uae\">لماذا الانضمام في الإمارات؟</a></li>
+        <li><a href=\"#registration\">خطوات التسجيل</a></li>
+        <li><a href=\"#after\">بعد التسجيل</a></li>
+        <li><a href=\"#faq\">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+
+    <div class=\"zoom-card\">
+      <div class=\"icon\">📹</div>
+      <h4>تدريب زووم مجاني</h4>
+      <p>كل أسبوع · عربي وإنجليزي · بدون التزام</p>
+      <a href=\"https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-sage\">احصل على الرابط</a>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>حقائق سريعة عن DXN</h4>
+      <ul class=\"fact-list\">
+        <li>تأسست عام 1993، ماليزيا</li>
+        <li>أكثر من 180 دولة حول العالم</li>
+        <li>أكثر من 10 ملايين موزع</li>
+        <li>منتجات حاصلة على شهادة حلال</li>
+        <li>مزارع غانوديرما خاصة</li>
+        <li>تكلفة بدء منخفضة</li>
+        <li>قانونية في الإمارات</li>
+      </ul>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>ابدأ بهذه المنتجات</h4>
+      <ul class=\"fact-list\">
+        <li>كبسولات RG/GL غانوديرما</li>
+        <li>قهوة ليندزهي السوداء</li>
+        <li>عصير مورينزهي</li>
+        <li>معجون أسنان غانوزهي</li>
+        <li>حبوب سبيرولينا</li>
+      </ul>
+    </div>
+  </aside>
+
+</main>
+
+</body>
+</html>','full_html','A complete step-by-step guide to becoming a DXN distributor  in the UAE — low startup cost, flexible work, and a global  wellness brand with 30+ years of history.','/images/blog/1/1774733701_431380.png','/images/blog/1/1774733735_Whisk_e14ddc5392010418aaf499b4e368ab02dr.jpeg','business','Grow with DXN',NULL,'1','121','2026-03-28 21:20:12','2026-03-29 20:44:15') ON DUPLICATE KEY UPDATE `title`='How to Become a DXN Distributor in the UAE',`slug`='how-to-become-a-dxn-distributor-in-the-uae',`content`='<!DOCTYPE html>
+<html lang=\"en\" dir=\"ltr\">
+<head>
+<meta charset=\"UTF-8\">
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>How to Become a DXN Distributor in UAE | Freedom with DXN</title>
+<meta name=\"description\" content=\"A complete step-by-step guide to becoming a DXN distributor in the UAE. Low startup cost, flexible work, and a global wellness brand with 30+ years of history.\">
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap\" rel=\"stylesheet\">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: \'DM Sans\', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 92vh;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: saturate(1.1);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-placeholder-text {
+    color: rgba(255,255,255,0.15);
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    text-align: center;
+    padding: 24px;
+    max-width: 600px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(34px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: \'·\'; margin-right: 20px; }
+  .hero-meta span:first-child::before { content: \'\'; margin-right: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 100px;
+  }
+
+  /* ── ARTICLE ── */
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-left: 4px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p {
+    margin-bottom: 22px;
+    color: #3a3a3a;
+  }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .section-head::after {
+    content: \'\';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .blog-img-block {
+    margin: 36px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .blog-img-block img {
+    width: 100%;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  .img-placeholder {
+    background: linear-gradient(135deg, #e8f5ee, #d0eddc);
+    border: 1.5px dashed #43af73;
+    border-radius: 6px;
+    padding: 32px 24px;
+    margin: 36px 0;
+  }
+
+  .img-placeholder-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .img-placeholder-prompt {
+    font-size: 13.5px;
+    color: #2d8a55;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* Steps */
+  .steps { counter-reset: step; margin: 28px 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    width: 48px;
+    height: 48px;
+    background: var(--forest);
+    color: var(--gold);
+    font-family: \'Playfair Display\', serif;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body h3 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .step-body p { margin-bottom: 0; color: #4a4a4a; }
+
+  /* FAQ */
+  .faq { margin: 8px 0; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .faq-q::before {
+    content: \'Q\';
+    background: var(--gold);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-left: 32px; margin-bottom: 0; }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--forest);
+    border-radius: 10px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: \'\';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    padding: 15px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(191,60,54,0.4);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+
+  .toc li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0ebe3;
+    font-size: 14px;
+  }
+
+  .toc li:last-child { border-bottom: none; }
+
+  .toc a {
+    color: var(--emerald);
+    text-decoration: none;
+    display: flex;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: \'\\2192\'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+
+  .fact-list li {
+    font-size: 14px;
+    color: #4a4a4a;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0ebe3;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: \'\\2713\'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest);
+    color: #fff;
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+
+  .zoom-card h4 {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block;
+    background: var(--sage);
+    color: #fff;
+    padding: 11px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  /* ── FOOTER STRIP ── */
+  .footer-strip {
+    background: var(--forest);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-strip a { color: var(--emerald); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .sidebar { order: -1; }
+    .hero { height: 70vh; }
+  }
+</style>
+</head>
+<body>
+
+<header class=\"hero\">
+  <div class=\"hero-placeholder\">
+    <div class=\"hero-placeholder-text\">
+      HERO IMAGE GOES HERE
+    </div>
+  </div>
+  <div class=\"hero-overlay\"></div>
+  <div class=\"hero-content\">
+    <div class=\"hero-tag\">Business Guide · UAE</div>
+    <h1 class=\"hero-title\">How to Become a<br><em>DXN Distributor</em><br>in the UAE</h1>
+    <div class=\"hero-meta\">
+      <span>Freedom with DXN</span>
+      <span>10 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class=\"page-wrap\">
+
+  <article class=\"article\">
+
+    <p class=\"article-intro\">
+      If you have been searching for a flexible way to earn extra income in the UAE while promoting products you genuinely believe in — this guide will walk you through everything you need to know. Clearly, honestly, and without the hype.
+    </p>
+
+    <div class=\"section-head\" id=\"what-is-dxn\">
+      <h2>What is DXN?</h2>
+    </div>
+
+    <p>DXN is a Malaysian-founded global health and wellness company established in 1993 by Dr. Lim Siow Jin, a graduate of the prestigious Indian Institute of Technology. The company specialises in Ganoderma-based products — including coffee, tea, supplements, and personal care items — all manufactured in DXN\'s own certified facilities.</p>
+
+    <p>What makes DXN different from many other wellness brands is its single-level marketing structure and strict quality control. DXN operates in <strong>over 180 countries</strong>, has more than <strong>10 million registered distributors</strong> worldwide, and maintains its own Ganoderma cultivation farms — ensuring quality from soil to shelf.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"why-uae\">
+      <h2>Why Join DXN in the UAE?</h2>
+    </div>
+
+    <p>The UAE is one of the most entrepreneurial markets in the world. People here are always looking for legitimate ways to build side income, and DXN fits naturally into that mindset.</p>
+
+    <div class=\"steps\">
+      <div class=\"step\">
+        <div class=\"step-num\">1</div>
+        <div class=\"step-body\">
+          <h3>Low Startup Cost</h3>
+          <p>Joining DXN requires a small one-time registration fee with no large inventory purchase required upfront.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">2</div>
+        <div class=\"step-body\">
+          <h3>Work From Anywhere</h3>
+          <p>Build your DXN business entirely online — through social media, WhatsApp, and Zoom — without needing a physical shop or office.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">3</div>
+        <div class=\"step-body\">
+          <h3>Products People Actually Use</h3>
+          <p>DXN\'s Ganoderma coffee and supplements are daily-use products with genuine repeat buyers. You are not selling something people buy once and forget.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">4</div>
+        <div class=\"step-body\">
+          <h3>A Global Network</h3>
+          <p>Whether you are based in Dubai or Abu Dhabi, your network is not limited to the UAE. DXN\'s international structure means your business can grow across borders.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">5</div>
+        <div class=\"step-body\">
+          <h3>Training & Community Support</h3>
+          <p>DXN UAE has an active community running regular training sessions, Zoom meetings, and WhatsApp groups to help new members get started.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class=\"section-head\" id=\"registration\">
+      <h2>Step-by-Step Registration</h2>
+    </div>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"steps\">
+      <div class=\"step\">
+        <div class=\"step-num\">1</div>
+        <div class=\"step-body\">
+          <h3>Find a Sponsor</h3>
+          <p>Register under an existing DXN distributor who acts as your sponsor. Your sponsor guides you through the process and supports your growth. If you don\'t have one yet, join our free Zoom meeting.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">2</div>
+        <div class=\"step-body\">
+          <h3>Complete the Registration Form</h3>
+          <p>Fill in the DXN registration form with your personal details — name, Emirates ID or passport number, contact information, and your sponsor\'s DXN ID number.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">3</div>
+        <div class=\"step-body\">
+          <h3>Pay the Registration Fee</h3>
+          <p>The registration fee is minimal and covers your starter membership — giving you access to your DXN back office, distributor pricing, and your unique distributor ID.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">4</div>
+        <div class=\"step-body\">
+          <h3>Receive Your DXN ID</h3>
+          <p>Your personal DXN distributor ID is your business identity within the system. Use it to place orders, track your points, and register new members under you.</p>
+        </div>
+      </div>
+      <div class=\"step\">
+        <div class=\"step-num\">5</div>
+        <div class=\"step-body\">
+          <h3>Order Your First Products</h3>
+          <p>You are not required to purchase large stock upfront. Most distributors start by ordering products for personal use, learning them thoroughly, then sharing genuine experiences with others.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class=\"section-head\" id=\"after\">
+      <h2>What Happens After You Register?</h2>
+    </div>
+
+    <p>Registration is just the beginning. Once you join, you will get access to the DXN online portal where you can track your points, commissions, and team growth. Your sponsor will introduce you to training resources and community groups.</p>
+
+    <p>Most new distributors begin with DXN\'s Ganoderma coffee range — it is the easiest to introduce to friends and family. From there, many start sharing content on social media, attending weekly Zoom meetings to bring guests, and gradually building a small team of their own.</p>
+
+    <p>The income grows as your network grows — there is no ceiling, but there is also no shortcut. Consistent effort over time is what builds real results.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"faq\">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class=\"faq\">
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Is DXN halal?</p>
+        <p class=\"faq-a\">Yes. DXN products are halal certified, making them suitable for Muslim consumers across the UAE and the wider MENA region.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Do I need to quit my job to join?</p>
+        <p class=\"faq-a\">Absolutely not. Most DXN distributors in the UAE run their business part-time alongside full-time employment. The flexibility is one of the main reasons people choose DXN.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">How much can I earn?</p>
+        <p class=\"faq-a\">Income varies depending on your activity level, team size, and how consistently you promote products and support new members. DXN rewards people who show up consistently over months and years.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">Is DXN legal in the UAE?</p>
+        <p class=\"faq-a\">Yes. DXN operates fully within UAE regulations and has an established local presence.</p>
+      </div>
+      <div class=\"faq-item\">
+        <p class=\"faq-q\">What if I have no sales experience?</p>
+        <p class=\"faq-a\">No experience is needed. DXN provides training, and your sponsor is there to guide you. Many successful distributors started with zero sales background.</p>
+      </div>
+    </div>
+
+    <div class=\"cta-banner\">
+      <h3>Join Our Free Weekly Zoom Meeting</h3>
+      <p>Every week we host a free session in Arabic and English — covering products, the business opportunity, and the registration process. Attend, ask anything, leave with no obligation.</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-gold\">Register via WhatsApp</a>
+    </div>
+
+  </article>
+
+  <aside class=\"sidebar\">
+
+    <div class=\"sidebar-card\">
+      <h4>In This Article</h4>
+      <ul class=\"toc\">
+        <li><a href=\"#what-is-dxn\">What is DXN?</a></li>
+        <li><a href=\"#why-uae\">Why Join in the UAE?</a></li>
+        <li><a href=\"#registration\">Step-by-Step Registration</a></li>
+        <li><a href=\"#after\">After Registration</a></li>
+        <li><a href=\"#faq\">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class=\"zoom-card\">
+      <div class=\"icon\">📹</div>
+      <h4>Free Zoom Training</h4>
+      <p>Every week · Arabic & English · No obligation</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-sage\">Get the Link</a>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>DXN Quick Facts</h4>
+      <ul class=\"fact-list\">
+        <li>Founded 1993, Malaysia</li>
+        <li>180+ countries worldwide</li>
+        <li>10 million+ distributors</li>
+        <li>Halal certified products</li>
+        <li>Own Ganoderma farms</li>
+        <li>Low startup cost</li>
+        <li>Legal in the UAE</li>
+      </ul>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>Start With These Products</h4>
+      <ul class=\"fact-list\">
+        <li>RG/GL Ganoderma capsules</li>
+        <li>Lingzhi Black Coffee</li>
+        <li>Morinzhi juice</li>
+        <li>Ganozhi toothpaste</li>
+        <li>Spirulina cereal</li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+</body>
+</html>',`content_ar`='<!DOCTYPE html>
+<html lang=\"ar\" dir=\"rtl\">
+<head>
+<meta charset=\"UTF-8\">
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>كيف تصبح موزع DXN في الإمارات | Freedom with DXN</title>
+<meta name=\"description\" content=\"دليل شامل خطوة بخطوة لتصبح موزع DXN في الإمارات. تكلفة بدء منخفضة، عمل مرن، وعلامة تجارية عالمية للصحة والعافية بتاريخ يتجاوز 30 عامًا.\">
+<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap\" rel=\"stylesheet\">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: \'DM Sans\', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  .hero {
+    position: relative;
+    height: 92vh;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: saturate(1.1);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(34px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: \'·\'; margin-left: 20px; }
+  .hero-meta span:first-child::before { content: \'\'; margin-left: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 60px;
+  }
+
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-right: 4px solid var(--gold);
+    padding-right: 20px;
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p { margin-bottom: 22px; color: #3a3a3a; }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: \'Playfair Display\', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .section-head::after { content: \'\'; flex: 1; height: 1px; background: var(--border); }
+
+  .blog-img-block {
+    margin: 36px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .blog-img-block img { width: 100%; display: block; max-height: 400px; object-fit: cover; }
+
+  .steps { counter-reset: step; margin: 28px 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    align-items: start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    width: 48px; height: 48px;
+    background: var(--forest);
+    color: #ffffff;
+    font-family: \'Playfair Display\', serif;
+    font-size: 20px; font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-body h3 { font-family: \'Playfair Display\', serif; font-size: 18px; font-weight: 700; color: var(--forest); margin-bottom: 6px; }
+  .step-body p { margin-bottom: 0; color: #4a4a4a; }
+
+  .faq { margin: 8px 0; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: \'Playfair Display\', serif;
+    font-size: 17px; font-weight: 700; color: var(--forest);
+    margin-bottom: 8px; display: flex; gap: 10px;
+  }
+
+  .faq-q::before {
+    content: \'س\'; background: var(--gold); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 2px 7px;
+    border-radius: 3px; flex-shrink: 0; margin-top: 3px; height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-right: 32px; margin-bottom: 0; }
+
+  .cta-banner {
+    background: var(--forest); border-radius: 10px;
+    padding: 48px 40px; text-align: center;
+    margin-top: 56px; position: relative; overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: \'\'; position: absolute; top: -60px; left: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 { font-family: \'Playfair Display\', serif; font-size: 26px; color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block; background: var(--gold); color: #fff;
+    padding: 15px 36px; border-radius: 4px; text-decoration: none;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(191,60,54,0.4); }
+
+  .sidebar-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 28px 24px; margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: \'Playfair Display\', serif; font-size: 16px; font-weight: 700;
+    color: var(--forest); margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+  .toc li { padding: 8px 0; border-bottom: 1px solid #f0ebe3; font-size: 14px; }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { color: var(--emerald); text-decoration: none; display: flex; gap: 8px; align-items: start; }
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: \'\\2190\'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+  .fact-list li { font-size: 14px; color: #4a4a4a; padding: 7px 0; border-bottom: 1px solid #f0ebe3; display: flex; gap: 10px; align-items: center; }
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: \'\\2713\'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest); color: #fff; border-radius: 8px;
+    padding: 28px 24px; text-align: center; margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+  .zoom-card h4 { font-family: \'Playfair Display\', serif; font-size: 17px; margin-bottom: 8px; }
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block; background: var(--sage); color: #fff;
+    padding: 11px 24px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  .footer-strip {
+    background: var(--forest); text-align: center; padding: 20px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+  }
+
+  .footer-strip a { color: var(--emerald); text-decoration: none; }
+
+  .sidebar { order: -1; }
+
+  /* Tablet */
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
+    .sidebar { order: 1; }
+    .hero { height: 65vh; min-height: 400px; }
+    .hero-content { padding-bottom: 48px; }
+    .hero-title { font-size: clamp(30px, 5vw, 52px); }
+    .cta-banner { padding: 36px 28px; }
+    .cta-banner h3 { font-size: 22px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 540px) {
+    body { font-size: 15px; line-height: 1.7; }
+    .hero { height: 55vh; min-height: 340px; }
+    .hero-content { padding: 0 20px 36px; }
+    .hero-title { font-size: 28px; margin-bottom: 14px; }
+    .hero-tag { font-size: 10px; padding: 5px 12px; margin-bottom: 16px; }
+    .hero-meta { font-size: 12px; gap: 12px; }
+    .hero-meta span::before { margin-left: 12px; }
+    .page-wrap { padding: 0 16px; padding-top: 40px; padding-bottom: 40px; gap: 32px; }
+    .article-intro { font-size: 16px; padding-right: 14px; margin-bottom: 28px; }
+    .section-head { margin: 36px 0 14px; }
+    .section-head h2 { font-size: 20px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; margin-bottom: 20px; }
+    .step-num { width: 40px; height: 40px; font-size: 17px; }
+    .step-body h3 { font-size: 16px; }
+    .step-body p { font-size: 14px; }
+    .faq-q { font-size: 15px; }
+    .faq-a { font-size: 14px; padding-right: 24px; }
+    .cta-banner { padding: 28px 20px; margin-top: 36px; }
+    .cta-banner h3 { font-size: 20px; }
+    .cta-banner p { font-size: 13px; margin-bottom: 20px; }
+    .btn-gold { padding: 12px 28px; font-size: 14px; }
+    .sidebar-card { padding: 20px 16px; }
+    .sidebar-card h4 { font-size: 15px; }
+    .zoom-card { padding: 20px 16px; }
+    .zoom-card h4 { font-size: 15px; }
+    .blog-img-block { margin: 24px 0; }
+    .blog-img-block img { max-height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<header class=\"hero\">
+  <div class=\"hero-placeholder\">
+    <div class=\"hero-placeholder-text\">
+      HERO IMAGE GOES HERE
+    </div>
+  </div>
+  <div class=\"hero-overlay\"></div>
+  <div class=\"hero-content\">
+    <div class=\"hero-tag\">دليل الأعمال · الإمارات</div>
+    <h1 class=\"hero-title\">كيف تصبح<br><em>موزع DXN</em><br>في الإمارات</h1>
+    <div class=\"hero-meta\">
+      <span>Freedom with DXN</span>
+      <span>١٠ دقائق قراءة</span>
+    </div>
+  </div>
+</header>
+
+<main class=\"page-wrap\">
+
+  <article class=\"article\">
+
+    <p class=\"article-intro\">
+      إذا كنت تبحث عن طريقة مرنة لكسب دخل إضافي في الإمارات مع الترويج لمنتجات تؤمن بها حقًا — فهذا الدليل سيرشدك إلى كل ما تحتاج معرفته. بوضوح وصدق وبدون مبالغة.
+    </p>
+
+    <div class=\"section-head\" id=\"what-is-dxn\"><h2>ما هي DXN؟</h2></div>
+
+    <p>DXN هي شركة ماليزية عالمية للصحة والعافية تأسست عام 1993 على يد الدكتور ليم سيو جين، خريج المعهد الهندي المرموق للتكنولوجيا. تتخصص الشركة في المنتجات القائمة على فطر الغانوديرما — بما في ذلك القهوة والشاي والمكملات الغذائية ومنتجات العناية الشخصية — وجميعها مصنعة في مرافق DXN المعتمدة.</p>
+
+    <p>ما يميز DXN عن العديد من العلامات التجارية الأخرى هو هيكلها التسويقي أحادي المستوى ورقابتها الصارمة على الجودة. تعمل DXN في <strong>أكثر من 180 دولة</strong>، ولديها أكثر من <strong>10 ملايين موزع مسجل</strong> حول العالم، وتمتلك مزارع غانوديرما خاصة بها — مما يضمن الجودة من التربة إلى الرف.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"why-uae\"><h2>لماذا تنضم إلى DXN في الإمارات؟</h2></div>
+
+    <p>الإمارات واحدة من أكثر الأسواق ريادية في العالم. الناس هنا يبحثون دائمًا عن طرق مشروعة لبناء دخل إضافي، وDXN تتناسب بشكل طبيعي مع هذه العقلية.</p>
+
+    <div class=\"steps\">
+      <div class=\"step\"><div class=\"step-num\">١</div><div class=\"step-body\"><h3>تكلفة بدء منخفضة</h3><p>الانضمام إلى DXN يتطلب رسوم تسجيل بسيطة لمرة واحدة دون الحاجة لشراء مخزون كبير مقدمًا.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٢</div><div class=\"step-body\"><h3>اعمل من أي مكان</h3><p>ابنِ عملك مع DXN بالكامل عبر الإنترنت — من خلال وسائل التواصل الاجتماعي والواتساب وزووم — دون الحاجة لمتجر أو مكتب.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٣</div><div class=\"step-body\"><h3>منتجات يستخدمها الناس فعلًا</h3><p>قهوة الغانوديرما والمكملات من DXN هي منتجات استخدام يومي مع مشترين متكررين حقيقيين. أنت لا تبيع شيئًا يشتريه الناس مرة وينسونه.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٤</div><div class=\"step-body\"><h3>شبكة عالمية</h3><p>سواء كنت في دبي أو أبوظبي، شبكتك لا تقتصر على الإمارات. الهيكل الدولي لـ DXN يعني أن عملك يمكن أن ينمو عبر الحدود.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٥</div><div class=\"step-body\"><h3>التدريب ودعم المجتمع</h3><p>مجتمع DXN في الإمارات نشط ويقدم جلسات تدريبية منتظمة واجتماعات زووم ومجموعات واتساب لمساعدة الأعضاء الجدد على البدء.</p></div></div>
+    </div>
+
+    <div class=\"section-head\" id=\"registration\"><h2>خطوات التسجيل</h2></div>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"steps\">
+      <div class=\"step\"><div class=\"step-num\">١</div><div class=\"step-body\"><h3>ابحث عن راعٍ</h3><p>سجّل تحت موزع DXN حالي يكون راعيك. راعيك يرشدك خلال العملية ويدعم نموك. إذا لم يكن لديك راعٍ بعد، انضم إلى اجتماع زووم المجاني.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٢</div><div class=\"step-body\"><h3>أكمل نموذج التسجيل</h3><p>املأ نموذج تسجيل DXN ببياناتك الشخصية — الاسم، رقم الهوية الإماراتية أو جواز السفر، معلومات الاتصال، ورقم معرّف DXN الخاص براعيك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٣</div><div class=\"step-body\"><h3>ادفع رسوم التسجيل</h3><p>رسوم التسجيل بسيطة وتغطي عضويتك الأولية — مما يمنحك الوصول إلى مكتب DXN الإلكتروني وأسعار الموزعين ومعرّف الموزع الخاص بك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٤</div><div class=\"step-body\"><h3>استلم معرّف DXN الخاص بك</h3><p>معرّف موزع DXN الشخصي هو هويتك التجارية داخل النظام. استخدمه لتقديم الطلبات وتتبع نقاطك وتسجيل أعضاء جدد تحتك.</p></div></div>
+      <div class=\"step\"><div class=\"step-num\">٥</div><div class=\"step-body\"><h3>اطلب منتجاتك الأولى</h3><p>لا يُطلب منك شراء مخزون كبير مقدمًا. معظم الموزعين يبدأون بطلب منتجات للاستخدام الشخصي، ويتعلمونها جيدًا، ثم يشاركون تجاربهم الحقيقية مع الآخرين.</p></div></div>
+    </div>
+
+    <div class=\"section-head\" id=\"after\"><h2>ماذا يحدث بعد التسجيل؟</h2></div>
+
+    <p>التسجيل هو مجرد البداية. بمجرد انضمامك، ستحصل على وصول إلى بوابة DXN الإلكترونية حيث يمكنك تتبع نقاطك وعمولاتك ونمو فريقك. سيعرّفك راعيك على موارد التدريب ومجموعات المجتمع.</p>
+
+    <p>يبدأ معظم الموزعين الجدد بمجموعة قهوة الغانوديرما من DXN — فهي الأسهل للتعريف بها للأصدقاء والعائلة. من هناك، يبدأ الكثيرون بمشاركة المحتوى على وسائل التواصل الاجتماعي، وحضور اجتماعات زووم الأسبوعية لجلب ضيوف، وبناء فريق صغير تدريجيًا.</p>
+
+    <p>الدخل ينمو مع نمو شبكتك — لا يوجد سقف، ولكن لا يوجد اختصار أيضًا. الجهد المستمر مع الوقت هو ما يبني نتائج حقيقية.</p>
+
+    <div class=\"img-placeholder\"></div>
+
+    <div class=\"section-head\" id=\"faq\"><h2>الأسئلة الشائعة</h2></div>
+
+    <div class=\"faq\">
+      <div class=\"faq-item\"><p class=\"faq-q\">هل منتجات DXN حلال؟</p><p class=\"faq-a\">نعم. منتجات DXN حاصلة على شهادة حلال، مما يجعلها مناسبة للمستهلكين المسلمين في الإمارات ومنطقة الشرق الأوسط وشمال أفريقيا.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">هل أحتاج لترك وظيفتي للانضمام؟</p><p class=\"faq-a\">بالتأكيد لا. معظم موزعي DXN في الإمارات يديرون أعمالهم بدوام جزئي إلى جانب عملهم بدوام كامل. المرونة هي أحد الأسباب الرئيسية لاختيار الناس لـ DXN.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">كم يمكنني أن أكسب؟</p><p class=\"faq-a\">يختلف الدخل حسب مستوى نشاطك وحجم فريقك ومدى استمرارك في الترويج للمنتجات ودعم الأعضاء الجدد. DXN تكافئ من يلتزم باستمرار على مدى أشهر وسنوات.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">هل DXN قانونية في الإمارات؟</p><p class=\"faq-a\">نعم. تعمل DXN بالكامل ضمن اللوائح الإماراتية ولديها حضور محلي راسخ.</p></div>
+      <div class=\"faq-item\"><p class=\"faq-q\">ماذا لو لم يكن لدي خبرة في المبيعات؟</p><p class=\"faq-a\">لا تحتاج لأي خبرة. توفر DXN التدريب، وراعيك موجود لإرشادك. العديد من الموزعين الناجحين بدأوا بدون أي خلفية في المبيعات.</p></div>
+    </div>
+
+    <div class=\"cta-banner\">
+      <h3>انضم إلى اجتماع زووم الأسبوعي المجاني</h3>
+      <p>كل أسبوع نستضيف جلسة مجانية بالعربية والإنجليزية — تغطي المنتجات وفرصة العمل وعملية التسجيل. احضر، اسأل أي شيء، وغادر بدون أي التزام.</p>
+      <a href=\"https://wa.me/message/EFSQ2IDNVG3YB1\" class=\"btn-gold\">سجّل عبر واتساب</a>
+    </div>
+
+  </article>
+
+  <aside class=\"sidebar\">
+    <div class=\"sidebar-card\">
+      <h4>في هذا المقال</h4>
+      <ul class=\"toc\">
+        <li><a href=\"#what-is-dxn\">ما هي DXN؟</a></li>
+        <li><a href=\"#why-uae\">لماذا الانضمام في الإمارات؟</a></li>
+        <li><a href=\"#registration\">خطوات التسجيل</a></li>
+        <li><a href=\"#after\">بعد التسجيل</a></li>
+        <li><a href=\"#faq\">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+
+    <div class=\"zoom-card\">
+      <div class=\"icon\">📹</div>
+      <h4>تدريب زووم مجاني</h4>
+      <p>كل أسبوع · عربي وإنجليزي · بدون التزام</p>
+      <a href=\"https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn-sage\">احصل على الرابط</a>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>حقائق سريعة عن DXN</h4>
+      <ul class=\"fact-list\">
+        <li>تأسست عام 1993، ماليزيا</li>
+        <li>أكثر من 180 دولة حول العالم</li>
+        <li>أكثر من 10 ملايين موزع</li>
+        <li>منتجات حاصلة على شهادة حلال</li>
+        <li>مزارع غانوديرما خاصة</li>
+        <li>تكلفة بدء منخفضة</li>
+        <li>قانونية في الإمارات</li>
+      </ul>
+    </div>
+
+    <div class=\"sidebar-card\">
+      <h4>ابدأ بهذه المنتجات</h4>
+      <ul class=\"fact-list\">
+        <li>كبسولات RG/GL غانوديرما</li>
+        <li>قهوة ليندزهي السوداء</li>
+        <li>عصير مورينزهي</li>
+        <li>معجون أسنان غانوزهي</li>
+        <li>حبوب سبيرولينا</li>
+      </ul>
+    </div>
+  </aside>
+
+</main>
+
+</body>
+</html>',`content_type`='full_html',`excerpt`='A complete step-by-step guide to becoming a DXN distributor  in the UAE — low startup cost, flexible work, and a global  wellness brand with 30+ years of history.',`image`='/images/blog/1/1774733701_431380.png',`sub_image`='/images/blog/1/1774733735_Whisk_e14ddc5392010418aaf499b4e368ab02dr.jpeg',`category`='business',`author`='Grow with DXN',`tags`=NULL,`published`='1',`views`='121',`created_at`='2026-03-28 21:20:12',`updated_at`='2026-03-29 20:44:15';
+
