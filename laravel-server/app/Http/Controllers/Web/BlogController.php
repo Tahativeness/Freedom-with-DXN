@@ -175,7 +175,9 @@ class BlogController extends Controller
         .hero { height: 1000px !important; min-height: 0 !important; max-height: 1000px !important; display: flex !important; align-items: flex-end !important; overflow: hidden !important; }
         .hero-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
         .hero-placeholder { display: none !important; }
-            .sidebar .zoom-card { display: none !important; }
+        .sidebar .zoom-card { display: none !important; }
+        .bottom-cards { display: none; }
+        @media (max-width: 860px) { .bottom-cards { display: block; } }
         .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to right, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
         .hero-content { position: relative !important; z-index: 2 !important; margin-left: auto !important; margin-right: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; max-width: 600px !important; }
         .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
@@ -254,20 +256,40 @@ class BlogController extends Controller
             $html = substr($html, 0, $pos) . $replacement . substr($html, $end);
         }
 
-        // Inject mobile JS to move sidebar cards after intro
+        // Inject products card BEFORE CTA banner via PHP
+        $productsCard = '
+        <div class="bottom-cards">
+            <div class="sidebar-card">
+                <h4>Start With These Products</h4>
+                <ul class="fact-list">
+                    <li>RG/GL Ganoderma capsules</li>
+                    <li>Lingzhi Black Coffee</li>
+                    <li>Morinzhi juice</li>
+                    <li>Ganozhi toothpaste</li>
+                    <li>Spirulina cereal</li>
+                </ul>
+            </div>
+        </div>';
+
+        // Insert BEFORE CTA banner
+        $ctaPos = strpos($html, 'class="cta-banner"');
+        if ($ctaPos !== false) {
+            $divStart = strrpos(substr($html, 0, $ctaPos), '<div');
+            if ($divStart !== false) {
+                $html = substr($html, 0, $divStart) . $productsCard . substr($html, $divStart);
+            }
+        }
+
+        // Inject mobile JS to move TOC after intro
         $mobileJS = '
         <script>
         document.addEventListener("DOMContentLoaded",function(){
             if(window.innerWidth>860)return;
             var intro=document.querySelector(".article-intro");
             var sidebar=document.querySelector(".sidebar");
-            var article=document.querySelector(".article");
-            if(!intro||!sidebar||!article)return;
-            var ch=Array.from(sidebar.children);
-            var toc=ch[0],zoom=ch[1],products=ch[3];
+            if(!intro||!sidebar)return;
+            var toc=sidebar.children[0];
             if(toc){toc.classList.add("mobile-inserted");intro.after(toc);}
-            if(products){products.classList.add("mobile-inserted");article.appendChild(products);}
-            if(zoom){zoom.classList.add("mobile-inserted");zoom.style.display="block";article.appendChild(zoom);}
             sidebar.style.display="none";
         });
         </script>';
