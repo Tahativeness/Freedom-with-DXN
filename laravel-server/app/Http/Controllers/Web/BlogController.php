@@ -139,22 +139,12 @@ class BlogController extends Controller
                 </div>
             </div>';
 
-            // Insert AFTER CTA banner (find closing </div> of cta-banner)
+            // Insert BEFORE CTA banner
             $ctaPos = strpos($html, 'class="cta-banner"');
             if ($ctaPos !== false) {
-                // Find the opening <div of cta-banner
                 $divStart = strrpos(substr($html, 0, $ctaPos), '<div');
                 if ($divStart !== false) {
-                    // Count divs to find matching close
-                    $depth = 0;
-                    $end = false;
-                    for ($i = $divStart; $i < strlen($html) - 5; $i++) {
-                        if (substr($html, $i, 4) === '<div') $depth++;
-                        if (substr($html, $i, 6) === '</div>') { $depth--; if ($depth === 0) { $end = $i + 6; break; } }
-                    }
-                    if ($end) {
-                        $html = substr($html, 0, $end) . $productsCard . substr($html, $end);
-                    }
+                    $html = substr($html, 0, $divStart) . $productsCard . substr($html, $divStart);
                 }
             }
 

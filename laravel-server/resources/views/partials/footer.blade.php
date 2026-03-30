@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div class="border-t py-4 text-center text-sm" style="border-color: rgba(69,42,168,0.1); background-color: #f9f9f9; color: #452aa8;">
+    <div class="border-t py-4 text-center text-sm px-4" style="border-color: rgba(69,42,168,0.1); background-color: #f9f9f9; color: #452aa8;">
         <p>&copy; {{ date('Y') }} {{ $lang === 'ar' ? 'Freedom with DXN. جميع الحقوق محفوظة.' : ($footer['copyright'] ?? 'Freedom with DXN. All rights reserved.') }}</p>
         <p class="text-xs mt-1" style="color: rgba(69,42,168,0.7);">{{ $lang === 'ar' ? 'موزع DXN مستقل. DXN علامة تجارية مسجلة لشركة DXN Holdings Berhad.' : 'Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.' }}</p>
     </div>
