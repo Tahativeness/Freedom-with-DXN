@@ -382,7 +382,7 @@
                                 <p class="font-semibold text-gray-800 text-sm">{{ $qa['q'] }}</p>
                             </div>
                             <div class="flex items-start gap-3 ml-0 md:ml-1">
-                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #297a4d;">A</span>
+                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #236b43;">A</span>
                                 <div>
                                     <p class="text-gray-600 text-sm leading-relaxed">{{ $qa['a'] }}</p>
                                     <div class="flex items-center gap-3 mt-2 text-xs text-gray-400">
@@ -474,7 +474,7 @@
                                     {{-- Date + Verified --}}
                                     <div class="flex items-center gap-3 mb-3 text-xs text-gray-400">
                                         <span>{{ $lang === 'ar' ? 'تمت المراجعة في' : 'Reviewed on' }} {{ \Carbon\Carbon::parse($review->created_at)->format('F j, Y') }}</span>
-                                        <span class="inline-flex items-center gap-1 text-white font-medium px-3 py-1 rounded-full" style="background-color: #297a4d;">
+                                        <span class="inline-flex items-center gap-1 text-white font-medium px-3 py-1 rounded-full" style="background-color: #236b43;">
                                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                                             {{ $lang === 'ar' ? 'عملية شراء موثقة' : 'Verified Purchase' }}
                                         </span>

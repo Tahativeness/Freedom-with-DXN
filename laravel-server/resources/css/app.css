@@ -19,7 +19,7 @@
     --color-gold-600: #dcca8b;
 
     /* New brand colors */
-    --color-brand-green: #297a4d;
+    --color-brand-green: #236b43;
     --color-brand-green-light: #43af73;
     --color-brand-green-dark: #276e47;
     --color-brand-red: #bf3c36;
@@ -30,7 +30,7 @@
     --color-brand-violet-dark: #3a2290;
 
     /* Legacy aliases pointing to new colors */
-    --color-dxn-green: #297a4d;
+    --color-dxn-green: #236b43;
     --color-dxn-darkgreen: #452aa8;
     --color-dxn-gold: #43af73;
     --color-dxn-lightgold: #5bc48a;
@@ -39,7 +39,7 @@
 }
 
 :root {
-    --brand-green: #297a4d;
+    --brand-green: #236b43;
     --brand-green-light: #43af73;
     --brand-green-dark: #276e47;
     --brand-red: #bf3c36;
@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hover utility classes (replaces inline onmouseenter/onmouseleave) */
-.hover-green { background-color: #297a4d; transition: background-color 0.2s; }
+.hover-green { background-color: #236b43; transition: background-color 0.2s; }
 .hover-green:hover { background-color: #276e47; }
 
 .hover-red { background-color: #bf3c36; transition: background-color 0.2s; }
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 .hover-violet:hover { background-color: #4a2db5; }
 
 .footer-social { color: #452aa8; transition: color 0.2s; }
-.footer-social:hover { color: #297a4d; }
+.footer-social:hover { color: #236b43; }
 
 .footer-link { color: #452aa8; font-weight: 600; transition: color 0.2s; }
 .footer-link:hover { color: #1e6b42; }

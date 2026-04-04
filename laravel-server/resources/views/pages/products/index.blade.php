@@ -51,7 +51,7 @@
             @foreach($categories as $cat)
                 <a href="{{ route('products', array_merge(request()->query(), ['category' => $cat, 'page' => 1])) }}"
                    class="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ $currentCategory === $cat ? 'text-white shadow-md' : 'text-brand-violet border border-gray-200 hover:bg-[#e8f5ee]' }}"
-                   style="{{ $currentCategory === $cat ? 'background-color: #297a4d;' : '' }}">
+                   style="{{ $currentCategory === $cat ? 'background-color: #236b43;' : '' }}">
                     <span>{{ $catIcons[$cat] ?? '📦' }}</span>
                     {{ $lang === 'ar' ? ($catLabelsAr[$cat] ?? $cat) : ($catLabels[$cat] ?? ucfirst($cat)) }}
                 </a>
@@ -152,7 +152,7 @@
                 <div class="text-6xl mb-4">🔍</div>
                 <p class="text-xl font-bold" style="color: #452aa8;">{{ $lang === 'ar' ? 'لم يتم العثور على منتجات' : 'No products found' }}</p>
                 <p class="text-gray-600 text-sm mt-2">{{ $lang === 'ar' ? 'جرب فئة أو كلمة بحث مختلفة' : 'Try a different category or search term' }}</p>
-                <a href="{{ route('products') }}" class="mt-5 inline-block text-white px-6 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #297a4d;">
+                <a href="{{ route('products') }}" class="mt-5 inline-block text-white px-6 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #236b43;">
                     {{ $lang === 'ar' ? 'عرض جميع المنتجات' : 'View All Products' }}
                 </a>
             </div>
@@ -179,7 +179,7 @@
     nav[role="navigation"] .flex.justify-between { display: none; }
     nav[role="navigation"] .hidden.sm\\:flex-1 { display: flex !important; align-items: center; }
     nav[role="navigation"] span[aria-current="page"] span {
-        background-color: #297a4d !important; color: white !important;
+        background-color: #236b43 !important; color: white !important;
         border-radius: 0.5rem; padding: 0.4rem 0.85rem; font-weight: 700;
     }
     nav[role="navigation"] a {

@@ -70,7 +70,7 @@
                 </div>
             @endif
 
-            <span class="text-xl font-bold" style="color: #297a4d;">{{ $displayPrice }}</span>
+            <span class="text-xl font-bold" style="color: #236b43;">{{ $displayPrice }}</span>
         </div>
     </a>
 

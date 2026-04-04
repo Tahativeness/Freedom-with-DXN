@@ -136,7 +136,7 @@
                 ['value' => '1000+', 'label' => $lang === 'ar' ? 'منتج' : 'Products'],
             ] as $stat)
                 <div class="text-center p-6 rounded-2xl" style="background: rgba(191,60,54,0.08);">
-                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2" style="color: #297a4d;">{{ $stat['value'] }}</div>
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2" style="color: #236b43;">{{ $stat['value'] }}</div>
                     <div class="text-sm font-semibold uppercase tracking-wide" style="color: #452aa8;">{{ $stat['label'] }}</div>
                 </div>
             @endforeach
