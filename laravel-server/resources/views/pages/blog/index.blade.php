@@ -59,7 +59,7 @@
         </div>
         <div class="mt-10">{{ $posts->links() }}</div>
     @else
-        <div class="text-center py-20 text-gray-500">
+        <div class="text-center py-20 text-gray-600">
             <p class="text-xl">No articles found in this category</p>
         </div>
     @endif

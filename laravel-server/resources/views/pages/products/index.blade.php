@@ -73,7 +73,7 @@
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
             </h1>
             <div class="w-16 h-1 mx-auto mt-2 rounded-full" style="background: linear-gradient(90deg, #43af73, #5bc48a);"></div>
-            <p class="text-gray-500 text-sm mt-2">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
+            <p class="text-gray-600 text-sm mt-2">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
         </div>
 
         {{-- SEO Collection Descriptions --}}
@@ -151,7 +151,7 @@
             <div class="text-center py-24">
                 <div class="text-6xl mb-4">🔍</div>
                 <p class="text-xl font-bold" style="color: #452aa8;">{{ $lang === 'ar' ? 'لم يتم العثور على منتجات' : 'No products found' }}</p>
-                <p class="text-gray-500 text-sm mt-2">{{ $lang === 'ar' ? 'جرب فئة أو كلمة بحث مختلفة' : 'Try a different category or search term' }}</p>
+                <p class="text-gray-600 text-sm mt-2">{{ $lang === 'ar' ? 'جرب فئة أو كلمة بحث مختلفة' : 'Try a different category or search term' }}</p>
                 <a href="{{ route('products') }}" class="mt-5 inline-block text-white px-6 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #43af73;">
                     {{ $lang === 'ar' ? 'عرض جميع المنتجات' : 'View All Products' }}
                 </a>

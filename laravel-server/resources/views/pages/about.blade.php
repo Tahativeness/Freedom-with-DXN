@@ -106,7 +106,7 @@
     <div class="max-w-6xl mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-dxn-darkgreen">{{ $lang === 'ar' ? 'ما الذي يميزنا' : 'What Sets Us Apart' }}</h2>
-            <p class="text-gray-500 mt-2">{{ $lang === 'ar' ? 'نؤمن بالصحة والثروة والحرية للجميع.' : 'We believe in health, wealth, and freedom for everyone.' }}</p>
+            <p class="text-gray-600 mt-2">{{ $lang === 'ar' ? 'نؤمن بالصحة والثروة والحرية للجميع.' : 'We believe in health, wealth, and freedom for everyone.' }}</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($values as $v)

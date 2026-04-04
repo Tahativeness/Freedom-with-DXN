@@ -88,7 +88,7 @@
             @foreach($incomeLevels as $level)
                 <div class="border-2 rounded-xl p-5 {{ $level['c'] }}">
                     <h3 class="font-bold text-dxn-darkgreen text-lg mb-1">{{ $level['rank'] }}</h3>
-                    <p class="text-sm text-gray-500 mb-2">{{ $level['req'] }}</p>
+                    <p class="text-sm text-gray-600 mb-2">{{ $level['req'] }}</p>
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16392d" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                         <span class="text-dxn-green font-semibold">{{ $level['bonus'] }}</span>

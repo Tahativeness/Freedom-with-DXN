@@ -10,7 +10,7 @@
     @if(count($items) === 0)
         <div class="text-center py-20">
             <div class="text-5xl mb-4">🛒</div>
-            <p class="text-xl text-gray-500 mb-4">{{ $lang === 'ar' ? 'سلتك فارغة' : 'Your cart is empty' }}</p>
+            <p class="text-xl text-gray-600 mb-4">{{ $lang === 'ar' ? 'سلتك فارغة' : 'Your cart is empty' }}</p>
             <a href="{{ route('products') }}" class="btn-primary">{{ $lang === 'ar' ? 'تسوق المنتجات' : 'Shop Products' }}</a>
         </div>
     @else

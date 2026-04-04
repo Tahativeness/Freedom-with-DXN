@@ -4,25 +4,23 @@ DXN product e-commerce website with admin panel, blog, and distributor network f
 
 ## Tech Stack
 
-- **Frontend:** React (Vite) with Tailwind CSS — `client/`
-- **Backend (active):** Node.js / Express / MongoDB — `server/`
-- **Backend (WIP):** Laravel / MySQL migration in progress — `laravel-server/`
-- **Auth:** JWT (stateless) — bcryptjs for password hashing
-- **Database:** MongoDB Atlas in production
+- **Backend (active):** Laravel / PHP / MySQL — `laravel-server/`
+- **Frontend:** Blade templates with Tailwind CSS (served by Laravel)
+- **Auth:** Laravel built-in auth with JWT
+- **Database:** MySQL on cPanel
+- **Legacy (not used):** `client/` (React) and `server/` (Node.js/Express) — kept for reference only
 
 ## Project Structure
 
 ```
-client/               # React frontend (Vite)
-  src/pages/          # Route pages (Home, Products, AdminPanel, Blog, etc.)
-  src/components/     # Reusable components (ProductCard, etc.)
-  src/context/        # React contexts (LanguageContext for EN/AR)
-server/               # Node.js backend
-  routes/             # auth, products, orders, blog, distributors, siteSettings
-  models/             # Mongoose models (User, Product, Order, Blog, etc.)
-  controllers/        # Business logic
-  middleware/          # auth (JWT), admin role check
-laravel-server/       # Laravel backend (migration in progress)
+laravel-server/       # Active Laravel backend + frontend
+  app/                # Models, Controllers, Middleware
+  resources/views/    # Blade templates (layouts, pages, components, partials)
+  routes/web.php      # All web routes
+  routes/api.php      # API routes
+  public/             # Public assets, .htaccess
+server/               # Legacy Node.js backend (not active)
+client/               # Legacy React frontend (not active)
 ```
 
 ## Production
@@ -30,41 +28,48 @@ laravel-server/       # Laravel backend (migration in progress)
 - **URL:** https://freedomwithdxn.com
 - **Hosting:** cPanel (shared hosting)
 - **App path on server:** `/home/freedomw/public_html`
-- **Node env:** cPanel Node.js App (Setup Node.js App in cPanel)
-- **Database:** MongoDB Atlas (connection string in cPanel env vars)
-- **Deploy:** `git pull origin main` in cPanel Terminal, then restart via cPanel Node.js App UI
+- **PHP version:** Managed via cPanel
+- **Database:** MySQL on cPanel
+- **Deploy:**
+  ```bash
+  # In cPanel Terminal:
+  cd ~/public_html && git pull origin main
+  ```
+  PHP/Blade changes take effect immediately after `git pull` — no restart needed.
 
-## API Routes
+## Routes
 
-All API routes are prefixed with `/api/`:
-- `/api/auth` — login, register, fix-admin, create-admin, users
-- `/api/products` — CRUD for products
-- `/api/orders` — order management
-- `/api/blog` — blog posts
-- `/api/distributors` — distributor network
-- `/api/site-settings` — site configuration
+Public routes (defined in `routes/web.php`):
+- `/` — Homepage
+- `/products` — Product catalog
+- `/products/{product}` — Product detail page
+- `/blog` — Blog index
+- `/blog/{blog}` — Blog post
+- `/about` — About DXN
+- `/business` — Business opportunity
+- `/join` — Join DXN team
+- `/contact` — Contact page
+- `/landing/{slug}` — Dynamic landing pages
+- `/admin` — Admin panel (auth required)
 
 ## Key Product Fields
 
-Products have `landingPage` and `landingImage` fields. When `landingPage` is set on a product, clicking the ProductCard links to that landing page URL instead of the default product detail page.
+Products have `landing_image` and `landingPage` fields. When `landingPage` is set on a product, clicking the ProductCard links to that landing page URL instead of the default product detail page.
 
 ## Admin Access
 
 - Admin route: `/admin`
 - Login: `/login`
-- Admin user is created via `GET /api/auth/fix-admin` (temporary route — remove after use)
 
 ## Commands
 
 ```bash
 # Local development
-cd client && npm run dev        # Frontend on :5173
-cd server && node server.js     # Backend on :5000
+cd laravel-server && php artisan serve    # Backend on :8000
 
-# Production deploy
-# In cPanel Terminal:
+# Production deploy (in cPanel Terminal)
 cd ~/public_html && git pull origin main
-# Then restart app via cPanel > Setup Node.js App > Restart
+# No restart needed — PHP changes are instant
 ```
 
 ## Notes
@@ -73,3 +78,4 @@ cd ~/public_html && git pull origin main
 - Product categories: coffee, ganoderma, supplements, skincare, beverages, personal-care, other
 - WhatsApp ordering via `https://wa.me/message/EFSQ2IDNVG3YB1`
 - Landing pages (e.g., `index-ganozhi-lipstick.html`) are standalone HTML pages for specific products
+- SEO: Open Graph, Twitter Cards, canonical URLs, and JSON-LD structured data are implemented in the layout

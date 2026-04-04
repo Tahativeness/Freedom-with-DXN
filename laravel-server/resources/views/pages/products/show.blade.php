@@ -74,14 +74,14 @@
         @if(auth()->user()->role === 'admin')
         <div class="bg-gray-100 border-b">
             <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-sm">
-                <span class="text-gray-500">Admin:</span>
+                <span class="text-gray-600">Admin:</span>
                 @if($lp)
                     <a href="{{ route('admin.landing-pages.edit', $lp) }}" class="text-brand-violet hover:underline font-medium">Edit Landing Page</a>
                 @else
                     <a href="{{ route('admin.landing-pages.create') }}?product_id={{ $product->id }}" class="text-brand-green hover:underline font-medium">+ Create Landing Page</a>
                 @endif
                 <span class="text-gray-300">|</span>
-                <a href="{{ route('admin.products') }}" class="text-gray-500 hover:underline">Edit Product</a>
+                <a href="{{ route('admin.products') }}" class="text-gray-600 hover:underline">Edit Product</a>
             </div>
         </div>
         @endif
@@ -89,7 +89,7 @@
 
     {{-- Breadcrumb --}}
     <div class="max-w-7xl mx-auto px-4 py-3">
-        <nav class="flex items-center gap-2 text-sm text-gray-500">
+        <nav class="flex items-center gap-2 text-sm text-gray-600">
             <a href="{{ route('home') }}" class="hover:text-brand-violet">{{ $lang === 'ar' ? 'الرئيسية' : 'Home' }}</a>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
             <a href="{{ route('products') }}" class="hover:text-brand-violet">{{ $lang === 'ar' ? 'المنتجات' : 'Products' }}</a>
@@ -164,7 +164,7 @@
 
                 {{-- Price --}}
                 <div class="mb-4">
-                    <span class="text-sm text-gray-500">{{ $lang === 'ar' ? 'السعر:' : 'Price:' }}</span>
+                    <span class="text-sm text-gray-600">{{ $lang === 'ar' ? 'السعر:' : 'Price:' }}</span>
                     <span class="text-3xl font-bold ml-2" style="color: #bf3c36;">${{ number_format($product->price, 2) }}</span>
                 </div>
 
@@ -209,7 +209,7 @@
             <div class="lg:col-span-3">
                 <div class="border border-gray-200 rounded-2xl p-5 sticky top-24">
                     <p class="text-2xl font-bold mb-1" style="color: #bf3c36;">${{ number_format($product->price, 2) }}</p>
-                    <p class="text-sm text-gray-500 mb-4">{{ $lang === 'ar' ? 'شامل الضريبة' : 'Tax included' }}</p>
+                    <p class="text-sm text-gray-600 mb-4">{{ $lang === 'ar' ? 'شامل الضريبة' : 'Tax included' }}</p>
 
                     @if($product->in_stock)
                         <p class="text-sm font-medium text-green-600 mb-4">{{ $lang === 'ar' ? '✓ متوفر — جاهز للتوصيل' : '✓ In Stock — Ready to deliver' }}</p>
@@ -386,7 +386,7 @@
                                 <div>
                                     <p class="text-gray-600 text-sm leading-relaxed">{{ $qa['a'] }}</p>
                                     <div class="flex items-center gap-3 mt-2 text-xs text-gray-400">
-                                        <span>{{ $lang === 'ar' ? 'بواسطة' : 'By' }} <span class="font-medium text-gray-500">{{ $qa['by'] ?? 'Freedom with DXN' }}</span></span>
+                                        <span>{{ $lang === 'ar' ? 'بواسطة' : 'By' }} <span class="font-medium text-gray-600">{{ $qa['by'] ?? 'Freedom with DXN' }}</span></span>
                                         <span>·</span>
                                         <span>{{ $qa['votes'] ?? rand(5, 25) }} {{ $lang === 'ar' ? 'شخص وجد هذا مفيداً' : 'people found this helpful' }}</span>
                                     </div>
@@ -420,7 +420,7 @@
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="{{ $i <= round($rating) ? '#f59e0b' : '#e5e7eb' }}" stroke="{{ $i <= round($rating) ? '#f59e0b' : '#e5e7eb' }}" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                 @endfor
                             </div>
-                            <p class="text-sm text-gray-500 mt-1">{{ $reviewCount }} {{ $lang === 'ar' ? 'تقييم عالمي' : 'global ratings' }}</p>
+                            <p class="text-sm text-gray-600 mt-1">{{ $reviewCount }} {{ $lang === 'ar' ? 'تقييم عالمي' : 'global ratings' }}</p>
                         </div>
 
                         {{-- Right: Rating Breakdown Bars --}}
@@ -486,7 +486,7 @@
                                     {{-- Helpful --}}
                                     <div class="flex items-center gap-4 text-xs text-gray-400">
                                         <span>{{ rand(1, 12) }} {{ $lang === 'ar' ? 'شخص وجد هذا مفيداً' : 'people found this helpful' }}</span>
-                                        <button class="text-gray-500 hover:text-gray-700 border border-gray-300 px-3 py-1 rounded-md text-xs hover:bg-gray-50">
+                                        <button class="text-gray-600 hover:text-gray-700 border border-gray-300 px-3 py-1 rounded-md text-xs hover:bg-gray-50">
                                             {{ $lang === 'ar' ? 'مفيد' : 'Helpful' }}
                                         </button>
                                     </div>
@@ -494,7 +494,7 @@
                             @endforeach
                         </div>
                     @else
-                        <p class="text-gray-500 text-center py-8">{{ $lang === 'ar' ? 'لا توجد تقييمات بعد. كن أول من يقيم هذا المنتج!' : 'No reviews yet. Be the first to review this product!' }}</p>
+                        <p class="text-gray-600 text-center py-8">{{ $lang === 'ar' ? 'لا توجد تقييمات بعد. كن أول من يقيم هذا المنتج!' : 'No reviews yet. Be the first to review this product!' }}</p>
                     @endif
                 </div>
         </div>

@@ -40,9 +40,9 @@
 
 @section('content')
 {{-- Hero --}}
-<section class="bg-hero min-h-screen flex items-center relative overflow-hidden">
+<section class="bg-hero flex items-center relative overflow-hidden" style="min-height: 100vh; min-height: 100dvh;">
     {{-- Mobile: static poster image only (no video download) --}}
-    <img src="{{ asset('Video/hero-poster.png') }}" alt="" class="absolute inset-0 w-full h-full object-cover md:hidden" fetchpriority="high">
+    <img src="{{ asset('Video/hero-poster.png') }}" alt="" width="800" height="600" class="absolute inset-0 w-full h-full object-cover md:hidden" style="position:absolute;" fetchpriority="high">
     {{-- Desktop: video with poster --}}
     <video id="heroVideo" autoplay loop muted playsinline preload="metadata" poster="{{ asset('Video/hero-poster.png') }}" class="absolute inset-0 w-full h-full object-cover hidden md:block" style="background: #000;">
         <source src="{{ asset('Video/hero.mp4') }}" type="video/mp4">

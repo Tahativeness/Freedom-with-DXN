@@ -73,7 +73,7 @@
                         <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100">
                             <div class="px-4 py-2 border-b">
                                 <p class="font-semibold text-gray-800 text-sm">{{ auth()->user()->name }}</p>
-                                <p class="text-gray-500 text-xs">{{ auth()->user()->role }}</p>
+                                <p class="text-gray-600 text-xs">{{ auth()->user()->role }}</p>
                             </div>
                             <a href="{{ route('dashboard') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>

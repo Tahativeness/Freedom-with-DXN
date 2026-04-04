@@ -49,7 +49,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-700">{{ $item['label'] }}</p>
-                        <p class="text-sm text-gray-500">{{ $item['value'] }}</p>
+                        <p class="text-sm text-gray-600">{{ $item['value'] }}</p>
                     </div>
                 </div>
             @endforeach
@@ -91,7 +91,7 @@
             <h2 class="text-2xl md:text-3xl font-bold" style="color: #452aa8;">
                 {{ $lang === 'ar' ? 'مكاتب DXN في الإمارات' : 'DXN Offices in UAE' }}
             </h2>
-            <p class="text-gray-500 mt-2">{{ $lang === 'ar' ? '10 فروع في جميع أنحاء الإمارات' : '10 branches across the UAE' }}</p>
+            <p class="text-gray-600 mt-2">{{ $lang === 'ar' ? '10 فروع في جميع أنحاء الإمارات' : '10 branches across the UAE' }}</p>
             <div class="w-16 h-1 mx-auto mt-3 rounded-full" style="background: linear-gradient(90deg, #43af73, #5bc48a);"></div>
         </div>
 

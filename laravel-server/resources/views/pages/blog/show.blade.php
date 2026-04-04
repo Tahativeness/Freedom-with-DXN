@@ -39,7 +39,7 @@
 
     <h1 class="text-3xl md:text-4xl font-bold text-dxn-darkgreen mb-4">{{ $blog->title }}</h1>
 
-    <div class="flex items-center gap-4 text-sm text-gray-500 mb-8">
+    <div class="flex items-center gap-4 text-sm text-gray-600 mb-8">
         <span>{{ $blog->created_at->format('F d, Y') }}</span>
         <span>{{ $blog->views ?? 0 }} views</span>
     </div>
@@ -59,7 +59,7 @@
             @foreach($related as $post)
                 <a href="{{ route('blog.show', $post) }}" class="card p-4 group">
                     <h3 class="font-semibold text-dxn-darkgreen group-hover:text-dxn-green transition-colors">{{ $post->title }}</h3>
-                    <p class="text-gray-500 text-sm mt-2 line-clamp-2">{{ $post->excerpt }}</p>
+                    <p class="text-gray-600 text-sm mt-2 line-clamp-2">{{ $post->excerpt }}</p>
                 </a>
             @endforeach
         </div>
