@@ -41,22 +41,28 @@
 @section('content')
 {{-- Hero --}}
 <section class="bg-hero flex items-center relative overflow-hidden" style="min-height: 100vh; min-height: 100dvh;">
-    {{-- Mobile: static poster image only (no video download) --}}
-    <img src="{{ asset('Video/hero-poster.png') }}" alt="" width="800" height="600" class="absolute inset-0 w-full h-full object-cover md:hidden" style="position:absolute;" fetchpriority="high">
-    {{-- Desktop: video with poster --}}
-    <video id="heroVideo" autoplay loop muted playsinline preload="metadata" poster="{{ asset('Video/hero-poster.png') }}" class="absolute inset-0 w-full h-full object-cover hidden md:block" style="background: #000;">
-        <source src="{{ asset('Video/hero.mp4') }}" type="video/mp4">
+    {{-- Poster shown instantly for fast LCP --}}
+    <img id="heroPoster" src="{{ asset('Video/hero-poster.png') }}" alt="" width="800" height="600" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+    {{-- Video loads lazily after page load, replaces poster --}}
+    <video id="heroVideo" loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover" style="opacity:0; transition: opacity 0.5s;">
     </video>
     <script>
-        (function() {
+        window.addEventListener('load', function() {
             var v = document.getElementById('heroVideo');
-            if (v && window.innerWidth >= 768) {
-                v.play().catch(function() {});
-                document.addEventListener('visibilitychange', function() {
-                    if (!document.hidden) v.play().catch(function() {});
-                });
-            }
-        })();
+            var p = document.getElementById('heroPoster');
+            var s = document.createElement('source');
+            s.src = '{{ asset("Video/hero.mp4") }}';
+            s.type = 'video/mp4';
+            v.appendChild(s);
+            v.load();
+            v.play().then(function() {
+                v.style.opacity = '1';
+                if (p) p.style.display = 'none';
+            }).catch(function() {});
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) v.play().catch(function() {});
+            });
+        });
     </script>
     <div class="absolute inset-0 bg-black/50"></div>
     <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 30% 50%, #43af73 0%, transparent 50%)"></div>
