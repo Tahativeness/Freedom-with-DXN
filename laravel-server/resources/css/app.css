@@ -164,8 +164,8 @@ h1, h2, h3, h4, h5, h6 {
 .footer-social { color: #452aa8; transition: color 0.2s; }
 .footer-social:hover { color: #318c5a; }
 
-.footer-link { color: #452aa8; opacity: 0.85; font-weight: 600; transition: color 0.2s, opacity 0.2s; }
-.footer-link:hover { color: #318c5a; opacity: 1; }
+.footer-link { color: #452aa8; font-weight: 600; transition: color 0.2s; }
+.footer-link:hover { color: #1e6b42; }
 
 .btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; }
 .btn-outline-white:hover { background-color: #fff; color: #452aa8; }
@@ -174,8 +174,8 @@ h1, h2, h3, h4, h5, h6 {
 .product-card-hover { box-shadow: inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s, transform 0.3s; }
 .product-card-hover:hover { box-shadow: inset 0 -4px 0 0px #bf3c36, 0 8px 30px rgba(0,0,0,0.12); transform: translateY(-4px); }
 
-.hover-whatsapp { background-color: #25D366; transition: background-color 0.2s; }
-.hover-whatsapp:hover { background-color: #20ba5a; }
+.hover-whatsapp { background-color: #1a8d45; transition: background-color 0.2s; }
+.hover-whatsapp:hover { background-color: #15753a; }
 
 .btn-outline-violet { border: 2px solid #452aa8; color: #452aa8; background: transparent; transition: all 0.2s; }
 .btn-outline-violet:hover { background-color: #452aa8; color: #fff; }

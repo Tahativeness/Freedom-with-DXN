@@ -68,13 +68,13 @@
     <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 30% 50%, #43af73 0%, transparent 50%)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-            <span class="inline-block bg-white/25 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-white/30">
+            <span class="inline-block backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-white/30" style="background: rgba(0,0,0,0.45);">
                 {{ $lang === 'ar' ? 'موزع مستقل معتمد من DXN' : ($hero['badge'] ?? 'Independent DXN Distributor') }}
             </span>
             <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
                 {{ $lang === 'ar' ? 'نمّ صحتك وثروتك مع DXN' : ($hero['title'] ?? 'Grow Your Health & Wealth with DXN') }}
             </h1>
-            <p class="text-white/90 text-lg mb-8 max-w-lg">
+            <p class="text-white text-lg mb-8 max-w-lg">
                 {{ $lang === 'ar' ? 'اكتشف منتجات الغانودرما المتميزة التي تحوّل صحتك، وفرصة عمل يمكن أن تحوّل حياتك.' : ($hero['subtitle'] ?? 'Discover premium Ganoderma products that transform your health, and a business opportunity that can transform your life.') }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
@@ -92,7 +92,7 @@
                     <div class="text-center text-white">
                         <div class="text-6xl font-bold" style="color: #43af73;">DXN</div>
                         <div class="text-xl mt-2">Ganoderma</div>
-                        <div class="text-sm text-white/90 mt-1">{{ $lang === 'ar' ? 'منذ 1993' : 'Since 1993' }}</div>
+                        <div class="text-sm text-white mt-1">{{ $lang === 'ar' ? 'منذ 1993' : 'Since 1993' }}</div>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         ] as $stat)
             <div class="text-center text-white">
                 <div class="text-3xl font-bold" style="color: #5ddf8e;">{{ $stat['v'] }}</div>
-                <div class="text-white/90 text-sm">{{ $stat['l'] }}</div>
+                <div class="text-white text-sm">{{ $stat['l'] }}</div>
             </div>
         @endforeach
     </div>
@@ -276,7 +276,7 @@
     <div class="absolute inset-0" style="background: rgba(0,0,0,0.6);"></div>
     <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'هل أنت مستعد للبدء؟' : 'Ready to Get Started?' }}</h2>
-        <p class="text-white/90 text-lg mb-8">{{ $lang === 'ar' ? 'انضم لآلاف الأشخاص الذين حوّلوا صحتهم وحياتهم مع DXN' : 'Join thousands who have transformed their health and lives with DXN' }}</p>
+        <p class="text-white text-lg mb-8">{{ $lang === 'ar' ? 'انضم لآلاف الأشخاص الذين حوّلوا صحتهم وحياتهم مع DXN' : 'Join thousands who have transformed their health and lives with DXN' }}</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('join') }}" class="btn-primary px-8 py-3.5 shadow-lg">
                 {{ $lang === 'ar' ? 'انضم مجاناً' : 'Join For Free' }}
