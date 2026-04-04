@@ -141,6 +141,35 @@ h1, h2, h3, h4, h5, h6 {
     background: #000;
 }
 
+/* Hover utility classes (replaces inline onmouseenter/onmouseleave) */
+.hover-green { background-color: #43af73; transition: background-color 0.2s; }
+.hover-green:hover { background-color: #369a60; }
+
+.hover-red { background-color: #bf3c36; transition: background-color 0.2s; }
+.hover-red:hover { background-color: #a3322d; }
+
+.hover-violet { background-color: #452aa8; transition: background-color 0.2s; }
+.hover-violet:hover { background-color: #4a2db5; }
+
+.footer-social { color: #452aa8; transition: color 0.2s; }
+.footer-social:hover { color: #43af73; }
+
+.footer-link { color: #452aa8; opacity: 0.7; font-weight: 600; transition: color 0.2s, opacity 0.2s; }
+.footer-link:hover { color: #43af73; opacity: 1; }
+
+.btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; }
+.btn-outline-white:hover { background-color: #fff; color: #452aa8; }
+
+/* Product card hover */
+.product-card-hover { box-shadow: inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s, transform 0.3s; }
+.product-card-hover:hover { box-shadow: inset 0 -4px 0 0px #bf3c36, 0 8px 30px rgba(0,0,0,0.12); transform: translateY(-4px); }
+
+.hover-whatsapp { background-color: #25D366; transition: background-color 0.2s; }
+.hover-whatsapp:hover { background-color: #20ba5a; }
+
+.btn-outline-violet { border: 2px solid #452aa8; color: #452aa8; background: transparent; transition: all 0.2s; }
+.btn-outline-violet:hover { background-color: #452aa8; color: #fff; }
+
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;

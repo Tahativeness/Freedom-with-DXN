@@ -1,12 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const compression = require('compression');
 const dotenv = require('dotenv');
 const path = require('path');
 
 dotenv.config();
 
 const app = express();
+
+// Gzip compression for all responses
+app.use(compression());
 
 // Middleware — in production frontend is served by this same server so CORS is open
 app.use(cors({
@@ -28,8 +32,19 @@ app.use('/api/site-settings', require('./routes/siteSettings'));
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'OK', message: 'Grow with DXN API running' }));
 
-// Serve static assets (product images, logo, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static assets with long cache for hashed files, short cache for others
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets'), {
+  maxAge: '1y',
+  immutable: true,
+}));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '7d',
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  },
+}));
 
 // Serve React app for all other routes (SPA fallback)
 app.get('*', (req, res) => {

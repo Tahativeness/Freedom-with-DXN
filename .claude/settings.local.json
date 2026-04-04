@@ -23,7 +23,9 @@
       "Bash(node screenshot.js https://freedomwithdxn.com --viewport=mobile)",
       "Bash(ssh -o StrictHostKeyChecking=no freedomw@freedomwithdxn.com \"cd ~/public_html && git pull origin main 2>&1 && cd laravel-server && php artisan view:clear 2>&1\")",
       "Bash(ls \"i:/Claude/grow-with-dxn/laravel-server/public/images/faq\"*)",
-      "Bash(ls \"i:/Claude/grow-with-dxn/laravel-server/public/images/\"*bg*)"
+      "Bash(ls \"i:/Claude/grow-with-dxn/laravel-server/public/images/\"*bg*)",
+      "Read(//i/Claude/grow-with-dxn/**)",
+      "Bash(xargs ls:*)"
     ]
   }
 }

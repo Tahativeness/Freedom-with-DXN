@@ -87,7 +87,7 @@
                            placeholder="{{ $lang === 'ar' ? 'ابحث عن منتج...' : 'Search products...' }}"
                            class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green bg-white transition-all">
                 </div>
-                <button type="submit" class="text-white px-5 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #43af73;" onmouseenter="this.style.backgroundColor='#369a60'" onmouseleave="this.style.backgroundColor='#43af73'">
+                <button type="submit" class="text-white px-5 py-2.5 rounded-xl font-semibold hover-green">
                     {{ $lang === 'ar' ? 'بحث' : 'Search' }}
                 </button>
             </form>
@@ -115,14 +115,14 @@
             <div class="mt-12 flex justify-between items-center">
                 <div>
                     @if($products->previousPageUrl())
-                        <a href="{{ $products->previousPageUrl() }}" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-2.5 rounded-xl transition-all" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+                        <a href="{{ $products->previousPageUrl() }}" class="inline-flex items-center gap-2 font-semibold px-6 py-2.5 rounded-xl btn-primary">
                             {{ $lang === 'ar' ? 'السابق' : 'Previous' }}
                         </a>
                     @endif
                 </div>
                 <div>
                     @if($products->nextPageUrl())
-                        <a href="{{ $products->nextPageUrl() }}" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-2.5 rounded-xl transition-all" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+                        <a href="{{ $products->nextPageUrl() }}" class="inline-flex items-center gap-2 font-semibold px-6 py-2.5 rounded-xl btn-primary">
                             {{ $lang === 'ar' ? 'التالي' : 'Next' }}
                         </a>
                     @endif

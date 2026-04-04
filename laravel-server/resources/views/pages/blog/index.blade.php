@@ -32,7 +32,7 @@
                 <a href="{{ route('blog.show', $post) }}" class="card group overflow-hidden flex flex-col">
                     <div class="bg-gradient-to-br from-dxn-green to-dxn-darkgreen h-48 flex items-center justify-center relative overflow-hidden">
                         @if($post->image)
-                            <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ $post->image }}" alt="{{ $post->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         @else
                             <div class="text-center p-6">
                                 <div class="text-dxn-gold text-4xl font-bold mb-1">DXN</div>

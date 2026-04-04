@@ -23,40 +23,16 @@
 @section('content')
 {{-- Hero --}}
 <section class="bg-hero min-h-screen flex items-center relative overflow-hidden">
-    <video id="heroVideo" autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover">
+    <video id="heroVideo" autoplay loop muted playsinline preload="metadata" poster="" class="absolute inset-0 w-full h-full object-cover">
         <source src="{{ asset('Video/hero.mp4') }}" type="video/mp4">
     </video>
     <script>
         (function() {
             var v = document.getElementById('heroVideo');
-            // Keep video alive — check every 500ms
-            setInterval(function() {
-                if (v.paused && !document.hidden) {
-                    v.play().catch(function() {});
-                }
-                // Loop before end
-                if (v.duration && v.duration - v.currentTime < 0.3) {
-                    v.currentTime = 0;
-                    v.play().catch(function() {});
-                }
-            }, 500);
-            // Also monitor for stalls — if currentTime doesn't change for 2s, restart
-            var lastTime = 0;
-            var stallCount = 0;
-            setInterval(function() {
-                if (Math.abs(v.currentTime - lastTime) < 0.1 && !v.paused) {
-                    stallCount++;
-                    if (stallCount >= 2) {
-                        v.currentTime = v.currentTime + 0.1;
-                        v.play().catch(function() {});
-                        stallCount = 0;
-                    }
-                } else {
-                    stallCount = 0;
-                }
-                lastTime = v.currentTime;
-            }, 1000);
             v.play().catch(function() {});
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) v.play().catch(function() {});
+            });
         })();
     </script>
     <div class="absolute inset-0 bg-black/50"></div>
@@ -73,7 +49,7 @@
                 {{ $lang === 'ar' ? 'اكتشف منتجات الغانودرما المتميزة التي تحوّل صحتك، وفرصة عمل يمكن أن تحوّل حياتك.' : ($hero['subtitle'] ?? 'Discover premium Ganoderma products that transform your health, and a business opportunity that can transform your life.') }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="text-center text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-lg" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="btn-primary px-8 py-3.5 shadow-lg">
                     {{ $lang === 'ar' ? 'تسوق المنتجات' : ($hero['btn1Text'] ?? 'Shop Now') }}
                 </a>
                 <a href="{{ $hero['btn2Link'] ?? route('join') }}" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-brand-violet hover:border-brand-violet px-8 py-3.5 rounded-xl font-semibold transition-all">
@@ -175,7 +151,7 @@
                 {{ $lang === 'ar' ? 'تعرف على منتجات DXN وفرصة العمل. جلسات أسبوعية بالعربية والإنجليزية.' : 'Learn about DXN products and the business opportunity. Weekly sessions in Arabic and English.' }}
             </p>
             <div class="flex flex-wrap gap-3">
-                <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-all" style="background-color: #452aa8;" onmouseenter="this.style.backgroundColor='#4a2db5'" onmouseleave="this.style.backgroundColor='#452aa8'">
+                <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl hover-violet">
                     {{ $lang === 'ar' ? 'عرض الجدول' : 'View Schedule' }}
                 </a>
                 <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">{{ $lang === 'ar' ? 'احصل على الرابط' : 'Get the Link' }}</a>
@@ -250,7 +226,7 @@
                     <p class="text-gray-600 italic mb-6">"{{ $t['text'] }}"</p>
                     <div class="flex items-center gap-3">
                         @if(file_exists(public_path($t['img'])))
-                            <img src="{{ $t['img'] }}" alt="{{ $t['name'] }}" class="w-10 h-10 rounded-full object-cover">
+                            <img src="{{ $t['img'] }}" alt="{{ $t['name'] }}" loading="lazy" class="w-10 h-10 rounded-full object-cover">
                         @else
                             <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #452aa8;">{{ $t['avatar'] }}</div>
                         @endif
@@ -273,7 +249,7 @@
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'هل أنت مستعد للبدء؟' : 'Ready to Get Started?' }}</h2>
         <p class="text-white/70 text-lg mb-8">{{ $lang === 'ar' ? 'انضم لآلاف الأشخاص الذين حوّلوا صحتهم وحياتهم مع DXN' : 'Join thousands who have transformed their health and lives with DXN' }}</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('join') }}" class="text-center text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-lg" style="background-color: #bf3c36;" onmouseenter="this.style.backgroundColor='#a3322d'" onmouseleave="this.style.backgroundColor='#bf3c36'">
+            <a href="{{ route('join') }}" class="btn-primary px-8 py-3.5 shadow-lg">
                 {{ $lang === 'ar' ? 'انضم مجاناً' : 'Join For Free' }}
             </a>
             <a href="{{ $whatsapp }}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#20ba5a] transition-all">

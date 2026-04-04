@@ -75,7 +75,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     @foreach($page->gallery as $img)
                         <div class="aspect-square rounded-xl overflow-hidden shadow-md">
-                            <img src="{{ $img }}" alt="{{ $page->title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            <img src="{{ $img }}" alt="{{ $page->title }}" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
                     @endforeach
                 </div>

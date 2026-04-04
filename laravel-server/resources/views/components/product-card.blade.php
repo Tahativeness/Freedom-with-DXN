@@ -27,16 +27,13 @@
     $displayRating = $toAr(number_format($rating, 1));
 @endphp
 
-<div class="group bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full"
-     style="box-shadow: inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s, transform 0.3s;"
-     onmouseenter="this.style.boxShadow='inset 0 -4px 0 0px #bf3c36, 0 8px 30px rgba(0,0,0,0.12)'; this.style.transform='translateY(-4px)'"
-     onmouseleave="this.style.boxShadow='inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06)'; this.style.transform='translateY(0)'">
+<div class="group bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full product-card-hover">
 
     <a href="{{ $link }}" class="block flex-1 flex flex-col">
         {{-- Image --}}
         <div class="relative overflow-hidden bg-gray-50">
             @if($mainImage)
-                <img src="{{ $mainImage }}" alt="{{ $product->name }}"
+                <img src="{{ $mainImage }}" alt="{{ $product->name }}" loading="lazy"
                      class="w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" style="height: 13rem;">
             @else
                 <div class="w-full flex flex-col items-center justify-center" style="height: 13rem; background: linear-gradient(135deg, #452aa8, #3a2290);">
@@ -80,10 +77,7 @@
     {{-- Order Button --}}
     <div class="px-4 pt-2 pb-4">
         <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer"
-           class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}"
-           style="background-color: #43af73;"
-           onmouseenter="this.style.backgroundColor='#369a60'"
-           onmouseleave="this.style.backgroundColor='#43af73'">
+           class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl hover-green {{ !$product->in_stock ? 'opacity-40 pointer-events-none' : '' }}">
             {{ $lang === 'ar' ? 'اطلب عبر واتساب' : 'Order via WhatsApp' }}
         </a>
     </div>

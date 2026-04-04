@@ -22,7 +22,7 @@
     </div>
 
     @if($blog->image)
-        <img src="{{ $blog->image }}" alt="{{ $blog->title }}" class="w-full rounded-2xl mb-8 max-h-96 object-cover">
+        <img src="{{ $blog->image }}" alt="{{ $blog->title }}" loading="lazy" class="w-full rounded-2xl mb-8 max-h-96 object-cover">
     @endif
 
     <div class="blog-html-content prose max-w-none">

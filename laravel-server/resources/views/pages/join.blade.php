@@ -161,7 +161,7 @@
         <div class="flex flex-wrap gap-4 justify-center">
             <a href="{{ $whatsapp }}" target="_blank" class="btn-gold flex items-center gap-2">{{ $lang === 'ar' ? 'واتساب الآن' : 'WhatsApp Us' }}</a>
             <a href="{{ $calendly }}" target="_blank" rel="noopener noreferrer" class="btn-primary">{{ $lang === 'ar' ? 'احضر زووم أولاً' : 'Attend Free Zoom' }}</a>
-            <a href="{{ route('join') }}" style="border: 2px solid #ffffff; color: #ffffff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s;" onmouseenter="this.style.backgroundColor='#ffffff'; this.style.color='#452aa8'" onmouseleave="this.style.backgroundColor='transparent'; this.style.color='#ffffff'">{{ $lang === 'ar' ? 'انضم كموزع' : 'Join as Distributor' }}</a>
+            <a href="{{ route('join') }}" class="btn-outline-white">{{ $lang === 'ar' ? 'انضم كموزع' : 'Join as Distributor' }}</a>
         </div>
     </div>
 </section>
