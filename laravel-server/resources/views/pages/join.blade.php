@@ -156,10 +156,10 @@
 {{-- CTA --}}
 <section class="py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-fixed bg-center bg-cover" style="background-image: url('/cta-bg.jpeg');"></div>
-    <div class="absolute inset-0" style="background: rgba(0,0,0,0.6);"></div>
+    <div class="absolute inset-0" style="background: rgba(0,0,0,0.75);"></div>
     <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
         <h2 class="text-3xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'خطوتك الأولى تبدأ هنا' : 'Your First Step Starts Here' }}</h2>
-        <p class="text-white/70 mb-8">{{ $lang === 'ar' ? 'لا تنتظر اللحظة المثالية. ابدأ اليوم.' : "Don't wait for the perfect moment. Start today." }}</p>
+        <p class="text-white mb-8">{{ $lang === 'ar' ? 'لا تنتظر اللحظة المثالية. ابدأ اليوم.' : "Don't wait for the perfect moment. Start today." }}</p>
         <div class="flex flex-wrap gap-4 justify-center">
             <a href="{{ $whatsapp }}" target="_blank" class="btn-gold flex items-center gap-2">{{ $lang === 'ar' ? 'واتساب الآن' : 'WhatsApp Us' }}</a>
             <a href="{{ $calendly }}" target="_blank" rel="noopener noreferrer" class="btn-primary">{{ $lang === 'ar' ? 'احضر زووم أولاً' : 'Attend Free Zoom' }}</a>

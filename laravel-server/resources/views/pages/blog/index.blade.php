@@ -67,10 +67,10 @@
 
 <section class="py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-fixed bg-center bg-cover" style="background-image: url('/cta-bg.jpeg');"></div>
-    <div class="absolute inset-0" style="background: rgba(0,0,0,0.6);"></div>
+    <div class="absolute inset-0" style="background: rgba(0,0,0,0.75);"></div>
     <div class="max-w-2xl mx-auto px-4 text-center relative z-10">
         <h2 class="text-3xl font-bold text-white mb-4">Want to Write for Us?</h2>
-        <p class="text-white/70 text-lg mb-8">Share your DXN success story or health tips with our growing community.</p>
+        <p class="text-white text-lg mb-8">Share your DXN success story or health tips with our growing community.</p>
         <a href="{{ route('contact') }}" class="btn-gold">Contact Us</a>
     </div>
 </section>

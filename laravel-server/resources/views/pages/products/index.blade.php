@@ -32,13 +32,13 @@
     <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full translate-y-1/2 -translate-x-1/2" style="background: rgba(67,175,115,0.08);"></div>
 
     <div class="max-w-7xl mx-auto text-center relative z-10">
-        <span class="inline-block bg-white/15 text-white px-5 py-1.5 rounded-full text-sm font-semibold mb-4 border border-white/20">
+        <span class="inline-block text-white px-5 py-1.5 rounded-full text-sm font-semibold mb-4 border border-white/20" style="background: rgba(0,0,0,0.5);">
             {{ $lang === 'ar' ? 'منتجات DXN الرسمية' : 'Official DXN Products' }}
         </span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3">
             {{ $lang === 'ar' ? 'كتالوج منتجات DXN' : 'DXN Product Catalog' }}
         </h1>
-        <p class="text-white/70 text-lg">
+        <p class="text-white text-lg">
             {{ $lang === 'ar' ? 'منتجات صحية فاخرة مدعومة بفطر غانوديرما لوسيدوم' : 'Premium health products powered by DXN' }}
         </p>
     </div>

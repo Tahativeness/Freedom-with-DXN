@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div style="background: rgba(67, 175, 115, 0.65); backdrop-filter: blur(6px); border-radius: 16px; padding: 32px;">
+        <div style="background: #1a6b3a; backdrop-filter: blur(6px); border-radius: 16px; padding: 32px;">
             <span class="font-extrabold text-lg uppercase tracking-widest" style="color: #ffffff;">
                 {{ $lang === 'ar' ? 'كيف بدأ كل شيء' : 'How It All Started' }}
             </span>
@@ -86,7 +86,7 @@
             </h2>
             <div class="space-y-4">
                 @foreach($story as $para)
-                    <p class="leading-relaxed text-lg" style="color: rgba(255,255,255,0.9);">{{ $para }}</p>
+                    <p class="leading-relaxed text-lg" style="color: #ffffff;">{{ $para }}</p>
                 @endforeach
             </div>
             <div style="display: flex; flex-direction: row; gap: 12px; margin-top: 2rem; flex-wrap: wrap;">
@@ -147,12 +147,12 @@
 {{-- CTA --}}
 <section class="py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-fixed bg-center bg-cover" style="background-image: url('/cta-bg.jpeg');"></div>
-    <div class="absolute inset-0" style="background: rgba(0,0,0,0.6);"></div>
+    <div class="absolute inset-0" style="background: rgba(0,0,0,0.75);"></div>
     <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
         <h2 class="text-3xl font-bold text-white mb-4">
             {{ $lang === 'ar' ? 'هل أنت مستعد للانضمام إلى عائلتنا؟' : 'Ready to Join Our Family?' }}
         </h2>
-        <p class="text-white/70 mb-8">
+        <p class="text-white mb-8">
             {{ $lang === 'ar' ? 'سواء كنت تريد منتجات صحية أو فرصة عمل — أنا هنا لمساعدتك في كل خطوة.' : "Whether you want health products or a business opportunity — I'm here to help you every step of the way." }}
         </p>
         <div class="flex flex-wrap gap-4 justify-center">

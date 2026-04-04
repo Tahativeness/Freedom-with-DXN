@@ -38,7 +38,7 @@
             @else
                 <div class="w-full flex flex-col items-center justify-center" style="height: 13rem; background: linear-gradient(135deg, #452aa8, #3a2290);">
                     <span class="text-3xl font-bold" style="color: #43af73;">DXN</span>
-                    <span class="text-white/90 text-xs mt-1 px-4 text-center line-clamp-2">{{ $product->name }}</span>
+                    <span class="text-white text-xs mt-1 px-4 text-center line-clamp-2">{{ $product->name }}</span>
                 </div>
             @endif
 
