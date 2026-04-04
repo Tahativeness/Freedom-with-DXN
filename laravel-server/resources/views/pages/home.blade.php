@@ -42,9 +42,10 @@
 {{-- Hero --}}
 <section class="bg-hero flex items-center relative overflow-hidden" style="min-height: 100vh; min-height: 100dvh;">
     {{-- Poster shown instantly for fast LCP --}}
-    <img id="heroPoster" src="{{ asset('Video/hero-poster.png') }}" alt="" width="800" height="600" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+    <img id="heroPoster" src="{{ asset('Video/hero-poster.png') }}" alt="DXN hero background" width="800" height="600" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
     {{-- Video loads lazily after page load, replaces poster --}}
-    <video id="heroVideo" loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover" style="opacity:0; transition: opacity 0.5s;">
+    <video id="heroVideo" loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover" style="opacity:0; transition: opacity 0.5s;" aria-label="DXN promotional background video">
+        <track kind="captions" src="" default>
     </video>
     <script>
         window.addEventListener('load', function() {
