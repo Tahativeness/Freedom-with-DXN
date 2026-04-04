@@ -68,7 +68,7 @@
 
         {{-- Section Heading --}}
         <div class="text-center mb-8">
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #bf3c36; background-color: #452aa8;">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #ffffff; background-color: #452aa8;">
                 {{ $catIcons[$currentCategory] ?? '🌿' }}
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
             </h1>

@@ -50,7 +50,7 @@
             @endif
 
             @if(!$product->in_stock)
-                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
                     <span class="bg-white/90 text-red-600 font-bold text-sm px-4 py-1.5 rounded-full">{{ $lang === 'ar' ? 'غير متوفر' : 'Out of Stock' }}</span>
                 </div>
             @endif

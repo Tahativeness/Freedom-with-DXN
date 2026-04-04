@@ -64,7 +64,7 @@
             });
         });
     </script>
-    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 bg-black/65"></div>
     <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 30% 50%, #43af73 0%, transparent 50%)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
@@ -127,7 +127,7 @@
     <section class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-8">
-                <h2 class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #bf3c36;">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
+                <h2 class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #ffffff;">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
                 <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #318c5a; color: #ffffff;">{{ $lang === 'ar' ? 'منتجات صحية عالية الجودة مدعومة بالغانودرما' : 'Premium health products powered by Ganoderma Lucidum' }}</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -153,7 +153,7 @@
     <section class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-8">
-                <h2 class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #bf3c36;">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
+                <h2 class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #ffffff;">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
                 <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #318c5a; color: #ffffff;">{{ $lang === 'ar' ? 'الخيارات الأكثر شعبية بين عملائنا' : 'Most popular choices among our customers' }}</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
