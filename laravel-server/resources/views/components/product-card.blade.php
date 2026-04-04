@@ -31,7 +31,7 @@
 
     <a href="{{ $link }}" class="block flex-1 flex flex-col">
         {{-- Image --}}
-        <div class="relative overflow-hidden bg-gray-50">
+        <div class="relative overflow-hidden bg-gray-50" style="height: 13rem;">
             @if($mainImage)
                 <img src="{{ $mainImage }}" alt="{{ $product->name }}" loading="lazy" width="300" height="208"
                      class="w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" style="height: 13rem;">

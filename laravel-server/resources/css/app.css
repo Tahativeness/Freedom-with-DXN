@@ -35,7 +35,7 @@
     --color-dxn-gold: #43af73;
     --color-dxn-lightgold: #5bc48a;
 
-    --font-family-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
+    --font-family-sans: 'DM Sans', 'DM Sans Fallback', 'Inter', system-ui, sans-serif;
 }
 
 :root {
@@ -48,16 +48,26 @@
     --brand-violet-dark: #3a2290;
 }
 
+/* Font fallback to reduce CLS from font swap */
+@font-face {
+    font-family: 'DM Sans Fallback';
+    src: local('Arial');
+    size-adjust: 96%;
+    ascent-override: 95%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+}
+
 /* Base styles */
 body {
-    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-family: 'DM Sans', 'DM Sans Fallback', 'Inter', sans-serif;
     font-size: 16px;
     color: #1a1a2e;
     background-color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-family: 'DM Sans', 'DM Sans Fallback', 'Inter', sans-serif;
     font-weight: 600;
 }
 
