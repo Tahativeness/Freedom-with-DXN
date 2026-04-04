@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Contact - Freedom with DXN')
+@section('title', 'Contact Us – Freedom With DXN')
+@section('description', 'Get in touch with Freedom With DXN. Ask about DXN products, distributor signup, or business opportunities. We are here to help you on your wellness journey.')
 
 @php
     $lang = session('lang', 'en');

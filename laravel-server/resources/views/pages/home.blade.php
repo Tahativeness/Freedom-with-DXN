@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('title', 'Freedom With DXN – Buy DXN Health Products Online | Ganoderma Coffee & Supplements')
+@section('description', 'Freedom With DXN offers premium DXN health products including Lingzhi Coffee, Cocozhi, and Spirulina. Join our community and start your wellness journey today.')
+@section('keywords', 'DXN health products, buy DXN products online, DXN distributor, freedom with DXN, ganoderma coffee, DXN supplements')
+
+@push('seo')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Freedom with DXN",
+    "url": "https://freedomwithdxn.com",
+    "logo": "https://freedomwithdxn.com/logo.png",
+    "description": "Premium DXN health products including Lingzhi Coffee, Cocozhi, and Spirulina.",
+    "sameAs": []
+}
+</script>
+@endpush
+
 @php
     $lang = session('lang', 'en');
     $hero = $settings->hero ?? [];
@@ -23,7 +41,7 @@
 @section('content')
 {{-- Hero --}}
 <section class="bg-hero min-h-screen flex items-center relative overflow-hidden">
-    <video id="heroVideo" autoplay loop muted playsinline preload="metadata" poster="" class="absolute inset-0 w-full h-full object-cover">
+    <video id="heroVideo" autoplay loop muted playsinline preload="metadata" poster="{{ asset('Video/hero-poster.jpg') }}" class="absolute inset-0 w-full h-full object-cover" style="background: #000;">
         <source src="{{ asset('Video/hero.mp4') }}" type="video/mp4">
     </video>
     <script>

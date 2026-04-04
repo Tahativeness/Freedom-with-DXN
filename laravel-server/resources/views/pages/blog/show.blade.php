@@ -1,5 +1,28 @@
 @extends('layouts.app')
-@section('title', $blog->title . ' - Freedom with DXN')
+@section('title', $blog->title . ' | Freedom With DXN')
+@section('description', Str::limit($blog->excerpt ?: strip_tags($blog->content), 155))
+@section('og_type', 'article')
+@if($blog->image)
+    @section('og_image', url($blog->image))
+@endif
+
+@push('seo')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ $blog->title }}",
+    "description": "{{ Str::limit($blog->excerpt ?: strip_tags($blog->content), 200) }}",
+    @if($blog->image)"image": "{{ url($blog->image) }}",@endif
+    "datePublished": "{{ $blog->created_at->toIso8601String() }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Freedom with DXN",
+        "logo": { "@type": "ImageObject", "url": "{{ url('/logo.png') }}" }
+    }
+}
+</script>
+@endpush
 
 @php $lang = session('lang', 'en'); @endphp
 
@@ -22,7 +45,7 @@
     </div>
 
     @if($blog->image)
-        <img src="{{ $blog->image }}" alt="{{ $blog->title }}" loading="lazy" class="w-full rounded-2xl mb-8 max-h-96 object-cover">
+        <img src="{{ $blog->image }}" alt="{{ $blog->title }}" loading="lazy" width="800" height="384" class="w-full rounded-2xl mb-8 max-h-96 object-cover">
     @endif
 
     <div class="blog-html-content prose max-w-none">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Join DXN - Freedom with DXN')
+@section('title', 'Join DXN Team – Start Your Health Business Today | Freedom With DXN')
+@section('description', 'Join the DXN team and start earning with premium Ganoderma health products. Low startup cost, free training, and a global business opportunity. Sign up now!')
+@section('keywords', 'join DXN team, DXN business opportunity, DXN distributor Bangladesh, DXN signup')
 
 @php
     $lang = session('lang', 'en');

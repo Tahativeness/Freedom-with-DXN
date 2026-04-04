@@ -1,5 +1,38 @@
 @extends('layouts.app')
-@section('title', $product->name . ' - Freedom with DXN')
+@section('title', $product->name . ' | Freedom With DXN')
+@section('description', Str::limit(strip_tags($product->description), 155))
+@section('og_type', 'product')
+@if($product->landing_image ?: $product->image)
+    @section('og_image', url($product->landing_image ?: $product->image))
+@endif
+
+@push('seo')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ $product->name }}",
+    "description": "{{ Str::limit(strip_tags($product->description), 200) }}",
+    "image": "{{ url($product->landing_image ?: ($product->image ?: '/logo.png')) }}",
+    "brand": { "@type": "Brand", "name": "DXN" },
+    "offers": {
+        "@type": "Offer",
+        "price": "{{ $product->price }}",
+        "priceCurrency": "USD",
+        "availability": "{{ $product->in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
+        "url": "{{ url()->current() }}"
+    }
+    @if($product->rating)
+    ,"aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ $product->rating }}",
+        "bestRating": "5",
+        "ratingCount": "{{ $product->reviews ? $product->reviews->count() : 1 }}"
+    }
+    @endif
+}
+</script>
+@endpush
 
 @php
     $lang = session('lang', 'en');
@@ -76,7 +109,7 @@
                 {{-- Main Image --}}
                 <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 flex items-center justify-center mb-3 max-h-96">
                     @if($mainImage)
-                        <img :src="activeImage" alt="{{ $product->name }}" class="w-full h-full object-contain p-4">
+                        <img :src="activeImage" alt="{{ $product->name }}" width="400" height="384" class="w-full h-full object-contain p-4">
                     @else
                         <div class="w-full h-full flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
                             <span class="text-6xl font-bold" style="color: #43af73;">DXN</span>

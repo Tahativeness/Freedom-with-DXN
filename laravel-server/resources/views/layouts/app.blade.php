@@ -6,13 +6,36 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', $settings->seo['pageTitle'] ?? 'Freedom with DXN')</title>
     <meta name="description" content="@yield('description', $settings->seo['description'] ?? '')">
-    <meta name="keywords" content="{{ $settings->seo['keywords'] ?? '' }}">
+    <meta name="keywords" content="@yield('keywords', $settings->seo['keywords'] ?? '')">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Open Graph --}}
+    <meta property="og:title" content="@yield('title', $settings->seo['pageTitle'] ?? 'Freedom with DXN')">
+    <meta property="og:description" content="@yield('description', $settings->seo['description'] ?? '')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Freedom with DXN">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    @hasSection('og_image')
+        <meta property="og:image" content="@yield('og_image')">
+    @else
+        <meta property="og:image" content="{{ url('/logo.png') }}">
+    @endif
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', $settings->seo['pageTitle'] ?? 'Freedom with DXN')">
+    <meta name="twitter:description" content="@yield('description', $settings->seo['description'] ?? '')">
+
+    @stack('seo')
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+    <script>
+        requestAnimationFrame(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap';document.head.appendChild(l)});
+    </script>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
 </head>
 <body class="min-h-screen flex flex-col">
     @include('partials.navbar')

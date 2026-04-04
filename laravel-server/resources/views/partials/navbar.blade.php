@@ -20,7 +20,7 @@
         <div class="flex items-center justify-between h-16 sm:h-20 lg:h-28">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
-                <img src="/footer-lg.png" alt="Grow with DXN" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
+                <img src="/footer-lg.png" alt="Grow with DXN" width="200" height="96" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
             </a>
 
             {{-- Desktop Nav --}}
