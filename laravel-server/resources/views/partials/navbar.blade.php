@@ -12,7 +12,7 @@
     $cartCount = count(session('cart', []));
 @endphp
 
-<nav class="bg-white z-50 transition-shadow duration-300 shadow-sm"
+<nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
      :class="scrolled ? 'shadow-lg' : 'shadow-sm'">
@@ -20,17 +20,18 @@
         <div class="flex items-center justify-between h-16 sm:h-20 lg:h-28">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
-                <img src="/footer-lg.png" alt="Grow with DXN" width="200" height="96" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
+                <img src="/footer-lg.png" alt="Grow with DXN - Home" width="200" height="96" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
             </a>
 
             {{-- Desktop Nav --}}
             <div class="hidden lg:flex items-center gap-6">
                 @foreach($navLinks as $link)
                     <a href="{{ $link['url'] }}"
+                       @if(request()->url() === $link['url']) aria-current="page" @endif
                        class="text-base font-medium transition-colors whitespace-nowrap relative {{ request()->url() === $link['url'] ? 'text-brand-green font-bold' : 'text-brand-violet hover:text-brand-green' }}">
                         {{ $link['label'] }}
                         @if(request()->url() === $link['url'])
-                            <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-green rounded-full"></span>
+                            <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-green rounded-full" aria-hidden="true"></span>
                         @endif
                     </a>
                 @endforeach
@@ -40,22 +41,22 @@
             <div class="flex items-center gap-3 shrink-0">
                 {{-- Language Dropdown --}}
                 <div class="relative" x-data="{ langOpen: false }" @click.outside="langOpen = false">
-                    <button @click="langOpen = !langOpen" class="flex items-center gap-2 border border-brand-violet/30 text-brand-violet text-sm font-bold px-3 py-1.5 rounded-lg hover:bg-brand-violet/5 transition-colors">
+                    <button @click="langOpen = !langOpen" aria-expanded="false" :aria-expanded="langOpen.toString()" aria-haspopup="true" aria-label="{{ $lang === 'ar' ? 'تغيير اللغة' : 'Change language' }}" class="flex items-center gap-2 border border-brand-violet/30 text-brand-violet text-sm font-bold px-3 py-1.5 rounded-lg hover:bg-brand-violet/5 transition-colors">
                         @if($lang === 'en')
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0"><clipPath id="gb-btn"><rect width="60" height="30" rx="2"/></clipPath><g clip-path="url(#gb-btn)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#gb-btn)"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0" aria-hidden="true"><clipPath id="gb-btn"><rect width="60" height="30" rx="2"/></clipPath><g clip-path="url(#gb-btn)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#gb-btn)"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></g></svg>
                         @else
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0"><rect width="60" height="30" fill="#fff"/><rect width="60" height="10" fill="#00732f"/><rect y="20" width="60" height="10" fill="#000"/><rect width="15" height="30" fill="#ff0000"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0" aria-hidden="true"><rect width="60" height="30" fill="#fff"/><rect width="60" height="10" fill="#00732f"/><rect y="20" width="60" height="10" fill="#000"/><rect width="15" height="30" fill="#ff0000"/></svg>
                         @endif
                         <span>{{ $lang === 'en' ? 'ENGLISH' : 'العربية' }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform" :class="langOpen ? 'rotate-180' : ''"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform" :class="langOpen ? 'rotate-180' : ''" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
-                    <div x-show="langOpen" x-transition class="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-1 z-50">
-                        <a href="{{ route('lang.switch', 'en') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium {{ $lang === 'en' ? 'text-brand-green bg-green-50' : 'text-gray-700 hover:bg-gray-50' }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0"><clipPath id="gb-en"><rect width="60" height="30" rx="2"/></clipPath><g clip-path="url(#gb-en)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+                    <div x-show="langOpen" x-transition class="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-1 z-50" role="menu">
+                        <a href="{{ route('lang.switch', 'en') }}" role="menuitem" class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium {{ $lang === 'en' ? 'text-brand-green bg-green-50' : 'text-gray-700 hover:bg-gray-50' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0" aria-hidden="true"><clipPath id="gb-en"><rect width="60" height="30" rx="2"/></clipPath><g clip-path="url(#gb-en)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></g></svg>
                             ENGLISH
                         </a>
-                        <a href="{{ route('lang.switch', 'ar') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium {{ $lang === 'ar' ? 'text-brand-green bg-green-50' : 'text-gray-700 hover:bg-gray-50' }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0"><rect width="60" height="30" fill="#fff"/><rect width="60" height="10" fill="#00732f"/><rect y="20" width="60" height="10" fill="#000"/><rect width="15" height="30" fill="#ff0000"/></svg>
+                        <a href="{{ route('lang.switch', 'ar') }}" role="menuitem" class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium {{ $lang === 'ar' ? 'text-brand-green bg-green-50' : 'text-gray-700 hover:bg-gray-50' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0" aria-hidden="true"><rect width="60" height="30" fill="#fff"/><rect width="60" height="10" fill="#00732f"/><rect y="20" width="60" height="10" fill="#000"/><rect width="15" height="30" fill="#ff0000"/></svg>
                             العربية
                         </a>
                     </div>
@@ -64,31 +65,31 @@
                 {{-- Auth --}}
                 @auth
                     <div class="relative" @click.outside="dropdownOpen = false">
-                        <button @click="dropdownOpen = !dropdownOpen" aria-label="User menu"
+                        <button @click="dropdownOpen = !dropdownOpen" aria-label="{{ $lang === 'ar' ? 'قائمة المستخدم' : 'User menu' }}" aria-expanded="false" :aria-expanded="dropdownOpen.toString()" aria-haspopup="true"
                                 class="flex items-center gap-2 text-brand-violet hover:text-brand-green transition-colors">
-                            <div class="w-8 h-8 bg-brand-violet rounded-full flex items-center justify-center text-white font-bold text-sm">
+                            <div class="w-8 h-8 bg-brand-violet rounded-full flex items-center justify-center text-white font-bold text-sm" aria-hidden="true">
                                 {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                             </div>
                         </button>
-                        <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100">
+                        <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100" role="menu">
                             <div class="px-4 py-2 border-b">
                                 <p class="font-semibold text-gray-800 text-sm">{{ auth()->user()->name }}</p>
                                 <p class="text-gray-600 text-xs">{{ auth()->user()->role }}</p>
                             </div>
-                            <a href="{{ route('dashboard') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            <a href="{{ route('dashboard') }}" role="menuitem" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                                 {{ $lang === 'ar' ? 'لوحة التحكم' : 'Dashboard' }}
                             </a>
                             @if(auth()->user()->role === 'admin')
-                                <a href="{{ route('admin.index') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <a href="{{ route('admin.index') }}" role="menuitem" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                                     {{ $lang === 'ar' ? 'لوحة الإدارة' : 'Admin Panel' }}
                                 </a>
                             @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                <button type="submit" role="menuitem" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                                     {{ $lang === 'ar' ? 'تسجيل الخروج' : 'Logout' }}
                                 </button>
                             </form>
@@ -106,18 +107,18 @@
                 @endauth
 
                 {{-- Mobile menu button --}}
-                <button @click="menuOpen = !menuOpen" class="lg:hidden text-brand-violet hover:text-brand-green" aria-label="Toggle menu">
-                    <svg x-show="!menuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                    <svg x-show="menuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <button @click="menuOpen = !menuOpen" class="lg:hidden text-brand-violet hover:text-brand-green" aria-label="{{ $lang === 'ar' ? 'فتح القائمة' : 'Toggle menu' }}" aria-expanded="false" :aria-expanded="menuOpen.toString()" aria-controls="mobile-menu">
+                    <svg x-show="!menuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <svg x-show="menuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
         </div>
 
         {{-- Mobile Menu --}}
-        <div x-show="menuOpen" x-transition class="lg:hidden pb-4 border-t border-gray-100 mt-2">
+        <div x-show="menuOpen" x-transition class="lg:hidden pb-4 border-t border-gray-100 mt-2" id="mobile-menu" role="navigation" aria-label="{{ $lang === 'ar' ? 'قائمة الهاتف' : 'Mobile menu' }}">
             <div class="flex flex-col gap-1 pt-3">
                 @foreach($navLinks as $link)
-                    <a href="{{ $link['url'] }}" class="{{ request()->url() === $link['url'] ? 'text-brand-green font-bold' : 'text-brand-violet hover:text-brand-green' }} px-2 py-2 text-sm font-medium">
+                    <a href="{{ $link['url'] }}" @if(request()->url() === $link['url']) aria-current="page" @endif class="{{ request()->url() === $link['url'] ? 'text-brand-green font-bold' : 'text-brand-violet hover:text-brand-green' }} px-2 py-2 text-sm font-medium">
                         {{ $link['label'] }}
                     </a>
                 @endforeach

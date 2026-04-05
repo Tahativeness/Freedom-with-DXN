@@ -49,7 +49,7 @@
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'ابدأ رحلتك مع DXN اليوم' : 'Start Your DXN Journey Today' }}</h1>
         <p class="text-gray-300 text-lg max-w-2xl mx-auto">{{ $lang === 'ar' ? 'انضم إلى ملايين الأعضاء حول العالم واكتشف صحة أفضل وفرصة عمل مرنة.' : 'Join millions of members worldwide and discover better health and a flexible business opportunity.' }}</p>
         <div class="flex flex-wrap gap-4 justify-center mt-8">
-            <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">{{ $lang === 'ar' ? 'ابدأ الآن عبر واتساب' : 'Get Started on WhatsApp' }}</a>
+            <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn-gold">{{ $lang === 'ar' ? 'ابدأ الآن عبر واتساب' : 'Get Started on WhatsApp' }}</a>
             <a href="{{ $calendly }}" target="_blank" rel="noopener noreferrer" class="border-2 border-white text-white hover:bg-white hover:text-dxn-darkgreen px-6 py-3 rounded-lg font-semibold transition-all inline-block">{{ $lang === 'ar' ? 'احضر زووم مجاني أولاً' : 'Attend Free Zoom First' }}</a>
         </div>
     </div>
@@ -79,7 +79,7 @@
             @endforeach
         </div>
         <div class="text-center mt-10">
-            <a href="{{ $whatsapp }}" target="_blank" class="btn-gold">{{ $lang === 'ar' ? 'أنا مستعد للانضمام' : "I'm Ready to Join" }}</a>
+            <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn-gold">{{ $lang === 'ar' ? 'أنا مستعد للانضمام' : "I'm Ready to Join" }}</a>
         </div>
     </div>
 </section>
@@ -161,7 +161,7 @@
         <h2 class="text-3xl font-bold text-white mb-4">{{ $lang === 'ar' ? 'خطوتك الأولى تبدأ هنا' : 'Your First Step Starts Here' }}</h2>
         <p class="text-white mb-8">{{ $lang === 'ar' ? 'لا تنتظر اللحظة المثالية. ابدأ اليوم.' : "Don't wait for the perfect moment. Start today." }}</p>
         <div class="flex flex-wrap gap-4 justify-center">
-            <a href="{{ $whatsapp }}" target="_blank" class="btn-gold flex items-center gap-2">{{ $lang === 'ar' ? 'واتساب الآن' : 'WhatsApp Us' }}</a>
+            <a href="{{ $whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn-gold flex items-center gap-2">{{ $lang === 'ar' ? 'واتساب الآن' : 'WhatsApp Us' }}</a>
             <a href="{{ $calendly }}" target="_blank" rel="noopener noreferrer" class="btn-primary">{{ $lang === 'ar' ? 'احضر زووم أولاً' : 'Attend Free Zoom' }}</a>
             <a href="{{ route('join') }}" class="btn-outline-white">{{ $lang === 'ar' ? 'انضم كموزع' : 'Join as Distributor' }}</a>
         </div>

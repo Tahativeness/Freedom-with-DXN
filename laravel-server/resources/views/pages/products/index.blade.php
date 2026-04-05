@@ -68,10 +68,10 @@
 
         {{-- Section Heading --}}
         <div class="text-center mb-8">
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #ffffff; background-color: #452aa8;">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #ffffff; background-color: #452aa8;">
                 {{ $catIcons[$currentCategory] ?? '🌿' }}
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
-            </h1>
+            </h2>
             <div class="w-16 h-1 mx-auto mt-2 rounded-full" style="background: linear-gradient(90deg, #43af73, #5bc48a);"></div>
             <p class="text-gray-600 text-sm mt-2">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
         </div>
@@ -101,8 +101,9 @@
                 @endif
                 <input type="hidden" name="sort" value="{{ $currentSort }}">
                 <div class="relative flex-1">
-                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <input type="text" name="search" value="{{ $currentSearch }}"
+                           aria-label="{{ $lang === 'ar' ? 'البحث عن المنتجات' : 'Search products' }}"
                            placeholder="{{ $lang === 'ar' ? 'ابحث عن منتج...' : 'Search products...' }}"
                            class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green bg-white transition-all">
                 </div>
@@ -111,7 +112,7 @@
                 </button>
             </form>
 
-            <select onchange="window.location.href='{{ route('products') }}?category={{ $currentCategory }}&search={{ $currentSearch }}&sort='+this.value"
+            <select aria-label="{{ $lang === 'ar' ? 'ترتيب المنتجات' : 'Sort products' }}" onchange="window.location.href='{{ route('products') }}?category={{ $currentCategory }}&search={{ $currentSearch }}&sort='+this.value"
                     class="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green">
                 <option value="default" {{ $currentSort === 'default' ? 'selected' : '' }}>{{ $lang === 'ar' ? 'افتراضي' : 'Default' }}</option>
                 <option value="price-low" {{ $currentSort === 'price-low' ? 'selected' : '' }}>{{ $lang === 'ar' ? 'السعر: من الأقل' : 'Price: Low → High' }}</option>
