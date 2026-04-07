@@ -11,16 +11,16 @@
     $catLabels = [
         'all' => 'All Products', 'coffee' => 'Coffee', 'beverages' => 'Beverages',
         'supplements' => 'Supplements', 'personal-care' => 'Personal Care',
-        'skincare' => 'Skin Care', 'ganoderma' => 'Ganoderma', 'other' => 'Other',
+        'skincare' => 'Skin Care', 'other' => 'Other',
     ];
     $catLabelsAr = [
         'all' => 'جميع المنتجات', 'coffee' => 'قهوة', 'beverages' => 'مشروبات',
         'supplements' => 'مكملات', 'personal-care' => 'العناية الشخصية',
-        'skincare' => 'العناية بالبشرة', 'ganoderma' => 'غانوديرما', 'other' => 'أخرى',
+        'skincare' => 'العناية بالبشرة', 'other' => 'أخرى',
     ];
     $catIcons = [
         'all' => '🌿', 'coffee' => '☕', 'beverages' => '🧃', 'supplements' => '💊',
-        'personal-care' => '🧴', 'skincare' => '✨', 'ganoderma' => '🍄', 'other' => '📦',
+        'personal-care' => '🧴', 'skincare' => '✨', 'other' => '📦',
     ];
 @endphp
 
