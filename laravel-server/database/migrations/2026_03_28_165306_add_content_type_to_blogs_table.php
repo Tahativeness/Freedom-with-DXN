@@ -8,9 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->string('content_type', 20)->default('rich_text')->after('content');
-        });
+        if (!Schema::hasColumn('blogs', 'content_type')) {
+            Schema::table('blogs', function (Blueprint $table) {
+                $table->string('content_type', 20)->default('rich_text')->after('content');
+            });
+        }
     }
 
     public function down(): void

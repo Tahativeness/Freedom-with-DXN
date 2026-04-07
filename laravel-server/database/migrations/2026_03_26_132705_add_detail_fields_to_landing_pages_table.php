@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('landing_pages', function (Blueprint $table) {
-            $table->text('description')->nullable()->after('hero_bg_color');
-            $table->text('description_ar')->nullable()->after('description');
-            $table->text('ingredients')->nullable()->after('description_ar');
-            $table->text('usage_directions')->nullable()->after('ingredients');
-            $table->text('usage_directions_ar')->nullable()->after('usage_directions');
-            $table->json('qna')->nullable()->after('usage_directions_ar');
-        });
+        if (!Schema::hasColumn('landing_pages', 'description')) {
+            Schema::table('landing_pages', function (Blueprint $table) {
+                $table->text('description')->nullable()->after('hero_bg_color');
+                $table->text('description_ar')->nullable()->after('description');
+                $table->text('ingredients')->nullable()->after('description_ar');
+                $table->text('usage_directions')->nullable()->after('ingredients');
+                $table->text('usage_directions_ar')->nullable()->after('usage_directions');
+                $table->json('qna')->nullable()->after('usage_directions_ar');
+            });
+        }
     }
 
     public function down(): void

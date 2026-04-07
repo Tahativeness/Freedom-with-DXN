@@ -8,12 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('name_ar')->nullable()->after('name');
-            $table->text('description_ar')->nullable()->after('description');
-            $table->json('benefits_ar')->nullable()->after('benefits');
-            $table->text('usage_ar')->nullable()->after('usage');
-        });
+        if (!Schema::hasColumn('products', 'name_ar')) {
+            Schema::table('products', function (Blueprint $table) {
+                $table->string('name_ar')->nullable()->after('name');
+                $table->text('description_ar')->nullable()->after('description');
+                $table->json('benefits_ar')->nullable()->after('benefits');
+                $table->text('usage_ar')->nullable()->after('usage');
+            });
+        }
     }
 
     public function down(): void

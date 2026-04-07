@@ -8,9 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('landing_page')->default('')->after('source_url');
-        });
+        if (!Schema::hasColumn('products', 'landing_page')) {
+            Schema::table('products', function (Blueprint $table) {
+                $table->string('landing_page')->default('')->after('source_url');
+            });
+        }
     }
 
     public function down(): void
