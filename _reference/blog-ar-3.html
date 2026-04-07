@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة قهوة DXN لينجزي: الطعم، الفوائد، وطريقة الطلب في الإمارات | Freedom with DXN</title>
+<meta name="description" content="مراجعة صادقة لقهوة DXN لينجزي — ما طعمها، كيف يجعلها الغانوديرما مختلفة عن القهوة العادية، وكيفية طلبها في الإمارات.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 6vw, 68px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: '·'; margin-left: 20px; }
+  .hero-meta span:first-child::before { content: ''; margin-left: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LAYOUT */
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 64px;
+    padding-top: 72px;
+    padding-bottom: 60px;
+  }
+
+  /* ARTICLE */
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-right: 4px solid var(--gold);
+    padding-right: 20px;
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p { margin-bottom: 22px; color: #3a3a3a; }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+    white-space: nowrap;
+  }
+
+  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .img-placeholder {
+    background: linear-gradient(135deg, #e8f5ee, #d0eddc);
+    border: 1.5px dashed #43af73;
+    border-radius: 6px;
+    padding: 32px 24px;
+    margin: 36px 0;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #43af73;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* RATING CARD */
+  .rating-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px 28px;
+    margin: 36px 0;
+  }
+
+  .rating-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+
+  .rating-row:last-child { border-bottom: none; }
+
+  .rating-label { color: #4a4a4a; }
+
+  .stars { color: var(--gold); font-size: 17px; letter-spacing: 2px; }
+
+  /* VARIANTS TABLE */
+  .variants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 15px;
+  }
+
+  .variants-table th {
+    background: var(--forest);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: right;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .variants-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: #4a4a4a;
+    vertical-align: top;
+  }
+
+  .variants-table tr:nth-child(even) td { background: #f7f5fc; }
+
+  .badge {
+    display: inline-block;
+    background: var(--emerald);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  /* PROS/CONS */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+
+  .pros, .cons {
+    border-radius: 8px;
+    padding: 22px 20px;
+  }
+
+  .pros { background: #edfaf3; border: 1px solid #b5e8cc; }
+  .cons { background: #fdf2f2; border: 1px solid #f0c8c8; }
+
+  .pros h4, .cons h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .pros h4 { color: #1a7a4a; }
+  .cons h4 { color: #a02020; }
+
+  .pros ul, .cons ul { list-style: none; }
+
+  .pros li, .cons li {
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: #3a3a3a;
+  }
+
+  .pros li:last-child, .cons li:last-child { border-bottom: none; }
+
+  .pros li::before { content: '\2713'; color: #1a7a4a; font-weight: 700; flex-shrink: 0; }
+  .cons li::before { content: '\25CB'; color: #a02020; font-weight: 700; flex-shrink: 0; }
+
+  /* FAQ */
+  .faq { margin: 8px 0; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--forest);
+    margin-bottom: 8px; display: flex; gap: 10px;
+  }
+
+  .faq-q::before {
+    content: 'س'; background: var(--gold); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 2px 7px;
+    border-radius: 3px; flex-shrink: 0; margin-top: 3px; height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-right: 32px; margin-bottom: 0; }
+
+  /* CTA */
+  .cta-banner {
+    background: var(--forest); border-radius: 10px;
+    padding: 48px 40px; text-align: center;
+    margin-top: 56px; position: relative; overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: ''; position: absolute; top: -60px; left: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block; background: var(--gold); color: #fff;
+    padding: 15px 36px; border-radius: 4px; text-decoration: none;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(191,60,54,0.4); }
+
+  /* SIDEBAR */
+  .sidebar-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 28px 24px; margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700;
+    color: var(--forest); margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+  .toc li { padding: 8px 0; border-bottom: 1px solid #f0ebe3; font-size: 14px; }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { color: var(--emerald); text-decoration: none; display: flex; gap: 8px; align-items: start; }
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: '\2190'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+  .fact-list li { font-size: 14px; color: #4a4a4a; padding: 7px 0; border-bottom: 1px solid #f0ebe3; display: flex; gap: 10px; align-items: center; }
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: '\2713'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest); color: #fff; border-radius: 8px;
+    padding: 28px 24px; text-align: center; margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+  .zoom-card h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 8px; }
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block; background: var(--sage); color: #fff;
+    padding: 11px 24px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  .sidebar { order: -1; }
+
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
+    .sidebar { order: 1; }
+    .hero { height: 400px; }
+    .hero-content { padding-bottom: 48px; }
+    .hero-title { font-size: clamp(30px, 5vw, 52px); }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-banner { padding: 36px 28px; }
+    .cta-banner h3 { font-size: 22px; }
+  }
+
+  @media (max-width: 540px) {
+    body { font-size: 15px; line-height: 1.7; }
+    .hero { height: 340px; }
+    .hero-content { padding: 0 20px 36px; }
+    .hero-title { font-size: 28px; margin-bottom: 14px; }
+    .hero-tag { font-size: 10px; padding: 5px 12px; margin-bottom: 16px; }
+    .hero-meta { font-size: 12px; gap: 12px; }
+    .hero-meta span::before { margin-left: 12px; }
+    .page-wrap { padding: 0 16px; padding-top: 40px; padding-bottom: 40px; gap: 32px; }
+    .article-intro { font-size: 16px; padding-right: 14px; margin-bottom: 28px; }
+    .section-head { margin: 36px 0 14px; }
+    .section-head h2 { font-size: 20px; }
+    .faq-q { font-size: 15px; }
+    .faq-a { font-size: 14px; padding-right: 24px; }
+    .cta-banner { padding: 28px 20px; margin-top: 36px; }
+    .cta-banner h3 { font-size: 20px; }
+    .cta-banner p { font-size: 13px; margin-bottom: 20px; }
+    .btn-gold { padding: 12px 28px; font-size: 14px; }
+    .sidebar-card { padding: 20px 16px; }
+    .sidebar-card h4 { font-size: 15px; }
+    .zoom-card { padding: 20px 16px; }
+    .zoom-card h4 { font-size: 15px; }
+    .rating-card { padding: 24px 18px; }
+    .rating-row { font-size: 13px; }
+    .stars { font-size: 15px; }
+    .variants-table { font-size: 13px; }
+    .variants-table th, .variants-table td { padding: 10px 12px; }
+    .two-col { grid-template-columns: 1fr; }
+    .pros, .cons { padding: 18px 16px; }
+    .pros li, .cons li { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-placeholder">
+    <div class="hero-placeholder-text">
+      HERO IMAGE GOES HERE
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">مراجعة منتج · الإمارات</div>
+    <h1 class="hero-title">قهوة DXN لينجزي:<br><em>مراجعة صادقة</em><br>من الإمارات</h1>
+    <div class="hero-meta">
+      <span>Freedom with DXN</span>
+      <span>٧ دقائق قراءة</span>
+    </div>
+  </div>
+</header>
+
+<main class="page-wrap">
+
+  <article class="article">
+
+    <p class="article-intro">
+      قهوة DXN لينجزي هي واحدة من أكثر مشروبات العافية مبيعًا في الخليج. لكن ما طعمها فعلًا؟ هل فرق الغانوديرما حقيقي؟ وكيف تطلبها هنا في الإمارات؟ هذه مراجعة صادقة بدون مبالغة.
+    </p>
+
+    <div class="section-head" id="what-is"><h2>ما هي قهوة DXN لينجزي؟</h2></div>
+
+    <p>قهوة DXN لينجزي هي مزيج قهوة سريعة التحضير يجمع بين قهوة عالية الجودة وفطر الغانوديرما لوسيدوم — وهو فطر طبي معروف في آسيا منذ قرون باسم "فطر الخلود". تنتج DXN هذا المزيج منذ التسعينيات وهو يبقى منتجها الرئيسي، ويُباع في أكثر من 180 دولة.</p>
+
+    <p>على عكس القهوة السريعة العادية، كل كيس من قهوة DXN لينجزي يحتوي على مستخلص الغانوديرما المصنوع من فطر يُزرع في مزارع DXN المعتمدة في ماليزيا. هذا التحكم من المزرعة إلى الكيس هو ما يميزها عن منتجات القهوة بالفطر الأخرى في السوق.</p>
+
+    <div class="img-placeholder">صورة: أكياس قهوة DXN لينجزي معروضة على سطح خشبي</div>
+
+    <div class="section-head" id="variants"><h2>الأنواع الرئيسية</h2></div>
+
+    <p>تقدم DXN عدة أنواع من قهوة لينجزي، كل منها يناسب نمط حياة أو ذوقًا مختلفًا. إليك ملخصًا سريعًا:</p>
+
+    <table class="variants-table">
+      <thead>
+        <tr>
+          <th>النوع</th>
+          <th>ملف الطعم</th>
+          <th>الأنسب لـ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>لينجزي بلاك كوفي</strong></td>
+          <td>قوي، داكن، ترابي قليلًا</td>
+          <td>محبي القهوة السوداء، نمط حياة بدون سكر</td>
+        </tr>
+        <tr>
+          <td><strong>لينجزي كوفي 2 في 1</strong></td>
+          <td>ناعم، حلو قليلًا</td>
+          <td>من يحبون القهوة بدون مبيض</td>
+        </tr>
+        <tr>
+          <td><strong>لينجزي كوفي 3 في 1</strong></td>
+          <td>كريمي، متوازن، خفيف</td>
+          <td>شاربي القهوة السريعة العاديين <span class="badge">الأكثر شعبية</span></td>
+        </tr>
+        <tr>
+          <td><strong>زي موكا</strong></td>
+          <td>غني، بطعم الشوكولاتة، ناعم</td>
+          <td>محبي الموكا، متعة بدون ذنب</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-head" id="taste"><h2>ما طعمها فعلًا؟</h2></div>
+
+    <p>هذا هو السؤال الذي يطرحه معظم الناس أولًا — وهو سؤال عادل. الإجابة الصادقة: قهوة DXN لينجزي طعمها قريب بشكل ملحوظ من القهوة السريعة عالية الجودة. الغانوديرما لا يطغى على النكهة. ما تلاحظه بدلًا من ذلك هو عمق ترابي أكثر واستدارة مقارنة بالعلامات التجارية السريعة العادية.</p>
+
+    <p>نسخة 3 في 1 كريمية وخفيفة — كوب مريح ومألوف يستمتع به معظم الناس من أول رشفة. نسخة القهوة السوداء لها طابع أقوى، مع نهاية نظيفة أقل حموضة بشكل ملحوظ من القهوة السوداء العادية. إذا سبق لك أن تناولت كوب قهوة سريعة قاسية تحرق المعدة في الصباح، فمن المرجح أنك ستقدر هذا الفرق.</p>
+
+    <p>كثير من الناس الذين يتحولون إلى قهوة DXN لينجزي يقولون إنها تبدو "أخف" على المعدة — وهو شيء يلاحظه شاربو القهوة العاديون الذين لديهم حساسية للكافيين أو الحموضة عادةً خلال الأسبوع الأول. سواء نسبت ذلك إلى الغانوديرما أو جودة القهوة نفسها، النتيجة حقيقية.</p>
+
+    <div class="img-placeholder">صورة: لقطة قريبة لقهوة DXN لينجزي تُصب في كوب سيراميك أبيض</div>
+
+    <div class="section-head" id="ganoderma"><h2>ماذا يفعل الغانوديرما فعلًا؟</h2></div>
+
+    <p>الغانوديرما لوسيدوم — يُسمى لينجزي بالصينية وريشي باليابانية — استُخدم في الطب التقليدي عبر آسيا لأكثر من 2000 عام. مؤسس DXN، الدكتور ليم سيو جين، كرّس حياته المهنية لجعل هذا الفطر متاحًا في المنتجات اليومية.</p>
+
+    <p>يُصنف الغانوديرما كمادة متكيفة (أدابتوجين) — مادة طبيعية تدعم قدرة الجسم على إدارة الإجهاد والحفاظ على التوازن. يُزرع غانوديرما DXN ويُحصد ويُعالج في مرافقهم الخاصة في ماليزيا، دون الاستعانة بموردين خارجيين. هذا التحكم في سلسلة التوريد هو ما يمنح منتجات DXN ثباتها.</p>
+
+    <p>من المهم ملاحظة: منتجات DXN هي مكملات غذائية وليست أدوية. لا يُقصد بها تشخيص أو علاج أو شفاء أي حالة. ما تشير إليه الأبحاث ومجتمع مستخدمي DXN باستمرار هو تحسن عام في مستويات الطاقة وجودة النوم والشعور بالهدوء — فوائد تكمّل نمط الحياة الصحي بدلًا من أن تحل محل الرعاية الطبية.</p>
+
+    <div class="section-head" id="rating"><h2>تقييمنا الصادق</h2></div>
+
+    <div class="rating-card">
+      <h3>قهوة DXN لينجزي 3 في 1 — الحكم السريع</h3>
+      <div class="rating-row">
+        <span class="rating-label">الطعم</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">سهولة التحضير</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">القيمة مقابل السعر</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">راحة المعدة</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">التقييم العام</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="pros">
+        <h4>ما أعجبنا</h4>
+        <ul>
+          <li>شكل سريع التحضير — لا تحتاج لآلة قهوة</li>
+          <li>حموضة أقل بشكل ملحوظ من القهوة العادية</li>
+          <li>غانوديرما من مزارع DXN الخاصة</li>
+          <li>حاصلة على شهادة حلال</li>
+          <li>متوفرة بعدة أنواع لكل الأذواق</li>
+          <li>جودة ثابتة في كل علبة</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>يجب أن تعرف</h4>
+        <ul>
+          <li>ليست قهوة تخصصية أو بأسلوب الباريستا</li>
+          <li>سعر أعلى قليلًا من القهوة السريعة في السوبرماركت</li>
+          <li>فوائد الغانوديرما تدريجية — ليست نتائج فورية</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-head" id="order"><h2>كيف تطلب في الإمارات</h2></div>
+
+    <p>منتجات DXN لا تُباع في السوبرماركت أو الصيدليات العادية في الإمارات. يتم توزيعها حصريًا من خلال شبكة موزعي DXN المسجلين — وهي إحدى الطرق التي تحافظ بها DXN على أسعار عادلة وتضمن أصالة المنتج.</p>
+
+    <p>أبسط طريقة لطلب قهوة DXN لينجزي في الإمارات هي التواصل مع موزع محلي مباشرة. كموزع Freedom with DXN في الخليج، يمكننا مساعدتك في تقديم طلب، ونصحك بالنوع المناسب لك، وترتيب التوصيل.</p>
+
+    <p>يمكنك أيضًا التسجيل كعضو في DXN — مما يمنحك الوصول إلى أسعار الموزعين على جميع المنتجات. التسجيل بسيط، لا يتطلب استثمارًا كبيرًا، ويفتح لك الباب للطلب مباشرة من DXN بسعر مخفض في كل مرة.</p>
+
+    <div class="section-head" id="faq"><h2>الأسئلة الشائعة</h2></div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <p class="faq-q">هل قهوة DXN لينجزي حلال؟</p>
+        <p class="faq-a">نعم. منتجات DXN بما فيها قهوة لينجزي حاصلة على شهادة حلال، مما يجعلها مناسبة للمستهلكين المسلمين في الإمارات ومنطقة الشرق الأوسط وشمال أفريقيا.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">هل تحتوي على كافيين؟</p>
+        <p class="faq-a">نعم، قهوة DXN لينجزي تحتوي على كافيين من القهوة الحقيقية. نسخة القهوة السوداء تحتوي على أعلى نسبة كافيين، بينما مزيجا 3 في 1 و2 في 1 أخف. إذا كنت حساسًا للكافيين، ابدأ بالأنواع الأخف.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">هل يمكنني شربها يوميًا؟</p>
+        <p class="faq-a">نعم. معظم موزعي ومستخدمي DXN يشربون قهوة لينجزي يوميًا كبديل لقهوتهم الصباحية المعتادة. كثيرون يقولون إن فوائد الغانوديرما تظهر بشكل أفضل مع الاستخدام اليومي المستمر مع الوقت.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">أين يمكنني شراء قهوة DXN في دبي أو أبوظبي؟</p>
+        <p class="faq-a">منتجات DXN متوفرة فقط عبر الموزعين المسجلين — وليس في المتاجر. تواصل معنا عبر واتساب وسنساعدك في طلب المنتجات المناسبة وتوصيلها إلى موقعك في الإمارات.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">كيف تختلف قهوة DXN عن أنواع قهوة الفطر الأخرى؟</p>
+        <p class="faq-a">معظم علامات قهوة الفطر التجارية تحصل على الغانوديرما من موردين خارجيين. DXN تزرع وتعالج وتصنع كل شيء داخليًا — من المزرعة إلى الكيس. هذا المستوى من التكامل الرأسي نادر ويضمن منتجًا ثابتًا وقابلًا للتتبع.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h3>مستعد لتجربة قهوة DXN لينجزي؟</h3>
+      <p>راسلنا على واتساب وسنساعدك في اختيار النوع المناسب، والإجابة على أي أسئلة، وترتيب التوصيل إلى موقعك في الإمارات. بدون التزام — مجرد نصيحة صادقة.</p>
+      <a href="https://wa.me/message/EFSQ2IDNVG3YB1" class="btn-gold">اطلب عبر واتساب</a>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+      <h4>في هذا المقال</h4>
+      <ul class="toc">
+        <li><a href="#what-is">ما هي قهوة لينجزي؟</a></li>
+        <li><a href="#variants">دليل أنواع القهوة</a></li>
+        <li><a href="#taste">ما طعمها فعلًا؟</a></li>
+        <li><a href="#ganoderma">ماذا يفعل الغانوديرما؟</a></li>
+        <li><a href="#rating">تقييمنا الصادق</a></li>
+        <li><a href="#order">كيف تطلب في الإمارات</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+
+    <div class="zoom-card">
+      <div class="icon">&#x1F4F9;</div>
+      <h4>تدريب زووم مجاني</h4>
+      <p>تعرّف على منتجات DXN وفرصة العمل. كل أسبوع · عربي وإنجليزي</p>
+      <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn-sage">احجز مقعدك</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>أنواع القهوة المتوفرة</h4>
+      <ul class="fact-list">
+        <li>لينجزي بلاك كوفي</li>
+        <li>لينجزي كوفي 2 في 1</li>
+        <li>لينجزي كوفي 3 في 1</li>
+        <li>زي موكا</li>
+        <li>كورديسيبس كوفي</li>
+        <li>لاينز مان كوفي</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>حقائق سريعة عن DXN</h4>
+      <ul class="fact-list">
+        <li>تأسست عام 1993، ماليزيا</li>
+        <li>أكثر من 180 دولة حول العالم</li>
+        <li>مزارع غانوديرما خاصة</li>
+        <li>حاصلة على شهادة حلال</li>
+        <li>بدون مواد حافظة صناعية</li>
+        <li>متوفرة في الإمارات</li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+</body>
+</html>

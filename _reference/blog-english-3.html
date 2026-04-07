@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DXN Lingzhi Coffee Review: Taste, Benefits, and How to Order in UAE | Freedom with DXN</title>
+<meta name="description" content="An honest review of DXN Lingzhi Coffee — what it tastes like, how Ganoderma makes it different from regular coffee, and how to order it in the UAE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #46387b;
+    --emerald: #43af73;
+    --sage: #43af73;
+    --gold: #bf3c36;
+    --cream: #f7f5fc;
+    --warm-white: #fdfcff;
+    --ink: #1c1c1c;
+    --muted: #6b7280;
+    --border: #ddd8ef;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 560px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2c1878 0%, #46387b 45%, #5a4a96 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-placeholder-text {
+    color: rgba(255,255,255,0.15);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    text-align: center;
+    padding: 24px;
+    max-width: 600px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(20px, 6vw, 100px) 64px;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 6vw, 68px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta span::before { content: '·'; margin-right: 20px; }
+  .hero-meta span:first-child::before { content: ''; margin-right: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LAYOUT */
+  .page-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 72px clamp(20px, 5vw, 60px) 100px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+  }
+
+  /* ARTICLE */
+  .article-intro {
+    font-size: 20px;
+    color: var(--emerald);
+    font-weight: 500;
+    border-left: 4px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .article p { margin-bottom: 22px; color: #3a3a3a; }
+
+  .section-head {
+    margin: 52px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--forest);
+    white-space: nowrap;
+  }
+
+  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .img-placeholder {
+    background: linear-gradient(135deg, #e8f5ee, #d0eddc);
+    border: 1.5px dashed #43af73;
+    border-radius: 6px;
+    padding: 32px 24px;
+    margin: 36px 0;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #43af73;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* RATING CARD */
+  .rating-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px 28px;
+    margin: 36px 0;
+  }
+
+  .rating-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+
+  .rating-row:last-child { border-bottom: none; }
+
+  .rating-label { color: #4a4a4a; }
+
+  .stars { color: var(--gold); font-size: 17px; letter-spacing: 2px; }
+
+  /* VARIANTS TABLE */
+  .variants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 15px;
+  }
+
+  .variants-table th {
+    background: var(--forest);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .variants-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: #4a4a4a;
+    vertical-align: top;
+  }
+
+  .variants-table tr:nth-child(even) td { background: #f7f5fc; }
+
+  .badge {
+    display: inline-block;
+    background: var(--emerald);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  /* PROS/CONS */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+
+  .pros, .cons {
+    border-radius: 8px;
+    padding: 22px 20px;
+  }
+
+  .pros { background: #edfaf3; border: 1px solid #b5e8cc; }
+  .cons { background: #fdf2f2; border: 1px solid #f0c8c8; }
+
+  .pros h4, .cons h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .pros h4 { color: #1a7a4a; }
+  .cons h4 { color: #a02020; }
+
+  .pros ul, .cons ul { list-style: none; }
+
+  .pros li, .cons li {
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: #3a3a3a;
+  }
+
+  .pros li:last-child, .cons li:last-child { border-bottom: none; }
+
+  .pros li::before { content: '\2713'; color: #1a7a4a; font-weight: 700; flex-shrink: 0; }
+  .cons li::before { content: '\25CB'; color: #a02020; font-weight: 700; flex-shrink: 0; }
+
+  /* FAQ */
+  .faq { margin: 8px 0; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--forest);
+    margin-bottom: 8px; display: flex; gap: 10px;
+  }
+
+  .faq-q::before {
+    content: 'Q'; background: var(--gold); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 2px 7px;
+    border-radius: 3px; flex-shrink: 0; margin-top: 3px; height: fit-content;
+  }
+
+  .faq-a { color: #4a4a4a; padding-left: 32px; margin-bottom: 0; }
+
+  /* CTA */
+  .cta-banner {
+    background: var(--forest); border-radius: 10px;
+    padding: 48px 40px; text-align: center;
+    margin-top: 56px; position: relative; overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(67,175,115,0.12);
+  }
+
+  .cta-banner h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+  .btn-gold {
+    display: inline-block; background: var(--gold); color: #fff;
+    padding: 15px 36px; border-radius: 4px; text-decoration: none;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(191,60,54,0.4); }
+
+  /* SIDEBAR */
+  .sidebar-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 28px 24px; margin-bottom: 28px;
+  }
+
+  .sidebar-card h4 {
+    font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700;
+    color: var(--forest); margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .toc { list-style: none; }
+  .toc li { padding: 8px 0; border-bottom: 1px solid #f0ebe3; font-size: 14px; }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { color: var(--emerald); text-decoration: none; display: flex; gap: 8px; align-items: start; }
+  .toc a:hover { color: var(--gold); }
+  .toc a::before { content: '\2192'; font-size: 12px; margin-top: 1px; flex-shrink: 0; color: var(--emerald); }
+
+  .fact-list { list-style: none; }
+  .fact-list li { font-size: 14px; color: #4a4a4a; padding: 7px 0; border-bottom: 1px solid #f0ebe3; display: flex; gap: 10px; align-items: center; }
+  .fact-list li:last-child { border-bottom: none; }
+  .fact-list li::before { content: '\2713'; color: var(--sage); font-weight: 700; font-size: 13px; }
+
+  .zoom-card {
+    background: var(--forest); color: #fff; border-radius: 8px;
+    padding: 28px 24px; text-align: center; margin-bottom: 28px;
+  }
+
+  .zoom-card .icon { font-size: 32px; margin-bottom: 12px; }
+  .zoom-card h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 8px; }
+  .zoom-card p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+
+  .btn-sage {
+    display: inline-block; background: var(--sage); color: #fff;
+    padding: 11px 24px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: opacity 0.2s;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  @media (max-width: 860px) {
+    .page-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .sidebar { order: -1; }
+    .hero { height: 440px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-placeholder">
+    <div class="hero-placeholder-text">HERO IMAGE — DXN Coffee Cup with Ganoderma mushroom</div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Product Review · UAE</div>
+    <h1 class="hero-title">DXN Lingzhi Coffee:<br><em>An Honest Review</em><br>from the UAE</h1>
+    <div class="hero-meta">
+      <span>Freedom with DXN</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="page-wrap">
+
+  <article class="article">
+
+    <p class="article-intro">
+      DXN Lingzhi Coffee is one of the best-selling wellness beverages in the Gulf. But what does it actually taste like? Is the Ganoderma difference real? And how do you order it here in the UAE? This is an honest, no-hype review.
+    </p>
+
+    <div class="section-head" id="what-is">
+      <h2>What Is DXN Lingzhi Coffee?</h2>
+    </div>
+
+    <p>DXN Lingzhi Coffee is an instant coffee blend that combines high-quality coffee with Ganoderma Lucidum — a medicinal mushroom known across Asia for centuries as the "Mushroom of Immortality." DXN has been producing this blend since the 1990s and it remains their flagship product, sold in over 180 countries.</p>
+
+    <p>Unlike standard instant coffee, every sachet of DXN Lingzhi Coffee contains Ganoderma extract made from mushrooms grown on DXN's own certified farms in Malaysia. This farm-to-sachet control is what sets it apart from other mushroom coffee products on the market.</p>
+
+    <div class="img-placeholder">IMAGE: DXN Lingzhi Coffee sachets displayed on a wooden surface</div>
+
+    <div class="section-head" id="variants">
+      <h2>The Main Variants</h2>
+    </div>
+
+    <p>DXN offers several Lingzhi Coffee variants, each suited to a different lifestyle or preference. Here is a quick breakdown:</p>
+
+    <table class="variants-table">
+      <thead>
+        <tr>
+          <th>Variant</th>
+          <th>Taste Profile</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lingzhi Black Coffee</strong></td>
+          <td>Bold, dark, slightly earthy</td>
+          <td>Black coffee drinkers, sugar-free lifestyle</td>
+        </tr>
+        <tr>
+          <td><strong>Lingzhi Coffee 2-in-1</strong></td>
+          <td>Smooth, lightly sweet</td>
+          <td>Those who like coffee without creamer</td>
+        </tr>
+        <tr>
+          <td><strong>Lingzhi Coffee 3-in-1</strong></td>
+          <td>Creamy, balanced, mild</td>
+          <td>Regular instant coffee drinkers <span class="badge">Most Popular</span></td>
+        </tr>
+        <tr>
+          <td><strong>Zhi Mocha</strong></td>
+          <td>Rich, chocolatey, smooth</td>
+          <td>Mocha lovers, a treat without guilt</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-head" id="taste">
+      <h2>What Does It Actually Taste Like?</h2>
+    </div>
+
+    <p>This is the question most people ask first — and it is a fair one. The honest answer: DXN Lingzhi Coffee tastes remarkably close to good-quality instant coffee. The Ganoderma does not overpower the flavor. What you notice instead is a slightly earthier, more rounded depth compared to standard instant brands.</p>
+
+    <p>The 3-in-1 version is creamy and mild — a comfortable, familiar cup that most people enjoy from the first sip. The Black Coffee variant has a stronger character, with a clean finish that is noticeably less acidic than regular black coffee. If you have ever experienced a harsh, stomach-burning cup of instant coffee in the morning, you will likely appreciate this difference.</p>
+
+    <p>Many people who switch to DXN Lingzhi Coffee report that it feels "lighter" on the stomach — something that regular coffee drinkers with sensitivity to caffeine or acidity often notice within the first week. Whether you attribute that to the Ganoderma or the quality of the coffee itself, the result is real.</p>
+
+    <div class="img-placeholder">IMAGE: Close-up of DXN Lingzhi Coffee being poured into a white ceramic cup</div>
+
+    <div class="section-head" id="ganoderma">
+      <h2>What Does Ganoderma Actually Do?</h2>
+    </div>
+
+    <p>Ganoderma Lucidum — called Lingzhi in Chinese and Reishi in Japanese — has been used in traditional medicine across Asia for over 2,000 years. DXN's founder, Dr. Lim Siow Jin, dedicated his career to making this mushroom accessible in everyday products.</p>
+
+    <p>Ganoderma is classified as an adaptogen — a natural substance that supports the body's ability to manage stress and maintain balance. DXN's Ganoderma is grown, harvested, and processed in their own facilities in Malaysia, without outsourcing to third-party suppliers. This control over the supply chain is what gives DXN products their consistency.</p>
+
+    <p>It is important to note: DXN products are food supplements, not medicines. They are not intended to diagnose, treat, or cure any condition. What the research and the community of DXN users consistently reports is a general improvement in energy levels, sleep quality, and a sense of calm — benefits that complement a healthy lifestyle rather than replace medical care.</p>
+
+    <div class="section-head" id="rating">
+      <h2>Our Honest Rating</h2>
+    </div>
+
+    <div class="rating-card">
+      <h3>DXN Lingzhi Coffee 3-in-1 — Quick Verdict</h3>
+      <div class="rating-row">
+        <span class="rating-label">Taste</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Ease of Preparation</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Value for Money</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Stomach Comfort</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Overall</span>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="pros">
+        <h4>What We Like</h4>
+        <ul>
+          <li>Convenient instant format — no machine needed</li>
+          <li>Noticeably lower acidity than regular coffee</li>
+          <li>Ganoderma sourced from DXN's own farms</li>
+          <li>Halal certified</li>
+          <li>Available in multiple variants for every preference</li>
+          <li>Consistent quality across every box</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Worth Knowing</h4>
+        <ul>
+          <li>Not a specialty or barista-style coffee</li>
+          <li>Slightly higher price than supermarket instant coffee</li>
+          <li>Ganoderma benefits are gradual — not instant results</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-head" id="order">
+      <h2>How to Order in the UAE</h2>
+    </div>
+
+    <p>DXN products are not sold in regular supermarkets or pharmacies in the UAE. They are distributed exclusively through DXN's network of registered distributors — which is one of the ways DXN keeps prices fair and maintains product authenticity.</p>
+
+    <p>The simplest way to order DXN Lingzhi Coffee in the UAE is to contact a local distributor directly. As a Freedom with DXN distributor based in the Gulf, we can help you place an order, advise on which variant suits you, and arrange delivery.</p>
+
+    <p>You can also register as a DXN member yourself — which gives you access to distributor pricing on all products. Registration is simple, requires no large investment, and opens the door to ordering directly from DXN at a discounted rate every time.</p>
+
+    <div class="section-head" id="faq">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <p class="faq-q">Is DXN Lingzhi Coffee halal?</p>
+        <p class="faq-a">Yes. DXN products including Lingzhi Coffee are halal certified, making them suitable for Muslim consumers across the UAE and the wider MENA region.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Does it contain caffeine?</p>
+        <p class="faq-a">Yes, DXN Lingzhi Coffee contains caffeine from real coffee. The Black Coffee variant has the highest caffeine content, while the 3-in-1 and 2-in-1 blends are milder. If you are sensitive to caffeine, start with the lighter variants.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I drink it every day?</p>
+        <p class="faq-a">Yes. Most DXN distributors and users consume Lingzhi Coffee daily as a replacement for their regular morning coffee. Many report that the benefits of Ganoderma are best experienced with consistent, daily use over time.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Where can I buy DXN coffee in Dubai or Abu Dhabi?</p>
+        <p class="faq-a">DXN products are available through registered distributors only — not in retail shops. Contact us via WhatsApp and we will help you order the right products and deliver to your location in the UAE.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How is DXN coffee different from other mushroom coffees?</p>
+        <p class="faq-a">Most mushroom coffee brands source their Ganoderma from third-party suppliers. DXN grows, processes, and manufactures everything in-house — from farm to sachet. This level of vertical integration is rare and ensures a consistent, traceable product.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h3>Ready to Try DXN Lingzhi Coffee?</h3>
+      <p>Message us on WhatsApp and we will help you choose the right variant, answer any questions, and arrange delivery to your location in the UAE. No obligation — just honest advice.</p>
+      <a href="https://wa.me/message/EFSQ2IDNVG3YB1" class="btn-gold">Order via WhatsApp</a>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+      <h4>In This Article</h4>
+      <ul class="toc">
+        <li><a href="#what-is">What Is Lingzhi Coffee?</a></li>
+        <li><a href="#variants">Coffee Variants Guide</a></li>
+        <li><a href="#taste">What Does It Taste Like?</a></li>
+        <li><a href="#ganoderma">What Does Ganoderma Do?</a></li>
+        <li><a href="#rating">Our Honest Rating</a></li>
+        <li><a href="#order">How to Order in UAE</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="zoom-card">
+      <div class="icon">&#x1F4F9;</div>
+      <h4>Free Zoom Training</h4>
+      <p>Learn about DXN products and the business opportunity. Every week · Arabic & English</p>
+      <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn-sage">Book Your Spot</a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Coffee Variants Available</h4>
+      <ul class="fact-list">
+        <li>Lingzhi Black Coffee</li>
+        <li>Lingzhi Coffee 2-in-1</li>
+        <li>Lingzhi Coffee 3-in-1</li>
+        <li>Zhi Mocha</li>
+        <li>Cordyceps Coffee</li>
+        <li>Lion's Mane Coffee</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>DXN Quick Facts</h4>
+      <ul class="fact-list">
+        <li>Founded 1993, Malaysia</li>
+        <li>180+ countries worldwide</li>
+        <li>Own Ganoderma farms</li>
+        <li>Halal certified</li>
+        <li>No artificial preservatives</li>
+        <li>Available in UAE</li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+</body>
+</html>
