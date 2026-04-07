@@ -102,23 +102,6 @@
             <p class="text-gray-600 text-sm mt-2">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
         </div>
 
-        {{-- SEO Collection Descriptions --}}
-        @if($lang !== 'ar')
-            @if($currentCategory === 'all')
-                <div class="max-w-3xl mx-auto text-center mb-8 text-gray-600 text-sm leading-relaxed">
-                    <p>Explore our full range of authentic DXN health products at Freedom With DXN. From the iconic DXN Lingzhi Coffee — infused with the power of Ganoderma mushroom — to the creamy DXN Cocozhi and nutrient-packed DXN Spirulina tablets, every product is crafted to support your daily wellness. All products are halal-certified, manufactured under strict quality standards, and trusted by millions of DXN members worldwide.</p>
-                </div>
-            @elseif($currentCategory === 'coffee' || $currentCategory === 'beverages')
-                <div class="max-w-3xl mx-auto text-center mb-8 text-gray-600 text-sm leading-relaxed">
-                    <p>Discover the DXN Coffee Collection — a unique range of Ganoderma-infused beverages that combine the rich flavour of premium coffee with the proven health benefits of Lingzhi mushroom. Choose from the DXN Lingzhi Coffee 3-in-1 Arabica for a full-bodied morning cup, or the sugar-free DXN Lingzhi Coffee 2-in-1 for a lighter, health-conscious brew. For a creamy, tropical twist, try the popular DXN Cocozhi coconut coffee.</p>
-                </div>
-            @elseif($currentCategory === 'supplements' || $currentCategory === 'ganoderma')
-                <div class="max-w-3xl mx-auto text-center mb-8 text-gray-600 text-sm leading-relaxed">
-                    <p>Support your body from within with our range of DXN natural health supplements. Our bestselling DXN Spirulina tablets are made from pure micro-algae and are rich in protein, iron, B-vitamins, and powerful antioxidants — making them one of the most complete superfoods available. Ideal for boosting immunity, improving energy levels, and supporting overall health. All products are produced in DXN's own GMP-certified facilities.</p>
-                </div>
-            @endif
-        @endif
-
         {{-- Search + Sort --}}
         <div class="flex flex-col md:flex-row gap-3 mb-8">
             <form method="GET" action="{{ route('products') }}" class="flex-1 flex gap-2">
