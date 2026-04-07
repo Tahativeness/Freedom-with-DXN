@@ -98,8 +98,7 @@
                 {{ $catIcons[$currentCategory] ?? '🌿' }}
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
             </h2>
-            <div class="w-16 h-1 mx-auto mt-2 rounded-full" style="background: linear-gradient(90deg, #43af73, #5bc48a);"></div>
-            <p class="text-gray-600 text-sm mt-2">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
+            <p class="text-sm font-semibold mt-3 inline-block px-4 py-1 rounded-full" style="background-color: #236b43; color: #fff;">{{ $products->total() }} {{ $lang === 'ar' ? 'منتج' : 'products' }}</p>
         </div>
 
         {{-- Search + Sort --}}
