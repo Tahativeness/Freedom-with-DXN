@@ -60,6 +60,26 @@
         @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/dm-sans-latin.woff2') format('woff2'); }
         @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/dm-sans-latin.woff2') format('woff2'); }
         @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/dm-sans-latin.woff2') format('woff2'); }
+
+        /* Button system — inlined so they work regardless of Tailwind build purge */
+        .btn-primary { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-primary:hover { background-color: #a3322d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background-color: #236b43; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-secondary:hover { background-color: #1b5535; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-gold { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-gold:hover { background-color: #a3322d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; }
+        .btn-outline-white:hover { background-color: #fff; color: #452aa8; }
+        .btn-outline-violet { border: 2px solid #452aa8; color: #452aa8; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; }
+        .btn-outline-violet:hover { background-color: #452aa8; color: #fff; }
+        .hover-violet { background-color: #452aa8; transition: background-color 0.2s; }
+        .hover-violet:hover { background-color: #4a2db5; }
+        .hover-green { background-color: #236b43; transition: background-color 0.2s; }
+        .hover-green:hover { background-color: #1b5535; }
+        .hover-whatsapp { background-color: #25D366; transition: background-color 0.2s; }
+        .hover-whatsapp:hover { background-color: #20ba5a; }
+        .hover-red { background-color: #bf3c36; transition: background-color 0.2s; }
+        .hover-red:hover { background-color: #a3322d; }
     </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
