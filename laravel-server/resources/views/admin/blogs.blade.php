@@ -100,10 +100,10 @@
                         <td class="px-4 py-3 text-gray-500">{{ $blog->views ?? 0 }}</td>
                         <td class="px-4 py-3"><span class="badge {{ $blog->published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700' }}">{{ $blog->published ? 'Published' : 'Draft' }}</span></td>
                         <td class="px-4 py-3">
-                            <div class="flex gap-2">
+                            <div class="flex items-center gap-2">
                             <a href="{{ route('admin.blogs.edit', $blog) }}" class="text-blue-600 hover:underline text-sm">Edit</a>
                             <a href="{{ route('blog.show', $blog) }}" target="_blank" class="text-dxn-green hover:underline text-sm">View</a>
-                            <form method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
+                            <form class="inline" method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
                                 @csrf @method('DELETE')
                                 <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
                             </form>
