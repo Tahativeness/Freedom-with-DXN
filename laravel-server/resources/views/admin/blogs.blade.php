@@ -100,10 +100,10 @@
                         <td class="px-4 py-3 text-gray-500">{{ $blog->views ?? 0 }}</td>
                         <td class="px-4 py-3"><span class="badge {{ $blog->published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700' }}">{{ $blog->published ? 'Published' : 'Draft' }}</span></td>
                         <td class="px-4 py-3">
-                            <div class="flex items-center gap-2">
+                            <div style="display:flex;align-items:center;gap:8px">
                             <a href="{{ route('admin.blogs.edit', $blog) }}" class="text-blue-600 hover:underline text-sm">Edit</a>
                             <a href="{{ route('blog.show', $blog) }}" target="_blank" class="text-dxn-green hover:underline text-sm">View</a>
-                            <form style="display:inline" method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
+                            <form style="display:inline;margin:0" method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
                                 @csrf @method('DELETE')
                                 <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
                             </form>
@@ -135,10 +135,10 @@
                     <span class="capitalize">{{ str_replace('-', ' ', $blog->category) }}</span>
                     <span>{{ $blog->views ?? 0 }} views</span>
                 </div>
-                <div class="flex items-center gap-3 border-t pt-2">
+                <div style="display:flex;align-items:center;gap:12px;border-top:1px solid #e5e7eb;padding-top:8px">
                     <a href="{{ route('admin.blogs.edit', $blog) }}" class="text-blue-600 hover:underline text-sm font-medium">Edit</a>
                     <a href="{{ route('blog.show', $blog) }}" target="_blank" class="text-dxn-green hover:underline text-sm font-medium">View</a>
-                    <form style="display:inline" method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
+                    <form style="display:inline;margin:0" method="POST" action="{{ route('admin.blogs.destroy', $blog) }}" onsubmit="return confirm('Delete this post?')">
                         @csrf @method('DELETE')
                         <button class="text-red-500 hover:text-red-700 text-sm font-medium">Delete</button>
                     </form>
