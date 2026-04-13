@@ -56,20 +56,41 @@
     if ($lp && !empty($lp->gallery)) {
         $allImages = array_merge($allImages, $lp->gallery);
     }
-    $benefits = ($lang === 'ar' && $product->benefits_ar) ? $product->benefits_ar : (is_array($product->benefits) ? $product->benefits : []);
-    // Landing page features/benefits override
-    if ($lp && !empty($lp->features)) { $benefits = $lp->features; }
+    // Arabic priority: LP Arabic -> Product Arabic -> LP English -> Product English
+    if ($lang === 'ar') {
+        $benefits = $product->benefits_ar ?: (is_array($product->benefits) ? $product->benefits : []);
+        if ($lp && !empty($lp->features)) {
+            // Only use LP features if product has no Arabic benefits
+            if (empty($product->benefits_ar)) { $benefits = $lp->features; }
+        }
+    } else {
+        $benefits = is_array($product->benefits) ? $product->benefits : [];
+        if ($lp && !empty($lp->features)) { $benefits = $lp->features; }
+    }
     $displayName = ($lang === 'ar' && $product->name_ar) ? $product->name_ar : $product->name;
-    $displayDesc = $lp && $lp->description
-        ? ($lang === 'ar' && $lp->description_ar ? $lp->description_ar : $lp->description)
-        : (($lang === 'ar' && $product->description_ar) ? $product->description_ar : $product->description);
-    $displayUsage = $lp && $lp->usage_directions
-        ? ($lang === 'ar' && $lp->usage_directions_ar ? $lp->usage_directions_ar : $lp->usage_directions)
-        : (($lang === 'ar' && $product->usage_ar) ? $product->usage_ar : $product->usage);
-    $displayIngredients = $lp && $lp->ingredients
-        ? ($lang === 'ar' && $lp->ingredients_ar ? $lp->ingredients_ar : $lp->ingredients)
-        : (($lang === 'ar' && $product->ingredients_ar) ? $product->ingredients_ar : $product->ingredients);
-    $displayQna = $lp && !empty($lp->qna) ? $lp->qna : null;
+    // Description: prefer Arabic from LP or product, then English
+    if ($lang === 'ar') {
+        $displayDesc = ($lp && $lp->description_ar) ? $lp->description_ar
+            : ($product->description_ar ?: (($lp && $lp->description) ? $lp->description : $product->description));
+    } else {
+        $displayDesc = ($lp && $lp->description) ? $lp->description : $product->description;
+    }
+    // Usage: prefer Arabic from LP or product, then English
+    if ($lang === 'ar') {
+        $displayUsage = ($lp && $lp->usage_directions_ar) ? $lp->usage_directions_ar
+            : ($product->usage_ar ?: (($lp && $lp->usage_directions) ? $lp->usage_directions : $product->usage));
+    } else {
+        $displayUsage = ($lp && $lp->usage_directions) ? $lp->usage_directions : $product->usage;
+    }
+    // Ingredients: prefer Arabic from LP or product, then English
+    if ($lang === 'ar') {
+        $displayIngredients = ($lp && $lp->ingredients_ar) ? $lp->ingredients_ar
+            : ($product->ingredients_ar ?: (($lp && $lp->ingredients) ? $lp->ingredients : $product->ingredients));
+    } else {
+        $displayIngredients = ($lp && $lp->ingredients) ? $lp->ingredients : $product->ingredients;
+    }
+    // Q&A: in Arabic mode, skip LP English Q&A — Arabic defaults will be used instead
+    $displayQna = ($lang === 'ar') ? null : (($lp && !empty($lp->qna)) ? $lp->qna : null);
     $catLabelsAr = [
         'coffee' => 'قهوة', 'beverages' => 'مشروبات', 'supplements' => 'مكملات',
         'skincare' => 'العناية بالبشرة', 'personal-care' => 'العناية الشخصية',
