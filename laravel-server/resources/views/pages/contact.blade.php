@@ -110,7 +110,8 @@
     </div>
 </div>
 
-{{-- DXN UAE Offices --}}
+{{-- DXN UAE Offices — HIDDEN from visitors (data preserved below) --}}
+@if(false)
 <section class="bg-gray-50 py-16" aria-labelledby="offices-heading">
     <div class="max-w-6xl mx-auto px-4">
         <div class="text-center mb-10">
@@ -245,4 +246,5 @@
         </div>
     </div>
 </section>
+@endif
 @endsection
