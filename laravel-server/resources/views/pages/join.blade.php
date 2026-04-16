@@ -8,7 +8,7 @@
     $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
     $calendly = 'https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn';
     $referralCode = '141019805';
-    $videoId = 'VIDEO_ID';
+    $videoId = 'ltrQYyUNgU0';
 
     $trustStats = $lang === 'ar' ? [
         ['num' => '+22 مليون', 'label' => 'عضو حول العالم'],
