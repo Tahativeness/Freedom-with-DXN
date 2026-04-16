@@ -353,7 +353,7 @@
             </p>
             <div class="video-wrapper reveal">
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/{{ $videoId }}" title="DXN Opportunity" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe id="join-video" src="https://www.youtube.com/embed/{{ $videoId }}?autoplay=1&mute=1&playsinline=1&rel=0" title="DXN Opportunity" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
