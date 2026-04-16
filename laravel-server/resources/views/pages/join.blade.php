@@ -353,7 +353,7 @@
             </p>
             <div class="video-wrapper reveal">
                 <div class="video-frame">
-                    <iframe id="join-video" src="https://www.youtube.com/embed/{{ $videoId }}?autoplay=1&mute=1&playsinline=1&rel=0" title="DXN Opportunity" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div id="join-video"></div>
                 </div>
             </div>
         </div>
@@ -481,6 +481,22 @@
 </div>
 
 @push('scripts')
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+var joinPlayer;
+function onYouTubeIframeAPIReady() {
+    joinPlayer = new YT.Player('join-video', {
+        videoId: '{{ $videoId }}',
+        playerVars: { autoplay: 1, mute: 1, playsinline: 1, rel: 0 },
+        events: {
+            onReady: function(e) {
+                e.target.unMute();
+                e.target.setVolume(80);
+            }
+        }
+    });
+}
+</script>
 <script>
 (function() {
     // FAQ accordion toggle
