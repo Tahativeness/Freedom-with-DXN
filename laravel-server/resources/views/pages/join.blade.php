@@ -1,22 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Join DXN - Say Yes to Your Financial Freedom | Freedom With DXN')
-@section('description', 'Join the DXN team and say yes to financial freedom. 6M+ members worldwide, 180+ countries, 30+ years established. Use referral code 142019805 to start.')
-@section('keywords', 'join DXN team, DXN business opportunity, DXN distributor UAE, referral code 142019805')
+@section('description', 'Join the DXN team and say yes to financial freedom. 6M+ members worldwide, 180+ countries, 30+ years established. Use referral code 141019805 to start.')
+@section('keywords', 'join DXN team, DXN business opportunity, DXN distributor UAE, referral code 141019805')
 
 @php
     $lang = session('lang', 'en');
     $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
     $calendly = 'https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn';
-    $referralCode = '142019805';
+    $referralCode = '141019805';
     $videoId = 'VIDEO_ID';
 
     $trustStats = $lang === 'ar' ? [
-        ['num' => '+6 مليون', 'label' => 'عضو حول العالم'],
+        ['num' => '+22 مليون', 'label' => 'عضو حول العالم'],
         ['num' => '+180', 'label' => 'دولة'],
         ['num' => '+30', 'label' => 'عامًا من التأسيس'],
         ['num' => 'الإمارات', 'label' => 'نشطون محليًا'],
     ] : [
-        ['num' => '6M+', 'label' => 'Members Worldwide'],
+        ['num' => '22M+', 'label' => 'Members Worldwide'],
         ['num' => '180+', 'label' => 'Countries'],
         ['num' => '30+', 'label' => 'Years Established'],
         ['num' => 'UAE', 'label' => 'Based & Active'],
@@ -136,8 +136,9 @@
     }
 
     .hero-inner { position: relative; max-width: 960px; margin: 0 auto; text-align: center; z-index: 2; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4); color: var(--dxn-gold); padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
-    .hero-tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dxn-gold); box-shadow: 0 0 12px var(--dxn-gold); animation: pulse 2s ease-in-out infinite; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 12px; background: var(--dxn-red); border: 2px solid rgba(255,255,255,0.25); color: #fff; padding: 14px 32px; border-radius: 100px; font-size: 16px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 28px; text-decoration: none; box-shadow: 0 8px 28px rgba(191,60,54,0.5); transition: transform 0.2s, box-shadow 0.2s, background 0.2s; }
+    .hero-tag:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 14px 36px rgba(191,60,54,0.65); background: #d9443d; }
+    .hero-tag-dot { width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px rgba(255,255,255,0.8); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
     .hero-headline { font-size: clamp(40px, 7vw, 82px); line-height: 1.05; color: #fff; margin-bottom: 24px; }
@@ -299,10 +300,10 @@
     <section class="join-hero">
         <div class="join-hero-orb-3"></div>
         <div class="hero-inner">
-            <div class="hero-tag reveal">
+            <a href="https://eworld.dxn2u.com/s/accreg/en/141019805" target="_blank" rel="noopener noreferrer" class="hero-tag reveal">
                 <span class="hero-tag-dot"></span>
                 {{ $lang === 'ar' ? 'انضم إلى DXN اليوم' : 'Join DXN Today' }}
-            </div>
+            </a>
             <h1 class="hero-headline reveal">
                 {{ $lang === 'ar' ? 'قل ' : 'Say ' }}<span class="yes">{{ $lang === 'ar' ? 'نعم' : 'Yes' }}</span>{{ $lang === 'ar' ? ' لحريتك المالية' : ' to Your Financial Freedom' }}
             </h1>
