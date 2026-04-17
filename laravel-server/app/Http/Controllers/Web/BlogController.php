@@ -58,7 +58,7 @@ class BlogController extends Controller
             .hero-img { position: relative !important; inset: auto !important; width: 100% !important; height: auto !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
             .hero-placeholder { display: none !important; }
             .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to left, rgba(44,24,120,0.85) 0%, rgba(70,56,123,0.4) 50%, rgba(70,56,123,0.2) 100%) !important; }
-            .hero-content { position: absolute !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 2 !important; max-width: none !important; margin: 0 !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; }
+            .hero-content { position: absolute !important; bottom: 0 !important; right: 0 !important; left: auto !important; z-index: 2 !important; max-width: 600px !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; }
             .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
             .hero-title { opacity: 0; animation: fadeRight 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
             .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; justify-content: flex-end !important; }
@@ -66,7 +66,7 @@ class BlogController extends Controller
             .sidebar .zoom-card { display: none !important; }
             .bottom-cards { display: none; }
             @media (max-width: 860px) { .bottom-cards { display: block; } .sidebar { display: none !important; } .mobile-inserted { margin-bottom: 28px !important; } }
-            @media (max-width: 540px) { .hero-content { padding: 0 20px 32px !important; text-align: center !important; } .hero-meta { justify-content: center !important; } .hero-title { font-size: 28px !important; margin-bottom: 12px !important; } .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; } .hero-meta { font-size: 12px !important; gap: 12px !important; } }
+            @media (max-width: 540px) { .hero-content { right: 0 !important; left: 0 !important; max-width: none !important; text-align: center !important; padding: 0 20px 32px !important; } .hero-meta { justify-content: center !important; } .hero-title { font-size: 28px !important; margin-bottom: 12px !important; } .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; } .hero-meta { font-size: 12px !important; gap: 12px !important; } }
             ';
             $html = str_replace('</style>', $heroCSS . '</style>', $html);
 
@@ -156,7 +156,7 @@ class BlogController extends Controller
         .hero-img { position: relative !important; inset: auto !important; width: 100% !important; height: auto !important; display: block !important; opacity: 0.45 !important; filter: saturate(1.1) !important; }
         .hero-placeholder { display: none !important; }
         .hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to top, rgba(44,24,120,0.95) 0%, rgba(70,56,123,0.3) 55%, transparent 100%) !important; }
-        .hero-content { position: absolute !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 2 !important; max-width: none !important; margin: 0 !important; text-align: left !important; padding: 0 clamp(20px, 6vw, 100px) 64px !important; }
+        .hero-content { position: absolute !important; bottom: 0 !important; right: 0 !important; left: auto !important; z-index: 2 !important; max-width: 600px !important; text-align: right !important; padding: 0 clamp(24px, 5vw, 80px) 48px !important; }
         .hero-tag { opacity: 0; animation: fadeRight 0.7s ease 0.2s forwards !important; }
         .hero-title { opacity: 0; animation: fadeRight 0.8s ease 0.4s forwards !important; font-size: clamp(28px, 5vw, 52px) !important; }
         .hero-meta { opacity: 0; animation: fadeRight 0.8s ease 0.6s forwards !important; }
@@ -164,7 +164,7 @@ class BlogController extends Controller
         .sidebar .zoom-card { display: none !important; }
         .bottom-cards { display: none; }
         @media (max-width: 860px) { .bottom-cards { display: block; } .sidebar { display: none !important; } .zoom-card { display: none !important; } .mobile-inserted { margin-bottom: 28px !important; } }
-        @media (max-width: 540px) { .hero-content { padding: 0 20px 36px !important; } .hero-title { font-size: 28px !important; margin-bottom: 12px !important; } .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; } .hero-meta { font-size: 12px !important; gap: 12px !important; } }
+        @media (max-width: 540px) { .hero-content { right: 0 !important; left: 0 !important; max-width: none !important; text-align: center !important; padding: 0 20px 36px !important; } .hero-title { font-size: 28px !important; margin-bottom: 12px !important; } .hero-tag { font-size: 10px !important; padding: 5px 12px !important; margin-bottom: 14px !important; } .hero-meta { font-size: 12px !important; gap: 12px !important; } }
         ';
         $html = str_replace('</style>', $heroCSS . '</style>', $html);
 
