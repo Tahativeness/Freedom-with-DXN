@@ -230,7 +230,7 @@
 
     /* ZOOM SCHEDULE */
     .zoom-section { background: #fff; padding: clamp(70px, 10vw, 120px) 20px; }
-    .zoom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
+    .zoom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); gap: 20px; max-width: 1120px; margin: 0 auto; justify-content: center; }
     .zoom-card { display: block; position: relative; background: #fff; border: 1px solid #ececf5; border-radius: 16px; padding: 32px 24px; text-decoration: none; color: inherit; overflow: hidden; text-align: center; transition: transform 0.35s ease, box-shadow 0.35s ease; }
     .zoom-card::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
