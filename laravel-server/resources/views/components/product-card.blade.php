@@ -50,8 +50,8 @@
 
             {{-- Hover overlay: benefits / description --}}
             @if($product->in_stock && (count($hoverBenefits) > 0 || $hoverDesc))
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 pointer-events-none z-10"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.15) 100%);">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-3 pointer-events-none z-10"
+                     style="background: rgba(0,0,0,0.75);">
                     @if(count($hoverBenefits) > 0)
                         <p class="text-xs font-bold uppercase tracking-wide mb-1.5" style="color: #f1d47f;">{{ $lang === 'ar' ? 'الفوائد' : 'Key Benefits' }}</p>
                         <ul class="text-white text-xs space-y-1">
