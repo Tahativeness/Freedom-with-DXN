@@ -70,7 +70,7 @@
                             </div>
                         @endif
                         <span class="absolute top-3 left-3 bg-dxn-gold text-white text-xs px-2 py-1 rounded-full font-medium capitalize">
-                            {{ str_replace('-', ' ', $post->category) }}
+                            {{ $lang === 'ar' ? ($categoryLabelsAr[$post->category] ?? str_replace('-', ' ', $post->category)) : str_replace('-', ' ', $post->category) }}
                         </span>
                     </div>
                     <div class="p-5 flex flex-col flex-1">
@@ -78,8 +78,10 @@
                             <span>{{ $post->created_at->format('M d, Y') }}</span>
                             <span>{{ $post->views ?? 0 }} {{ $lang === 'ar' ? 'مشاهدة' : 'views' }}</span>
                         </div>
-                        <h2 class="font-bold text-dxn-darkgreen text-lg mb-2 group-hover:text-dxn-green transition-colors line-clamp-2">{{ ($lang === 'ar' && $post->title_ar) ? $post->title_ar : $post->title }}</h2>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">{{ ($lang === 'ar' && $post->excerpt_ar) ? $post->excerpt_ar : $post->excerpt }}</p>
+                        <h2 class="font-bold text-dxn-darkgreen text-lg mb-2 group-hover:text-dxn-green transition-colors line-clamp-2{{ ($lang === 'ar' && !$post->title_ar) ? ' ar-translate' : '' }}"
+                            @if($lang === 'ar' && !$post->title_ar) data-en="{{ $post->title }}" @endif>{{ ($lang === 'ar' && $post->title_ar) ? $post->title_ar : $post->title }}</h2>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1{{ ($lang === 'ar' && !$post->excerpt_ar && $post->excerpt) ? ' ar-translate' : '' }}"
+                            @if($lang === 'ar' && !$post->excerpt_ar && $post->excerpt) data-en="{{ $post->excerpt }}" @endif>{{ ($lang === 'ar' && $post->excerpt_ar) ? $post->excerpt_ar : $post->excerpt }}</p>
                         <span class="text-dxn-green text-sm font-semibold">{{ $lang === 'ar' ? '← اقرأ المزيد' : 'Read More →' }}</span>
                     </div>
                 </a>
@@ -102,4 +104,40 @@
         <a href="{{ route('contact') }}" class="btn-gold">{{ $lang === 'ar' ? 'تواصل معنا' : 'Contact Us' }}</a>
     </div>
 </section>
+@if($lang === 'ar')
+<script>
+(function () {
+    const CACHE_KEY = 'blog_ar_card_cache';
+    const cache = JSON.parse(sessionStorage.getItem(CACHE_KEY) || '{}');
+
+    async function translateText(text) {
+        if (cache[text]) return cache[text];
+        try {
+            const res = await fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|ar');
+            const data = await res.json();
+            const translated = data.responseData?.translatedText;
+            if (translated) {
+                cache[text] = translated;
+                sessionStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+                return translated;
+            }
+        } catch (e) {}
+        return null;
+    }
+
+    async function translateCards() {
+        const elements = document.querySelectorAll('.ar-translate[data-en]');
+        for (const el of elements) {
+            const text = el.getAttribute('data-en');
+            if (!text) continue;
+            const translated = await translateText(text);
+            if (translated) el.textContent = translated;
+            await new Promise(r => setTimeout(r, 120));
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', translateCards);
+})();
+</script>
+@endif
 @endsection
