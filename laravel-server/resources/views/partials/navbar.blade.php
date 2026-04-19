@@ -69,7 +69,10 @@
                         <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
                     </svg>
                     <span x-show="$store.cart.count > 0" x-text="$store.cart.count"
-                          class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center"
+                          x-transition:enter="transition ease-out duration-200"
+                          x-transition:enter-start="opacity-0 scale-50"
+                          x-transition:enter-end="opacity-100 scale-100"
+                          class="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1.5 rounded-full text-[11px] font-bold text-white inline-flex items-center justify-center leading-none shadow-md ring-2 ring-white tabular-nums"
                           style="background-color: #bf3c36;"></span>
                 </button>
 
