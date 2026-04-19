@@ -48,7 +48,7 @@
 @php
     $lang = session('lang', 'en');
     $lp = $landingPage ?? null;
-    $whatsapp = 'https://wa.me/message/EFSQ2IDNVG3YB1?text=' . urlencode('Hi, I want to order: ' . $product->name . ' (SKU: ' . $product->sku . ')');
+    $whatsapp = 'https://wa.me/971555574958?text=' . urlencode('Hi, I want to order: ' . $product->name . ' (SKU: ' . $product->sku . ')');
     $mainImage = $product->landing_image ?: ($product->image ?: '');
     $images = is_array($product->images) ? $product->images : [];
     $allImages = $mainImage ? array_merge([$mainImage], $images) : $images;

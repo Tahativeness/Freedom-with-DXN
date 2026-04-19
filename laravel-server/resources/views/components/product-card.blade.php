@@ -4,7 +4,7 @@
     $lang = session('lang', 'en');
     $mainImage = $product->landing_image ?: ($product->image ?: '');
     $link = route('products.show', $product);
-    $whatsapp = 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = 'https://wa.me/971555574958';
     $rating = $product->rating ?? 0;
     $displayName = ($lang === 'ar' && $product->name_ar) ? $product->name_ar : $product->name;
     $catLabelsAr = [
