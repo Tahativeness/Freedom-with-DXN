@@ -14,26 +14,32 @@
 
 @push('styles')
 <style>
-    /* Cart count badge — guaranteed circle, perfect centering across browsers */
+    /* Cart count badge — premium circular pip */
     .cart-badge {
         position: absolute;
-        top: -4px;
-        right: -4px;
-        min-width: 20px;
-        height: 20px;
+        top: -6px;
+        right: -6px;
+        min-width: 18px;
+        height: 18px;
         padding: 0 5px;
         border-radius: 999px;
-        background-color: #dc2626;
+        background: linear-gradient(140deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
         color: #fff;
-        font-size: 11px;
-        font-weight: 700;
-        line-height: 20px;
+        font-size: 10.5px;
+        font-weight: 800;
+        line-height: 18px;
         text-align: center;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.01em;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        box-shadow:
+            0 0 0 2px #fff,
+            0 2px 5px rgba(220, 38, 38, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
         box-sizing: border-box;
-        border: 2px solid #fff;
         display: inline-block;
         pointer-events: none;
+        -webkit-font-smoothing: antialiased;
     }
 </style>
 @endpush
