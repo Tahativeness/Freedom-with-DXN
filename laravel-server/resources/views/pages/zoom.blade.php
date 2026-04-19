@@ -3,7 +3,7 @@
 
 @php
     $lang = session('lang', 'en');
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
 @endphp
 
 @section('content')
@@ -46,12 +46,12 @@
                 <h2 class="text-2xl font-bold text-dxn-darkgreen text-center mb-8">{{ $lang === 'ar' ? 'الجدول الأسبوعي' : 'Weekly Schedule' }}</h2>
                 <div class="grid grid-cols-1 gap-4 max-w-xl mx-auto">
                     @foreach([
-                        ['day' => 'Sunday', 'time' => '3pm-5pm', 'lang_label' => 'Arabic', 'c' => 'border-green-300 bg-green-50/80'],
+                        ['day_en' => 'Sunday', 'day_ar' => 'الأحد', 'time' => '3pm-5pm', 'lang_label_en' => 'Arabic', 'lang_label_ar' => 'عربي', 'c' => 'border-green-300 bg-green-50/80'],
                     ] as $session)
                         <div class="border-2 rounded-xl p-6 min-h-[184px] backdrop-blur-sm flex flex-col justify-start {{ $session['c'] }}">
-                            <h3 class="font-bold text-dxn-darkgreen text-lg">{{ $session['day'] }}</h3>
+                            <h3 class="font-bold text-dxn-darkgreen text-lg">{{ $lang === 'ar' ? $session['day_ar'] : $session['day_en'] }}</h3>
                             <p class="text-gray-600 text-sm mt-1">{{ $session['time'] }}</p>
-                            <span class="inline-block bg-white text-sm px-3 py-1 rounded-full mt-2 font-medium w-fit">{{ $session['lang_label'] }}</span>
+                            <span class="inline-block bg-white text-sm px-3 py-1 rounded-full mt-2 font-medium w-fit">{{ $lang === 'ar' ? $session['lang_label_ar'] : $session['lang_label_en'] }}</span>
                         </div>
                     @endforeach
                 </div>

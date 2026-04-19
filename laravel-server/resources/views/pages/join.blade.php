@@ -5,7 +5,7 @@
 
 @php
     $lang = session('lang', 'en');
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
     $calendly = 'https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn';
     $referralCode = '141019805';
     $videoId = 'ltrQYyUNgU0';

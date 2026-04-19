@@ -5,7 +5,7 @@
 
 @php
     $lang = session('lang', 'en');
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
 
     $values = $lang === 'ar' ? [
         ['title' => 'الصحة أولاً', 'desc' => 'نؤمن بأن الصحة المثلى حق للجميع. ساعدت منتجات الغانودرما من DXN الملايين حول العالم على عيش حياة أكثر صحة ونشاطاً.'],

@@ -54,7 +54,7 @@
 @php
     $lang = session('lang', 'en');
     $hero = $settings->hero ?? [];
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
 
     $why = $lang === 'ar'
         ? ['تكلفة بداية منخفضة', 'منتجات غانودرما عالمية', 'عمل عالمي واحد', 'دخل سلبي عبر الشبكة', 'تدريب مجاني', 'لا حصة شهرية']

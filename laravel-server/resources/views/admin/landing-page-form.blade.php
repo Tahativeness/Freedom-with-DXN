@@ -160,7 +160,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Button Link</label>
-                    <input type="text" name="cta_link" value="{{ old('cta_link', $page->cta_link ?? 'https://wa.me/message/EFSQ2IDNVG3YB1') }}" class="input-field">
+                    <input type="text" name="cta_link" value="{{ old('cta_link', $page->cta_link ?? 'https://wa.me/971555574958') }}" class="input-field">
                 </div>
             </div>
         </div>

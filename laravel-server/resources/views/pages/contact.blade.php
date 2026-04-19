@@ -4,7 +4,7 @@
 
 @php
     $lang = session('lang', 'en');
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
 @endphp
 
 @section('keywords', 'contact DXN distributor, DXN UAE contact, freedom with DXN contact, WhatsApp DXN')

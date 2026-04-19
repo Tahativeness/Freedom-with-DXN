@@ -79,7 +79,7 @@ class LandingPageSeeder extends Seeder
                 'qna'              => $qna,
                 'gallery'          => is_array($product->images) ? $product->images : [],
                 'cta_text'         => 'Order via WhatsApp',
-                'cta_link'         => 'https://wa.me/+971506662875?text=' . urlencode('Hi, I want to order: ' . $product->name . ' (SKU: ' . $product->sku . ')'),
+                'cta_link'         => 'https://wa.me/971555574958?text=' . urlencode('Hi, I want to order: ' . $product->name . ' (SKU: ' . $product->sku . ')'),
                 'custom_css'       => '',
                 'custom_html'      => '',
                 'published'        => true,
