@@ -1,6 +1,6 @@
 @php
     $lang = session('lang', 'en');
-    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/971555574958';
+    $whatsapp = $settings->contact['whatsapp'] ?? 'https://wa.me/message/EFSQ2IDNVG3YB1';
 @endphp
 
 @if($whatsapp)

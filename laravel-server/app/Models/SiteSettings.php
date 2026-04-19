@@ -55,7 +55,7 @@ class SiteSettings extends Model
             'contact' => [
                 'phone'    => '+971 50 666 2875',
                 'email'    => 'info@freedomwithdxn.com',
-                'whatsapp' => 'https://wa.me/971555574958',
+                'whatsapp' => 'https://wa.me/message/EFSQ2IDNVG3YB1',
                 'location' => 'United Arab Emirates',
             ],
             'social' => [
