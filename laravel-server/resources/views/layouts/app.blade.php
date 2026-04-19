@@ -158,11 +158,42 @@
 
     {{-- Flash Messages --}}
     @if(session('success'))
-        <div class="max-w-4xl mx-auto mt-4 px-4" role="alert">
-            <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg flex items-center justify-between" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)">
-                <span>{{ session('success') }}</span>
-                <button @click="show = false" class="text-green-500 hover:text-green-700" aria-label="{{ session('lang', 'en') === 'ar' ? 'إغلاق' : 'Close' }}">&times;</button>
-            </div>
+        @php
+            $flashMsg  = session('success');
+            $flashLang = session('lang', 'en');
+            $isCartAdd = stripos($flashMsg, 'added to cart') !== false;
+        @endphp
+        <div class="fixed top-24 {{ $flashLang === 'ar' ? 'left-4' : 'right-4' }} z-[60] max-w-sm"
+             x-data="{ show: true }"
+             x-show="show"
+             x-init="setTimeout(() => show = false, 4000)"
+             x-transition:enter="transition transform ease-out duration-300"
+             x-transition:enter-start="{{ $flashLang === 'ar' ? '-translate-x-full' : 'translate-x-full' }} opacity-0"
+             x-transition:enter-end="translate-x-0 opacity-100"
+             x-transition:leave="transition transform ease-in duration-200"
+             x-transition:leave-start="translate-x-0 opacity-100"
+             x-transition:leave-end="{{ $flashLang === 'ar' ? '-translate-x-full' : 'translate-x-full' }} opacity-0"
+             role="alert">
+            @if($isCartAdd)
+                <a href="{{ route('cart') }}"
+                   class="flex items-center gap-3 bg-white shadow-2xl rounded-xl px-4 py-3 border-l-4 hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition-shadow cursor-pointer group"
+                   style="border-left-color: #236b43;">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: rgba(35,107,67,0.12);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#236b43" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-sm" style="color: #236b43;">{{ $flashLang === 'ar' ? 'تمت الإضافة إلى السلة!' : 'Added to cart!' }}</p>
+                        <p class="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">{{ $flashLang === 'ar' ? 'انقر لعرض السلة ←' : 'Click to view cart →' }}</p>
+                    </div>
+                    <button @click.prevent="show = false" class="text-gray-300 hover:text-gray-600 text-xl leading-none shrink-0" aria-label="{{ $flashLang === 'ar' ? 'إغلاق' : 'Close' }}">&times;</button>
+                </a>
+            @else
+                <div class="flex items-center gap-3 bg-white shadow-2xl rounded-xl px-4 py-3 border-l-4" style="border-left-color: #236b43;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#236b43" stroke-width="2.5" aria-hidden="true" class="shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="text-sm text-gray-800 flex-1">{{ $flashMsg }}</span>
+                    <button @click="show = false" class="text-gray-300 hover:text-gray-600 text-xl leading-none shrink-0" aria-label="{{ $flashLang === 'ar' ? 'إغلاق' : 'Close' }}">&times;</button>
+                </div>
+            @endif
         </div>
     @endif
     @if(session('error'))
