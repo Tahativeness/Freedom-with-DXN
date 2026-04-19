@@ -91,7 +91,7 @@ When the user types `/new-blog`:
 - Hero height: fixed px only — NEVER use vh units (iframe constraint)
 - English grid: `grid-template-columns: 1fr 320px`
 - Arabic grid: `grid-template-columns: 320px 1fr` + `.sidebar { order: -1; }` in base CSS
-- WhatsApp link: `https://wa.me/971555574958`
+- WhatsApp link: `https://wa.me/message/EFSQ2IDNVG3YB1`
 - Calendly link: `https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn`
 - Arabic: `lang="ar" dir="rtl"`, border-right not border-left, `faq-q::before: 'س'`, TOC arrow `←`
 
@@ -99,6 +99,6 @@ When the user types `/new-blog`:
 
 - The site supports English and Arabic (language toggle in navbar)
 - Product categories: coffee, ganoderma, supplements, skincare, beverages, personal-care, other
-- WhatsApp ordering via `https://wa.me/971555574958`
+- WhatsApp ordering via `https://wa.me/message/EFSQ2IDNVG3YB1`
 - Landing pages (e.g., `index-ganozhi-lipstick.html`) are standalone HTML pages for specific products
 - SEO: Open Graph, Twitter Cards, canonical URLs, and JSON-LD structured data are implemented in the layout

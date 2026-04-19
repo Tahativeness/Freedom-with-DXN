@@ -41,7 +41,7 @@
         <div class="container">
             <h1>Ganozhi Lipstick — Pearly Pink</h1>
             <p>Infused with Ganoderma extract for natural, moisturised lips with a beautiful pearly finish.</p>
-            <a href="https://wa.me/971555574958" class="button" target="_blank">Order Now via WhatsApp</a>
+            <a href="https://wa.me/message/EFSQ2IDNVG3YB1" class="button" target="_blank">Order Now via WhatsApp</a>
             <p style="margin-top:16px"><a href="{{ route('products') }}" style="color:#e7f1e9; text-decoration:underline;">← Back to all products</a></p>
         </div>
     </section>
