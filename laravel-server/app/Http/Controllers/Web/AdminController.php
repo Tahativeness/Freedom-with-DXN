@@ -127,7 +127,7 @@ class AdminController extends Controller
             'category' => 'required|string',
         ]);
 
-        $data = $request->only(['title', 'content', 'content_type', 'category', 'excerpt', 'image', 'sub_image', 'tags', 'published']);
+        $data = $request->only(['title', 'title_ar', 'content', 'content_type', 'category', 'excerpt', 'excerpt_ar', 'image', 'sub_image', 'tags', 'published']);
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
         $data['author_id'] = auth()->id();
         $data['content_type'] = $data['content_type'] ?? 'rich_text';
@@ -148,7 +148,7 @@ class AdminController extends Controller
     public function blogUpdate(Request $request, Blog $blog)
     {
         set_time_limit(120);
-        $data = $request->only(['title', 'content', 'content_ar', 'content_type', 'category', 'excerpt', 'image', 'sub_image', 'tags', 'published']);
+        $data = $request->only(['title', 'title_ar', 'content', 'content_ar', 'content_type', 'category', 'excerpt', 'excerpt_ar', 'image', 'sub_image', 'tags', 'published']);
         $data['excerpt'] = $data['excerpt'] ?? $blog->excerpt ?? '';
         $data['image'] = $data['image'] ?? $blog->image ?? '';
         $data['sub_image'] = $data['sub_image'] ?? $blog->sub_image ?? '';

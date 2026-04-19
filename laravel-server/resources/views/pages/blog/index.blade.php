@@ -78,8 +78,8 @@
                             <span>{{ $post->created_at->format('M d, Y') }}</span>
                             <span>{{ $post->views ?? 0 }} {{ $lang === 'ar' ? 'مشاهدة' : 'views' }}</span>
                         </div>
-                        <h2 class="font-bold text-dxn-darkgreen text-lg mb-2 group-hover:text-dxn-green transition-colors line-clamp-2">{{ $post->title }}</h2>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">{{ $post->excerpt }}</p>
+                        <h2 class="font-bold text-dxn-darkgreen text-lg mb-2 group-hover:text-dxn-green transition-colors line-clamp-2">{{ ($lang === 'ar' && $post->title_ar) ? $post->title_ar : $post->title }}</h2>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">{{ ($lang === 'ar' && $post->excerpt_ar) ? $post->excerpt_ar : $post->excerpt }}</p>
                         <span class="text-dxn-green text-sm font-semibold">{{ $lang === 'ar' ? '← اقرأ المزيد' : 'Read More →' }}</span>
                     </div>
                 </a>

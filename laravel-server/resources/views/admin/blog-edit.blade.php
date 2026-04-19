@@ -49,6 +49,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 form-grid">
             <div><label class="block text-sm font-medium text-gray-700 mb-1">Title *</label><input type="text" name="title" value="{{ $blog->title }}" required class="input-field"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">العنوان بالعربي (Arabic Title)</label><input type="text" name="title_ar" value="{{ $blog->title_ar ?? '' }}" class="input-field" dir="rtl" placeholder="اختياري"></div>
             <div><label class="block text-sm font-medium text-gray-700 mb-1">Category *</label>
                 <select name="category" required class="input-field">
                     @foreach(['health','business','products','success-stories','tips'] as $cat)
@@ -61,6 +62,7 @@
             <div class="flex items-center pt-6"><label class="flex items-center gap-2"><input type="checkbox" name="published" value="1" {{ $blog->published ? 'checked' : '' }}> Published</label></div>
         </div>
         <div><label class="block text-sm font-medium text-gray-700 mb-1">Excerpt</label><input type="text" name="excerpt" value="{{ $blog->excerpt }}" class="input-field"></div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">المقتطف بالعربي (Arabic Excerpt)</label><input type="text" name="excerpt_ar" value="{{ $blog->excerpt_ar ?? '' }}" class="input-field" dir="rtl" placeholder="اختياري"></div>
 
         {{-- Rich Text Editor --}}
         <div id="editor-rich" class="{{ ($blog->content_type ?? 'rich_text') === 'full_html' ? 'hidden' : '' }}">

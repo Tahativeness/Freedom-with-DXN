@@ -58,7 +58,7 @@
         {{ str_replace('-', ' ', $blog->category) }}
     </span>
 
-    <h1 class="text-3xl md:text-4xl font-bold text-dxn-darkgreen mb-4">{{ $blog->title }}</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-dxn-darkgreen mb-4">{{ ($lang === 'ar' && $blog->title_ar) ? $blog->title_ar : $blog->title }}</h1>
 
     <div class="flex items-center gap-4 text-sm text-gray-600 mb-8">
         <span>{{ $blog->created_at->format('F d, Y') }}</span>
@@ -79,8 +79,8 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($related as $post)
                 <a href="{{ route('blog.show', $post) }}" class="card p-4 group">
-                    <h3 class="font-semibold text-dxn-darkgreen group-hover:text-dxn-green transition-colors">{{ $post->title }}</h3>
-                    <p class="text-gray-600 text-sm mt-2 line-clamp-2">{{ $post->excerpt }}</p>
+                    <h3 class="font-semibold text-dxn-darkgreen group-hover:text-dxn-green transition-colors">{{ ($lang === 'ar' && $post->title_ar) ? $post->title_ar : $post->title }}</h3>
+                    <p class="text-gray-600 text-sm mt-2 line-clamp-2">{{ ($lang === 'ar' && $post->excerpt_ar) ? $post->excerpt_ar : $post->excerpt }}</p>
                 </a>
             @endforeach
         </div>
