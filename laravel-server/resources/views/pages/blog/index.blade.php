@@ -107,18 +107,21 @@
 @if($lang === 'ar')
 <script>
 (function () {
-    const CACHE_KEY = 'blog_ar_card_cache';
-    const cache = JSON.parse(sessionStorage.getItem(CACHE_KEY) || '{}');
+    const CACHE_KEY = 'blog_ar_card_cache_v2';
+    let cache = {};
+    try { cache = JSON.parse(sessionStorage.getItem(CACHE_KEY) || '{}'); } catch(e) {}
 
     async function translateText(text) {
         if (cache[text]) return cache[text];
         try {
-            const res = await fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|ar');
+            const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|ar&de=tahaminabd1339722@gmail.com';
+            const res = await fetch(url);
+            if (!res.ok) return null;
             const data = await res.json();
             const translated = data.responseData?.translatedText;
-            if (translated) {
+            if (translated && !translated.startsWith('MYMEMORY WARNING')) {
                 cache[text] = translated;
-                sessionStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+                try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e) {}
                 return translated;
             }
         } catch (e) {}
@@ -132,11 +135,15 @@
             if (!text) continue;
             const translated = await translateText(text);
             if (translated) el.textContent = translated;
-            await new Promise(r => setTimeout(r, 120));
+            await new Promise(r => setTimeout(r, 200));
         }
     }
 
-    document.addEventListener('DOMContentLoaded', translateCards);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', translateCards);
+    } else {
+        translateCards();
+    }
 })();
 </script>
 @endif
