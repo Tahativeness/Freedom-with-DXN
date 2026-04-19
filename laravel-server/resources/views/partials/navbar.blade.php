@@ -12,6 +12,32 @@
     $cartCount = count(session('cart', []));
 @endphp
 
+@push('styles')
+<style>
+    /* Cart count badge — guaranteed circle, perfect centering across browsers */
+    .cart-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 5px;
+        border-radius: 999px;
+        background-color: #dc2626;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        border: 2px solid #fff;
+        display: inline-block;
+        pointer-events: none;
+    }
+</style>
+@endpush
+
 <nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
@@ -65,15 +91,18 @@
                 {{-- Cart --}}
                 <button type="button" @click="$store.cart.open = true; $store.cart.refresh()" aria-label="{{ $lang === 'ar' ? 'عربة التسوق' : 'Shopping cart' }}"
                         class="relative text-brand-violet hover:text-brand-green transition-colors p-1.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="20.5" r="1.6" fill="currentColor"/>
+                        <circle cx="19" cy="20.5" r="1.6" fill="currentColor"/>
+                        <path d="M1.5 2.5h3.2l2.8 13.1a1.8 1.8 0 0 0 1.8 1.4h9.2a1.8 1.8 0 0 0 1.8-1.4L22.5 6H6"/>
+                        <path d="M8.5 9.5v4M12 9.5v4M15.5 9.5v4"/>
                     </svg>
-                    <span x-show="$store.cart.count > 0" x-text="$store.cart.count"
+                    <span x-show="$store.cart.count > 0"
+                          x-text="$store.cart.count > 99 ? '99+' : $store.cart.count"
                           x-transition:enter="transition ease-out duration-200"
                           x-transition:enter-start="opacity-0 scale-50"
                           x-transition:enter-end="opacity-100 scale-100"
-                          class="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1.5 rounded-full text-[11px] font-bold text-white inline-flex items-center justify-center leading-none shadow-md ring-2 ring-white tabular-nums"
-                          style="background-color: #bf3c36;"></span>
+                          class="cart-badge tabular-nums"></span>
                 </button>
 
                 {{-- Auth --}}
