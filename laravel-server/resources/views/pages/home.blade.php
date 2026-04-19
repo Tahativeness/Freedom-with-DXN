@@ -120,7 +120,7 @@
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
         @foreach([
             ['v' => '180+', 'l' => $lang === 'ar' ? 'دولة' : 'Countries'],
-            ['v' => '9M+', 'l' => $lang === 'ar' ? 'عضو' : 'Members'],
+            ['v' => '22M+', 'l' => $lang === 'ar' ? 'عضو' : 'Members'],
             ['v' => '35+', 'l' => $lang === 'ar' ? 'عاماً' : 'Years'],
             ['v' => '1000+', 'l' => $lang === 'ar' ? 'منتج' : 'Products'],
         ] as $stat)
