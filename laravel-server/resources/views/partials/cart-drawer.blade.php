@@ -9,16 +9,19 @@
      x-transition:leave-start="opacity-100 scale-100 translate-y-0"
      x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
      @keydown.escape.window="$store.cart.open = false"
-     class="absolute {{ $isAr ? 'left-0' : 'right-0' }} mt-3 w-[22rem] max-w-[calc(100vw-1.5rem)] bg-white rounded-2xl shadow-2xl border border-gray-100 z-[70] origin-top-{{ $isAr ? 'left' : 'right' }}"
+     class="absolute {{ $isAr ? 'left-0' : 'right-0' }} mt-3 w-[22rem] max-w-[calc(100vw-1.5rem)] z-[70] origin-top-{{ $isAr ? 'left' : 'right' }}"
      style="display: none;"
      role="dialog"
      aria-label="{{ $isAr ? 'عربة التسوق' : 'Shopping cart' }}">
 
     {{-- Arrow tip --}}
-    <div class="absolute -top-1.5 {{ $isAr ? 'left-5' : 'right-5' }} w-3 h-3 bg-white border-t border-l border-gray-100 rotate-45"></div>
+    <div class="absolute -top-1.5 {{ $isAr ? 'left-5' : 'right-5' }} w-3 h-3 bg-white border-t border-l border-gray-100 rotate-45 z-10"></div>
+
+    {{-- Card --}}
+    <div class="overflow-hidden rounded-2xl shadow-2xl border border-gray-100 bg-white">
 
     {{-- Header --}}
-    <div class="relative flex items-center justify-between px-4 py-3 rounded-t-2xl z-10" style="background-color: #452aa8;">
+    <div class="flex items-center justify-between px-4 py-3" style="background-color: #452aa8;">
         <h2 class="text-sm font-bold text-white flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -75,4 +78,6 @@
             {{ $isAr ? 'عرض السلة الكاملة' : 'View full cart' }}
         </a>
     </div>
+
+    </div>{{-- /card --}}
 </div>
