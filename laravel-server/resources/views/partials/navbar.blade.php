@@ -38,7 +38,7 @@
 </style>
 @endpush
 
-<nav class="relative bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
+<nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
      :class="scrolled ? 'shadow-lg' : 'shadow-sm'">
@@ -89,7 +89,7 @@
                 </div>
 
                 {{-- Cart --}}
-                <div class="h-full flex items-center" @click.outside="$store.cart.open = false">
+                <div class="relative h-full flex items-center" @click.outside="$store.cart.open = false">
                     <button type="button"
                             @click="$store.cart.open = !$store.cart.open; if ($store.cart.open) $store.cart.refresh()"
                             aria-label="{{ $lang === 'ar' ? 'عربة التسوق' : 'Shopping cart' }}"
