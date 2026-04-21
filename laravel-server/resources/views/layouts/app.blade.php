@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="theme-color" content="#452aa8">
+    <meta name="theme-color" content="#46387b">
     <meta name="robots" content="index, follow">
     <title>@yield('title', $settings->seo['pageTitle'] ?? 'Freedom with DXN')</title>
     <meta name="description" content="@yield('description', $settings->seo['description'] ?? '')">
@@ -62,20 +62,20 @@
         @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/dm-sans-latin.woff2') format('woff2'); }
 
         /* Button system — inlined so they work regardless of Tailwind build purge */
-        .btn-primary { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-primary { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .btn-primary:hover { background-color: #a3322d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .btn-secondary { background-color: #236b43; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .btn-secondary:hover { background-color: #1b5535; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .btn-gold { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-secondary { background-color: #43af73; color: #fff; padding: 12px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-secondary:hover { background-color: #38a868; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-gold { background-color: #bf3c36; color: #fff; padding: 12px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .btn-gold:hover { background-color: #a3322d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; }
-        .btn-outline-white:hover { background-color: #fff; color: #452aa8; }
-        .btn-outline-violet { border: 2px solid #452aa8; color: #452aa8; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }
-        .btn-outline-violet:hover { background-color: #452aa8; color: #fff; }
-        .hover-violet { background-color: #452aa8; transition: background-color 0.2s; }
-        .hover-violet:hover { background-color: #4a2db5; }
-        .hover-green { background-color: #236b43; transition: background-color 0.2s; }
-        .hover-green:hover { background-color: #1b5535; }
+        .btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; display: inline-block; text-align: center; }
+        .btn-outline-white:hover { background-color: #fff; color: #46387b; }
+        .btn-outline-violet { border: 2px solid #46387b; color: #46387b; background: transparent; padding: 10px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }
+        .btn-outline-violet:hover { background-color: #46387b; color: #fff; }
+        .hover-violet { background-color: #46387b; transition: background-color 0.2s; }
+        .hover-violet:hover { background-color: #5a4a90; }
+        .hover-green { background-color: #43af73; transition: background-color 0.2s; }
+        .hover-green:hover { background-color: #38a868; }
         .hover-whatsapp { background-color: #25D366; transition: background-color 0.2s; }
         .hover-whatsapp:hover { background-color: #20ba5a; }
         .hover-red { background-color: #bf3c36; transition: background-color 0.2s; }
@@ -177,19 +177,19 @@
             @if($isCartAdd)
                 <a href="{{ route('cart') }}"
                    class="flex items-center gap-3 bg-white shadow-2xl rounded-xl px-4 py-3 border-l-4 hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition-shadow cursor-pointer group"
-                   style="border-left-color: #236b43;">
+                   style="border-left-color: #43af73;">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: rgba(35,107,67,0.12);">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#236b43" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#43af73" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="font-semibold text-sm" style="color: #236b43;">{{ $flashLang === 'ar' ? 'تمت الإضافة إلى السلة!' : 'Added to cart!' }}</p>
+                        <p class="font-semibold text-sm" style="color: #43af73;">{{ $flashLang === 'ar' ? 'تمت الإضافة إلى السلة!' : 'Added to cart!' }}</p>
                         <p class="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">{{ $flashLang === 'ar' ? 'انقر لعرض السلة ←' : 'Click to view cart →' }}</p>
                     </div>
                     <button @click.prevent="show = false" class="text-gray-300 hover:text-gray-600 text-xl leading-none shrink-0" aria-label="{{ $flashLang === 'ar' ? 'إغلاق' : 'Close' }}">&times;</button>
                 </a>
             @else
-                <div class="flex items-center gap-3 bg-white shadow-2xl rounded-xl px-4 py-3 border-l-4" style="border-left-color: #236b43;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#236b43" stroke-width="2.5" aria-hidden="true" class="shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                <div class="flex items-center gap-3 bg-white shadow-2xl rounded-xl px-4 py-3 border-l-4" style="border-left-color: #43af73;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#43af73" stroke-width="2.5" aria-hidden="true" class="shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
                     <span class="text-sm text-gray-800 flex-1">{{ $flashMsg }}</span>
                     <button @click="show = false" class="text-gray-300 hover:text-gray-600 text-xl leading-none shrink-0" aria-label="{{ $flashLang === 'ar' ? 'إغلاق' : 'Close' }}">&times;</button>
                 </div>

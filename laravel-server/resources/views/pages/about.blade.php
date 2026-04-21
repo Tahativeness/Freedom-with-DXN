@@ -150,7 +150,7 @@
 <section class="py-20" style="background-color: #fef2f2;" aria-labelledby="numbers-heading">
     <div class="max-w-6xl mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 id="numbers-heading" class="text-3xl font-bold" style="color: #452aa8;">{{ $lang === 'ar' ? 'DXN بالأرقام' : 'DXN by the Numbers' }}</h2>
+            <h2 id="numbers-heading" class="text-3xl font-bold" style="color: #46387b;">{{ $lang === 'ar' ? 'DXN بالأرقام' : 'DXN by the Numbers' }}</h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             @foreach([
@@ -160,8 +160,8 @@
                 ['value' => '1000+', 'label' => $lang === 'ar' ? 'منتج' : 'Products'],
             ] as $stat)
                 <div class="text-center p-6 rounded-2xl" style="background: rgba(191,60,54,0.08);">
-                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2" style="color: #236b43;">{{ $stat['value'] }}</div>
-                    <div class="text-sm font-semibold uppercase tracking-wide" style="color: #452aa8;">{{ $stat['label'] }}</div>
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2" style="color: #43af73;">{{ $stat['value'] }}</div>
+                    <div class="text-sm font-semibold uppercase tracking-wide" style="color: #46387b;">{{ $stat['label'] }}</div>
                 </div>
             @endforeach
         </div>

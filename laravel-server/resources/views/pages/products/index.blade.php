@@ -53,7 +53,7 @@
 @section('content')
 
 {{-- Hero Header --}}
-<div class="py-16 px-4 relative overflow-hidden" style="background-color: #452aa8;">
+<div class="py-16 px-4 relative overflow-hidden" style="background-color: #46387b;">
     <div class="absolute top-0 right-0 w-64 h-64 rounded-full -translate-y-1/2 translate-x-1/2" style="background: rgba(67,175,115,0.08);" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full translate-y-1/2 -translate-x-1/2" style="background: rgba(67,175,115,0.08);" aria-hidden="true"></div>
 
@@ -76,8 +76,8 @@
         <div class="flex items-center gap-1.5 overflow-x-auto py-3 scrollbar-hide">
             @foreach($categories as $cat)
                 <a href="{{ route('products', array_merge(request()->query(), ['category' => $cat, 'page' => 1])) }}"
-                   class="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ $currentCategory === $cat ? 'text-white shadow-md' : 'text-brand-violet border border-gray-200 hover:bg-[#e8f5ee]' }}"
-                   style="{{ $currentCategory === $cat ? 'background-color: #236b43;' : '' }}">
+                   class="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 {{ $currentCategory === $cat ? 'text-white shadow-md' : 'text-brand-violet border border-gray-200 hover:bg-[#f7f5fc]' }}"
+                   style="{{ $currentCategory === $cat ? 'background-color: #43af73;' : '' }}">
                     <span>{{ $catIcons[$cat] ?? '📦' }}</span>
                     {{ $lang === 'ar' ? ($catLabelsAr[$cat] ?? $cat) : ($catLabels[$cat] ?? ucfirst($cat)) }}
                 </a>
@@ -94,7 +94,7 @@
 
         {{-- Section Heading --}}
         <div class="text-center mb-8">
-            <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #ffffff; background-color: #452aa8;">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-2xl" style="color: #ffffff; background-color: #46387b;">
                 {{ $catIcons[$currentCategory] ?? '🌿' }}
                 {{ $lang === 'ar' ? ($catLabelsAr[$currentCategory] ?? 'جميع المنتجات') : ($catLabels[$currentCategory] ?? 'All Products') }}
             </h2>
@@ -158,9 +158,9 @@
         @else
             <div class="text-center py-24">
                 <div class="text-6xl mb-4">🔍</div>
-                <p class="text-xl font-bold" style="color: #452aa8;">{{ $lang === 'ar' ? 'لم يتم العثور على منتجات' : 'No products found' }}</p>
+                <p class="text-xl font-bold" style="color: #46387b;">{{ $lang === 'ar' ? 'لم يتم العثور على منتجات' : 'No products found' }}</p>
                 <p class="text-gray-600 text-sm mt-2">{{ $lang === 'ar' ? 'جرب فئة أو كلمة بحث مختلفة' : 'Try a different category or search term' }}</p>
-                <a href="{{ route('products') }}" class="mt-5 inline-block text-white px-6 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #236b43;">
+                <a href="{{ route('products') }}" class="mt-5 inline-block text-white px-6 py-2.5 rounded-xl font-semibold transition-colors" style="background-color: #43af73;">
                     {{ $lang === 'ar' ? 'عرض جميع المنتجات' : 'View All Products' }}
                 </a>
             </div>
@@ -187,15 +187,15 @@
     nav[role="navigation"] .flex.justify-between { display: none; }
     nav[role="navigation"] .hidden.sm\\:flex-1 { display: flex !important; align-items: center; }
     nav[role="navigation"] span[aria-current="page"] span {
-        background-color: #236b43 !important; color: white !important;
+        background-color: #43af73 !important; color: white !important;
         border-radius: 0.5rem; padding: 0.4rem 0.85rem; font-weight: 700;
     }
     nav[role="navigation"] a {
-        color: #452aa8 !important; font-weight: 600; padding: 0.4rem 0.85rem;
+        color: #46387b !important; font-weight: 600; padding: 0.4rem 0.85rem;
         border-radius: 0.5rem; transition: all 0.2s;
     }
     nav[role="navigation"] a:hover {
-        background-color: #e8f5ee !important; color: #1e6b42 !important;
+        background-color: #f7f5fc !important; color: #38a868 !important;
     }
     nav[role="navigation"] .relative span.cursor-default {
         color: #9ca3af; padding: 0.4rem 0.85rem;

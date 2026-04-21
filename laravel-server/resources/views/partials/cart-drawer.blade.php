@@ -18,7 +18,7 @@
     <div class="overflow-hidden rounded-2xl shadow-2xl border border-gray-100 bg-white">
 
     {{-- Header --}}
-    <div class="flex items-center justify-between px-4 py-3" style="background-color: #452aa8;">
+    <div class="flex items-center justify-between px-4 py-3" style="background-color: #46387b;">
         <h2 class="text-sm font-bold text-white flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -40,8 +40,8 @@
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-2"
          class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold"
-         style="background-color: #edfaf3; color: #236b43; display: none;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#236b43" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+         style="background-color: #edfaf3; color: #43af73; display: none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#43af73" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         {{ $isAr ? '✓ تمت الإضافة إلى السلة!' : '✓ Added to cart!' }}
     </div>
 
@@ -51,7 +51,7 @@
             <div class="text-center py-8 text-gray-500">
                 <div class="text-4xl mb-2">🛒</div>
                 <p class="text-sm font-medium">{{ $isAr ? 'عربتك فارغة' : 'Your cart is empty' }}</p>
-                <a href="{{ route('products') }}" class="inline-block mt-3 text-xs font-semibold" style="color: #452aa8;">{{ $isAr ? 'تصفح المنتجات ←' : '→ Browse products' }}</a>
+                <a href="{{ route('products') }}" class="inline-block mt-3 text-xs font-semibold" style="color: #46387b;">{{ $isAr ? 'تصفح المنتجات ←' : '→ Browse products' }}</a>
             </div>
         </template>
 
@@ -70,7 +70,7 @@
                     <button type="button" @click="$store.cart.remove(item.id)" aria-label="{{ $isAr ? 'إزالة' : 'Remove' }}" class="text-gray-300 hover:text-red-600 transition-colors p-0.5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                     </button>
-                    <p class="text-sm font-bold whitespace-nowrap" style="color: #236b43;">$<span x-text="item.subtotal.toFixed(2)"></span></p>
+                    <p class="text-sm font-bold whitespace-nowrap" style="color: #43af73;">$<span x-text="item.subtotal.toFixed(2)"></span></p>
                 </div>
             </div>
         </template>
@@ -80,12 +80,12 @@
     <div x-show="$store.cart.items.length > 0" class="border-t border-gray-100 px-4 py-3 space-y-2 bg-gray-50 rounded-b-2xl">
         <div class="flex items-center justify-between text-sm font-semibold">
             <span class="text-gray-700">{{ $isAr ? 'المجموع' : 'Subtotal' }}</span>
-            <span class="text-base font-bold" style="color: #236b43;">$<span x-text="$store.cart.total.toFixed(2)"></span></span>
+            <span class="text-base font-bold" style="color: #43af73;">$<span x-text="$store.cart.total.toFixed(2)"></span></span>
         </div>
         <a href="{{ route('checkout') }}" class="block w-full text-center text-white text-sm font-semibold py-2.5 rounded-xl transition-all hover:shadow-md" style="background-color: #bf3c36;">
             {{ $isAr ? 'إتمام الشراء' : 'Checkout' }}
         </a>
-        <a href="{{ route('cart') }}" class="block w-full text-center text-xs font-medium hover:underline" style="color: #452aa8;">
+        <a href="{{ route('cart') }}" class="block w-full text-center text-xs font-medium hover:underline" style="color: #46387b;">
             {{ $isAr ? 'عرض السلة الكاملة' : 'View full cart' }}
         </a>
     </div>

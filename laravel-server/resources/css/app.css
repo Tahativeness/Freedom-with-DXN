@@ -20,33 +20,35 @@
     --color-gold-600: #dcca8b;
 
     /* New brand colors */
-    --color-brand-green: #236b43;
-    --color-brand-green-light: #43af73;
-    --color-brand-green-dark: #276e47;
+    --color-brand-green: #43af73;
+    --color-brand-green-light: #5bc48a;
+    --color-brand-green-dark: #38a868;
     --color-brand-red: #bf3c36;
     --color-brand-red-light: #d05550;
     --color-brand-red-dark: #a3322d;
-    --color-brand-violet: #452aa8;
-    --color-brand-violet-light: #4a2db5;
-    --color-brand-violet-dark: #3a2290;
+    --color-brand-violet: #46387b;
+    --color-brand-violet-light: #5a4a90;
+    --color-brand-violet-dark: #2c1c5f;
+    --color-brand-gold: #c9a84c;
 
     /* Legacy aliases pointing to new colors */
-    --color-dxn-green: #236b43;
-    --color-dxn-darkgreen: #452aa8;
-    --color-dxn-gold: #43af73;
+    --color-dxn-green: #43af73;
+    --color-dxn-darkgreen: #46387b;
+    --color-dxn-gold: #c9a84c;
     --color-dxn-lightgold: #5bc48a;
 
     --font-family-sans: 'DM Sans', 'DM Sans Fallback', 'Inter', system-ui, sans-serif;
 }
 
 :root {
-    --brand-green: #236b43;
-    --brand-green-light: #43af73;
-    --brand-green-dark: #276e47;
+    --brand-green: #43af73;
+    --brand-green-light: #5bc48a;
+    --brand-green-dark: #38a868;
     --brand-red: #bf3c36;
     --brand-red-dark: #a3322d;
-    --brand-violet: #452aa8;
-    --brand-violet-dark: #3a2290;
+    --brand-violet: #46387b;
+    --brand-violet-dark: #2c1c5f;
+    --brand-gold: #c9a84c;
 }
 
 /* Font fallback to reduce CLS from font swap */
@@ -69,7 +71,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'DM Sans', 'DM Sans Fallback', 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 /* ── Button System ────────────────────────────────────── */
@@ -78,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
     background-color: var(--brand-red);
     color: #fff;
-    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
 }
 .btn-primary:hover {
     background-color: var(--brand-red-dark);
@@ -88,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary {
     background-color: var(--brand-green);
     color: #fff;
-    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
 }
 .btn-secondary:hover {
     background-color: var(--brand-green-dark);
@@ -98,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-gold {
     background-color: var(--brand-red);
     color: #fff;
-    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-200 shadow-md hover:shadow-lg inline-block text-center;
 }
 .btn-gold:hover {
     background-color: var(--brand-red-dark);
@@ -108,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline {
     border-color: var(--brand-violet);
     color: var(--brand-violet);
-    @apply border-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 inline-block text-center;
+    @apply border-2 px-6 py-3 rounded-full font-semibold transition-all duration-200 inline-block text-center;
 }
 .btn-outline:hover {
     background-color: var(--brand-violet);
@@ -153,23 +156,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hover utility classes (replaces inline onmouseenter/onmouseleave) */
-.hover-green { background-color: #236b43; transition: background-color 0.2s; }
-.hover-green:hover { background-color: #276e47; }
+.hover-green { background-color: #43af73; transition: background-color 0.2s; }
+.hover-green:hover { background-color: #38a868; }
 
 .hover-red { background-color: #bf3c36; transition: background-color 0.2s; }
 .hover-red:hover { background-color: #a3322d; }
 
-.hover-violet { background-color: #452aa8; transition: background-color 0.2s; }
-.hover-violet:hover { background-color: #4a2db5; }
+.hover-violet { background-color: #46387b; transition: background-color 0.2s; }
+.hover-violet:hover { background-color: #5a4a90; }
 
-.footer-social { color: #452aa8; transition: color 0.2s; }
-.footer-social:hover { color: #236b43; }
+.footer-social { color: #46387b; transition: color 0.2s; }
+.footer-social:hover { color: #43af73; }
 
-.footer-link { color: #452aa8; font-weight: 600; transition: color 0.2s; }
-.footer-link:hover { color: #1e6b42; }
+.footer-link { color: #46387b; font-weight: 600; transition: color 0.2s; }
+.footer-link:hover { color: #38a868; }
 
-.btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 12px; font-weight: 600; transition: all 0.2s; }
-.btn-outline-white:hover { background-color: #fff; color: #452aa8; }
+.btn-outline-white { border: 2px solid #fff; color: #fff; background: transparent; padding: 10px 24px; border-radius: 100px; font-weight: 600; transition: all 0.2s; }
+.btn-outline-white:hover { background-color: #fff; color: #46387b; }
 
 /* Product card hover */
 .product-card-hover { box-shadow: inset 0 0px 0 0px #bf3c36, 0 1px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s, transform 0.3s; }
@@ -178,8 +181,8 @@ h1, h2, h3, h4, h5, h6 {
 .hover-whatsapp { background-color: #1a8d45; transition: background-color 0.2s; }
 .hover-whatsapp:hover { background-color: #15753a; }
 
-.btn-outline-violet { border: 2px solid #452aa8; color: #452aa8; background: transparent; transition: all 0.2s; }
-.btn-outline-violet:hover { background-color: #452aa8; color: #fff; }
+.btn-outline-violet { border: 2px solid #46387b; color: #46387b; background: transparent; border-radius: 100px; transition: all 0.2s; }
+.btn-outline-violet:hover { background-color: #46387b; color: #fff; }
 
 /* Smooth scrolling */
 html {
@@ -199,19 +202,19 @@ html {
 }
 
 /* Rich text / blog content styles */
-.blog-html-content h1 { font-size: 2em; font-weight: 700; margin: 0.8em 0 0.4em; color: #452aa8; }
-.blog-html-content h2 { font-size: 1.5em; font-weight: 700; margin: 0.8em 0 0.4em; color: #452aa8; }
-.blog-html-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.6em 0 0.3em; color: #452aa8; }
+.blog-html-content h1 { font-size: 2em; font-weight: 700; margin: 0.8em 0 0.4em; color: #46387b; letter-spacing: -0.02em; }
+.blog-html-content h2 { font-size: 1.5em; font-weight: 700; margin: 0.8em 0 0.4em; color: #46387b; letter-spacing: -0.02em; }
+.blog-html-content h3 { font-size: 1.25em; font-weight: 700; margin: 0.6em 0 0.3em; color: #46387b; letter-spacing: -0.02em; }
 .blog-html-content p { margin: 0.5em 0; color: #4b5563; line-height: 1.8; }
 .blog-html-content ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0; color: #4b5563; }
 .blog-html-content ol { list-style: decimal; padding-left: 1.5em; margin: 0.5em 0; color: #4b5563; }
 .blog-html-content li { margin: 0.3em 0; line-height: 1.7; }
-.blog-html-content blockquote { border-left: 4px solid #43af73; padding: 1em 1.25em; margin: 1em 0; background: #e8f5ee; color: #555; font-style: italic; border-radius: 0 8px 8px 0; }
-.blog-html-content a { color: #452aa8; text-decoration: underline; }
-.blog-html-content a:hover { color: #4a2db5; }
+.blog-html-content blockquote { border-left: 4px solid #43af73; padding: 1em 1.25em; margin: 1em 0; background: #f7f5fc; color: #555; font-style: italic; border-radius: 0 8px 8px 0; }
+.blog-html-content a { color: #46387b; text-decoration: underline; }
+.blog-html-content a:hover { color: #5a4a90; }
 .blog-html-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; }
 .blog-html-content hr { border: none; border-top: 2px solid #e5e7eb; margin: 24px 0; }
-.blog-html-content strong, .blog-html-content b { color: #452aa8; font-weight: 700; }
+.blog-html-content strong, .blog-html-content b { color: #46387b; font-weight: 700; }
 
 /* RTL (Arabic) support */
 [dir="rtl"] .section-title,

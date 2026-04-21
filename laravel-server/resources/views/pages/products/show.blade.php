@@ -145,7 +145,7 @@
                     @if($mainImage)
                         <img :src="activeImage" alt="{{ $product->name }}" width="400" height="384" class="w-full h-full object-contain p-4">
                     @else
-                        <div class="w-full h-full flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #452aa8, #3a2290);">
+                        <div class="w-full h-full flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #46387b, #2c1c5f);">
                             <span class="text-6xl font-bold" style="color: #43af73;">DXN</span>
                             <span class="text-white text-sm mt-2">{{ $product->name }}</span>
                         </div>
@@ -169,10 +169,10 @@
             {{-- Center: Product Info --}}
             <div class="lg:col-span-5">
                 {{-- Category --}}
-                <span class="inline-block text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-3" style="background-color: rgba(49,140,90,0.1); color: #1e6b42;">{{ $displayCategory }}</span>
+                <span class="inline-block text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-3" style="background-color: rgba(67,175,115,0.12); color: #38a868;">{{ $displayCategory }}</span>
 
                 {{-- Title --}}
-                <h1 class="text-2xl lg:text-3xl font-bold mb-2" style="color: #452aa8;">{{ $displayName }}</h1>
+                <h1 class="text-2xl lg:text-3xl font-bold mb-2" style="color: #46387b;">{{ $displayName }}</h1>
 
                 {{-- SKU --}}
                 @if($product->sku)
@@ -297,7 +297,7 @@
 
             {{-- Details --}}
             <div class="bg-white rounded-2xl p-8 shadow-sm">
-                <h3 class="text-xl font-bold mb-4" style="color: #452aa8;">{{ $lang === 'ar' ? 'تفاصيل المنتج' : 'Product Details' }}</h3>
+                <h3 class="text-xl font-bold mb-4" style="color: #46387b;">{{ $lang === 'ar' ? 'تفاصيل المنتج' : 'Product Details' }}</h3>
                 <p class="text-gray-600 leading-relaxed mb-6">{{ $displayDesc }}</p>
 
                 @if(count($benefits) > 0)
@@ -351,7 +351,7 @@
             {{-- Ingredients --}}
             @if($displayIngredients)
             <div class="bg-white rounded-2xl p-8 shadow-sm">
-                <h3 class="text-xl font-bold mb-4" style="color: #452aa8;">{{ $lang === 'ar' ? 'المكونات' : 'Ingredients' }}</h3>
+                <h3 class="text-xl font-bold mb-4" style="color: #46387b;">{{ $lang === 'ar' ? 'المكونات' : 'Ingredients' }}</h3>
                 <p class="text-gray-600 leading-relaxed whitespace-pre-line">{{ $displayIngredients }}</p>
             </div>
             @endif
@@ -359,7 +359,7 @@
             {{-- How to Use --}}
             @if($displayUsage)
             <div class="bg-white rounded-2xl p-8 shadow-sm">
-                <h3 class="text-xl font-bold mb-4" style="color: #452aa8;">{{ $lang === 'ar' ? 'طريقة الاستخدام' : 'How to Use' }}</h3>
+                <h3 class="text-xl font-bold mb-4" style="color: #46387b;">{{ $lang === 'ar' ? 'طريقة الاستخدام' : 'How to Use' }}</h3>
                 <div class="flex items-start gap-4 p-5 rounded-xl" style="background: rgba(67,175,115,0.08);">
                     <svg class="shrink-0 mt-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#43af73" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     <p class="text-gray-700 leading-relaxed">{{ $displayUsage }}</p>
@@ -435,7 +435,7 @@
 
             <div class="bg-white rounded-2xl p-8 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl font-bold" style="color: #452aa8;">{{ $lang === 'ar' ? 'أسئلة وأجوبة' : 'Questions & Answers' }}</h3>
+                    <h3 class="text-xl font-bold" style="color: #46387b;">{{ $lang === 'ar' ? 'أسئلة وأجوبة' : 'Questions & Answers' }}</h3>
                     <span class="text-sm text-gray-400">{{ count($productQas) }} {{ $lang === 'ar' ? 'أسئلة مُجاب عليها' : 'answered questions' }}</span>
                 </div>
 
@@ -443,11 +443,11 @@
                     @foreach($productQas as $qa)
                         <div class="pb-6 {{ !$loop->last ? 'border-b border-gray-100' : '' }}">
                             <div class="flex items-start gap-3 mb-3">
-                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #452aa8;">Q</span>
+                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #46387b;">Q</span>
                                 <p class="font-semibold text-gray-800 text-sm">{{ $qa['q'] }}</p>
                             </div>
                             <div class="flex items-start gap-3 ml-0 md:ml-1">
-                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #236b43;">A</span>
+                                <span class="font-bold text-sm px-2 py-0.5 rounded text-white shrink-0" style="background-color: #43af73;">A</span>
                                 <div>
                                     <p class="text-gray-600 text-sm leading-relaxed">{{ $qa['a'] }}</p>
                                     <div class="flex items-center gap-3 mt-2 text-xs text-gray-400">
@@ -465,7 +465,7 @@
             {{-- Customer Reviews --}}
             <div class="bg-white rounded-2xl p-8 shadow-sm">
                 <div class="bg-white rounded-2xl p-8 shadow-sm">
-                    <h3 class="text-xl font-bold mb-6" style="color: #452aa8;">{{ $lang === 'ar' ? 'تقييمات العملاء' : 'Customer Reviews' }}</h3>
+                    <h3 class="text-xl font-bold mb-6" style="color: #46387b;">{{ $lang === 'ar' ? 'تقييمات العملاء' : 'Customer Reviews' }}</h3>
 
                     @php
                         $stars5 = $product->reviews->where('rating', 5)->count();
@@ -479,7 +479,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
                         {{-- Left: Overall Rating --}}
                         <div class="md:col-span-3 text-center md:text-left">
-                            <div class="text-5xl font-bold" style="color: #452aa8;">{{ number_format($rating, 1) }}</div>
+                            <div class="text-5xl font-bold" style="color: #46387b;">{{ number_format($rating, 1) }}</div>
                             <div class="flex items-center gap-0.5 mt-2 justify-center md:justify-start">
                                 @for($i = 1; $i <= 5; $i++)
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="{{ $i <= round($rating) ? '#f59e0b' : '#e5e7eb' }}" stroke="{{ $i <= round($rating) ? '#f59e0b' : '#e5e7eb' }}" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -539,7 +539,7 @@
                                     {{-- Date + Verified --}}
                                     <div class="flex items-center gap-3 mb-3 text-xs text-gray-400">
                                         <span>{{ $lang === 'ar' ? 'تمت المراجعة في' : 'Reviewed on' }} {{ $lang === 'ar' ? \Carbon\Carbon::parse($review->created_at)->format('Y/m/d') : \Carbon\Carbon::parse($review->created_at)->format('F j, Y') }}</span>
-                                        <span class="inline-flex items-center gap-1 text-white font-medium px-3 py-1 rounded-full" style="background-color: #236b43;">
+                                        <span class="inline-flex items-center gap-1 text-white font-medium px-3 py-1 rounded-full" style="background-color: #43af73;">
                                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                                             {{ $lang === 'ar' ? 'عملية شراء موثقة' : 'Verified Purchase' }}
                                         </span>

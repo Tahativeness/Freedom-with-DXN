@@ -114,7 +114,7 @@
 <section class="bg-gray-50 py-16" aria-labelledby="offices-heading">
     <div class="max-w-6xl mx-auto px-4">
         <div class="text-center mb-10">
-            <h2 id="offices-heading" class="text-2xl md:text-3xl font-bold" style="color: #452aa8;">
+            <h2 id="offices-heading" class="text-2xl md:text-3xl font-bold" style="color: #46387b;">
                 {{ $lang === 'ar' ? 'مكاتب DXN في الإمارات' : 'DXN Offices in UAE' }}
             </h2>
             <p class="text-gray-600 mt-2">{{ $lang === 'ar' ? '10 فروع في جميع أنحاء الإمارات' : '10 branches across the UAE' }}</p>

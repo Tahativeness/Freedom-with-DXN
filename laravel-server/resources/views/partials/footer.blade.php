@@ -5,13 +5,13 @@
     $footer = $settings->footer ?? [];
 @endphp
 
-<footer style="background-color: #ffffff; color: #452aa8;" aria-label="{{ $lang === 'ar' ? 'تذييل الموقع' : 'Site footer' }}">
+<footer style="background-color: #ffffff; color: #46387b;" aria-label="{{ $lang === 'ar' ? 'تذييل الموقع' : 'Site footer' }}">
     <div class="w-full h-px" style="background-color: rgba(69,42,168,0.1);" aria-hidden="true"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {{-- Brand --}}
         <div>
             <img src="/footer-lg.png" alt="Grow with DXN" loading="lazy" decoding="async" width="200" height="56" class="h-14 w-auto object-contain mb-2">
-            <p class="text-sm text-[#452aa8] mb-2">
+            <p class="text-sm text-[#46387b] mb-2">
                 {{ $lang === 'ar' ? 'موزع DXN الموثوق. نساعدك على تحقيق الصحة والحرية المالية من خلال منتجات DXN العالمية.' : ($footer['description'] ?? "Your trusted DXN distributor. We help you achieve health and financial freedom through DXN's world-class products.") }}
             </p>
             {{-- Social Media Icons --}}
@@ -90,23 +90,23 @@
                 @if(false)
                 <li class="flex items-start gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-green mt-0.5 shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span class="text-[#452aa8]">{{ $contact['location'] ?? 'United Arab Emirates' }}</span>
+                    <span class="text-[#46387b]">{{ $contact['location'] ?? 'United Arab Emirates' }}</span>
                 </li>
                 @endif
                 <li class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-green shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span class="text-[#452aa8]">{{ $contact['phone'] ?? '+971 55 557 4958' }}</span>
+                    <span class="text-[#46387b]">{{ $contact['phone'] ?? '+971 55 557 4958' }}</span>
                 </li>
                 <li class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-green shrink-0" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <span class="text-[#452aa8]">{{ $contact['email'] ?? 'info@freedomwithdxn.com' }}</span>
+                    <span class="text-[#46387b]">{{ $contact['email'] ?? 'info@freedomwithdxn.com' }}</span>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div class="border-t py-4 text-center text-sm px-4" style="border-color: rgba(69,42,168,0.1); background-color: #f9f9f9; color: #452aa8;">
+    <div class="border-t py-4 text-center text-sm px-4" style="border-color: rgba(69,42,168,0.1); background-color: #f9f9f9; color: #46387b;">
         <p>&copy; {{ date('Y') }} {{ $lang === 'ar' ? 'Freedom with DXN. جميع الحقوق محفوظة.' : ($footer['copyright'] ?? 'Freedom with DXN. All rights reserved.') }}</p>
-        <p class="text-xs mt-1" style="color: #452aa8;">{{ $lang === 'ar' ? 'موزع DXN مستقل. DXN علامة تجارية مسجلة لشركة DXN Holdings Berhad.' : 'Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.' }}</p>
+        <p class="text-xs mt-1" style="color: #46387b;">{{ $lang === 'ar' ? 'موزع DXN مستقل. DXN علامة تجارية مسجلة لشركة DXN Holdings Berhad.' : 'Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.' }}</p>
     </div>
 </footer>

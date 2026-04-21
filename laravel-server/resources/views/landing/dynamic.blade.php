@@ -35,7 +35,7 @@
     @if(!empty($page->features))
         <section class="py-16 bg-white">
             <div class="max-w-4xl mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-10" style="color: #452aa8;">Features</h2>
+                <h2 class="text-3xl font-bold text-center mb-10" style="color: #46387b;">Features</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @foreach($page->features as $feature)
                         <div class="flex items-center gap-3 p-4 rounded-xl" style="background: #e8f5ee;">
@@ -52,7 +52,7 @@
     @if(!empty($page->benefits))
         <section class="py-16 bg-gray-50">
             <div class="max-w-4xl mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-10" style="color: #452aa8;">Benefits</h2>
+                <h2 class="text-3xl font-bold text-center mb-10" style="color: #46387b;">Benefits</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @foreach($page->benefits as $benefit)
                         <div class="card p-6 text-center" style="border-top: 4px solid #43af73;">
@@ -71,7 +71,7 @@
     @if(!empty($page->gallery))
         <section class="py-16 bg-white">
             <div class="max-w-5xl mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-10" style="color: #452aa8;">Gallery</h2>
+                <h2 class="text-3xl font-bold text-center mb-10" style="color: #46387b;">Gallery</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     @foreach($page->gallery as $img)
                         <div class="aspect-square rounded-xl overflow-hidden shadow-md">
@@ -85,7 +85,7 @@
 
     {{-- Product Info --}}
     @if($page->product)
-        <section class="py-16" style="background-color: #452aa8;">
+        <section class="py-16" style="background-color: #46387b;">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-white mb-4">{{ $page->product->name }}</h2>
                 <p class="text-white mb-2 max-w-2xl mx-auto">{{ $page->product->description }}</p>

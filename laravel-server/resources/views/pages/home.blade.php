@@ -116,7 +116,7 @@
 </section>
 
 {{-- Join DXN Video --}}
-<section class="py-16 md:py-20" style="background-color: #452aa8;" aria-label="{{ $lang === 'ar' ? 'فيديو انضم إلى DXN' : 'Join DXN video' }}">
+<section class="py-16 md:py-20" style="background-color: #46387b;" aria-label="{{ $lang === 'ar' ? 'فيديو انضم إلى DXN' : 'Join DXN video' }}">
     <div class="max-w-4xl mx-auto px-4 text-center">
         <div class="text-sm font-semibold uppercase tracking-widest mb-3" style="color: #f1d47f;">
             {{ $lang === 'ar' ? 'شاهد هذا أولًا' : 'Watch This First' }}
@@ -150,8 +150,8 @@
     <section class="py-20 relative z-10" aria-labelledby="featured-heading">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-8">
-                <h2 id="featured-heading" class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #ffffff;">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
-                <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #236b43; color: #ffffff;">{{ $lang === 'ar' ? 'منتجات صحية عالية الجودة مدعومة بالغانودرما' : 'Premium health products powered by Ganoderma Lucidum' }}</span>
+                <h2 id="featured-heading" class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #46387b; color: #ffffff;">{{ $lang === 'ar' ? 'المنتجات المميزة' : 'Featured Products' }}</h2>
+                <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #43af73; color: #ffffff;">{{ $lang === 'ar' ? 'منتجات صحية عالية الجودة مدعومة بالغانودرما' : 'Premium health products powered by Ganoderma Lucidum' }}</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($featured as $product)
@@ -166,9 +166,9 @@
 
     {{-- Divider --}}
     <div class="relative z-10 flex items-center justify-center py-6" aria-hidden="true">
-        <div style="height: 3px; width: 35%; background: linear-gradient(to right, transparent, #ffffff, #452aa8);"></div>
-        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #452aa8; margin: 0 20px; box-shadow: 0 0 15px rgba(69,42,168,0.6), 0 0 30px rgba(69,42,168,0.3);"></div>
-        <div style="height: 3px; width: 35%; background: linear-gradient(to left, transparent, #ffffff, #452aa8);"></div>
+        <div style="height: 3px; width: 35%; background: linear-gradient(to right, transparent, #ffffff, #46387b);"></div>
+        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #46387b; margin: 0 20px; box-shadow: 0 0 15px rgba(69,42,168,0.6), 0 0 30px rgba(69,42,168,0.3);"></div>
+        <div style="height: 3px; width: 35%; background: linear-gradient(to left, transparent, #ffffff, #46387b);"></div>
     </div>
 
     {{-- Bestsellers --}}
@@ -176,8 +176,8 @@
     <section class="py-20 relative z-10" aria-labelledby="bestsellers-heading">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-8">
-                <h2 id="bestsellers-heading" class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #452aa8; color: #ffffff;">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
-                <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #236b43; color: #ffffff;">{{ $lang === 'ar' ? 'الخيارات الأكثر شعبية بين عملائنا' : 'Most popular choices among our customers' }}</span>
+                <h2 id="bestsellers-heading" class="inline-block px-6 py-3 rounded-2xl text-3xl md:text-4xl font-extrabold" style="background-color: #46387b; color: #ffffff;">{{ $lang === 'ar' ? 'الأكثر مبيعاً' : 'Bestsellers' }}</h2>
+                <br><span class="inline-block px-5 py-2 rounded-xl mt-3 text-sm font-medium" style="background-color: #43af73; color: #ffffff;">{{ $lang === 'ar' ? 'الخيارات الأكثر شعبية بين عملائنا' : 'Most popular choices among our customers' }}</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($bestsellers as $product)
@@ -193,10 +193,10 @@
 <section class="py-16 border-y" style="background-color: #eeeaf8; border-color: rgba(55,28,155,0.1);" aria-labelledby="zoom-heading">
     <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-semibold mb-3" style="background: rgba(55,28,155,0.1); color: #452aa8;">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-semibold mb-3" style="background: rgba(55,28,155,0.1); color: #46387b;">
                 {{ $lang === 'ar' ? 'مجاني 100%' : '100% Free' }}
             </div>
-            <h2 id="zoom-heading" class="text-2xl md:text-3xl font-bold mb-3" style="color: #452aa8;">
+            <h2 id="zoom-heading" class="text-2xl md:text-3xl font-bold mb-3" style="color: #46387b;">
                 {{ $lang === 'ar' ? 'احضر جلسة زووم مجانية' : 'Attend a Free Zoom Session' }}
             </h2>
             <p class="text-gray-600 mb-4">
@@ -214,9 +214,9 @@
                 ['d' => 'Sunday', 't' => '3pm-5pm', 'b' => 'Arabic'],
             ] as $s)
                 <div class="bg-white rounded-xl p-6 shadow-sm min-h-[184px] flex flex-col justify-start" style="border: 1px solid rgba(55,28,155,0.1);">
-                    <p class="font-bold" style="color: #452aa8;">{{ $s['d'] }}</p>
+                    <p class="font-bold" style="color: #46387b;">{{ $s['d'] }}</p>
                     <p class="text-sm text-gray-600 mt-1">{{ $s['t'] }}</p>
-                    <span class="inline-block text-xs px-2 py-0.5 rounded-full mt-2 font-medium w-fit" style="background: rgba(49,140,90,0.1); color: #1e6b42;">{{ $s['b'] }}</span>
+                    <span class="inline-block text-xs px-2 py-0.5 rounded-full mt-2 font-medium w-fit" style="background: rgba(67,175,115,0.12); color: #38a868;">{{ $s['b'] }}</span>
                 </div>
             @endforeach
         </div>
@@ -227,12 +227,12 @@
 <section class="py-20 bg-white" aria-labelledby="whyjoin-heading">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-            <span class="font-semibold text-sm uppercase tracking-widest" style="color: #236b43;">{{ $lang === 'ar' ? 'فرصة العمل' : 'Business Opportunity' }}</span>
-            <h2 id="whyjoin-heading" class="text-3xl md:text-4xl font-bold mt-2 mb-6" style="color: #452aa8;">{{ $lang === 'ar' ? 'لماذا تنضم إلى DXN؟' : 'Why Join DXN?' }}</h2>
+            <span class="font-semibold text-sm uppercase tracking-widest" style="color: #43af73;">{{ $lang === 'ar' ? 'فرصة العمل' : 'Business Opportunity' }}</span>
+            <h2 id="whyjoin-heading" class="text-3xl md:text-4xl font-bold mt-2 mb-6" style="color: #46387b;">{{ $lang === 'ar' ? 'لماذا تنضم إلى DXN؟' : 'Why Join DXN?' }}</h2>
             <ul class="space-y-3 mb-8">
                 @foreach($why as $item)
                     <li class="flex items-start gap-3">
-                        <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background-color: #236b43;" aria-hidden="true">
+                        <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background-color: #43af73;" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                         </div>
                         <span class="text-gray-600">{{ $item }}</span>
@@ -252,7 +252,7 @@
                 ['t' => $lang === 'ar' ? 'الحرية' : 'Freedom', 'd' => $lang === 'ar' ? 'اعمل وفق جدولك' : 'Work on your schedule', 'c' => 'background: #eeeaf8; border-color: rgba(55,28,155,0.2);'],
             ] as $card)
                 <div class="p-6 rounded-xl border-2" style="{{ $card['c'] }}">
-                    <h3 class="font-bold text-xl mb-2" style="color: #452aa8;">{{ $card['t'] }}</h3>
+                    <h3 class="font-bold text-xl mb-2" style="color: #46387b;">{{ $card['t'] }}</h3>
                     <p class="text-gray-600 text-sm">{{ $card['d'] }}</p>
                 </div>
             @endforeach
@@ -278,11 +278,11 @@
                         @if(file_exists(public_path($t['img'])))
                             <img src="{{ $t['img'] }}" alt="{{ $t['name'] }}" loading="lazy" decoding="async" width="40" height="40" class="w-10 h-10 rounded-full object-cover">
                         @else
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #452aa8;" aria-hidden="true">{{ $t['avatar'] }}</div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #46387b;" aria-hidden="true">{{ $t['avatar'] }}</div>
                         @endif
                         <div>
                             <p class="font-semibold text-gray-800">{{ $t['name'] }}</p>
-                            <p class="text-sm" style="color: #452aa8;">{{ $t['role'] }}</p>
+                            <p class="text-sm" style="color: #46387b;">{{ $t['role'] }}</p>
                         </div>
                     </div>
                 </article>
