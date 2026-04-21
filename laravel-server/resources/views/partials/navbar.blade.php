@@ -14,28 +14,22 @@
 
 @push('styles')
 <style>
-    /* Cart count badge — premium circular pip */
+    /* Cart count badge — daisyUI indicator-item style */
     .cart-badge {
         position: absolute;
-        top: -6px;
-        right: -6px;
-        min-width: 18px;
-        height: 18px;
-        padding: 0 5px;
+        top: -4px;
+        right: -4px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
         border-radius: 999px;
-        background: linear-gradient(140deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
+        background: #ef4444;
         color: #fff;
-        font-size: 10.5px;
-        font-weight: 800;
-        line-height: 18px;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 16px;
         text-align: center;
-        letter-spacing: 0.01em;
-        font-variant-numeric: tabular-nums;
-        font-feature-settings: "tnum" 1;
-        box-shadow:
-            0 0 0 2px #fff,
-            0 2px 5px rgba(220, 38, 38, 0.45),
-            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 2px #fff;
         box-sizing: border-box;
         display: inline-block;
         pointer-events: none;
@@ -70,7 +64,7 @@
             </div>
 
             {{-- Right side --}}
-            <div class="flex items-center gap-3 shrink-0">
+            <div class="h-full flex items-center gap-3 shrink-0">
                 {{-- Language Dropdown --}}
                 <div class="relative" x-data="{ langOpen: false }" @click.outside="langOpen = false">
                     <button @click="langOpen = !langOpen" aria-expanded="false" :aria-expanded="langOpen.toString()" aria-haspopup="true" aria-label="{{ $lang === 'ar' ? 'تغيير اللغة' : 'Change language' }}" class="flex items-center gap-2 border border-brand-violet/30 text-brand-violet text-sm font-bold px-3 py-1.5 rounded-lg hover:bg-brand-violet/5 transition-colors">
@@ -95,7 +89,7 @@
                 </div>
 
                 {{-- Cart --}}
-                <div class="relative flex items-center" @click.outside="$store.cart.open = false">
+                <div class="relative h-full flex items-center" @click.outside="$store.cart.open = false">
                     <button type="button"
                             @click="$store.cart.open = !$store.cart.open; if ($store.cart.open) $store.cart.refresh()"
                             aria-label="{{ $lang === 'ar' ? 'عربة التسوق' : 'Shopping cart' }}"
