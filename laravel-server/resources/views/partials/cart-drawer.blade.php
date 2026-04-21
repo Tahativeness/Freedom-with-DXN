@@ -9,7 +9,7 @@
      x-transition:leave-start="opacity-100 scale-100 translate-y-0"
      x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
      @keydown.escape.window="$store.cart.open = false"
-     class="absolute top-full {{ $isAr ? 'left-0' : 'right-0' }} mt-1 w-[22rem] max-w-[calc(100vw-2rem)] z-[70] origin-top-{{ $isAr ? 'left' : 'right' }}"
+     class="absolute top-full {{ $isAr ? 'left-4 sm:left-6 lg:left-8' : 'right-4 sm:right-6 lg:right-8' }} mt-1 w-[22rem] max-w-[calc(100vw-2rem)] z-[70] origin-top-{{ $isAr ? 'left' : 'right' }}"
      style="display: none;"
      role="dialog"
      aria-label="{{ $isAr ? 'عربة التسوق' : 'Shopping cart' }}">
