@@ -216,7 +216,7 @@
         </div>
     @endif
 
-    <main id="main-content" class="flex-1 pt-16 sm:pt-20 lg:pt-28">
+    <main id="main-content" class="flex-1">
         @yield('content')
     </main>
 

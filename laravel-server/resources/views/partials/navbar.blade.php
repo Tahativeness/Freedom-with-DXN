@@ -27,17 +27,12 @@
         box-sizing: border-box; display: inline-block;
         pointer-events: none; -webkit-font-smoothing: antialiased;
     }
-    /* Shrink navbar inner row and logo on scroll */
-    .nav-scrolled .nav-inner { height: 3.5rem !important; }
-    .nav-scrolled .nav-logo  { height: 2rem   !important; }
 </style>
 @endpush
 
-<nav class="fixed top-0 left-0 right-0 w-full bg-white z-50 transition-all duration-300"
+<nav class="relative w-full bg-white shadow-sm z-50"
      aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
-     x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
-     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
-     :class="scrolled ? 'shadow-lg nav-scrolled' : 'bg-opacity-0 shadow-none'">
+     x-data="{ menuOpen: false, dropdownOpen: false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="nav-inner flex items-center justify-between h-16 sm:h-20 lg:h-28 transition-all duration-300">
             {{-- Logo --}}
