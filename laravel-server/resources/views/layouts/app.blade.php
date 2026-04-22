@@ -127,7 +127,6 @@
                         await this.refresh();
                         this.open = true;
                         this.justAdded = true;
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         setTimeout(() => { this.justAdded = false; }, 2500);
                     } catch (e) {}
                 },
