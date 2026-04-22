@@ -13,15 +13,36 @@
 @endphp
 
 
-<nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
+@push('styles')
+<style>
+    /* Cart count badge */
+    .cart-badge {
+        position: absolute; top: -6px; right: -6px;
+        min-width: 18px; height: 18px; padding: 0 5px;
+        border-radius: 999px;
+        background: linear-gradient(140deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
+        color: #fff; font-size: 10.5px; font-weight: 800;
+        line-height: 18px; text-align: center;
+        box-shadow: 0 0 0 2px #fff, 0 2px 5px rgba(220,38,38,.45), inset 0 1px 0 rgba(255,255,255,.25);
+        box-sizing: border-box; display: inline-block;
+        pointer-events: none; -webkit-font-smoothing: antialiased;
+    }
+    /* Shrink navbar inner row and logo on scroll */
+    .nav-scrolled .nav-inner { height: 3.5rem !important; }
+    .nav-scrolled .nav-logo  { height: 2rem   !important; }
+</style>
+@endpush
+
+<nav class="sticky top-0 bg-white z-50 transition-all duration-300"
+     aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
-     :class="scrolled ? 'shadow-lg' : 'shadow-sm'">
+     :class="scrolled ? 'shadow-lg nav-scrolled' : 'bg-opacity-0 shadow-none'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 sm:h-20 lg:h-28">
+        <div class="nav-inner flex items-center justify-between h-16 sm:h-20 lg:h-28 transition-all duration-300">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
-                <img src="/footer-lg.png" alt="Grow with DXN - Home" width="200" height="96" class="h-12 sm:h-16 lg:h-24 w-auto object-contain">
+                <img src="/footer-lg.png" alt="Grow with DXN - Home" width="200" height="96" class="nav-logo h-12 sm:h-16 lg:h-24 w-auto object-contain transition-all duration-300">
             </a>
 
             {{-- Desktop Nav --}}
