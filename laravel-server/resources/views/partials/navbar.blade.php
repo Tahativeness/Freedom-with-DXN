@@ -12,31 +12,6 @@
     $cartCount = count(session('cart', []));
 @endphp
 
-@push('styles')
-<style>
-    /* Cart count badge — daisyUI indicator-item style */
-    .cart-badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        min-width: 16px;
-        height: 16px;
-        padding: 0 4px;
-        border-radius: 999px;
-        background: #ef4444;
-        color: #fff;
-        font-size: 10px;
-        font-weight: 700;
-        line-height: 16px;
-        text-align: center;
-        box-shadow: 0 0 0 2px #fff;
-        box-sizing: border-box;
-        display: inline-block;
-        pointer-events: none;
-        -webkit-font-smoothing: antialiased;
-    }
-</style>
-@endpush
 
 <nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
@@ -94,18 +69,16 @@
                             @click="$store.cart.open = !$store.cart.open; if ($store.cart.open) $store.cart.refresh()"
                             aria-label="{{ $lang === 'ar' ? 'عربة التسوق' : 'Shopping cart' }}"
                             :aria-expanded="$store.cart.open.toString()"
-                            class="flex items-center justify-center text-brand-violet hover:text-brand-green transition-colors">
-                        <div class="relative inline-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                            </svg>
-                            <span x-show="$store.cart.count > 0"
-                                  x-text="$store.cart.count > 99 ? '99+' : $store.cart.count"
-                                  x-transition:enter="transition ease-out duration-200"
-                                  x-transition:enter-start="opacity-0 scale-50"
-                                  x-transition:enter-end="opacity-100 scale-100"
-                                  class="cart-badge tabular-nums"></span>
-                        </div>
+                            class="flex items-center gap-1 text-brand-violet hover:text-brand-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                        <span x-show="$store.cart.count > 0"
+                              x-text="$store.cart.count > 99 ? '99+' : $store.cart.count"
+                              x-transition:enter="transition ease-out duration-200"
+                              x-transition:enter-start="opacity-0 scale-50"
+                              x-transition:enter-end="opacity-100 scale-100"
+                              style="display:none; font-size:14px; font-weight:700;"></span>
                     </button>
                     @include('partials.cart-drawer')
                 </div>
