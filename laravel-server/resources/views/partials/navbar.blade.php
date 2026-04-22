@@ -13,7 +13,7 @@
 @endphp
 
 
-<nav class="sticky top-0 bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
+<nav class="bg-white z-50 transition-shadow duration-300 shadow-sm" aria-label="{{ $lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation' }}"
      x-data="{ menuOpen: false, dropdownOpen: false, scrolled: false }"
      x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
      :class="scrolled ? 'shadow-lg' : 'shadow-sm'">
