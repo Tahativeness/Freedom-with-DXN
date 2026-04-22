@@ -56,6 +56,7 @@ class CheckoutController extends Controller
                 $total += $subtotal;
                 $orderItems[] = [
                     'product_id' => $product->id,
+                    'name' => $product->name,
                     'quantity' => $qty,
                     'price' => $product->price,
                 ];
