@@ -27,7 +27,6 @@ Route::get('/sitemap.xml', function () {
         ['url' => '/products', 'priority' => '0.9', 'changefreq' => 'daily'],
         ['url' => '/blog', 'priority' => '0.8', 'changefreq' => 'daily'],
         ['url' => '/about', 'priority' => '0.7', 'changefreq' => 'monthly'],
-        ['url' => '/business', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/join', 'priority' => '0.8', 'changefreq' => 'monthly'],
         ['url' => '/contact', 'priority' => '0.6', 'changefreq' => 'monthly'],
     ];
@@ -88,7 +87,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/business', [PageController::class, 'business'])->name('business');
 Route::get('/join', [PageController::class, 'joinDxn'])->name('join');
 Route::get('/zoom', function () { return redirect(route('join') . '#zoom'); })->name('zoom');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');

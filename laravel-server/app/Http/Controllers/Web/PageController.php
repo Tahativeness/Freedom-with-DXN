@@ -13,11 +13,6 @@ class PageController extends Controller
         return view('pages.about');
     }
 
-    public function business()
-    {
-        return view('pages.business');
-    }
-
     public function joinDxn()
     {
         return view('pages.join');

@@ -60,7 +60,6 @@
             <ul class="space-y-2 text-sm">
                 <li><a href="{{ route('home') }}" class="footer-link">{{ $lang === 'ar' ? 'الرئيسية' : 'Home' }}</a></li>
                 <li><a href="{{ route('products') }}" class="footer-link">{{ $lang === 'ar' ? 'المنتجات' : 'Products' }}</a></li>
-                <li><a href="{{ route('business') }}" class="footer-link">{{ $lang === 'ar' ? 'فرصة العمل' : 'Business Opportunity' }}</a></li>
                 <li><a href="{{ route('blog') }}" class="footer-link">{{ $lang === 'ar' ? 'المدونة' : 'Blog' }}</a></li>
                 <li><a href="{{ route('contact') }}" class="footer-link">{{ $lang === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a></li>
             </ul>
