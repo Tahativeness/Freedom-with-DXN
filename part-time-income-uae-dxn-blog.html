@@ -357,29 +357,56 @@
     }
 
     .cta-inner {
+      position: relative;
+      overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 26px;
-      align-items: center;
+      justify-items: center;
+      gap: 24px;
+      text-align: center;
       background: linear-gradient(135deg, var(--brand-green-deep), var(--brand-green-dark));
       color: var(--white);
       border-radius: 8px;
-      padding: clamp(28px, 5vw, 46px);
+      padding: clamp(42px, 7vw, 74px) clamp(24px, 6vw, 54px);
       border-bottom: 7px solid var(--brand-red);
       box-shadow: var(--shadow);
     }
 
     .cta h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.7rem, 4vw, 2.75rem);
-      line-height: 1.08;
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      line-height: 1.14;
       letter-spacing: 0;
     }
 
     .cta p {
       margin: 0;
       color: #dceee7;
-      max-width: 700px;
+      max-width: 760px;
+      font-size: 1.08rem;
+      font-style: italic;
+    }
+
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      min-height: 58px;
+      padding: 15px 30px;
+      border-radius: 999px;
+      background: #25d366;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.08rem;
+      font-weight: 800;
+      box-shadow: 0 16px 30px rgba(4, 44, 30, .28);
+    }
+
+    .whatsapp-button svg {
+      width: 23px;
+      height: 23px;
+      flex: 0 0 auto;
     }
 
     @media (max-width: 920px) {
@@ -441,7 +468,7 @@
         </div>
 
         <aside class="hero-panel" aria-label="Article snapshot">
-          <img class="logo-mark" src="laravel-server/public/logo.png" alt="DXN brand mark">
+          <img class="logo-mark" src="/logo.png" data-fallbacks="laravel-server/public/logo.png,../public/logo.png,logo.png" data-i="0" onerror="const f=(this.dataset.fallbacks || '').split(','); const i=Number(this.dataset.i || 0); if (f[i]) { this.dataset.i = i + 1; this.src = f[i]; } else { this.style.display = 'none'; }" alt="DXN brand mark">
           <div class="snapshot">
             <div class="snapshot-item">
               <span class="snapshot-label">Topic</span>
@@ -539,11 +566,14 @@
 
       <section class="cta" aria-label="Call to action">
         <div class="cta-inner">
-          <div>
-            <h2>Ready to build with a simple weekly plan?</h2>
-            <p>Start small, stay consistent, and use your available time with intention. That is how a part-time business becomes manageable.</p>
-          </div>
-          <a class="button" href="#article">Start reading</a>
+          <h2>Curious About Starting Your Own DXN Journey?</h2>
+          <p>No pressure, no scripts - just a real conversation about whether this fits your life.</p>
+          <a class="whatsapp-button" href="https://wa.me/971555574958" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M16.04 3.2A12.7 12.7 0 0 0 5.1 22.35L3.7 28.8l6.58-1.54A12.69 12.69 0 1 0 16.04 3.2Zm0 22.98c-1.94 0-3.82-.54-5.46-1.56l-.39-.24-3.9.91.83-3.83-.25-.39a10.27 10.27 0 1 1 9.17 5.11Zm5.72-7.68c-.31-.16-1.86-.92-2.15-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.32-.49-2.52-1.56-.93-.83-1.56-1.86-1.74-2.17-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.62 0 1.55 1.13 3.05 1.29 3.26.16.21 2.23 3.4 5.4 4.77.75.33 1.34.52 1.8.67.76.24 1.45.21 1.99.13.61-.09 1.86-.76 2.13-1.5.26-.73.26-1.36.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+            </svg>
+            Message Us on WhatsApp
+          </a>
         </div>
       </section>
     </main>
