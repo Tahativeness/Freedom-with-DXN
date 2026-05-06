@@ -65,16 +65,15 @@
 
     .hero {
       width: 100%;
-      min-height: 720px;
+      min-height: 760px;
       margin: 0;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-      gap: 42px;
+      display: flex;
       align-items: center;
+      justify-content: flex-end;
       padding: 92px max(36px, calc((100vw - 1120px) / 2)) 84px;
       position: relative;
       isolation: isolate;
-      background: var(--brand-green-deep);
+      background: #2f2267;
     }
 
     .hero-placeholder,
@@ -88,8 +87,8 @@
 
     .hero-placeholder {
       background:
-        linear-gradient(135deg, rgba(18, 60, 47, .96), rgba(7, 86, 61, .92)),
-        radial-gradient(circle at 82% 12%, rgba(217, 40, 47, .24), transparent 34%);
+        linear-gradient(135deg, #362470 0%, #4a3886 54%, #2f2267 100%),
+        radial-gradient(circle at 18% 40%, rgba(67, 175, 115, .18), transparent 28%);
     }
 
     .hero-img {
@@ -102,8 +101,8 @@
       inset: 0;
       z-index: 0;
       background:
-        linear-gradient(90deg, rgba(18, 60, 47, .92) 0%, rgba(18, 60, 47, .76) 45%, rgba(18, 60, 47, .34) 100%),
-        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .32));
+        linear-gradient(90deg, rgba(47, 34, 103, .82) 0%, rgba(72, 56, 123, .7) 44%, rgba(47, 34, 103, .9) 100%),
+        linear-gradient(180deg, rgba(47, 34, 103, .3), rgba(47, 34, 103, .92));
     }
 
     .hero > :not(.hero-placeholder):not(.hero-img):not(.hero-overlay) {
@@ -114,32 +113,27 @@
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--brand-green-dark);
-      background: rgba(232, 245, 238, .94);
-      border: 1px solid rgba(255, 255, 255, .38);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: .82rem;
+      justify-content: center;
+      color: var(--white);
+      background: #d94a3b;
+      border: 0;
+      border-radius: 0;
+      padding: 12px 20px;
+      font-size: .78rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .22em;
     }
 
     .eyebrow::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--brand-red);
-      box-shadow: 0 0 0 5px rgba(217, 40, 47, .12);
+      display: none;
     }
 
     h1 {
-      max-width: 880px;
+      max-width: 760px;
       margin: 22px 0 18px;
-      font-size: clamp(2.45rem, 6vw, 5.15rem);
-      line-height: .96;
+      font-size: clamp(3rem, 5.6vw, 5.6rem);
+      line-height: 1.04;
       letter-spacing: 0;
       color: var(--brand-green-deep);
     }
@@ -149,11 +143,18 @@
       text-shadow: 0 12px 34px rgba(0, 0, 0, .32);
     }
 
+    .hero-content {
+      width: min(760px, 100%);
+      margin-left: auto;
+      text-align: center;
+    }
+
     .hero-copy {
-      max-width: 710px;
-      margin: 0;
-      color: rgba(255, 255, 255, .9);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .86);
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      line-height: 1.7;
     }
 
     .hero-actions {
@@ -186,58 +187,15 @@
       backdrop-filter: blur(10px);
     }
 
-    .hero-panel {
-      background: rgba(255, 255, 255, .9);
-      border: 1px solid rgba(255, 255, 255, .56);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 26px;
-      position: relative;
-      backdrop-filter: blur(14px);
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 7px;
-      border-radius: 8px 8px 0 0;
-      background: linear-gradient(90deg, var(--brand-green), var(--brand-red));
-    }
-
-    .logo-mark {
-      width: 132px;
-      margin-bottom: 22px;
-    }
-
-    .snapshot {
-      display: grid;
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .snapshot-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fbfffc;
-    }
-
-    .snapshot-label {
-      display: block;
-      color: var(--muted);
-      font-size: .78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
-    .snapshot-value {
-      display: block;
-      margin-top: 4px;
-      color: var(--brand-green-deep);
-      font-size: 1.05rem;
-      font-weight: 800;
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 34px;
+      color: rgba(255, 255, 255, .7);
+      font-size: .94rem;
+      font-weight: 700;
     }
 
     .content-band {
@@ -464,10 +422,11 @@
       .hero {
         min-height: auto;
         padding: 64px 18px;
+        justify-content: center;
       }
 
       .hero-overlay {
-        background: linear-gradient(180deg, rgba(18, 60, 47, .92), rgba(18, 60, 47, .72));
+        background: linear-gradient(180deg, rgba(47, 34, 103, .78), rgba(47, 34, 103, .94));
       }
 
       .sidebar {
@@ -480,7 +439,6 @@
         font-size: 2.35rem;
       }
 
-      .hero-panel,
       .lead,
       .quote,
       .highlight,
@@ -500,6 +458,11 @@
       .button {
         width: 100%;
       }
+
+      .hero-meta {
+        gap: 10px;
+        font-size: .84rem;
+      }
     }
   </style>
 </head>
@@ -509,7 +472,7 @@
       <section class="hero" aria-labelledby="article-title">
         <div class="hero-placeholder"></div>
         <div class="hero-overlay"></div>
-        <div>
+        <div class="hero-content">
           <span class="eyebrow">Part time income UAE DXN</span>
           <h1 id="article-title">How a Part-Time DXN Business Helped Me Save More and Stress Less Each Month</h1>
           <p class="hero-copy">Working full-time while building a DXN side income is not easy, but it is possible. Here is how one UAE resident structured their time, tracked their progress, and made it work.</p>
@@ -517,25 +480,12 @@
             <a class="button" href="#article">Read the blog</a>
             <a class="button secondary" href="#routine">See the weekly routine</a>
           </div>
-        </div>
-
-        <aside class="hero-panel" aria-label="Article snapshot">
-          <img class="logo-mark" src="/logo.png" data-fallbacks="laravel-server/public/logo.png,../public/logo.png,logo.png" data-i="0" onerror="const f=(this.dataset.fallbacks || '').split(','); const i=Number(this.dataset.i || 0); if (f[i]) { this.dataset.i = i + 1; this.src = f[i]; } else { this.style.display = 'none'; }" alt="DXN brand mark">
-          <div class="snapshot">
-            <div class="snapshot-item">
-              <span class="snapshot-label">Topic</span>
-              <span class="snapshot-value">Building a DXN side income in the UAE</span>
-            </div>
-            <div class="snapshot-item">
-              <span class="snapshot-label">Best for</span>
-              <span class="snapshot-value">Full-time workers, parents, and beginners</span>
-            </div>
-            <div class="snapshot-item">
-              <span class="snapshot-label">Focus</span>
-              <span class="snapshot-value">Simple time blocks, tracking, and steady habits</span>
-            </div>
+          <div class="hero-meta" aria-label="Article details">
+            <span>DXN side income UAE</span>
+            <span>Part-time plan</span>
+            <span>Time tracking</span>
           </div>
-        </aside>
+        </div>
       </section>
 
       <section class="content-band" id="article">
