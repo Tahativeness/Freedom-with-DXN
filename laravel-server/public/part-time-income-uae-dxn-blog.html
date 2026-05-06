@@ -74,19 +74,41 @@
       padding: 92px max(36px, calc((100vw - 1120px) / 2)) 84px;
       position: relative;
       isolation: isolate;
-      background:
-        linear-gradient(90deg, rgba(18, 60, 47, .92) 0%, rgba(18, 60, 47, .76) 45%, rgba(18, 60, 47, .34) 100%),
-        url("/images/blog/2/1775533401_Whisk_c82f94db37e342db5734cc55b03f947ddr.jpeg") center / cover no-repeat;
+      background: var(--brand-green-deep);
     }
 
-    .hero::after {
-      content: "";
+    .hero-placeholder,
+    .hero-img {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-placeholder {
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .32)),
-        radial-gradient(circle at 82% 12%, rgba(217, 40, 47, .22), transparent 34%);
+        linear-gradient(135deg, rgba(18, 60, 47, .96), rgba(7, 86, 61, .92)),
+        radial-gradient(circle at 82% 12%, rgba(217, 40, 47, .24), transparent 34%);
+    }
+
+    .hero-img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(18, 60, 47, .92) 0%, rgba(18, 60, 47, .76) 45%, rgba(18, 60, 47, .34) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .32));
+    }
+
+    .hero > :not(.hero-placeholder):not(.hero-img):not(.hero-overlay) {
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
@@ -442,9 +464,10 @@
       .hero {
         min-height: auto;
         padding: 64px 18px;
-        background:
-          linear-gradient(180deg, rgba(18, 60, 47, .92), rgba(18, 60, 47, .72)),
-          url("/images/blog/2/1775533401_Whisk_c82f94db37e342db5734cc55b03f947ddr.jpeg") center / cover no-repeat;
+      }
+
+      .hero-overlay {
+        background: linear-gradient(180deg, rgba(18, 60, 47, .92), rgba(18, 60, 47, .72));
       }
 
       .sidebar {
@@ -484,6 +507,8 @@
   <div class="site-shell">
     <main>
       <section class="hero" aria-labelledby="article-title">
+        <div class="hero-placeholder"></div>
+        <div class="hero-overlay"></div>
         <div>
           <span class="eyebrow">Part time income UAE DXN</span>
           <h1 id="article-title">How a Part-Time DXN Business Helped Me Save More and Stress Less Each Month</h1>
