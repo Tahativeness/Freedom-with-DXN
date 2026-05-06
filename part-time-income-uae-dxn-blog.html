@@ -64,13 +64,29 @@
     }
 
     .hero {
-      width: min(1120px, calc(100% - 36px));
-      margin: 0 auto;
+      width: 100%;
+      min-height: 720px;
+      margin: 0;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
       gap: 42px;
       align-items: center;
-      padding: 78px 0 70px;
+      padding: 92px max(36px, calc((100vw - 1120px) / 2)) 84px;
+      position: relative;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(18, 60, 47, .92) 0%, rgba(18, 60, 47, .76) 45%, rgba(18, 60, 47, .34) 100%),
+        url("laravel-server/public/images/blog/2/1775533401_Whisk_c82f94db37e342db5734cc55b03f947ddr.jpeg") center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .32)),
+        radial-gradient(circle at 82% 12%, rgba(217, 40, 47, .22), transparent 34%);
     }
 
     .eyebrow {
@@ -78,8 +94,8 @@
       align-items: center;
       gap: 10px;
       color: var(--brand-green-dark);
-      background: var(--leaf);
-      border: 1px solid rgba(8, 121, 79, .2);
+      background: rgba(232, 245, 238, .94);
+      border: 1px solid rgba(255, 255, 255, .38);
       border-radius: 999px;
       padding: 8px 14px;
       font-size: .82rem;
@@ -106,10 +122,15 @@
       color: var(--brand-green-deep);
     }
 
+    .hero h1 {
+      color: var(--white);
+      text-shadow: 0 12px 34px rgba(0, 0, 0, .32);
+    }
+
     .hero-copy {
       max-width: 710px;
       margin: 0;
-      color: #425a52;
+      color: rgba(255, 255, 255, .9);
       font-size: clamp(1.05rem, 2vw, 1.25rem);
     }
 
@@ -136,19 +157,21 @@
     }
 
     .button.secondary {
-      background: transparent;
-      color: var(--brand-green-dark);
-      border: 1px solid rgba(8, 121, 79, .26);
+      background: rgba(255, 255, 255, .12);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, .42);
       box-shadow: none;
+      backdrop-filter: blur(10px);
     }
 
     .hero-panel {
-      background: var(--white);
-      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid rgba(255, 255, 255, .56);
       border-radius: 8px;
       box-shadow: var(--shadow);
       padding: 26px;
       position: relative;
+      backdrop-filter: blur(14px);
     }
 
     .hero-panel::before {
@@ -417,7 +440,11 @@
       }
 
       .hero {
-        padding-top: 34px;
+        min-height: auto;
+        padding: 64px 18px;
+        background:
+          linear-gradient(180deg, rgba(18, 60, 47, .92), rgba(18, 60, 47, .72)),
+          url("laravel-server/public/images/blog/2/1775533401_Whisk_c82f94db37e342db5734cc55b03f947ddr.jpeg") center / cover no-repeat;
       }
 
       .sidebar {
