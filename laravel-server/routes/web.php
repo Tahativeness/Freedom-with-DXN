@@ -26,6 +26,7 @@ Route::get('/sitemap.xml', function () {
         ['url' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
         ['url' => '/products', 'priority' => '0.9', 'changefreq' => 'daily'],
         ['url' => '/blog', 'priority' => '0.8', 'changefreq' => 'daily'],
+        ['url' => '/part-time-income-uae-dxn-blog', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/about', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/join', 'priority' => '0.8', 'changefreq' => 'monthly'],
         ['url' => '/contact', 'priority' => '0.6', 'changefreq' => 'monthly'],
@@ -84,6 +85,9 @@ Route::get('/lang/{locale}', function (string $locale) {
 
 // Public pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/part-time-income-uae-dxn-blog', function () {
+    return response()->file(public_path('part-time-income-uae-dxn-blog.html'));
+})->name('blog.part-time-income-uae-dxn');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
