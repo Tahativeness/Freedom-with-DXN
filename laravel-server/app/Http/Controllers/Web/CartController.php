@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Services\MetaConversionsApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -25,7 +27,7 @@ class CartController extends Controller
         return view('pages.cart', compact('items', 'total'));
     }
 
-    public function add(Request $request)
+    public function add(Request $request, MetaConversionsApi $capi)
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
@@ -34,15 +36,29 @@ class CartController extends Controller
 
         $cart = session('cart', []);
         $id = $request->product_id;
-        $qty = $request->get('quantity', 1);
+        $qty = (int) $request->get('quantity', 1);
 
         $cart[$id] = ($cart[$id] ?? 0) + $qty;
         session(['cart' => $cart]);
+
+        $product = Product::find($id);
+        $eventId = (string) Str::uuid();
+
+        if ($product) {
+            $capi->send('AddToCart', [
+                'content_ids'  => [(string) $product->id],
+                'content_type' => 'product',
+                'content_name' => $product->name,
+                'value'        => round((float) $product->price * $qty, 2),
+                'currency'     => 'USD',
+            ], [], $eventId);
+        }
 
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
                 'count' => array_sum($cart),
+                'event_id' => $eventId,
             ]);
         }
 

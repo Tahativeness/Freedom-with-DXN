@@ -55,7 +55,7 @@
             content_category: @json($product->category ?? null),
             value: {{ (float) $product->price }},
             currency: 'USD',
-        });
+        }@if(!empty($eventId)), { eventID: @json($eventId) }@endif);
     });
 </script>
 @endpush

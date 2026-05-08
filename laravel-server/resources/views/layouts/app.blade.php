@@ -107,10 +107,15 @@
     <!-- End Meta Pixel Code -->
 
     @if(session('fbq_purchase'))
-    @php $fbqPurchase = session('fbq_purchase'); @endphp
+    @php
+        $fbqPurchase = session('fbq_purchase');
+        $fbqPurchaseEventId = $fbqPurchase['event_id'] ?? null;
+        // Strip event_id from custom_data — it goes in the eventID option, not the data payload
+        unset($fbqPurchase['event_id']);
+    @endphp
     <script>
     window.addEventListener('load', function () {
-        if (window.fbq) fbq('track', 'Purchase', @json($fbqPurchase));
+        if (window.fbq) fbq('track', 'Purchase', @json($fbqPurchase)@if($fbqPurchaseEventId), { eventID: @json($fbqPurchaseEventId) }@endif);
     });
     </script>
     @endif
@@ -151,8 +156,9 @@
                         });
                         if (res.status === 401 || res.redirected) { window.location.href = '{{ route('login') }}'; return; }
                         if (!res.ok) return;
+                        const json = await res.clone().json().catch(() => ({}));
                         await this.refresh();
-                        // Meta Pixel: AddToCart
+                        // Meta Pixel: AddToCart (event_id matches server-side CAPI for deduplication)
                         try {
                             const added = (this.items || []).find(i => String(i.product_id ?? i.id) === String(productId));
                             const value = added ? Number(added.price || 0) * Number(quantity) : 0;
@@ -162,7 +168,7 @@
                                 content_name: added?.name || undefined,
                                 value: value,
                                 currency: 'USD',
-                            });
+                            }, json.event_id ? { eventID: json.event_id } : undefined);
                         } catch (_) {}
                         this.open = true;
                         this.justAdded = true;

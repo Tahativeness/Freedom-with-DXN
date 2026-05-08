@@ -12,7 +12,7 @@
             content_type: 'product',
             content_ids: @json(collect($items ?? [])->map(fn($i) => (string) $i['product']->id)->values()),
             num_items: {{ (int) collect($items ?? [])->sum('quantity') }},
-        });
+        }@if(!empty($eventId)), { eventID: @json($eventId) }@endif);
     });
 </script>
 @endpush

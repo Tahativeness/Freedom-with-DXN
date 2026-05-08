@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Services\MetaConversionsApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -40,7 +42,7 @@ class ProductController extends Controller
         return view('pages.products.index', compact('products', 'categories'));
     }
 
-    public function show(Product $product)
+    public function show(Product $product, MetaConversionsApi $capi)
     {
         $product->load('reviews.user');
 
@@ -51,6 +53,16 @@ class ProductController extends Controller
             ->take(4)
             ->get();
 
-        return view('pages.products.show', compact('product', 'related', 'landingPage'));
+        $eventId = (string) Str::uuid();
+        $capi->send('ViewContent', [
+            'content_ids'      => [(string) $product->id],
+            'content_type'     => 'product',
+            'content_name'     => $product->name,
+            'content_category' => $product->category,
+            'value'            => (float) $product->price,
+            'currency'         => 'USD',
+        ], [], $eventId);
+
+        return view('pages.products.show', compact('product', 'related', 'landingPage', 'eventId'));
     }
 }

@@ -83,8 +83,10 @@
         {{-- Form --}}
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-8">
             <h2 class="text-xl font-bold text-dxn-darkgreen mb-6">{{ $lang === 'ar' ? 'أرسل رسالة' : 'Send a Message' }}</h2>
-            <form method="POST" action="{{ route('contact.store') }}" class="space-y-4" onsubmit="if(window.fbq){try{fbq('track','Lead',{content_name:'Contact Form'});}catch(e){}}">
+            <form method="POST" action="{{ route('contact.store') }}" class="space-y-4"
+                  onsubmit="(function(f){try{var id=(crypto&&crypto.randomUUID)?crypto.randomUUID():(Date.now()+'-'+Math.random().toString(36).slice(2));f.querySelector('input[name=event_id]').value=id;if(window.fbq)fbq('track','Lead',{content_name:'Contact Form'},{eventID:id});}catch(e){}})(this)">
                 @csrf
+                <input type="hidden" name="event_id" value="">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">{{ $lang === 'ar' ? 'الاسم الكامل *' : 'Full Name *' }}</label>
