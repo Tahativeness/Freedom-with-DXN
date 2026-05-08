@@ -105,6 +105,15 @@
     src="https://www.facebook.com/tr?id=1700817390920320&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
+    @if(session('fbq_purchase'))
+    @php $fbqPurchase = session('fbq_purchase'); @endphp
+    <script>
+    window.addEventListener('load', function () {
+        if (window.fbq) fbq('track', 'Purchase', @json($fbqPurchase));
+    });
+    </script>
+    @endif
 </head>
 <body class="min-h-screen flex flex-col" x-data>
     {{-- Alpine cart store --}}
@@ -143,6 +152,18 @@
                         if (res.status === 401 || res.redirected) { window.location.href = '{{ route('login') }}'; return; }
                         if (!res.ok) return;
                         await this.refresh();
+                        // Meta Pixel: AddToCart
+                        try {
+                            const added = (this.items || []).find(i => String(i.product_id ?? i.id) === String(productId));
+                            const value = added ? Number(added.price || 0) * Number(quantity) : 0;
+                            if (window.fbq) fbq('track', 'AddToCart', {
+                                content_ids: [String(productId)],
+                                content_type: 'product',
+                                content_name: added?.name || undefined,
+                                value: value,
+                                currency: 'USD',
+                            });
+                        } catch (_) {}
                         this.open = true;
                         this.justAdded = true;
                         window.scrollTo({ top: 0, behavior: 'smooth' });

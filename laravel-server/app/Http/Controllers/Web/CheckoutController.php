@@ -84,6 +84,15 @@ class CheckoutController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('dashboard')->with('success', 'Order placed successfully!');
+        return redirect()->route('dashboard')
+            ->with('success', 'Order placed successfully!')
+            ->with('fbq_purchase', [
+                'value' => round((float) $total, 2),
+                'currency' => 'USD',
+                'content_type' => 'product',
+                'content_ids' => array_map(fn($i) => (string) $i['product_id'], $orderItems),
+                'num_items' => array_sum(array_column($orderItems, 'quantity')),
+                'order_id' => $order->id,
+            ]);
     }
 }

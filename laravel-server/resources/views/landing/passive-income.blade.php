@@ -681,7 +681,7 @@ src="https://www.facebook.com/tr?id=1700817390920320&ev=PageView&noscript=1"
       <h3>Free intro session</h3>
       <p class="intro">No obligation. No spam. Just real information about how to start.</p>
 
-      <form action="{{ route('leads.store') }}" method="POST" id="join-form" novalidate>
+      <form action="{{ route('leads.store') }}" method="POST" id="join-form" novalidate onsubmit="if(window.fbq){try{fbq('track','Lead',{content_name:'Passive Income Landing Form'});}catch(e){}}">
         @csrf
         <input type="hidden" name="source" value="passive-income-landing">
 

@@ -3,6 +3,20 @@
 
 @php $lang = session('lang', 'en'); @endphp
 
+@push('scripts')
+<script>
+    window.addEventListener('load', function () {
+        if (window.fbq) fbq('track', 'InitiateCheckout', {
+            value: {{ (float) ($total ?? 0) }},
+            currency: 'USD',
+            content_type: 'product',
+            content_ids: @json(collect($items ?? [])->map(fn($i) => (string) $i['product']->id)->values()),
+            num_items: {{ (int) collect($items ?? [])->sum('quantity') }},
+        });
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="max-w-5xl mx-auto px-4 py-12">
     <h1 class="text-2xl font-bold text-dxn-darkgreen mb-8">{{ $lang === 'ar' ? 'إتمام الشراء' : 'Checkout' }}</h1>

@@ -83,7 +83,7 @@
         {{-- Form --}}
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-8">
             <h2 class="text-xl font-bold text-dxn-darkgreen mb-6">{{ $lang === 'ar' ? 'أرسل رسالة' : 'Send a Message' }}</h2>
-            <form method="POST" action="{{ route('contact.store') }}" class="space-y-4">
+            <form method="POST" action="{{ route('contact.store') }}" class="space-y-4" onsubmit="if(window.fbq){try{fbq('track','Lead',{content_name:'Contact Form'});}catch(e){}}">
                 @csrf
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>

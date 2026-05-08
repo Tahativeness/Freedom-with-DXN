@@ -45,6 +45,21 @@
 </script>
 @endpush
 
+@push('scripts')
+<script>
+    window.addEventListener('load', function () {
+        if (window.fbq) fbq('track', 'ViewContent', {
+            content_ids: [@json((string) $product->id)],
+            content_type: 'product',
+            content_name: @json($product->name),
+            content_category: @json($product->category ?? null),
+            value: {{ (float) $product->price }},
+            currency: 'USD',
+        });
+    });
+</script>
+@endpush
+
 @php
     $lang = session('lang', 'en');
     $lp = $landingPage ?? null;
