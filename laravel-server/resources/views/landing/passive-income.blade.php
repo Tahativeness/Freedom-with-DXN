@@ -147,6 +147,10 @@
   --brand:#46387b;
   --brand-dark:#2f2454;
   --brand-light:#6c5fa3;
+  --green:#43af73;
+  --green-dark:#38a868;
+  --red:#bf3c36;
+  --red-dark:#a3322d;
   --gold:#d4af37;
   --gold-light:#f0c75e;
   --ink:#1a1a2e;
@@ -177,47 +181,57 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .lead{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--muted);max-width:680px;margin:0 auto}
 .center{text-align:center}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:1rem;transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:1rem;transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease,background-color .15s ease;white-space:nowrap}
 .btn:active{transform:translateY(1px)}
-.btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-light));color:#fff;box-shadow:0 10px 24px rgba(70,56,123,.35)}
-.btn-primary:hover{box-shadow:0 14px 32px rgba(70,56,123,.45);transform:translateY(-2px)}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#3b2c00;box-shadow:0 10px 24px rgba(212,175,55,.35)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(212,175,55,.45)}
-.btn-wa{background:var(--whatsapp);color:#fff;box-shadow:0 10px 24px rgba(37,211,102,.35)}
-.btn-wa:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,211,102,.45)}
-.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.45);backdrop-filter:blur(8px)}
+.btn-primary{background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(191,60,54,.25)}
+.btn-primary:hover{background:var(--red-dark);box-shadow:0 10px 24px rgba(191,60,54,.35);transform:translateY(-2px)}
+.btn-secondary{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(67,175,115,.25)}
+.btn-secondary:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(67,175,115,.35)}
+.btn-violet{background:var(--brand);color:#fff;box-shadow:0 4px 12px rgba(70,56,123,.25)}
+.btn-violet:hover{background:#5a4a90;transform:translateY(-2px);box-shadow:0 10px 24px rgba(70,56,123,.35)}
+.btn-gold{background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(191,60,54,.25)}
+.btn-gold:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(191,60,54,.35)}
+.btn-wa{background:var(--whatsapp);color:#fff;box-shadow:0 4px 12px rgba(37,211,102,.25)}
+.btn-wa:hover{background:#20ba5a;transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,211,102,.35)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(8px)}
 .btn-ghost:hover{background:rgba(255,255,255,.22)}
+.btn-outline-violet{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn-outline-violet:hover{background:var(--brand);color:#fff}
 
-/* NAV */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--border)}
-.nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--brand);font-size:1.1rem}
-.brand-dot{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--gold));display:grid;place-items:center;color:#fff;font-weight:900;font-size:.95rem}
-.nav-cta{display:none}
-@media(min-width:720px){.nav-cta{display:inline-flex}}
+/* NAV — matches main site (white bg, violet text, red CTA) */
+.nav{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06);border-bottom:1px solid var(--border)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;min-height:72px}
+.brand-link{display:flex;align-items:center;flex-shrink:0}
+.brand-logo{height:56px;width:auto;display:block;object-fit:contain}
+.nav-cta{display:inline-flex;padding:10px 18px;font-size:.9rem}
+@media(min-width:720px){.nav-cta{padding:12px 22px;font-size:.95rem}}
+@media(max-width:380px){
+  .brand-logo{height:46px}
+  .nav-cta{padding:9px 14px;font-size:.82rem}
+}
 
 /* HERO */
-.hero{position:relative;color:#fff;background:radial-gradient(1200px 600px at 80% -10%,rgba(212,175,55,.28),transparent 60%),linear-gradient(135deg,var(--brand-dark) 0%,var(--brand) 60%,#5a4a99 100%);padding:80px 0 90px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%,rgba(255,255,255,.07) 0,transparent 50%),radial-gradient(circle at 90% 20%,rgba(212,175,55,.12) 0,transparent 40%);pointer-events:none}
+.hero{position:relative;color:#fff;background:radial-gradient(1200px 600px at 80% -10%,rgba(67,175,115,.22),transparent 60%),linear-gradient(135deg,var(--brand-dark) 0%,var(--brand) 60%,#5a4a99 100%);padding:80px 0 90px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%,rgba(255,255,255,.07) 0,transparent 50%),radial-gradient(circle at 90% 20%,rgba(67,175,115,.14) 0,transparent 40%);pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;position:relative;z-index:1}
 @media(min-width:960px){.hero-grid{grid-template-columns:1.2fr 1fr;gap:60px}}
 .hero h1{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:900;line-height:1.08;margin-bottom:18px}
-.hero h1 .gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .gold{color:#7adba5}
 .hero p.sub{font-size:clamp(1.05rem,1.8vw,1.22rem);color:#ece8f8;margin-bottom:28px;max-width:620px}
 .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
 .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:600;color:#fff;backdrop-filter:blur(6px)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
 .hero-trust{display:flex;align-items:center;gap:14px;font-size:.9rem;color:#d8d2ee}
-.stars{color:var(--gold-light);letter-spacing:2px;font-size:1rem}
+.stars{color:#f0c75e;letter-spacing:2px;font-size:1rem}
 .hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-lg);padding:28px;backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(0,0,0,.25)}
 .hero-card h3{color:#fff;font-size:1.15rem;margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
 .kpi{background:rgba(255,255,255,.08);border-radius:12px;padding:14px;text-align:center}
-.kpi-num{display:block;font-size:1.45rem;font-weight:900;color:var(--gold-light);line-height:1}
+.kpi-num{display:block;font-size:1.45rem;font-weight:900;color:#7adba5;line-height:1}
 .kpi-lbl{display:block;font-size:.78rem;color:#d8d2ee;margin-top:6px}
 .hero-list{list-style:none;display:grid;gap:10px;font-size:.95rem;color:#ece8f8}
 .hero-list li{display:flex;align-items:flex-start;gap:10px}
-.hero-list li::before{content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--gold);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b2c00'><path d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>");background-size:14px;background-position:center;background-repeat:no-repeat;margin-top:2px}
+.hero-list li::before{content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--green);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>");background-size:14px;background-position:center;background-repeat:no-repeat;margin-top:2px}
 
 /* TRUST STRIP */
 .trust-strip{background:#f9f7fd;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0}
@@ -265,13 +279,13 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media(min-width:880px){.calc-grid{grid-template-columns:1fr 1fr;gap:50px}}
 .calc-controls label{display:block;font-size:.92rem;color:#d8d2ee;margin-bottom:10px;font-weight:600}
 .calc-controls input[type=range]{width:100%;height:6px;border-radius:6px;background:rgba(255,255,255,.18);appearance:none;outline:none;margin-bottom:6px}
-.calc-controls input[type=range]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
-.calc-controls input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;border:0}
+.calc-controls input[type=range]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.calc-controls input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;border:0}
 .calc-controls .val{display:flex;justify-content:space-between;font-size:.85rem;color:#bdb4dc;margin-bottom:22px}
-.calc-controls .val strong{color:var(--gold-light);font-size:1rem}
+.calc-controls .val strong{color:#7adba5;font-size:1rem}
 .calc-output{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:28px;text-align:center;backdrop-filter:blur(8px)}
 .calc-output .label{font-size:.85rem;color:#d8d2ee;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:10px}
-.calc-output .amount{font-size:clamp(2.4rem,6vw,3.4rem);font-weight:900;color:var(--gold-light);line-height:1;margin-bottom:6px}
+.calc-output .amount{font-size:clamp(2.4rem,6vw,3.4rem);font-weight:900;color:#7adba5;line-height:1;margin-bottom:6px}
 .calc-output .sub{font-size:.85rem;color:#d8d2ee;margin-bottom:20px}
 .calc-output .disclaimer{font-size:.72rem;color:#bdb4dc;line-height:1.5;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
 
@@ -279,9 +293,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .video-wrap{position:relative;width:100%;max-width:880px;margin:40px auto 0;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);background:#000}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-thumb{position:absolute;inset:0;background:linear-gradient(135deg,var(--brand-dark),var(--brand));display:grid;place-items:center;cursor:pointer;color:#fff;text-align:center;padding:20px}
-.video-thumb .play{width:88px;height:88px;border-radius:50%;background:var(--gold);display:grid;place-items:center;margin-bottom:18px;box-shadow:0 14px 36px rgba(212,175,55,.45);transition:transform .2s ease}
+.video-thumb .play{width:88px;height:88px;border-radius:50%;background:var(--red);display:grid;place-items:center;margin-bottom:18px;box-shadow:0 14px 36px rgba(191,60,54,.45);transition:transform .2s ease}
 .video-thumb:hover .play{transform:scale(1.08)}
-.video-thumb .play::after{content:"";width:0;height:0;border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent #3b2c00;margin-left:6px}
+.video-thumb .play::after{content:"";width:0;height:0;border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent #fff;margin-left:6px}
 
 /* TESTIMONIALS */
 .tests{background:#faf8ff}
@@ -289,10 +303,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media(min-width:720px){.test-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1000px){.test-grid{grid-template-columns:repeat(3,1fr)}}
 .test{background:#fff;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px}
-.test .stars{color:var(--gold);letter-spacing:2px;font-size:1.05rem}
+.test .stars{color:#f0c75e;letter-spacing:2px;font-size:1.05rem}
 .test p{color:#34344a;font-size:.97rem;line-height:1.65;flex-grow:1}
 .test-author{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--border)}
-.avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--gold));color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0}
+.avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--green));color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0}
 .test-author .name{font-weight:700;font-size:.95rem;color:var(--ink)}
 .test-author .role{font-size:.82rem;color:var(--muted)}
 
@@ -308,7 +322,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 /* FINAL CTA */
 .final-cta{background:linear-gradient(135deg,var(--brand-dark),var(--brand));color:#fff;text-align:center;padding:80px 20px;border-radius:0;position:relative;overflow:hidden}
-.final-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(212,175,55,.18),transparent 50%);pointer-events:none}
+.final-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(67,175,115,.18),transparent 50%);pointer-events:none}
 .final-cta h2{color:#fff;font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:18px;position:relative}
 .final-cta p{color:#ece8f8;max-width:620px;margin:0 auto 30px;font-size:1.05rem;position:relative}
 .final-cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;position:relative}
@@ -329,11 +343,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .disclaimer-box{background:#fff8e6;border:1px solid #f0d98c;border-radius:14px;padding:20px 24px;margin:30px auto 0;max-width:920px;font-size:.85rem;color:#5a4a00;line-height:1.65}
 .disclaimer-box strong{color:#3b2c00}
 
-/* FOOTER */
-.foot{background:#1a1129;color:#cfc8e0;padding:50px 20px 28px;text-align:center}
-.foot a{color:var(--gold-light)}
-.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:18px 0;font-size:.92rem}
-.foot-copy{font-size:.82rem;color:#8a82a8;margin-top:14px;line-height:1.6}
+/* FOOTER — matches main site (white bg, violet text, green headings) */
+.foot{background:#fff;color:var(--brand);padding:48px 20px 22px;text-align:center;border-top:1px solid rgba(69,42,168,0.1)}
+.foot .foot-logo{height:56px;width:auto;margin:0 auto 14px;display:block;object-fit:contain}
+.foot p{color:var(--brand);max-width:680px;margin-left:auto;margin-right:auto;font-size:.92rem}
+.foot a{color:var(--green);font-weight:600;transition:color .15s ease}
+.foot a:hover{color:var(--green-dark)}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:20px 0;font-size:.92rem}
+.foot-bottom{margin-top:18px;padding-top:16px;border-top:1px solid rgba(69,42,168,0.1);background:#f9f9f9;margin-left:-20px;margin-right:-20px;padding:16px 20px 0}
+.foot-copy{font-size:.82rem;color:var(--brand);margin-top:6px;line-height:1.6;opacity:.85}
 
 /* FLOAT WHATSAPP */
 .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--whatsapp);display:grid;place-items:center;box-shadow:0 14px 36px rgba(37,211,102,.45);transition:transform .2s ease}
@@ -368,11 +386,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <!-- NAV -->
 <nav class="nav" aria-label="Primary">
   <div class="container nav-row">
-    <a href="/" class="brand" aria-label="Freedom with DXN home">
-      <span class="brand-dot">F</span>
-      <span>Freedom with DXN</span>
+    <a href="/" class="brand-link" aria-label="Freedom with DXN home">
+      <img src="/footer-lg.png" alt="Freedom with DXN" class="brand-logo" width="200" height="56">
     </a>
-    <a href="https://wa.me/971555574958?text=Hi%21%20I%27d%20like%20to%20learn%20about%20the%20DXN%20passive%20income%20opportunity." class="btn btn-primary nav-cta" target="_blank" rel="noopener">Talk to Us</a>
+    <a href="https://wa.me/971555574958?text=Hi%21%20I%27d%20like%20to%20learn%20about%20the%20DXN%20passive%20income%20opportunity." class="btn btn-primary nav-cta" target="_blank" rel="noopener">💬 Talk to Us</a>
   </div>
 </nav>
 
@@ -392,7 +409,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       </div>
 
       <div class="hero-cta">
-        <a href="https://wa.me/971555574958?text=Hi%21%20I%20saw%20your%20passive%20income%20page%20and%20I%27m%20interested%20in%20DXN.%20Can%20you%20share%20more%20details%3F" class="btn btn-gold" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        <a href="https://wa.me/971555574958?text=Hi%21%20I%20saw%20your%20passive%20income%20page%20and%20I%27m%20interested%20in%20DXN.%20Can%20you%20share%20more%20details%3F" class="btn btn-primary" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
         <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn btn-ghost" target="_blank" rel="noopener">📅 Book Free Zoom Call</a>
       </div>
 
@@ -543,7 +560,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
           <div class="label">Estimated monthly range</div>
           <div class="amount" id="calc-amount">AED 950 – 2,400</div>
           <div class="sub">Based on average team activity in your scenario</div>
-          <a href="https://wa.me/971555574958?text=Hi%21%20I%20used%20your%20income%20calculator%20and%20I%27d%20like%20to%20see%20how%20realistic%20it%20is%20for%20my%20situation." class="btn btn-gold" target="_blank" rel="noopener" style="margin-top:6px">Get My Real Number</a>
+          <a href="https://wa.me/971555574958?text=Hi%21%20I%20used%20your%20income%20calculator%20and%20I%27d%20like%20to%20see%20how%20realistic%20it%20is%20for%20my%20situation." class="btn btn-primary" target="_blank" rel="noopener" style="margin-top:6px">Get My Real Number</a>
           <p class="disclaimer">For illustration only. DXN does not guarantee earnings. Actual results depend on your effort, skills, market, and consistency. Past results do not predict future results.</p>
         </div>
       </div>
@@ -695,7 +712,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     <p>Send a quick "Hi" on WhatsApp or book a 20-minute Zoom call. We'll show you exactly how it works — no pressure, no fluff.</p>
     <div class="final-cta-row">
       <a href="https://wa.me/971555574958?text=Hi%21%20I%27m%20ready%20to%20learn%20more%20about%20the%20DXN%20passive%20income%20opportunity." class="btn btn-wa" target="_blank" rel="noopener">💬 WhatsApp +971 55 557 4958</a>
-      <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn btn-gold" target="_blank" rel="noopener">📅 Book a Free Zoom Call</a>
+      <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn btn-primary" target="_blank" rel="noopener">📅 Book a Free Zoom Call</a>
     </div>
   </div>
 </section>
@@ -703,11 +720,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <!-- FOOTER -->
 <footer class="foot">
   <div class="container">
-    <div class="brand" style="justify-content:center;color:#fff">
-      <span class="brand-dot">F</span>
-      <span>Freedom with DXN</span>
-    </div>
-    <p style="margin-top:14px;max-width:680px;margin-left:auto;margin-right:auto">An independent DXN distributor team based in the UAE. We are not affiliated with any official DXN office; we are independent members of the company.</p>
+    <img src="/footer-lg.png" alt="Freedom with DXN" class="foot-logo" width="200" height="56" loading="lazy">
+    <p>An independent DXN distributor team based in the UAE. We are not affiliated with any official DXN office; we are independent members of the company.</p>
 
     <nav class="foot-links" aria-label="Footer">
       <a href="/">Home</a>
@@ -720,9 +734,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       <a href="/terms-of-service">Terms</a>
     </nav>
 
-    <p class="foot-copy">© <span id="yr"></span> Freedom with DXN. All rights reserved. <br>
-    <strong>Earnings disclaimer:</strong> Income depends entirely on your effort, skill, and time invested. There are no guaranteed earnings. DXN's official compensation plan applies. <br>
-    <strong>Health disclaimer:</strong> DXN products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+    <div class="foot-bottom">
+      <p class="foot-copy">© <span id="yr"></span> Freedom with DXN. All rights reserved. <br>
+      <strong>Earnings disclaimer:</strong> Income depends entirely on your effort, skill, and time invested. There are no guaranteed earnings. DXN's official compensation plan applies. <br>
+      <strong>Health disclaimer:</strong> DXN products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+    </div>
   </div>
 </footer>
 
@@ -735,7 +751,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="sticky-cta">
   <a href="https://wa.me/971555574958" class="btn btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
-  <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn btn-primary" target="_blank" rel="noopener">📅 Free Call</a>
+  <a href="https://calendly.com/freedom-with-dxn2026/welcome-to-freedom-with-dxn" class="btn btn-violet" target="_blank" rel="noopener">📅 Free Call</a>
 </div>
 
 <script>
