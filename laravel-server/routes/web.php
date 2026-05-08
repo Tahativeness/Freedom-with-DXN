@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
+use App\Http\Controllers\Web\LeadController;
 use Illuminate\Support\Facades\Route;
 
 // Sitemap
@@ -26,10 +27,10 @@ Route::get('/sitemap.xml', function () {
         ['url' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
         ['url' => '/products', 'priority' => '0.9', 'changefreq' => 'daily'],
         ['url' => '/blog', 'priority' => '0.8', 'changefreq' => 'daily'],
-        ['url' => '/part-time-income-uae-dxn-blog', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/about', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/join', 'priority' => '0.8', 'changefreq' => 'monthly'],
         ['url' => '/contact', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['url' => '/passive-income', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ];
 
     foreach ($staticPages as $page) {
@@ -85,9 +86,6 @@ Route::get('/lang/{locale}', function (string $locale) {
 
 // Public pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/part-time-income-uae-dxn-blog', function () {
-    return response()->file(public_path('part-time-income-uae-dxn-blog.html'));
-})->name('blog.part-time-income-uae-dxn');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
@@ -98,6 +96,8 @@ Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/{blog}/raw', [BlogController::class, 'showRaw'])->name('blog.show.raw');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'contactStore'])->name('contact.store');
+Route::get('/start', [LeadController::class, 'show'])->name('leads.show');
+Route::post('/start', [LeadController::class, 'store'])->name('leads.store');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/terms-of-service', [PageController::class, 'termsOfService'])->name('terms-of-service');
 
@@ -144,7 +144,14 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::get('/landing-pages/{landingPage}/edit', [AdminController::class, 'landingPageEdit'])->name('landing-pages.edit');
     Route::put('/landing-pages/{landingPage}', [AdminController::class, 'landingPageUpdate'])->name('landing-pages.update');
     Route::delete('/landing-pages/{landingPage}', [AdminController::class, 'landingPageDestroy'])->name('landing-pages.destroy');
+    Route::get('/leads', [LeadController::class, 'adminIndex'])->name('leads');
+    Route::put('/leads/{lead}', [LeadController::class, 'adminUpdate'])->name('leads.update');
+    Route::delete('/leads/{lead}', [LeadController::class, 'adminDestroy'])->name('leads.destroy');
 });
 
 // Landing pages
+Route::get('/passive-income', function () {
+    return view('landing.passive-income');
+})->name('landing.passive-income');
+
 Route::get('/landing/{slug}', [LandingController::class, 'show'])->name('landing');
