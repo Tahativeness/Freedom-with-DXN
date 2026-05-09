@@ -73,6 +73,9 @@
 
 @section('content')
 {{-- Hero --}}
+<style>
+    .hero-shop-btn:hover { background-color: #6ed29a !important; }
+</style>
 <section class="bg-hero flex items-center relative overflow-hidden" style="min-height: 100vh; min-height: 100dvh;" aria-label="{{ $lang === 'ar' ? 'القسم الرئيسي' : 'Hero section' }}">
     {{-- Poster shown instantly for fast LCP --}}
     <img id="heroPoster" src="{{ asset('Video/hero-poster.png') }}" alt="" role="presentation" width="800" height="600" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
@@ -93,11 +96,11 @@
                 {{ $lang === 'ar' ? 'اكتشف منتجات الغانودرما المتميزة التي تحوّل صحتك، وفرصة عمل يمكن أن تحوّل حياتك.' : ($hero['subtitle'] ?? 'Discover premium Ganoderma products that transform your health, and a business opportunity that can transform your life.') }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="btn-primary px-8 py-3.5 shadow-lg">
+                <a href="{{ $hero['btn1Link'] ?? route('products') }}" class="hero-shop-btn px-8 py-3.5 shadow-lg font-semibold text-white inline-block text-center" style="background-color: #43af73; border-radius: 100px; transition: background-color 0.2s;">
                     {{ $lang === 'ar' ? 'تسوق المنتجات' : ($hero['btn1Text'] ?? 'Shop Now') }}
                 </a>
                 <a href="{{ $hero['btn2Link'] ?? route('join') }}" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-brand-violet hover:border-brand-violet px-8 py-3.5 font-semibold transition-all" style="border-radius: 100px;">
-                    {{ $lang === 'ar' ? 'ابدأ رحلتي' : ($hero['btn2Text'] ?? 'Start My Journey') }}
+                    {{ $lang === 'ar' ? 'انضم إلينا' : 'Join Us' }}
                 </a>
             </div>
         </div>
