@@ -169,18 +169,15 @@
     .btn-gold{background:var(--gold);color:var(--gold-text)}
     .btn-gold:hover{background:#F3AC43}
     .btn-dark{background:var(--green-700);color:var(--white);font-weight:700}
-    .btn-dark:hover{background:var(--green-700)}
+    .btn-dark:hover{background:var(--green-700);color:var(--white)}
     .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
 
     .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:.5px solid var(--border);transition:background .2s ease,border-color .2s ease}
     .site-header.is-scrolled,.site-header.menu-active{background:#fff;border-bottom:.5px solid var(--border);backdrop-filter:saturate(160%) blur(10px)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:#000}
+    .brand{display:flex;align-items:center;min-width:0;color:#000}
     .site-header.is-scrolled .brand,.site-header.menu-active .brand{color:#000}
     .brand-logo{height:52px;width:auto;object-fit:contain;flex:0 0 auto}
-    .brand-name{display:block;font-weight:700;line-height:1;color:#000}
-    .brand-sub{display:block;margin-top:4px;font-size:.74rem;color:#000;white-space:nowrap;font-weight:700}
-    .site-header.is-scrolled .brand-sub,.site-header.menu-active .brand-sub{color:var(--muted)}
     .nav-links{display:flex;align-items:center;gap:22px;color:#000;font-size:.94rem;font-weight:700}
     .site-header.is-scrolled .nav-links{color:#000}
     .nav-links a:hover{color:var(--green-700)}
@@ -295,7 +292,6 @@
 
     @media (max-width:767px){
       .nav{min-height:68px}
-      .brand-sub{font-size:.68rem}
       .nav-links{position:fixed;top:68px;right:0;bottom:0;width:min(84vw,340px);background:var(--white);color:var(--text);border-left:.5px solid var(--border);padding:26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform .22s ease}
       .nav-links.is-open{transform:translateX(0)}
       .nav-links a{min-height:44px;display:flex;align-items:center}
@@ -320,10 +316,6 @@
     <div class="container nav" aria-label="Primary navigation">
       <a class="brand" href="/" aria-label="FreedomWithDXN home">
         <img class="brand-logo" src="/footer-lg.png" alt="FreedomWithDXN" width="200" height="56">
-        <span>
-          <span class="brand-name">FreedomWithDXN</span>
-          <span class="brand-sub">UAE wellness opportunity</span>
-        </span>
       </a>
       <nav class="nav-links" id="nav-links" aria-label="Main menu">
         <a href="#how-it-works">How it works</a>
