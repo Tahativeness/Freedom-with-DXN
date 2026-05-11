@@ -168,7 +168,8 @@
     .btn:active{transform:translateY(1px)}
     .btn-gold{background:var(--gold);color:var(--gold-text)}
     .btn-gold:hover{background:#F3AC43}
-    .btn-dark{background:var(--green-700);color:var(--white);font-weight:700}
+    .btn-dark{position:relative;overflow:hidden;background:var(--green-700);color:var(--white);font-weight:700}
+    .btn-dark::after{content:"";position:absolute;inset:-80% auto -80% -45%;width:38%;background:rgba(255,255,255,.24);transform:rotate(18deg);animation:ctaFlow 2.8s ease-in-out infinite;pointer-events:none}
     .btn-dark:hover{background:var(--green-700);color:var(--white)}
     .nav-links .btn-dark:hover{background:var(--green-700);color:var(--white)}
     .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
@@ -178,11 +179,13 @@
     .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
     .brand{display:flex;align-items:center;min-width:0;color:#000}
     .site-header.is-scrolled .brand,.site-header.menu-active .brand{color:#000}
-    .brand-logo{height:52px;width:auto;object-fit:contain;flex:0 0 auto}
+    .brand-logo{height:62px;width:auto;object-fit:contain;flex:0 0 auto}
     .nav-links{display:flex;align-items:center;gap:22px;color:#000;font-size:.94rem;font-weight:700}
     .site-header.is-scrolled .nav-links{color:#000}
     .nav-links a:hover{color:var(--green-700)}
     .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid var(--border);background:transparent;color:#000}
+    .menu-lines{width:22px;display:grid;gap:5px}
+    .menu-lines span{display:block;height:2px;background:#000;border-radius:999px}
     .site-header.is-scrolled .menu-toggle,.site-header.menu-active .menu-toggle{color:#000;border-color:var(--border)}
 
     .hero{min-height:760px;padding:132px 0 86px;display:grid;align-items:center}
@@ -288,6 +291,7 @@
     .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
     @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(66,200,131,0)}100%{box-shadow:0 0 0 0 rgba(66,200,131,0)}}
+    @keyframes ctaFlow{0%{left:-45%}55%,100%{left:120%}}
 
     @media (max-width:900px){
       .hero{min-height:auto;padding-top:118px}
@@ -297,10 +301,12 @@
 
     @media (max-width:767px){
       .nav{min-height:68px}
-      .nav-links{position:fixed;top:68px;right:0;bottom:0;width:min(84vw,340px);background:var(--white);color:var(--text);border-left:.5px solid var(--border);padding:26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform .22s ease}
+      .brand-logo{height:56px}
+      .nav-links{position:fixed;top:68px;right:0;bottom:0;width:min(84vw,340px);background:#fff;color:#000;border-left:.5px solid var(--border);padding:26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform .22s ease;font-weight:700}
       .nav-links.is-open{transform:translateX(0)}
-      .nav-links a{min-height:44px;display:flex;align-items:center}
-      .nav-links .btn{margin-top:8px}
+      .nav-links a{min-height:44px;display:flex;align-items:center;color:#000;font-weight:700}
+      .nav-links .btn{margin-top:8px;background:var(--green-700);color:#fff;justify-content:center;font-weight:700}
+      .nav-links .btn:hover{background:var(--green-700);color:#fff}
       .menu-toggle{display:grid;place-items:center}
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
@@ -330,7 +336,7 @@
         <a class="btn btn-dark" href="#qualifier" data-scroll>Start free <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
       </nav>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
-        <i class="ti ti-menu-2" aria-hidden="true"></i>
+        <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
     </div>
   </header>
@@ -637,7 +643,6 @@
           header.classList.toggle('menu-active', open);
           menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
           menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-          menuBtn.innerHTML = open ? '<i class="ti ti-x" aria-hidden="true"></i>' : '<i class="ti ti-menu-2" aria-hidden="true"></i>';
         });
         menu.querySelectorAll('a').forEach(function(link){
           link.addEventListener('click', function(){
@@ -646,7 +651,6 @@
             header.classList.remove('menu-active');
             menuBtn.setAttribute('aria-expanded','false');
             menuBtn.setAttribute('aria-label','Open menu');
-            menuBtn.innerHTML = '<i class="ti ti-menu-2" aria-hidden="true"></i>';
           });
         });
       }
