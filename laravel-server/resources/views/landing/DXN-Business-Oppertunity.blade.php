@@ -170,6 +170,7 @@
     .btn-gold:hover{background:#F3AC43}
     .btn-dark{background:var(--green-700);color:var(--white);font-weight:700}
     .btn-dark:hover{background:var(--green-700);color:var(--white)}
+    .nav-links .btn-dark:hover{background:var(--green-700);color:var(--white)}
     .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
 
     .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:.5px solid var(--border);transition:background .2s ease,border-color .2s ease}
@@ -237,6 +238,10 @@
 
     .qualifier-wrap{max-width:480px;margin:0 auto}
     .qualifier-card{background:var(--white);color:var(--text);border:.5px solid rgba(255,255,255,.35);border-radius:18px;padding:clamp(22px,5vw,32px);box-shadow:0 18px 40px rgba(0,0,0,.16)}
+    .qualifier-nav{display:flex;align-items:center;margin-bottom:14px;min-height:36px}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;min-height:36px;border:0;background:transparent;color:var(--green-700);font-weight:500;padding:0}
+    .back-btn:hover{color:var(--green-900)}
+    .back-btn[hidden]{display:none}
     .progress-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.88rem;margin-bottom:10px}
     .progress-track{height:8px;border-radius:999px;background:#EEF0EA;overflow:hidden;margin-bottom:24px}
     .progress-fill{height:100%;width:20%;background:var(--green-700);border-radius:inherit;transition:width .25s ease}
@@ -481,6 +486,11 @@
 
         <div class="qualifier-wrap">
           <div class="qualifier-card">
+            <div class="qualifier-nav">
+              <button class="back-btn" id="qualifier-back" type="button" hidden aria-label="Go back to the previous question">
+                <i class="ti ti-arrow-left" aria-hidden="true"></i>Back
+              </button>
+            </div>
             <div class="progress-top"><span id="step-label">Step 1 of 5</span><span id="step-percent">20%</span></div>
             <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
 
@@ -606,6 +616,7 @@
       var menuBtn = document.getElementById('menu-toggle');
       var sticky = document.getElementById('mobile-sticky');
       var qualifier = document.getElementById('qualifier');
+      var backBtn = document.getElementById('qualifier-back');
       var leadData = {};
       var utm = {};
       var currentStep = 1;
@@ -671,6 +682,7 @@
         if(label) label.textContent = step >= 6 ? 'Complete' : 'Step ' + step + ' of 5';
         if(percent) percent.textContent = progress + '%';
         if(fill) fill.style.width = progress + '%';
+        if(backBtn) backBtn.hidden = step <= 1 || step >= 6;
       }
 
       document.querySelectorAll('.option-btn').forEach(function(btn){
@@ -679,6 +691,12 @@
           showStep(Math.min(currentStep + 1, 5));
         });
       });
+
+      if(backBtn){
+        backBtn.addEventListener('click', function(){
+          showStep(Math.max(currentStep - 1, 1));
+        });
+      }
 
       function getScore(){
         var score = 'Cold';
