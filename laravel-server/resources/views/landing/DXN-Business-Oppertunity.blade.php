@@ -302,10 +302,10 @@
     @media (max-width:767px){
       .nav{min-height:68px}
       .brand-logo{height:56px}
-      .nav-links{position:fixed;top:68px;right:0;bottom:0;width:min(84vw,340px);background:#fff;color:#000;border-left:.5px solid var(--border);padding:26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform .22s ease;font-weight:700}
-      .nav-links.is-open{transform:translateX(0)}
-      .nav-links a{min-height:44px;display:flex;align-items:center;color:#000;font-weight:700}
-      .nav-links .btn{margin-top:8px;background:var(--green-700);color:#fff;justify-content:center;font-weight:700}
+      .nav-links{position:absolute;top:100%;left:0;right:0;width:100%;background:#fff;color:#000;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:22px var(--pad) 26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease;font-weight:700;box-shadow:0 16px 30px rgba(0,0,0,.08)}
+      .nav-links.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+      .nav-links a{min-height:44px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;text-align:center}
+      .nav-links .btn{margin-top:8px;background:var(--green-700);color:#fff;justify-content:center;font-weight:700;width:100%}
       .nav-links .btn:hover{background:var(--green-700);color:#fff}
       .menu-toggle{display:grid;place-items:center}
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
