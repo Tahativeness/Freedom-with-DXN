@@ -284,9 +284,9 @@
     .mobile-sticky{position:fixed;left:0;right:0;bottom:0;z-index:90;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:.5px solid var(--border);display:none}
     .mobile-sticky .btn{width:100%}
     .mobile-sticky.is-hidden{display:none}
-    .footer{background:#032720;color:rgba(255,255,255,.74);padding:34px 0;font-size:.9rem}
-    .footer-grid{display:grid;gap:12px}
-    .footer strong{color:var(--white);font-weight:500}
+    .footer{background:#fff;color:#000;padding:34px 0;font-size:.95rem;text-align:center;font-weight:700;border-top:.5px solid var(--border)}
+    .footer-grid{display:grid;gap:8px;justify-items:center}
+    .footer strong{color:#000;font-weight:700}
 
     .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
@@ -609,9 +609,8 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <p><strong>© 2026 FreedomWithDXN</strong> · Independent DXN distributor · Not affiliated with DXN Holdings.</p>
-      <p><strong>Income disclaimer:</strong> All income examples are illustrative. Actual results vary based on individual effort, skill, and market conditions. No earnings are guaranteed.</p>
-      <p><strong>Health disclaimer:</strong> Products are wellness supplements and are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before use.</p>
+      <p>© 2026 Freedom with DXN. All rights reserved.</p>
+      <p>Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.</p>
     </div>
   </footer>
 
