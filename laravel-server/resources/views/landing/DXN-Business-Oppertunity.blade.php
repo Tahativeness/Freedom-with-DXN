@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#04342C">
+
+  <title>Build Better Health & Side Income in UAE | FreedomWithDXN</title>
+  <meta name="description" content="Join a globally trusted wellness opportunity in the UAE. Free training, flexible part-time start, Halal-certified products. Get your free overview now.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://freedomwithdxn.com/">
+  <link rel="alternate" hreflang="en-AE" href="https://freedomwithdxn.com/">
+  <link rel="alternate" hreflang="ar-AE" href="https://freedomwithdxn.com/ar/">
+  <link rel="alternate" hreflang="x-default" href="https://freedomwithdxn.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://freedomwithdxn.com/">
+  <meta property="og:title" content="Build better health and a second income in the UAE">
+  <meta property="og:description" content="Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.">
+  <meta property="og:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
+  <meta property="og:locale" content="en_AE">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build better health and a second income in the UAE">
+  <meta name="twitter:description" content="Join a globally trusted wellness opportunity in the UAE. Get your free overview now.">
+  <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FreedomWithDXN",
+    "url": "https://freedomwithdxn.com",
+    "logo": "https://freedomwithdxn.com/logo.png",
+    "sameAs": [
+      "https://facebook.com/your-page",
+      "https://instagram.com/your-page",
+      "https://youtube.com/your-channel"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+971-50-666-2875",
+      "contactType": "customer support",
+      "areaServed": "AE",
+      "availableLanguage": ["English", "Arabic"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need any experience?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days."}
+      },
+      {
+        "@type": "Question",
+        "name": "Can I do this part-time?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this."}
+      },
+      {
+        "@type": "Question",
+        "name": "Is this available in the UAE?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support."}
+      },
+      {
+        "@type": "Question",
+        "name": "How much does it cost to start?",
+        "acceptedAnswer": {"@type": "Answer", "text": "There is a small one-time starter pack. You will see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements."}
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a pyramid scheme?",
+        "acceptedAnswer": {"@type": "Answer", "text": "No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone."}
+      },
+      {
+        "@type": "Question",
+        "name": "What if I change my mind?",
+        "acceptedAnswer": {"@type": "Answer", "text": "You can stop at any time. There is no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep."}
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "FreedomWithDXN",
+    "url": "https://freedomwithdxn.com",
+    "image": "https://freedomwithdxn.com/logo.png",
+    "telephone": "+971-50-666-2875",
+    "priceRange": "$$",
+    "areaServed": "AE",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AE"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --green-900:#04342C;
+      --green-700:#0F6E56;
+      --green-100:#E7F4EC;
+      --gold:#EF9F27;
+      --gold-text:#412402;
+      --cream:#F8F7F2;
+      --surface:#FAFAF7;
+      --white:#FFFFFF;
+      --text:#1a1a1a;
+      --muted:#5F5E5A;
+      --border:#E5E3DA;
+      --coral:#D9624B;
+      --amber-bg:#FAEEDA;
+      --amber-text:#854F0B;
+      --red-bg:#FCEBEB;
+      --red-text:#791F1F;
+      --blue-bg:#E6F1FB;
+      --blue-text:#0C447C;
+      --container:1140px;
+      --pad:clamp(20px,5vw,48px);
+      --radius:14px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.6;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+    body.menu-open{overflow:hidden}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    :focus-visible{outline:3px solid rgba(239,159,39,.75);outline-offset:3px}
+
+    .skip-link{position:absolute;left:12px;top:-80px;z-index:200;background:var(--gold);color:var(--gold-text);padding:10px 14px;border-radius:8px;font-weight:500}
+    .skip-link:focus{top:12px}
+    .container{width:min(100%,var(--container));margin:0 auto;padding:0 var(--pad)}
+    .section{padding:clamp(68px,9vw,112px) 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;color:var(--green-700);font-size:.76rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+    .section-head{max-width:720px;margin:0 auto 34px;text-align:center}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-weight:500;letter-spacing:0;line-height:1.08}
+    h1{font-size:clamp(1.75rem,3.2vw,2.25rem);margin-bottom:18px;color:var(--white)}
+    h2{font-size:clamp(2rem,3.3vw,2.75rem);margin-bottom:14px}
+    h3{font-size:1.1rem;margin-bottom:8px}
+    p{margin-bottom:0}
+    .lead{color:var(--muted);font-size:clamp(1rem,1.6vw,1.16rem)}
+    .dark{background:var(--green-900);color:var(--white)}
+    .dark .lead,.dark .muted{color:rgba(255,255,255,.76)}
+    .cream{background:var(--cream)}
+    .light{background:var(--white)}
+
+    .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:.5px solid transparent;padding:12px 18px;font-weight:500;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}
+    .btn:active{transform:translateY(1px)}
+    .btn-gold{background:var(--gold);color:var(--gold-text)}
+    .btn-gold:hover{background:#F3AC43}
+    .btn-dark{background:var(--green-900);color:var(--white)}
+    .btn-dark:hover{background:var(--green-700)}
+    .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
+
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .2s ease,border-color .2s ease}
+    .site-header.is-scrolled,.site-header.menu-active{background:rgba(255,255,255,.96);border-bottom:.5px solid var(--border);backdrop-filter:saturate(160%) blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:var(--white)}
+    .site-header.is-scrolled .brand,.site-header.menu-active .brand{color:var(--green-900)}
+    .brand-mark{width:44px;height:44px;border-radius:12px;background:var(--green-900);display:grid;place-items:center;border:.5px solid rgba(255,255,255,.16);overflow:hidden;flex:0 0 auto}
+    .brand-mark img{width:34px;height:34px;object-fit:contain}
+    .brand-name{display:block;font-weight:500;line-height:1;color:inherit}
+    .brand-sub{display:block;margin-top:4px;font-size:.74rem;color:rgba(255,255,255,.72);white-space:nowrap}
+    .site-header.is-scrolled .brand-sub,.site-header.menu-active .brand-sub{color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.82);font-size:.94rem}
+    .site-header.is-scrolled .nav-links{color:var(--text)}
+    .nav-links a:hover{color:var(--gold)}
+    .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid rgba(255,255,255,.28);background:transparent;color:var(--white)}
+    .site-header.is-scrolled .menu-toggle,.site-header.menu-active .menu-toggle{color:var(--green-900);border-color:var(--border)}
+
+    .hero{min-height:760px;padding:132px 0 86px;display:grid;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.82fr);gap:clamp(34px,6vw,74px);align-items:center}
+    .trust-pill{display:inline-flex;align-items:center;gap:10px;border:.5px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;color:rgba(255,255,255,.88);font-size:.9rem;margin-bottom:24px}
+    .pulse{width:9px;height:9px;border-radius:50%;background:#42C883;box-shadow:0 0 0 0 rgba(66,200,131,.7);animation:pulse 1.9s infinite}
+    .hero-copy{max-width:660px}
+    .hero-sub{font-size:clamp(1.05rem,1.8vw,1.24rem);color:rgba(255,255,255,.78);margin-bottom:28px}
+    .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px;margin-bottom:28px}
+    .chip{display:flex;align-items:center;gap:9px;min-height:44px;padding:11px 12px;border:.5px solid rgba(255,255,255,.18);border-radius:10px;color:rgba(255,255,255,.88)}
+    .chip i{color:#42C883;font-size:1.1rem}
+    .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:16px}
+    .reassurance{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:.92rem}
+    .reassurance i{color:#42C883}
+    .overview-card{background:var(--surface);color:var(--text);border:.5px solid rgba(255,255,255,.16);border-radius:18px;padding:24px}
+    .video-panel{border:.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--white)}
+    .video-media{aspect-ratio:16/10;background:var(--green-900);display:grid;place-items:center;position:relative}
+    .video-media picture,.video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46}
+    .play{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--gold-text);display:grid;place-items:center;font-size:1.65rem}
+    .video-body{padding:18px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+    .stat{border:.5px solid var(--border);border-radius:10px;padding:11px 8px;text-align:center;background:var(--surface)}
+    .stat strong{display:block;font-weight:500;color:var(--green-900);font-size:1.05rem}
+    .stat span{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
+    .cert{display:flex;align-items:center;gap:8px;color:var(--green-700);font-size:.9rem}
+
+    .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border)}
+    .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+    .trust-item{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--green-900);font-weight:500}
+    .trust-item i{color:var(--green-700);font-size:1.2rem}
+
+    .problem-grid,.step-grid,.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .problem-card{background:var(--surface);border:.5px solid var(--border);border-left:4px solid var(--coral);border-radius:12px;padding:20px}
+    .problem-card i{color:var(--coral);font-size:1.45rem;margin-bottom:14px;display:inline-block}
+    .problem-card p,.step-card p,.story p,.journey-card p{color:var(--muted)}
+    .bridge-box{margin-top:20px;background:var(--green-100);border:.5px solid #CFE9D8;border-radius:14px;padding:22px;text-align:center;color:var(--green-900);font-size:1.12rem}
+
+    .step-card{position:relative;background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:52px 22px 24px}
+    .step-badge{position:absolute;top:16px;left:16px;background:var(--green-900);color:var(--white);border-radius:999px;padding:5px 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+    .step-icon{width:46px;height:46px;border-radius:12px;background:var(--green-100);color:var(--green-700);display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px}
+
+    .story{background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:22px}
+    .stars{color:var(--gold);letter-spacing:1px;margin-bottom:12px}
+    .story blockquote{margin:0 0 18px;color:var(--text);font-style:italic}
+    .person{display:flex;align-items:center;gap:12px}
+    .avatar{width:44px;height:44px;border-radius:50%;background:var(--green-900);color:var(--white);display:grid;place-items:center;font-weight:500}
+    .person small{display:block;color:var(--muted);margin-top:2px}
+    .proof-note{text-align:center;color:var(--muted);font-style:italic;margin-top:18px}
+
+    .journey-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+    .journey-card{background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+    .journey-num{width:42px;height:42px;border-radius:50%;background:var(--green-900);color:var(--white);display:grid;place-items:center;margin:0 auto 14px;font-weight:500}
+
+    .qualifier-wrap{max-width:480px;margin:0 auto}
+    .qualifier-card{background:var(--white);color:var(--text);border:.5px solid rgba(255,255,255,.35);border-radius:18px;padding:clamp(22px,5vw,32px);box-shadow:0 18px 40px rgba(0,0,0,.16)}
+    .progress-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.88rem;margin-bottom:10px}
+    .progress-track{height:8px;border-radius:999px;background:#EEF0EA;overflow:hidden;margin-bottom:24px}
+    .progress-fill{height:100%;width:20%;background:var(--green-700);border-radius:inherit;transition:width .25s ease}
+    .q-step[hidden]{display:none}
+    .q-step h2{font-size:1.48rem;margin-bottom:8px}
+    .q-sub{color:var(--muted);margin-bottom:18px}
+    .options{display:grid;gap:10px}
+    .option-btn{min-height:52px;width:100%;border:1px solid var(--border);border-radius:8px;background:var(--white);padding:14px 16px;text-align:left;color:var(--text);transition:border-color .18s ease,background .18s ease}
+    .option-btn:hover{border-color:var(--green-700);background:var(--surface)}
+    .lead-form{display:grid;gap:14px}
+    .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
+    .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
+    .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
+    .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
+    .privacy i{color:var(--green-700)}
+    .form-error{display:none;color:#9F2D20;background:#FFF1EE;border:.5px solid #FFD4CB;border-radius:8px;padding:10px 12px;font-size:.9rem}
+    .form-error.show{display:block}
+    .success{text-align:center}
+    .success-icon{width:74px;height:74px;border-radius:50%;background:var(--green-100);color:var(--green-700);display:grid;place-items:center;margin:0 auto 18px;font-size:2.2rem}
+    .score-pill{display:inline-flex;align-items:center;justify-content:center;margin-top:18px;border-radius:999px;padding:9px 13px;font-size:.9rem;font-weight:500}
+    .score-hot{background:var(--red-bg);color:var(--red-text)}
+    .score-warm{background:var(--amber-bg);color:var(--amber-text)}
+    .score-cold{background:var(--blue-bg);color:var(--blue-text)}
+
+    .faq-list{max-width:820px;margin:0 auto;display:grid;gap:10px}
+    details{background:var(--surface);border:.5px solid var(--border);border-radius:12px;padding:0}
+    summary{list-style:none;cursor:pointer;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;font-weight:500;color:var(--green-900)}
+    summary::-webkit-details-marker{display:none}
+    summary i{transition:transform .18s ease;color:var(--green-700)}
+    details[open] summary i{transform:rotate(180deg)}
+    details p{padding:0 18px 18px;color:var(--muted)}
+
+    .final-cta{text-align:center}
+    .urgency{display:inline-flex;align-items:center;gap:8px;border:.5px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 12px;color:rgba(255,255,255,.82);margin-bottom:18px}
+    .trust-line{margin-top:18px;color:rgba(255,255,255,.72)}
+
+    .mobile-sticky{position:fixed;left:0;right:0;bottom:0;z-index:90;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:.5px solid var(--border);display:none}
+    .mobile-sticky .btn{width:100%}
+    .mobile-sticky.is-hidden{display:none}
+    .footer{background:#032720;color:rgba(255,255,255,.74);padding:34px 0;font-size:.9rem}
+    .footer-grid{display:grid;gap:12px}
+    .footer strong{color:var(--white);font-weight:500}
+
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(66,200,131,0)}100%{box-shadow:0 0 0 0 rgba(66,200,131,0)}}
+
+    @media (max-width:900px){
+      .hero{min-height:auto;padding-top:118px}
+      .hero-grid{grid-template-columns:1fr}
+      .overview-card{max-width:560px}
+    }
+
+    @media (max-width:767px){
+      .nav{min-height:68px}
+      .brand-sub{font-size:.68rem}
+      .nav-links{position:fixed;top:68px;right:0;bottom:0;width:min(84vw,340px);background:var(--white);color:var(--text);border-left:.5px solid var(--border);padding:26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform .22s ease}
+      .nav-links.is-open{transform:translateX(0)}
+      .nav-links a{min-height:44px;display:flex;align-items:center}
+      .nav-links .btn{margin-top:8px}
+      .menu-toggle{display:grid;place-items:center}
+      .site-header:not(.is-scrolled):not(.menu-active) .brand{color:var(--white)}
+      .chips{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .mobile-sticky{display:block}
+      body{padding-bottom:76px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container nav" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="FreedomWithDXN home">
+        <span class="brand-mark"><img src="/logo.png" alt="" width="34" height="34"></span>
+        <span>
+          <span class="brand-name">FreedomWithDXN</span>
+          <span class="brand-sub">UAE wellness opportunity</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Main menu">
+        <a href="#how-it-works">How it works</a>
+        <a href="#products">Products</a>
+        <a href="#stories">Stories</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-dark" href="#qualifier" data-scroll>Start free <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
+        <i class="ti ti-menu-2" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero dark">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 6+ million members in 180+ countries</div>
+          <h1>Build better health and a second income in the UAE</h1>
+          <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
+          <div class="chips" aria-label="Key benefits">
+            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
+            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>No experience needed</div>
+            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Free training included</div>
+            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Work from anywhere</div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#qualifier" data-scroll aria-label="Watch free overview by starting the qualifier">Watch free overview <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <p class="reassurance"><i class="ti ti-shield-check" aria-hidden="true"></i>2-minute qualifier · No spam · Free to start</p>
+        </div>
+
+        <aside class="overview-card" aria-label="Free overview summary">
+          <div class="video-panel">
+            <div class="video-media">
+              <picture>
+                <source srcset="https://picsum.photos/seed/dxn-wellness/720/450.webp" type="image/webp">
+                <img src="https://picsum.photos/seed/dxn-wellness/720/450.png" alt="" width="720" height="450">
+              </picture>
+              <div class="play"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
+            </div>
+            <div class="video-body">
+              <h2 style="font-size:1.28rem;margin-bottom:6px">Free 15-minute overview</h2>
+              <p class="lead" style="font-size:.98rem">See the products, the business model, and the training path before you decide.</p>
+              <div class="stats" aria-label="DXN global statistics">
+                <div class="stat"><strong>35+</strong><span>years</span></div>
+                <div class="stat"><strong>180+</strong><span>countries</span></div>
+                <div class="stat"><strong>6M+</strong><span>members</span></div>
+              </div>
+              <p class="cert"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified · GMP · ISO 9001</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Trust indicators">
+      <div class="container trust-row">
+        <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
+        <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
+        <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+        <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
+        <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The reality in the UAE</p>
+          <h2>If any of this sounds familiar, you're not alone</h2>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card"><i class="ti ti-wallet-off" aria-hidden="true"></i><h3>Salary isn't enough</h3><p>Rent, school fees, and family back home keep climbing.</p></article>
+          <article class="problem-card"><i class="ti ti-clock-pause" aria-hidden="true"></i><h3>No time freedom</h3><p>Long shifts and fixed hours leaving little room for life.</p></article>
+          <article class="problem-card"><i class="ti ti-battery-2" aria-hidden="true"></i><h3>Energy crashes daily</h3><p>Stress, poor sleep, and that 3pm slump every afternoon.</p></article>
+          <article class="problem-card"><i class="ti ti-receipt-off" aria-hidden="true"></i><h3>One paycheck only</h3><p>If one income stops, everything stops with it.</p></article>
+        </div>
+        <div class="bridge-box">What if you could improve both your health and your income at the same time without quitting your job?</div>
+      </div>
+    </section>
+
+    <section class="section cream" id="products">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The opportunity</p>
+          <h2>A smarter way to build health and income</h2>
+          <p class="lead">Three simple steps. A proven 35-year-old system. Yours to follow.</p>
+        </div>
+        <div class="step-grid">
+          <article class="step-card">
+            <span class="step-badge">Step 1</span>
+            <div class="step-icon"><i class="ti ti-coffee" aria-hidden="true"></i></div>
+            <h3>Use the products</h3>
+            <p>Swap your daily coffee, tea, and supplements for Ganoderma-based wellness alternatives.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-badge">Step 2</span>
+            <div class="step-icon"><i class="ti ti-share-3" aria-hidden="true"></i></div>
+            <h3>Share with others</h3>
+            <p>Recommend what's actually working for you with no cold calls and no pressure.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-badge">Step 3</span>
+            <div class="step-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+            <h3>Build long-term income</h3>
+            <p>Compound your effort through a structured global compensation system.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="stories">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Real stories from the UAE</p>
+          <h2>People building lives they love</h2>
+        </div>
+        <div class="story-grid">
+          <article class="story">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>"I started while keeping my job in Dubai. After 8 months I had a real side income, and my morning energy was completely different."</blockquote>
+            <div class="person"><div class="avatar">AH</div><div><strong>Ahmed H.</strong><small>Dubai · Distributor since 2023</small></div></div>
+          </article>
+          <article class="story">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>"As a mum I needed flexibility. The training was clear and I never felt pushed. It just made sense."</blockquote>
+            <div class="person"><div class="avatar">SM</div><div><strong>Sara M.</strong><small>Abu Dhabi · 1 year in</small></div></div>
+          </article>
+          <article class="story">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>"No cold-calling, no awkward pitches. Just sharing what I genuinely use every day."</blockquote>
+            <div class="person"><div class="avatar">RK</div><div><strong>Rashid K.</strong><small>Sharjah · 6 months in</small></div></div>
+          </article>
+        </div>
+        <p class="proof-note">Individual experiences. Not a guarantee of income or health outcomes.</p>
+      </div>
+    </section>
+
+    <section class="section cream" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Your journey</p>
+          <h2>How to get started in 4 simple steps</h2>
+        </div>
+        <div class="journey-grid">
+          <article class="journey-card"><div class="journey-num">1</div><h3>Fill the form</h3><p>2 minutes</p></article>
+          <article class="journey-card"><div class="journey-num">2</div><h3>Watch overview</h3><p>15 minutes</p></article>
+          <article class="journey-card"><div class="journey-num">3</div><h3>Get trained</h3><p>Self-paced</p></article>
+          <article class="journey-card"><div class="journey-num">4</div><h3>Start building</h3><p>At your pace</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="qualifier">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" style="color:#7DD9B7">Free qualifier</p>
+          <h2 style="color:#fff">Find your best next step</h2>
+          <p class="lead">Answer 5 quick questions and get matched with the right overview and follow-up.</p>
+        </div>
+
+        <div class="qualifier-wrap">
+          <div class="qualifier-card">
+            <div class="progress-top"><span id="step-label">Step 1 of 5</span><span id="step-percent">20%</span></div>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+
+            <section class="q-step" data-step="1">
+              <h2>What interests you most?</h2>
+              <p class="q-sub">Pick the one that matches you best.</p>
+              <div class="options">
+                <button class="option-btn" type="button" data-key="interest" data-value="Health">Better health</button>
+                <button class="option-btn" type="button" data-key="interest" data-value="Income">Extra income</button>
+                <button class="option-btn" type="button" data-key="interest" data-value="Both">Both — health and income</button>
+              </div>
+            </section>
+
+            <section class="q-step" data-step="2" hidden>
+              <h2>How serious are you right now?</h2>
+              <p class="q-sub">There's no wrong answer.</p>
+              <div class="options">
+                <button class="option-btn" type="button" data-key="seriousness" data-value="Exploring">Just exploring for now</button>
+                <button class="option-btn" type="button" data-key="seriousness" data-value="SideIncome">Open to a side income</button>
+                <button class="option-btn" type="button" data-key="seriousness" data-value="Ready">Ready to start now</button>
+              </div>
+            </section>
+
+            <section class="q-step" data-step="3" hidden>
+              <h2>What's your monthly income goal?</h2>
+              <p class="q-sub">For matching you to the right content only.</p>
+              <div class="options">
+                <button class="option-btn" type="button" data-key="goal" data-value="1-3k">1,000–3,000 AED</button>
+                <button class="option-btn" type="button" data-key="goal" data-value="3-5k">3,000–5,000 AED</button>
+                <button class="option-btn" type="button" data-key="goal" data-value="5k+">5,000+ AED</button>
+              </div>
+            </section>
+
+            <section class="q-step" data-step="4" hidden>
+              <h2>Are you willing to learn the system?</h2>
+              <p class="q-sub">Training is free, but it does take effort.</p>
+              <div class="options">
+                <button class="option-btn" type="button" data-key="learn" data-value="Yes">Yes, I'll put in the time</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="Maybe">Maybe — depends on the time needed</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="No">Not really, just curious</button>
+              </div>
+            </section>
+
+            <section class="q-step" data-step="5" hidden>
+              <h2>Get free access</h2>
+              <p class="q-sub">Overview video + WhatsApp welcome in 60 seconds.</p>
+              <form class="lead-form" id="lead-form" novalidate>
+                <div class="field">
+                  <label for="full-name">Full name</label>
+                  <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+                <div class="field">
+                  <label for="whatsapp">WhatsApp</label>
+                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+971 ..." required>
+                </div>
+                <p class="form-error" id="form-error">Please complete your name, email, and WhatsApp number.</p>
+                <button class="btn btn-gold" type="submit">Get free access <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+                <p class="privacy"><i class="ti ti-lock" aria-hidden="true"></i>Your information is private. Unsubscribe anytime.</p>
+              </form>
+            </section>
+
+            <section class="q-step success" data-step="6" hidden>
+              <div class="success-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+              <h2>You're in.</h2>
+              <p class="q-sub">Check your WhatsApp in the next 60 seconds. Your free overview video is on the way.</p>
+              <div class="score-pill" id="score-pill">Nurture sequence started</div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Common questions</p>
+          <h2>Before you ask</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Do I need any experience?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</p></details>
+          <details><summary>Can I do this part-time?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</p></details>
+          <details><summary>Is this available in the UAE?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</p></details>
+          <details><summary>How much does it cost to start?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</p></details>
+          <details><summary>Is this a pyramid scheme?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</p></details>
+          <details><summary>What if I change my mind?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark final-cta">
+      <div class="container">
+        <div class="urgency"><i class="ti ti-clock" aria-hidden="true"></i>Limited new-member spots this month</div>
+        <h2 style="color:#fff">Your health and financial future starts with one click</h2>
+        <p class="lead">Join thousands of UAE residents already building a better lifestyle. Free to start. No pressure. Your pace.</p>
+        <div style="margin-top:24px">
+          <a class="btn btn-gold" href="#qualifier" data-scroll>Get free information <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <p class="trust-line">Private & secure · 2-minute signup · Unsubscribe anytime</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-sticky" id="mobile-sticky">
+    <a class="btn btn-gold" href="#qualifier" data-scroll>Start free qualifier <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <p><strong>© 2026 FreedomWithDXN</strong> · Independent DXN distributor · Not affiliated with DXN Holdings.</p>
+      <p><strong>Income disclaimer:</strong> All income examples are illustrative. Actual results vary based on individual effort, skill, and market conditions. No earnings are guaranteed.</p>
+      <p><strong>Health disclaimer:</strong> Products are wellness supplements and are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before use.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var header = document.getElementById('site-header');
+      var menu = document.getElementById('nav-links');
+      var menuBtn = document.getElementById('menu-toggle');
+      var sticky = document.getElementById('mobile-sticky');
+      var qualifier = document.getElementById('qualifier');
+      var leadData = {};
+      var utm = {};
+      var currentStep = 1;
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
+
+      function updateHeader(){
+        if(!header) return;
+        header.classList.toggle('is-scrolled', window.scrollY > 20);
+      }
+      window.addEventListener('scroll', updateHeader, {passive:true});
+      updateHeader();
+
+      if(menuBtn && menu){
+        menuBtn.addEventListener('click', function(){
+          var open = menu.classList.toggle('is-open');
+          document.body.classList.toggle('menu-open', open);
+          header.classList.toggle('menu-active', open);
+          menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          menuBtn.innerHTML = open ? '<i class="ti ti-x" aria-hidden="true"></i>' : '<i class="ti ti-menu-2" aria-hidden="true"></i>';
+        });
+        menu.querySelectorAll('a').forEach(function(link){
+          link.addEventListener('click', function(){
+            menu.classList.remove('is-open');
+            document.body.classList.remove('menu-open');
+            header.classList.remove('menu-active');
+            menuBtn.setAttribute('aria-expanded','false');
+            menuBtn.setAttribute('aria-label','Open menu');
+            menuBtn.innerHTML = '<i class="ti ti-menu-2" aria-hidden="true"></i>';
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-scroll]').forEach(function(link){
+        link.addEventListener('click', function(event){
+          var target = document.querySelector(link.getAttribute('href'));
+          if(target){
+            event.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+
+      if('IntersectionObserver' in window && sticky && qualifier){
+        var observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            sticky.classList.toggle('is-hidden', entry.isIntersecting);
+          });
+        }, {threshold:.18});
+        observer.observe(qualifier);
+      }
+
+      function showStep(step){
+        currentStep = step;
+        document.querySelectorAll('.q-step').forEach(function(el){
+          el.hidden = Number(el.getAttribute('data-step')) !== step;
+        });
+        var label = document.getElementById('step-label');
+        var percent = document.getElementById('step-percent');
+        var fill = document.getElementById('progress-fill');
+        var progress = step >= 6 ? 100 : Math.round((step / 5) * 100);
+        if(label) label.textContent = step >= 6 ? 'Complete' : 'Step ' + step + ' of 5';
+        if(percent) percent.textContent = progress + '%';
+        if(fill) fill.style.width = progress + '%';
+      }
+
+      document.querySelectorAll('.option-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          leadData[btn.dataset.key] = btn.dataset.value;
+          showStep(Math.min(currentStep + 1, 5));
+        });
+      });
+
+      function getScore(){
+        var score = 'Cold';
+        if (leadData.interest === 'Both' && leadData.seriousness === 'Ready' &&
+          (leadData.goal === '5k+' || leadData.goal === '3-5k') && leadData.learn === 'Yes') {
+          score = 'Hot';
+        } else if (leadData.interest !== 'Health' && leadData.seriousness !== 'Exploring' && leadData.learn !== 'No') {
+          score = 'Warm';
+        }
+        return score;
+      }
+
+      function setScorePill(score){
+        var pill = document.getElementById('score-pill');
+        if(!pill) return;
+        var messages = {
+          Hot: 'Hot lead — priority call within 1 hour',
+          Warm: 'Warm lead — follow-up within 24 hours',
+          Cold: 'Nurture sequence started'
+        };
+        pill.className = 'score-pill score-' + score.toLowerCase();
+        pill.textContent = messages[score];
+      }
+
+      var form = document.getElementById('lead-form');
+      if(form){
+        form.addEventListener('submit', function(event){
+          event.preventDefault();
+          var error = document.getElementById('form-error');
+          var name = form.name.value.trim();
+          var email = form.email.value.trim();
+          var whatsapp = form.whatsapp.value.trim();
+          if(!name || !email || !whatsapp){
+            if(error) error.classList.add('show');
+            return;
+          }
+          if(error) error.classList.remove('show');
+          var score = getScore();
+          var payload = {
+            name: name,
+            email: email,
+            whatsapp: whatsapp,
+            interest: leadData.interest || '',
+            seriousness: leadData.seriousness || '',
+            goal: leadData.goal || '',
+            learn: leadData.learn || '',
+            score: score,
+            source: 'freedomwithdxn.com',
+            timestamp: new Date().toISOString(),
+            utm_source: utm.utm_source,
+            utm_medium: utm.utm_medium,
+            utm_campaign: utm.utm_campaign
+          };
+
+          fetch('https://webhook.site/YOUR_ID', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(function(){});
+
+          if(window.gtag){
+            window.gtag('event', 'lead_submitted', {score: score});
+          }
+          if(window.fbq){
+            var scoreValue = score === 'Hot' ? 3 : score === 'Warm' ? 2 : 1;
+            window.fbq('track', 'Lead', {value: scoreValue});
+          }
+
+          setScorePill(score);
+          showStep(6);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
