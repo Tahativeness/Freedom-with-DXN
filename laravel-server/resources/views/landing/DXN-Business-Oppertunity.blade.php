@@ -168,25 +168,24 @@
     .btn:active{transform:translateY(1px)}
     .btn-gold{background:var(--gold);color:var(--gold-text)}
     .btn-gold:hover{background:#F3AC43}
-    .btn-dark{background:var(--green-900);color:var(--white)}
+    .btn-dark{background:var(--green-700);color:var(--white);font-weight:700}
     .btn-dark:hover{background:var(--green-700)}
     .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
 
-    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .2s ease,border-color .2s ease}
-    .site-header.is-scrolled,.site-header.menu-active{background:rgba(255,255,255,.96);border-bottom:.5px solid var(--border);backdrop-filter:saturate(160%) blur(10px)}
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:.5px solid var(--border);transition:background .2s ease,border-color .2s ease}
+    .site-header.is-scrolled,.site-header.menu-active{background:#fff;border-bottom:.5px solid var(--border);backdrop-filter:saturate(160%) blur(10px)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:var(--white)}
-    .site-header.is-scrolled .brand,.site-header.menu-active .brand{color:var(--green-900)}
-    .brand-mark{width:44px;height:44px;border-radius:12px;background:var(--green-900);display:grid;place-items:center;border:.5px solid rgba(255,255,255,.16);overflow:hidden;flex:0 0 auto}
-    .brand-mark img{width:34px;height:34px;object-fit:contain}
-    .brand-name{display:block;font-weight:500;line-height:1;color:inherit}
-    .brand-sub{display:block;margin-top:4px;font-size:.74rem;color:rgba(255,255,255,.72);white-space:nowrap}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:#000}
+    .site-header.is-scrolled .brand,.site-header.menu-active .brand{color:#000}
+    .brand-logo{height:52px;width:auto;object-fit:contain;flex:0 0 auto}
+    .brand-name{display:block;font-weight:700;line-height:1;color:#000}
+    .brand-sub{display:block;margin-top:4px;font-size:.74rem;color:#000;white-space:nowrap;font-weight:700}
     .site-header.is-scrolled .brand-sub,.site-header.menu-active .brand-sub{color:var(--muted)}
-    .nav-links{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.82);font-size:.94rem}
-    .site-header.is-scrolled .nav-links{color:var(--text)}
-    .nav-links a:hover{color:var(--gold)}
-    .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid rgba(255,255,255,.28);background:transparent;color:var(--white)}
-    .site-header.is-scrolled .menu-toggle,.site-header.menu-active .menu-toggle{color:var(--green-900);border-color:var(--border)}
+    .nav-links{display:flex;align-items:center;gap:22px;color:#000;font-size:.94rem;font-weight:700}
+    .site-header.is-scrolled .nav-links{color:#000}
+    .nav-links a:hover{color:var(--green-700)}
+    .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid var(--border);background:transparent;color:#000}
+    .site-header.is-scrolled .menu-toggle,.site-header.menu-active .menu-toggle{color:#000;border-color:var(--border)}
 
     .hero{min-height:760px;padding:132px 0 86px;display:grid;align-items:center}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.82fr);gap:clamp(34px,6vw,74px);align-items:center}
@@ -302,7 +301,7 @@
       .nav-links a{min-height:44px;display:flex;align-items:center}
       .nav-links .btn{margin-top:8px}
       .menu-toggle{display:grid;place-items:center}
-      .site-header:not(.is-scrolled):not(.menu-active) .brand{color:var(--white)}
+      .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
       .mobile-sticky{display:block}
@@ -320,7 +319,7 @@
   <header class="site-header" id="site-header">
     <div class="container nav" aria-label="Primary navigation">
       <a class="brand" href="/" aria-label="FreedomWithDXN home">
-        <span class="brand-mark"><img src="/logo.png" alt="" width="34" height="34"></span>
+        <img class="brand-logo" src="/footer-lg.png" alt="FreedomWithDXN" width="200" height="56">
         <span>
           <span class="brand-name">FreedomWithDXN</span>
           <span class="brand-sub">UAE wellness opportunity</span>
@@ -742,23 +741,35 @@
             utm_campaign: utm.utm_campaign
           };
 
-          fetch('https://webhook.site/YOUR_ID', {
+          fetch('/api/dxn-lead', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify(payload),
             keepalive: true
-          }).catch(function(){});
+          }).then(function(response){
+            if(!response.ok){
+              throw new Error('Lead sync failed');
+            }
 
-          if(window.gtag){
-            window.gtag('event', 'lead_submitted', {score: score});
-          }
-          if(window.fbq){
-            var scoreValue = score === 'Hot' ? 3 : score === 'Warm' ? 2 : 1;
-            window.fbq('track', 'Lead', {value: scoreValue});
-          }
+            if(window.gtag){
+              window.gtag('event', 'lead_submitted', {score: score});
+            }
+            if(window.fbq){
+              var scoreValue = score === 'Hot' ? 3 : score === 'Warm' ? 2 : 1;
+              window.fbq('track', 'Lead', {value: scoreValue});
+            }
 
-          setScorePill(score);
-          showStep(6);
+            setScorePill(score);
+            showStep(6);
+          }).catch(function(){
+            if(error){
+              error.textContent = 'We could not submit your details right now. Please try again in a moment.';
+              error.classList.add('show');
+            }
+          });
         });
       }
     })();

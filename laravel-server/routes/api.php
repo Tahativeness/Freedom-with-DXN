@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\DxnLeadController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\OrderController;
@@ -25,6 +26,8 @@ Route::prefix('auth')->group(function () {
         });
     });
 });
+
+Route::post('/dxn-lead', [DxnLeadController::class, 'store']);
 
 // ─── Products ────────────────────────────────────────────────────────────────
 Route::prefix('products')->group(function () {
