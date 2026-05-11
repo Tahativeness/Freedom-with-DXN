@@ -346,7 +346,7 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 6+ million members in 180+ countries</div>
-          <h1>Build better health and a second income in the UAE</h1>
+          <h1>Build better health and a DXN Business Oppertunity in the UAE</h1>
           <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
           <div class="chips" aria-label="Key benefits">
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
