@@ -212,6 +212,20 @@
     .stat span{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
     .cert{display:flex;align-items:center;gap:8px;color:var(--green-700);font-size:.9rem}
 
+    .overview-video{background:#111014;color:#fff;padding:clamp(72px,9vw,108px) 0}
+    .overview-video .eyebrow{color:#efc25f;margin-bottom:18px}
+    .overview-video .section-head{margin-bottom:44px}
+    .overview-video h2{color:#fff;font-size:clamp(2rem,4vw,3rem)}
+    .overview-video .lead{color:rgba(255,255,255,.72)}
+    .video-shell{width:min(100%,980px);margin:0 auto;transition:max-width .22s ease}
+    .video-shell[data-zoom="large"]{max-width:1160px}
+    .video-shell[data-zoom="small"]{max-width:820px}
+    .video-frame{position:relative;aspect-ratio:16/9;border-radius:18px;padding:3px;background:linear-gradient(135deg,#198d45,#6248a8,#ef9f27,#d94b3f);box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
+    .video-frame iframe{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
+    .video-toolbar{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+    .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
+    .video-tool:hover{background:#198d45;color:#fff}
+
     .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border)}
     .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
     .trust-item{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--green-900);font-weight:500}
@@ -300,6 +314,7 @@
       .hero{min-height:auto;padding-top:118px}
       .hero-grid{grid-template-columns:1fr}
       .overview-card{max-width:560px}
+      .video-shell[data-zoom="large"],.video-shell[data-zoom="small"]{max-width:100%}
     }
 
     @media (max-width:767px){
@@ -359,7 +374,7 @@
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Work from anywhere</div>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="#qualifier" data-scroll aria-label="Watch free overview by starting the qualifier">Watch free overview <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            <a class="btn btn-gold" href="#overview-video" data-scroll aria-label="Watch the free overview video">Watch free overview <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
           </div>
           <p class="reassurance"><i class="ti ti-shield-check" aria-hidden="true"></i>2-minute qualifier · No spam · Free to start</p>
         </div>
@@ -385,6 +400,33 @@
             </div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section class="overview-video" id="overview-video">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Watch this first</p>
+          <h2>Your journey to freedom begins now</h2>
+          <p class="lead">A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.</p>
+        </div>
+
+        <div class="video-shell" id="overview-video-shell" data-zoom="normal">
+          <div class="video-frame" id="overview-video-frame">
+            <iframe
+              id="overview-video-player"
+              src="https://www.youtube.com/embed/REPLACE_WITH_YOUTUBE_VIDEO_ID?rel=0&modestbranding=1&playsinline=1"
+              title="Freedom with DXN business overview video"
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-toolbar" aria-label="Video display controls">
+            <button class="video-tool" type="button" data-video-zoom="small" aria-label="Zoom video out"><i class="ti ti-zoom-out" aria-hidden="true"></i></button>
+            <button class="video-tool" type="button" data-video-zoom="large" aria-label="Zoom video in"><i class="ti ti-zoom-in" aria-hidden="true"></i></button>
+            <button class="video-tool" type="button" id="video-fullscreen" aria-label="Open video fullscreen"><i class="ti ti-arrows-maximize" aria-hidden="true"></i></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -671,6 +713,26 @@
           }
         });
       });
+
+      var videoShell = document.getElementById('overview-video-shell');
+      var videoFrame = document.getElementById('overview-video-frame');
+      document.querySelectorAll('[data-video-zoom]').forEach(function(button){
+        button.addEventListener('click', function(){
+          if(videoShell){
+            videoShell.setAttribute('data-zoom', button.getAttribute('data-video-zoom'));
+          }
+        });
+      });
+      var videoFullscreen = document.getElementById('video-fullscreen');
+      if(videoFullscreen && videoFrame){
+        videoFullscreen.addEventListener('click', function(){
+          if(videoFrame.requestFullscreen){
+            videoFrame.requestFullscreen();
+          } else if(videoFrame.webkitRequestFullscreen){
+            videoFrame.webkitRequestFullscreen();
+          }
+        });
+      }
 
       if('IntersectionObserver' in window && sticky && qualifier){
         var observer = new IntersectionObserver(function(entries){
