@@ -278,11 +278,15 @@
     .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
-    .iti{width:100%}
-    .iti input{width:100%;border-radius:999px;min-height:50px}
-    .iti__selected-country{border-right:1px solid var(--border);padding:0 12px}
+    .phone-field .iti{width:100%;display:block}
+    .phone-field .iti input{width:100%;min-height:54px;border-radius:14px;padding-left:clamp(158px,43%,235px)!important}
+    .phone-field .iti input:focus{box-shadow:0 0 0 4px rgba(15,110,86,.12)}
+    .phone-field .iti__selected-country{height:54px;max-width:44%;border-right:1px solid var(--border);border-radius:14px 0 0 14px;padding:0 12px;background:#F8FCFA;gap:8px}
+    .iti__selected-country-name{max-width:92px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:600;font-size:.92rem}
     .iti__selected-dial-code{font-size:1rem;color:var(--text);font-weight:500}
-    .iti__country-list{max-width:min(360px,calc(100vw - 48px));z-index:110}
+    .iti__country-list{max-width:min(420px,calc(100vw - 48px));border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);z-index:110}
+    .iti__search-input{min-height:42px;border-radius:10px;margin:8px;width:calc(100% - 16px)}
+    .phone-help{display:block;margin-top:6px;color:var(--muted);font-size:.82rem}
     .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
     .privacy i{color:var(--green-700)}
     .form-error{display:none;color:#9F2D20;background:#FFF1EE;border:.5px solid #FFD4CB;border-radius:8px;padding:10px 12px;font-size:.9rem}
@@ -341,6 +345,9 @@
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
+      .phone-field .iti input{padding-left:142px!important}
+      .phone-field .iti__selected-country{max-width:50%;padding:0 10px}
+      .iti__selected-country-name{max-width:56px}
       .trust-strip .container{width:max-content;max-width:none;padding:0}
       .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
       .trust-item{flex:0 0 auto}
@@ -617,11 +624,12 @@
                   <label for="email">Email</label>
                   <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
                 </div>
-                <div class="field">
+                <div class="field phone-field">
                   <label for="whatsapp">WhatsApp Number</label>
                   <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="Phone number" required>
+                  <small class="phone-help" id="phone-help">Choose your country code, then enter your WhatsApp number.</small>
                 </div>
-                <p class="form-error" id="form-error">Please complete your name, email, and WhatsApp number.</p>
+                <p class="form-error" id="form-error">Please complete your name, email, and a valid WhatsApp number.</p>
                 <button class="btn btn-gold" type="submit">Get free access <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
                 <p class="privacy"><i class="ti ti-lock" aria-hidden="true"></i>Your information is private. Unsubscribe anytime.</p>
               </form>
@@ -697,26 +705,72 @@
       var currentStep = 1;
       var params = new URLSearchParams(window.location.search);
       var whatsappInput = document.getElementById('whatsapp');
+      var phoneHelp = document.getElementById('phone-help');
       var phonePicker = null;
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
+
+      function getBrowserCountry(){
+        var locale = navigator.language || (navigator.languages && navigator.languages[0]) || '';
+        var match = locale.match(/[-_]([A-Za-z]{2})$/);
+        return match ? match[1].toLowerCase() : '';
+      }
+
+      // Keep the selected country segment readable after the phone plugin updates it.
+      function refreshSelectedCountryLabel(){
+        if(!phonePicker || !whatsappInput) return;
+        var data = phonePicker.getSelectedCountryData();
+        var selector = whatsappInput.closest('.iti');
+        var selectedCountry = selector ? selector.querySelector('.iti__selected-country') : null;
+        if(!selectedCountry || !data) return;
+        var nameLabel = selectedCountry.querySelector('.iti__selected-country-name');
+        if(!nameLabel){
+          nameLabel = document.createElement('span');
+          nameLabel.className = 'iti__selected-country-name';
+          selectedCountry.insertBefore(nameLabel, selectedCountry.querySelector('.iti__selected-dial-code'));
+        }
+        nameLabel.textContent = (data.name || '').replace(/\s*\(.+?\)\s*/g, '');
+        if(phoneHelp && data.dialCode){
+          phoneHelp.textContent = 'Selected country code: +' + data.dialCode;
+        }
+      }
+
+      // Validate against the selected country's numbering rules before syncing the lead.
+      function getPhoneValidationMessage(){
+        if(!phonePicker || !whatsappInput || !whatsappInput.value.trim()){
+          return 'Please enter your WhatsApp number.';
+        }
+        if(phonePicker.isValidNumber()) return '';
+        var errorCode = phonePicker.getValidationError();
+        var messages = {
+          1: 'This number has an invalid country code.',
+          2: 'This number is too short for the selected country.',
+          3: 'This number is too long for the selected country.',
+          4: 'This number is not valid for the selected country.'
+        };
+        return messages[errorCode] || 'Please enter a valid WhatsApp number for the selected country.';
+      }
 
       function initPhonePicker(){
         if(!window.intlTelInput || !whatsappInput) return;
         phonePicker = window.intlTelInput(whatsappInput, {
           initialCountry: 'auto',
+          countrySearch: true,
           separateDialCode: true,
           nationalMode: false,
           autoPlaceholder: 'aggressive',
-          geoIpLookup: function(success, failure){
+          geoIpLookup: function(success){
             fetch('https://ipwho.is/')
               .then(function(response){ return response.json(); })
-              .then(function(data){ success((data && data.country_code ? data.country_code : 'AE').toLowerCase()); })
-              .catch(function(){ success('ae'); if(failure) failure(); });
+              .then(function(data){ success((data && data.country_code ? data.country_code : getBrowserCountry() || 'AE').toLowerCase()); })
+              .catch(function(){ success(getBrowserCountry() || 'ae'); });
           },
           loadUtils: function(){
             return import('https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/utils.js');
           }
         });
+        whatsappInput.addEventListener('countrychange', refreshSelectedCountryLabel);
+        window.setTimeout(refreshSelectedCountryLabel, 250);
+        window.setTimeout(refreshSelectedCountryLabel, 900);
       }
 
       if(document.readyState === 'loading'){
@@ -830,8 +884,12 @@
           var email = form.email.value.trim();
           var rawWhatsapp = form.whatsapp.value.trim();
           var whatsapp = phonePicker && rawWhatsapp ? phonePicker.getNumber() : rawWhatsapp;
-          if(!name || !email || !whatsapp){
-            if(error) error.classList.add('show');
+          var phoneValidationMessage = getPhoneValidationMessage();
+          if(!name || !email || phoneValidationMessage){
+            if(error){
+              error.textContent = !name || !email ? 'Please complete your name, email, and WhatsApp number.' : phoneValidationMessage;
+              error.classList.add('show');
+            }
             return;
           }
           if(error) error.classList.remove('show');
