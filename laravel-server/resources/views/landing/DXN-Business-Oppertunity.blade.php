@@ -287,9 +287,11 @@
     .country-dropdown[hidden]{display:none}
     .country-search{width:calc(100% - 20px)!important;min-height:42px!important;margin:10px!important;border-radius:10px!important}
     .country-options{max-height:248px;overflow-y:auto;padding:4px}
-    .country-option{width:100%;border:0;background:transparent;border-radius:10px;padding:10px 12px;text-align:left;color:var(--text);font-weight:600;cursor:pointer}
+    .country-option{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;border-radius:10px;padding:10px 12px;text-align:left;color:var(--text);font-weight:600;cursor:pointer}
     .country-option:hover,.country-option.is-active{background:var(--green-100);color:var(--green-900)}
-    .country-option small{color:var(--muted);font-weight:500}
+    .country-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .country-dial{flex:0 0 auto;color:var(--green-700);font-weight:800}
+    .country-empty{padding:14px 12px;color:var(--muted);font-size:.92rem;text-align:center}
     .phone-number-input{min-width:0;width:100%;min-height:54px;border:0!important;border-radius:0 14px 14px 0!important;padding:12px 14px!important}
     .phone-number-input:focus{outline:0!important;box-shadow:none!important}
     .phone-hidden-validator{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
@@ -749,6 +751,12 @@
         return shortNames[country.iso2] || country.name.replace(/\s*\(.+?\)\s*/g, '');
       }
 
+      function escapeHtml(value){
+        return String(value).replace(/[&<>"']/g, function(char){
+          return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char];
+        });
+      }
+
       function closeCountryDropdown(){
         if(!countryDropdown || !countrySwitcher) return;
         countryDropdown.hidden = true;
@@ -770,11 +778,15 @@
           var haystack = [country.name, country.iso2, '+' + country.dialCode, country.dialCode].join(' ').toLowerCase();
           return !term || haystack.indexOf(term) !== -1;
         });
+        if(!filtered.length){
+          countryOptions.innerHTML = '<div class="country-empty">No country found</div>';
+          return;
+        }
         countryOptions.innerHTML = filtered.map(function(country){
           var active = country.iso2 === activeCountry ? ' is-active' : '';
           return '<button class="country-option' + active + '" type="button" role="option" data-country="' + country.iso2 + '">' +
-            getDisplayCountryName(country) + ' +' + country.dialCode +
-            ' <small>(' + country.name + ')</small>' +
+            '<span class="country-name">' + escapeHtml(country.name) + '</span>' +
+            '<span class="country-dial">+' + escapeHtml(country.dialCode) + '</span>' +
             '</button>';
         }).join('');
       }
