@@ -222,10 +222,6 @@
     .video-shell[data-zoom="small"]{max-width:820px}
     .video-frame{position:relative;aspect-ratio:16/9;border-radius:18px;padding:3px;background:linear-gradient(135deg,#198d45,#6248a8,#ef9f27,#d94b3f);box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
     .video-frame iframe{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
-    .video-toolbar{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
-    .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
-    .video-tool:hover{background:#198d45;color:#fff}
-
     .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border)}
     .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
     .trust-item{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--green-900);font-weight:500}
@@ -420,11 +416,6 @@
               loading="lazy"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
-          </div>
-          <div class="video-toolbar" aria-label="Video display controls">
-            <button class="video-tool" type="button" data-video-zoom="small" aria-label="Zoom video out"><i class="ti ti-zoom-out" aria-hidden="true"></i></button>
-            <button class="video-tool" type="button" data-video-zoom="large" aria-label="Zoom video in"><i class="ti ti-zoom-in" aria-hidden="true"></i></button>
-            <button class="video-tool" type="button" id="video-fullscreen" aria-label="Open video fullscreen"><i class="ti ti-arrows-maximize" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
@@ -713,26 +704,6 @@
           }
         });
       });
-
-      var videoShell = document.getElementById('overview-video-shell');
-      var videoFrame = document.getElementById('overview-video-frame');
-      document.querySelectorAll('[data-video-zoom]').forEach(function(button){
-        button.addEventListener('click', function(){
-          if(videoShell){
-            videoShell.setAttribute('data-zoom', button.getAttribute('data-video-zoom'));
-          }
-        });
-      });
-      var videoFullscreen = document.getElementById('video-fullscreen');
-      if(videoFullscreen && videoFrame){
-        videoFullscreen.addEventListener('click', function(){
-          if(videoFrame.requestFullscreen){
-            videoFrame.requestFullscreen();
-          } else if(videoFrame.webkitRequestFullscreen){
-            videoFrame.webkitRequestFullscreen();
-          }
-        });
-      }
 
       if('IntersectionObserver' in window && sticky && qualifier){
         var observer = new IntersectionObserver(function(entries){
