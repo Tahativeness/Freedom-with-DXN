@@ -33,6 +33,7 @@
   <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css">
 
   <script type="application/ld+json">
   {
@@ -278,14 +279,20 @@
     .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
-    .phone-field .iti{width:100%;display:block}
-    .phone-field .iti input{width:100%;min-height:54px;border-radius:14px;padding-left:clamp(158px,43%,235px)!important}
-    .phone-field .iti input:focus{box-shadow:0 0 0 4px rgba(15,110,86,.12)}
-    .phone-field .iti__selected-country{height:54px;max-width:44%;border-right:1px solid var(--border);border-radius:14px 0 0 14px;padding:0 12px;background:#F8FCFA;gap:8px}
-    .iti__selected-country-name{max-width:92px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:600;font-size:.92rem}
-    .iti__selected-dial-code{font-size:1rem;color:var(--text);font-weight:500}
-    .iti__country-list{max-width:min(420px,calc(100vw - 48px));border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);z-index:110}
-    .iti__search-input{min-height:42px;border-radius:10px;margin:8px;width:calc(100% - 16px)}
+    .phone-row{display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,1fr);border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:visible}
+    .phone-row:focus-within{border-color:var(--green-700);box-shadow:0 0 0 4px rgba(15,110,86,.12)}
+    .phone-country{min-width:0;border-right:1px solid var(--border);background:#F8FCFA;border-radius:14px 0 0 14px}
+    .country-code-select{width:100%;min-height:54px;border:0;background:transparent;padding:0 12px;color:var(--text);font-weight:600}
+    .phone-number-input{min-width:0;width:100%;min-height:54px;border:0!important;border-radius:0 14px 14px 0!important;padding:12px 14px!important}
+    .phone-number-input:focus{outline:0!important;box-shadow:none!important}
+    .phone-hidden-validator{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+    .phone-validator-shell{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+    .phone-country .ts-wrapper{min-height:54px}
+    .phone-country .ts-control{min-height:54px;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:14px 0 0 14px;padding:12px!important;color:var(--text);font-weight:600}
+    .phone-country .ts-control .item{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .phone-country .ts-dropdown{border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);margin-top:8px;z-index:120}
+    .phone-country .ts-dropdown .option{padding:10px 12px}
+    .phone-country .ts-control input{min-height:0!important;border:0!important;padding:0!important}
     .phone-help{display:block;margin-top:6px;color:var(--muted);font-size:.82rem}
     .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
     .privacy i{color:var(--green-700)}
@@ -345,9 +352,9 @@
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
-      .phone-field .iti input{padding-left:142px!important}
-      .phone-field .iti__selected-country{max-width:50%;padding:0 10px}
-      .iti__selected-country-name{max-width:56px}
+      .phone-row{grid-template-columns:minmax(126px,.86fr) minmax(0,1fr)}
+      .country-code-select{padding:0 10px}
+      .phone-country .ts-control{padding:12px 10px!important}
       .trust-strip .container{width:max-content;max-width:none;padding:0}
       .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
       .trust-item{flex:0 0 auto}
@@ -626,7 +633,13 @@
                 </div>
                 <div class="field phone-field">
                   <label for="whatsapp">WhatsApp Number</label>
-                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="Phone number" required>
+                  <div class="phone-row">
+                    <div class="phone-country">
+                      <select id="country-code" class="country-code-select" aria-label="Choose country code"></select>
+                    </div>
+                    <input id="whatsapp-local" class="phone-number-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Phone number" required>
+                  </div>
+                  <input id="whatsapp" class="phone-hidden-validator" name="whatsapp" type="tel" tabindex="-1" aria-hidden="true">
                   <small class="phone-help" id="phone-help">Choose your country code, then enter your WhatsApp number.</small>
                 </div>
                 <p class="form-error" id="form-error">Please complete your name, email, and a valid WhatsApp number.</p>
@@ -692,6 +705,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
   <script>
     (function(){
       var header = document.getElementById('site-header');
@@ -705,8 +719,13 @@
       var currentStep = 1;
       var params = new URLSearchParams(window.location.search);
       var whatsappInput = document.getElementById('whatsapp');
+      var whatsappLocal = document.getElementById('whatsapp-local');
+      var countrySelect = document.getElementById('country-code');
       var phoneHelp = document.getElementById('phone-help');
       var phonePicker = null;
+      var countrySelectWidget = null;
+      var countryData = [];
+      var activeCountry = 'ae';
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
 
       function getBrowserCountry(){
@@ -715,27 +734,67 @@
         return match ? match[1].toLowerCase() : '';
       }
 
-      // Keep the selected country segment readable after the phone plugin updates it.
-      function refreshSelectedCountryLabel(){
-        if(!phonePicker || !whatsappInput) return;
-        var data = phonePicker.getSelectedCountryData();
-        var selector = whatsappInput.closest('.iti');
-        var selectedCountry = selector ? selector.querySelector('.iti__selected-country') : null;
-        if(!selectedCountry || !data) return;
-        var nameLabel = selectedCountry.querySelector('.iti__selected-country-name');
-        if(!nameLabel){
-          nameLabel = document.createElement('span');
-          nameLabel.className = 'iti__selected-country-name';
-          selectedCountry.insertBefore(nameLabel, selectedCountry.querySelector('.iti__selected-dial-code'));
+      function getFlagEmoji(iso2){
+        return iso2 ? iso2.toUpperCase().replace(/./g, function(char){
+          return String.fromCodePoint(127397 + char.charCodeAt(0));
+        }) : '';
+      }
+
+      function getCountryByIso(iso2){
+        return countryData.find(function(country){ return country.iso2 === iso2; }) || countryData[0];
+      }
+
+      function getLocalPlaceholder(iso2){
+        var examples = {
+          bd: '01712 345678',
+          ae: '50 123 4567',
+          in: '98765 43210',
+          us: '(201) 555-0123',
+          gb: '07400 123456',
+          sa: '50 123 4567',
+          pk: '0301 2345678',
+          my: '012-345 6789'
+        };
+        return examples[iso2] || 'Phone number';
+      }
+
+      function syncFullPhoneNumber(){
+        if(!whatsappInput || !whatsappLocal) return '';
+        var country = getCountryByIso(activeCountry);
+        var raw = whatsappLocal.value.trim();
+        var full = raw.charAt(0) === '+' ? raw : '+' + (country ? country.dialCode : '') + raw.replace(/[^\d]/g, '');
+        whatsappInput.value = raw ? full : '';
+        if(phonePicker && country){
+          phonePicker.setCountry(country.iso2);
+          phonePicker.setNumber(whatsappInput.value);
         }
-        nameLabel.textContent = (data.name || '').replace(/\s*\(.+?\)\s*/g, '');
-        if(phoneHelp && data.dialCode){
-          phoneHelp.textContent = 'Selected country code: +' + data.dialCode;
+        return whatsappInput.value;
+      }
+
+      function setActiveCountry(iso2){
+        var country = getCountryByIso(iso2) || getCountryByIso('ae');
+        if(!country) return;
+        activeCountry = country.iso2;
+        if(countrySelect && countrySelect.value !== activeCountry) countrySelect.value = activeCountry;
+        if(countrySelectWidget && countrySelectWidget.getValue() !== activeCountry) countrySelectWidget.setValue(activeCountry, true);
+        if(phonePicker) phonePicker.setCountry(activeCountry);
+        if(whatsappLocal){
+          var placeholder = getLocalPlaceholder(activeCountry);
+          if(phonePicker && typeof phonePicker.getExampleNumber === 'function'){
+            try {
+              var example = phonePicker.getExampleNumber();
+              if(example) placeholder = example.replace('+' + country.dialCode, '').trim() || placeholder;
+            } catch (ignore) {}
+          }
+          whatsappLocal.placeholder = placeholder;
         }
+        if(phoneHelp) phoneHelp.textContent = 'Selected country code: +' + country.dialCode;
+        syncFullPhoneNumber();
       }
 
       // Validate against the selected country's numbering rules before syncing the lead.
       function getPhoneValidationMessage(){
+        syncFullPhoneNumber();
         if(!phonePicker || !whatsappInput || !whatsappInput.value.trim()){
           return 'Please enter your WhatsApp number.';
         }
@@ -751,26 +810,47 @@
       }
 
       function initPhonePicker(){
-        if(!window.intlTelInput || !whatsappInput) return;
+        if(!window.intlTelInput || !whatsappInput || !countrySelect || !whatsappLocal) return;
+        countryData = window.intlTelInput.getCountryData();
+        countrySelect.innerHTML = countryData.map(function(country){
+          var label = getFlagEmoji(country.iso2) + ' ' + country.name + ' +' + country.dialCode;
+          return '<option value="' + country.iso2 + '">' + label + '</option>';
+        }).join('');
+
+        if(window.TomSelect){
+          countrySelectWidget = new TomSelect(countrySelect, {
+            maxItems: 1,
+            searchField: ['text'],
+            create: false,
+            render: {
+              item: function(data, escape){ return '<div>' + escape(data.text) + '</div>'; },
+              option: function(data, escape){ return '<div>' + escape(data.text) + '</div>'; }
+            }
+          });
+        }
+
         phonePicker = window.intlTelInput(whatsappInput, {
-          initialCountry: 'auto',
-          countrySearch: true,
-          separateDialCode: true,
+          initialCountry: 'ae',
+          separateDialCode: false,
           nationalMode: false,
-          autoPlaceholder: 'aggressive',
-          geoIpLookup: function(success){
-            fetch('https://ipwho.is/')
-              .then(function(response){ return response.json(); })
-              .then(function(data){ success((data && data.country_code ? data.country_code : getBrowserCountry() || 'AE').toLowerCase()); })
-              .catch(function(){ success(getBrowserCountry() || 'ae'); });
-          },
           loadUtils: function(){
             return import('https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/utils.js');
           }
         });
-        whatsappInput.addEventListener('countrychange', refreshSelectedCountryLabel);
-        window.setTimeout(refreshSelectedCountryLabel, 250);
-        window.setTimeout(refreshSelectedCountryLabel, 900);
+        var validatorShell = whatsappInput.closest('.iti');
+        if(validatorShell) validatorShell.classList.add('phone-validator-shell');
+
+        countrySelect.addEventListener('change', function(){
+          setActiveCountry(countrySelect.value);
+        });
+        whatsappLocal.addEventListener('input', syncFullPhoneNumber);
+
+        fetch('https://ipwho.is/')
+          .then(function(response){ return response.json(); })
+          .then(function(data){ setActiveCountry((data && data.country_code ? data.country_code : getBrowserCountry() || 'AE').toLowerCase()); })
+          .catch(function(){ setActiveCountry(getBrowserCountry() || 'ae'); });
+
+        setActiveCountry('ae');
       }
 
       if(document.readyState === 'loading'){
@@ -882,6 +962,7 @@
           var error = document.getElementById('form-error');
           var name = form.name.value.trim();
           var email = form.email.value.trim();
+          syncFullPhoneNumber();
           var rawWhatsapp = form.whatsapp.value.trim();
           var whatsapp = phonePicker && rawWhatsapp ? phonePicker.getNumber() : rawWhatsapp;
           var phoneValidationMessage = getPhoneValidationMessage();
