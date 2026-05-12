@@ -164,14 +164,14 @@
     .cream{background:var(--cream)}
     .light{background:var(--white)}
 
-    .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:.5px solid transparent;padding:12px 18px;font-weight:500;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}
+    .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:.5px solid transparent;padding:12px 18px;font-weight:700;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}
     .btn:active{transform:translateY(1px)}
-    .btn-gold{background:var(--gold);color:var(--gold-text)}
-    .btn-gold:hover{background:#F3AC43}
-    .btn-dark{position:relative;overflow:hidden;background:var(--green-700);color:var(--white);font-weight:700}
+    .btn-gold{background:#198d45;color:#fff}
+    .btn-gold:hover{background:#126b35;color:#fff;border-color:#126b35}
+    .btn-dark{position:relative;overflow:hidden;background:#198d45;color:#fff;font-weight:700}
     .btn-dark::after{content:"";position:absolute;inset:-80% auto -80% -45%;width:38%;background:rgba(255,255,255,.24);transform:rotate(18deg);animation:ctaFlow 2.8s ease-in-out infinite;pointer-events:none}
-    .btn-dark:hover{background:var(--green-700);color:var(--white)}
-    .nav-links .btn-dark:hover{background:var(--green-700);color:var(--white)}
+    .btn-dark:hover{background:#126b35;color:#fff;border-color:#126b35}
+    .nav-links .btn-dark:hover{background:#126b35;color:#fff;border-color:#126b35}
     .btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.25)}
 
     .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:.5px solid var(--border);transition:background .2s ease,border-color .2s ease}
@@ -284,6 +284,9 @@
     .mobile-sticky{position:fixed;left:0;right:0;bottom:0;z-index:90;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:.5px solid var(--border);display:none}
     .mobile-sticky .btn{width:100%}
     .mobile-sticky.is-hidden{display:none}
+    .whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:95;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#198d45;color:#fff;border:2px solid rgba(255,255,255,.9);box-shadow:0 14px 30px rgba(0,0,0,.22);transition:transform .18s ease,background .18s ease}
+    .whatsapp-float:hover{background:#126b35;color:#fff;transform:translateY(-2px)}
+    .whatsapp-float svg{width:30px;height:30px;fill:currentColor}
     .footer{background:#fff;color:#000;padding:34px 0;font-size:.95rem;text-align:center;font-weight:700;border-top:.5px solid var(--border)}
     .footer-grid{display:grid;gap:8px;justify-items:center}
     .footer strong{color:#000;font-weight:700}
@@ -305,13 +308,14 @@
       .nav-links{position:absolute;top:100%;left:0;right:0;width:100%;background:#fff;color:#000;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:22px var(--pad) 26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease;font-weight:700;box-shadow:0 16px 30px rgba(0,0,0,.08)}
       .nav-links.is-open{opacity:1;visibility:visible;transform:translateY(0)}
       .nav-links a{min-height:44px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;text-align:center}
-      .nav-links .btn{margin-top:8px;background:var(--green-700);color:#fff;justify-content:center;font-weight:700;width:100%}
-      .nav-links .btn:hover{background:var(--green-700);color:#fff}
+      .nav-links .btn{margin-top:8px;background:#198d45;color:#fff;justify-content:center;font-weight:700;width:100%}
+      .nav-links .btn:hover{background:#126b35;color:#fff}
       .menu-toggle{display:grid;place-items:center}
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
       .mobile-sticky{display:block}
+      .whatsapp-float{right:18px;bottom:88px;width:54px;height:54px}
       body{padding-bottom:76px}
     }
 
@@ -606,6 +610,10 @@
   <div class="mobile-sticky" id="mobile-sticky">
     <a class="btn btn-gold" href="#qualifier" data-scroll>Start free qualifier <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
   </div>
+
+  <a href="https://wa.me/971555574958?text=Hi%21%20I%27m%20interested%20in%20the%20DXN%20Business%20Oppertunity." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.85 11.85 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.12 1.6 5.92L0 24l6.42-1.69a11.83 11.83 0 0 0 5.63 1.43h.01c6.54 0 11.85-5.3 11.85-11.84 0-3.16-1.23-6.13-3.39-8.42zM12.06 21.5h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.81 1 1.02-3.71-.23-.38a9.62 9.62 0 0 1-1.46-5.02C2.32 6.6 6.69 2.23 12.06 2.23a9.62 9.62 0 0 1 6.84 2.84 9.6 9.6 0 0 1 2.84 6.83c0 5.36-4.37 9.6-9.68 9.6zm5.46-7.18c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.23-.25-.6-.5-.51-.68-.52l-.58-.01c-.2 0-.53.07-.8.38-.28.3-1.05 1.03-1.05 2.5 0 1.48 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/></svg>
+  </a>
 
   <footer class="footer">
     <div class="container footer-grid">
