@@ -279,7 +279,7 @@
     .country-toggle[aria-expanded="true"]{border-color:var(--green-700);box-shadow:0 0 0 3px rgba(15,110,86,.12)}
     .country-toggle-label{display:flex;align-items:center;gap:8px;min-width:0}
     .country-toggle-label span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .country-flag{font-size:1.08rem;line-height:1}
+    .country-flag{width:22px;height:16px;flex:0 0 22px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
     .country-menu{position:absolute;left:0;top:calc(100% + 8px);z-index:80;width:min(360px,calc(100vw - 40px));background:var(--white);border:1px solid var(--border);border-radius:12px;box-shadow:0 18px 42px rgba(0,0,0,.16);padding:10px;display:none}
     .country-menu.is-open{display:block}
     .country-search{width:100%;min-height:42px;border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:8px;background:var(--white);color:var(--text)}
@@ -631,7 +631,7 @@
                     <div class="country-select" data-country-select>
                       <button class="country-toggle" id="country-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="country-list">
                         <span class="country-toggle-label">
-                          <span class="country-flag" id="selected-country-flag" aria-hidden="true">🇦🇪</span>
+                          <img class="country-flag" id="selected-country-flag" src="https://flagcdn.com/w40/ae.png" alt="" width="22" height="16" loading="lazy">
                           <span id="selected-country-label">UAE +971</span>
                         </span>
                         <i class="ti ti-chevron-down" aria-hidden="true"></i>
@@ -1104,9 +1104,13 @@
         return country.iso === 'AE' ? 'UAE ' + country.code : country.iso + ' ' + country.code;
       }
 
+      function countryFlagUrl(country){
+        return 'https://flagcdn.com/w40/' + country.iso.toLowerCase() + '.png';
+      }
+
       function setSelectedCountry(country){
         selectedCountry = country;
-        if(selectedFlag) selectedFlag.textContent = country.flag;
+        if(selectedFlag) selectedFlag.src = countryFlagUrl(country);
         if(selectedLabel) selectedLabel.textContent = countryLabel(country);
         if(countryCodeInput) countryCodeInput.value = country.code;
         if(countryNameInput) countryNameInput.value = country.name;
@@ -1166,7 +1170,7 @@
           option.setAttribute('role', 'option');
           option.setAttribute('aria-selected', country.iso === selectedCountry.iso ? 'true' : 'false');
           option.dataset.index = String(index);
-          option.innerHTML = '<span class="country-flag" aria-hidden="true">' + country.flag + '</span>' +
+          option.innerHTML = '<img class="country-flag" src="' + countryFlagUrl(country) + '" alt="" width="22" height="16" loading="lazy">' +
             '<span class="country-option-meta"><span class="country-option-name">' + country.name + '</span>' +
             '<span class="country-option-code">' + country.code + '</span></span>';
           option.addEventListener('click', function(){
