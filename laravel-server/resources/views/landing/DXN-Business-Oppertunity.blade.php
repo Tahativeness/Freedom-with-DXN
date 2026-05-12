@@ -279,7 +279,9 @@
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
     .iti{width:100%}
-    .iti input{width:100%}
+    .iti input{width:100%;border-radius:999px;min-height:50px}
+    .iti__selected-country{border-right:1px solid var(--border);padding:0 12px}
+    .iti__selected-dial-code{font-size:1rem;color:var(--text);font-weight:500}
     .iti__country-list{max-width:min(360px,calc(100vw - 48px));z-index:110}
     .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
     .privacy i{color:var(--green-700)}
@@ -616,8 +618,8 @@
                   <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
                 </div>
                 <div class="field">
-                  <label for="whatsapp">WhatsApp</label>
-                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="50 123 4567" required>
+                  <label for="whatsapp">WhatsApp Number</label>
+                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="Phone number" required>
                 </div>
                 <p class="form-error" id="form-error">Please complete your name, email, and WhatsApp number.</p>
                 <button class="btn btn-gold" type="submit">Get free access <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
@@ -701,10 +703,16 @@
       function initPhonePicker(){
         if(!window.intlTelInput || !whatsappInput) return;
         phonePicker = window.intlTelInput(whatsappInput, {
-          initialCountry: 'ae',
+          initialCountry: 'auto',
           separateDialCode: true,
           nationalMode: false,
           autoPlaceholder: 'aggressive',
+          geoIpLookup: function(success, failure){
+            fetch('https://ipwho.is/')
+              .then(function(response){ return response.json(); })
+              .then(function(data){ success((data && data.country_code ? data.country_code : 'AE').toLowerCase()); })
+              .catch(function(){ success('ae'); if(failure) failure(); });
+          },
           loadUtils: function(){
             return import('https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/utils.js');
           }
