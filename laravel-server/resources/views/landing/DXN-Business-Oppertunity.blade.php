@@ -203,8 +203,7 @@
     .overview-card{background:var(--surface);color:var(--text);border:.5px solid rgba(255,255,255,.16);border-radius:18px;padding:24px}
     .video-panel{border:.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--white)}
     .video-media{aspect-ratio:16/10;background:var(--green-900);display:grid;place-items:center;position:relative}
-    .video-media picture,.video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46}
-    .play{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--gold-text);display:grid;place-items:center;font-size:1.65rem}
+    .video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .video-body{padding:18px}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
     .stat{border:.5px solid var(--border);border-radius:10px;padding:11px 8px;text-align:center;background:var(--surface)}
@@ -361,7 +360,7 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 6+ million members in 180+ countries</div>
-          <h1>Build better health and a DXN Business Oppertunity in the UAE</h1>
+          <h1>Build better health and a DXN Business Opportunity in the UAE</h1>
           <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
           <div class="chips" aria-label="Key benefits">
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
@@ -379,7 +378,6 @@
           <div class="video-panel">
             <div class="video-media">
               <img src="/images/landing-page-image.png" alt="DXN business opportunity in the UAE" width="720" height="450" fetchpriority="high">
-              <div class="play"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
             </div>
             <div class="video-body">
               <h2 style="font-size:1.28rem;margin-bottom:6px">Free 15-minute overview</h2>
@@ -641,7 +639,7 @@
     <a class="btn btn-gold" href="#qualifier" data-scroll>Start free qualifier <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
   </div>
 
-  <a href="https://wa.me/971555574958?text=Hi%21%20I%27m%20interested%20in%20the%20DXN%20Business%20Oppertunity." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/971555574958?text=Hi%21%20I%27m%20interested%20in%20the%20DXN%20Business%20Opportunity." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.85 11.85 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.12 1.6 5.92L0 24l6.42-1.69a11.83 11.83 0 0 0 5.63 1.43h.01c6.54 0 11.85-5.3 11.85-11.84 0-3.16-1.23-6.13-3.39-8.42zM12.06 21.5h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.81 1 1.02-3.71-.23-.38a9.62 9.62 0 0 1-1.46-5.02C2.32 6.6 6.69 2.23 12.06 2.23a9.62 9.62 0 0 1 6.84 2.84 9.6 9.6 0 0 1 2.84 6.83c0 5.36-4.37 9.6-9.68 9.6zm5.46-7.18c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.23-.25-.6-.5-.51-.68-.52l-.58-.01c-.2 0-.53.07-.8.38-.28.3-1.05 1.03-1.05 2.5 0 1.48 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/></svg>
   </a>
 
