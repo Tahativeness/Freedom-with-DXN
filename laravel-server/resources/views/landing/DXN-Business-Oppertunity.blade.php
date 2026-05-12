@@ -236,6 +236,7 @@
     .step-card{position:relative;background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:52px 22px 24px}
     .step-badge{position:absolute;top:16px;left:16px;background:var(--green-900);color:var(--white);border-radius:999px;padding:5px 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
     .step-icon{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#E7F4EC,#FFF4DE);color:var(--green-900);display:grid;place-items:center;font-size:1.8rem;margin-bottom:16px;border:1px solid #CFE9D8;box-shadow:0 10px 24px rgba(4,52,44,.08)}
+    .step-icon i,.step-icon i::before{color:#000;display:block;font-size:2rem;line-height:1}
 
     .story{background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:22px}
     .stars{color:var(--gold);letter-spacing:1px;margin-bottom:12px}
