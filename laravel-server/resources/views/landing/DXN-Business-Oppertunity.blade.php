@@ -17,13 +17,13 @@
   <meta property="og:url" content="https://freedomwithdxn.com/">
   <meta property="og:title" content="Build better health and a second income in the UAE">
   <meta property="og:description" content="Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.">
-  <meta property="og:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
+  <meta property="og:image" content="https://freedomwithdxn.com/images/landing-page-image.png">
   <meta property="og:locale" content="en_AE">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Build better health and a second income in the UAE">
   <meta name="twitter:description" content="Join a globally trusted wellness opportunity in the UAE. Get your free overview now.">
-  <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
+  <meta name="twitter:image" content="https://freedomwithdxn.com/images/landing-page-image.png">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -378,10 +378,7 @@
         <aside class="overview-card" aria-label="Free overview summary">
           <div class="video-panel">
             <div class="video-media">
-              <picture>
-                <source srcset="https://picsum.photos/seed/dxn-wellness/720/450.webp" type="image/webp">
-                <img src="https://picsum.photos/seed/dxn-wellness/720/450.png" alt="" width="720" height="450">
-              </picture>
+              <img src="/images/landing-page-image.png" alt="DXN business opportunity in the UAE" width="720" height="450" fetchpriority="high">
               <div class="play"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
             </div>
             <div class="video-body">
