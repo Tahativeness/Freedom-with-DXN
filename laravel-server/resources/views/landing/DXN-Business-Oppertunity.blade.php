@@ -228,8 +228,10 @@
     .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
     .video-tool:hover{background:#198d45;color:#fff}
 
-    .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border)}
+    .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border);overflow:hidden}
+    .trust-marquee{width:min(100%,var(--container));margin:0 auto;padding:0 var(--pad)}
     .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+    .trust-row-copy{display:none}
     .trust-item{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--green-900);font-weight:500}
     .trust-item i{color:var(--green-700);font-size:1.2rem}
 
@@ -333,6 +335,7 @@
 
     @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(66,200,131,0)}100%{box-shadow:0 0 0 0 rgba(66,200,131,0)}}
     @keyframes ctaFlow{0%{left:-45%}55%,100%{left:120%}}
+    @keyframes trustMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
     @media (max-width:900px){
       .hero{min-height:auto;padding-top:118px}
@@ -358,6 +361,11 @@
       .country-toggle{border-right:1px solid var(--border);border-radius:8px 8px 0 0}
       .phone-input-group .phone-number-input{border-top:0;border-radius:0 0 8px 8px}
       .country-menu{width:100%;max-width:100%;top:calc(100% + 8px)}
+      .trust-strip{padding:18px 0}
+      .trust-marquee{display:flex;width:max-content;margin:0;padding:0;animation:trustMarquee 22s linear infinite}
+      .trust-row{display:flex;align-items:center;grid-template-columns:none;gap:34px;min-width:max-content;padding-right:34px}
+      .trust-row-copy{display:flex}
+      .trust-item{flex:0 0 auto;white-space:nowrap}
       .mobile-sticky{display:block}
       .whatsapp-float{right:18px;bottom:88px;width:54px;height:54px}
       body{padding-bottom:76px}
@@ -432,6 +440,25 @@
       </div>
     </section>
 
+    <section class="trust-strip" aria-label="Trust indicators">
+      <div class="trust-marquee">
+        <div class="trust-row">
+          <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
+          <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
+          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+          <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
+          <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+        </div>
+        <div class="trust-row trust-row-copy" aria-hidden="true">
+          <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
+          <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
+          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+          <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
+          <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+        </div>
+      </div>
+    </section>
+
     <section class="overview-video" id="overview-video">
       <div class="container">
         <div class="section-head">
@@ -451,16 +478,6 @@
               allowfullscreen></iframe>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="trust-strip" aria-label="Trust indicators">
-      <div class="container trust-row">
-        <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
-        <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-        <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
-        <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
-        <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
       </div>
     </section>
 
