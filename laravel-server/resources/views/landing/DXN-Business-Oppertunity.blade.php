@@ -214,11 +214,11 @@
     .stat span{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
     .cert{display:flex;align-items:center;gap:8px;color:var(--green-700);font-size:.9rem}
 
-    .overview-video{background:#111014;color:#fff;padding:clamp(72px,9vw,108px) 0}
-    .overview-video .eyebrow{color:#efc25f;margin-bottom:18px}
+    .overview-video{background:#F8F7F2;color:#000;padding:clamp(72px,9vw,108px) 0}
+    .overview-video .eyebrow{color:#000;margin-bottom:18px}
     .overview-video .section-head{margin-bottom:44px}
-    .overview-video h2{color:#fff;font-size:clamp(2rem,4vw,3rem)}
-    .overview-video .lead{color:rgba(255,255,255,.72)}
+    .overview-video h2{color:#000;font-size:clamp(2rem,4vw,3rem)}
+    .overview-video .lead{color:#000}
     .video-shell{width:min(100%,980px);margin:0 auto;transition:max-width .22s ease}
     .video-shell[data-zoom="large"]{max-width:1160px}
     .video-shell[data-zoom="small"]{max-width:820px}
@@ -449,11 +449,6 @@
               loading="lazy"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
-          </div>
-          <div class="video-toolbar" aria-label="Video display controls">
-            <button class="video-tool" type="button" data-video-zoom="small" aria-label="Zoom video out"><i class="ti ti-zoom-out" aria-hidden="true"></i></button>
-            <button class="video-tool" type="button" data-video-zoom="large" aria-label="Zoom video in"><i class="ti ti-zoom-in" aria-hidden="true"></i></button>
-            <button class="video-tool" type="button" id="video-fullscreen" aria-label="Open video fullscreen"><i class="ti ti-arrows-maximize" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
