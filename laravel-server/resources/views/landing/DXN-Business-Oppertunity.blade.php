@@ -278,12 +278,18 @@
     .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
-    .phone-row{display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,1fr);border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:visible}
+    .phone-row{position:relative;display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,1fr);border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:visible}
     .phone-row:focus-within{border-color:var(--green-700);box-shadow:0 0 0 4px rgba(15,110,86,.12)}
     .phone-country{position:relative;min-width:0;border-right:1px solid var(--border);background:#F8FCFA;border-radius:14px 0 0 14px}
     .phone-country::after{content:"";position:absolute;right:13px;top:50%;z-index:2;width:8px;height:8px;border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:translateY(-65%) rotate(45deg);pointer-events:none}
-    .country-selected-label{position:absolute;left:12px;right:34px;top:50%;z-index:1;transform:translateY(-50%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:700;font-size:.94rem;pointer-events:none}
-    .country-code-select{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;opacity:0;cursor:pointer}
+    .country-switcher{width:100%;min-height:54px;border:0;background:transparent;padding:0 34px 0 12px;color:var(--text);font-weight:700;font-size:.94rem;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+    .country-dropdown{position:absolute;left:0;top:calc(100% + 8px);z-index:140;width:min(420px,calc(100vw - 44px));max-height:310px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--white);box-shadow:0 18px 50px rgba(0,0,0,.18)}
+    .country-dropdown[hidden]{display:none}
+    .country-search{width:calc(100% - 20px)!important;min-height:42px!important;margin:10px!important;border-radius:10px!important}
+    .country-options{max-height:248px;overflow-y:auto;padding:4px}
+    .country-option{width:100%;border:0;background:transparent;border-radius:10px;padding:10px 12px;text-align:left;color:var(--text);font-weight:600;cursor:pointer}
+    .country-option:hover,.country-option.is-active{background:var(--green-100);color:var(--green-900)}
+    .country-option small{color:var(--muted);font-weight:500}
     .phone-number-input{min-width:0;width:100%;min-height:54px;border:0!important;border-radius:0 14px 14px 0!important;padding:12px 14px!important}
     .phone-number-input:focus{outline:0!important;box-shadow:none!important}
     .phone-hidden-validator{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
@@ -348,7 +354,8 @@
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
       .phone-row{grid-template-columns:minmax(126px,.86fr) minmax(0,1fr)}
-      .country-selected-label{left:10px;right:24px;font-size:.9rem}
+      .country-switcher{padding-left:10px;padding-right:28px;font-size:.9rem}
+      .country-dropdown{width:calc(100vw - 40px)}
       .trust-strip .container{width:max-content;max-width:none;padding:0}
       .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
       .trust-item{flex:0 0 auto}
@@ -629,10 +636,13 @@
                   <label for="whatsapp">WhatsApp Number</label>
                   <div class="phone-row">
                     <div class="phone-country">
-                      <span class="country-selected-label" id="country-selected-label">UAE +971</span>
-                      <select id="country-code" class="country-code-select" aria-label="Choose country code"></select>
+                      <button class="country-switcher" id="country-switcher" type="button" aria-haspopup="listbox" aria-expanded="false">UAE +971</button>
                     </div>
                     <input id="whatsapp-local" class="phone-number-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Phone number" required>
+                    <div class="country-dropdown" id="country-dropdown" hidden>
+                      <input class="country-search" id="country-search" type="search" placeholder="Search country or code" autocomplete="off">
+                      <div class="country-options" id="country-options" role="listbox" aria-label="Country codes"></div>
+                    </div>
                   </div>
                   <input id="whatsapp" class="phone-hidden-validator" name="whatsapp" type="tel" tabindex="-1" aria-hidden="true">
                   <small class="phone-help" id="phone-help">Choose your country code, then enter your WhatsApp number.</small>
@@ -714,8 +724,10 @@
       var params = new URLSearchParams(window.location.search);
       var whatsappInput = document.getElementById('whatsapp');
       var whatsappLocal = document.getElementById('whatsapp-local');
-      var countrySelect = document.getElementById('country-code');
-      var countrySelectedLabel = document.getElementById('country-selected-label');
+      var countrySwitcher = document.getElementById('country-switcher');
+      var countryDropdown = document.getElementById('country-dropdown');
+      var countrySearch = document.getElementById('country-search');
+      var countryOptions = document.getElementById('country-options');
       var phoneHelp = document.getElementById('phone-help');
       var phonePicker = null;
       var countryData = [];
@@ -735,6 +747,36 @@
       function getDisplayCountryName(country){
         var shortNames = {ae: 'UAE', us: 'USA', gb: 'UK'};
         return shortNames[country.iso2] || country.name.replace(/\s*\(.+?\)\s*/g, '');
+      }
+
+      function closeCountryDropdown(){
+        if(!countryDropdown || !countrySwitcher) return;
+        countryDropdown.hidden = true;
+        countrySwitcher.setAttribute('aria-expanded', 'false');
+      }
+
+      function openCountryDropdown(){
+        if(!countryDropdown || !countrySwitcher || !countrySearch) return;
+        countryDropdown.hidden = false;
+        countrySwitcher.setAttribute('aria-expanded', 'true');
+        renderCountryOptions(countrySearch.value);
+        window.setTimeout(function(){ countrySearch.focus(); }, 0);
+      }
+
+      function renderCountryOptions(query){
+        if(!countryOptions) return;
+        var term = (query || '').trim().toLowerCase();
+        var filtered = countryData.filter(function(country){
+          var haystack = [country.name, country.iso2, '+' + country.dialCode, country.dialCode].join(' ').toLowerCase();
+          return !term || haystack.indexOf(term) !== -1;
+        });
+        countryOptions.innerHTML = filtered.map(function(country){
+          var active = country.iso2 === activeCountry ? ' is-active' : '';
+          return '<button class="country-option' + active + '" type="button" role="option" data-country="' + country.iso2 + '">' +
+            getDisplayCountryName(country) + ' +' + country.dialCode +
+            ' <small>(' + country.name + ')</small>' +
+            '</button>';
+        }).join('');
       }
 
       function getLocalPlaceholder(iso2){
@@ -768,10 +810,9 @@
         var country = getCountryByIso(iso2) || getCountryByIso('ae');
         if(!country) return;
         activeCountry = country.iso2;
-        if(countrySelect && countrySelect.value !== activeCountry) countrySelect.value = activeCountry;
         if(phonePicker) phonePicker.setCountry(activeCountry);
-        if(countrySelectedLabel){
-          countrySelectedLabel.textContent = getDisplayCountryName(country) + ' +' + country.dialCode;
+        if(countrySwitcher){
+          countrySwitcher.textContent = getDisplayCountryName(country) + ' +' + country.dialCode;
         }
         if(whatsappLocal){
           var placeholder = getLocalPlaceholder(activeCountry);
@@ -805,12 +846,9 @@
       }
 
       function initPhonePicker(){
-        if(!window.intlTelInput || !whatsappInput || !countrySelect || !whatsappLocal) return;
+        if(!window.intlTelInput || !whatsappInput || !countrySwitcher || !countryDropdown || !countryOptions || !whatsappLocal) return;
         countryData = window.intlTelInput.getCountryData();
-        countrySelect.innerHTML = countryData.map(function(country){
-          var label = country.name + ' +' + country.dialCode;
-          return '<option value="' + country.iso2 + '">' + label + '</option>';
-        }).join('');
+        renderCountryOptions('');
 
         phonePicker = window.intlTelInput(whatsappInput, {
           initialCountry: 'ae',
@@ -823,8 +861,32 @@
         var validatorShell = whatsappInput.closest('.iti');
         if(validatorShell) validatorShell.classList.add('phone-validator-shell');
 
-        countrySelect.addEventListener('change', function(){
-          setActiveCountry(countrySelect.value);
+        countrySwitcher.addEventListener('click', function(){
+          if(countryDropdown.hidden){
+            openCountryDropdown();
+          } else {
+            closeCountryDropdown();
+          }
+        });
+        if(countrySearch){
+          countrySearch.addEventListener('input', function(){
+            renderCountryOptions(countrySearch.value);
+          });
+          countrySearch.addEventListener('keydown', function(event){
+            if(event.key === 'Escape') closeCountryDropdown();
+          });
+        }
+        countryOptions.addEventListener('click', function(event){
+          var option = event.target.closest('[data-country]');
+          if(!option) return;
+          setActiveCountry(option.getAttribute('data-country'));
+          closeCountryDropdown();
+          whatsappLocal.focus();
+        });
+        document.addEventListener('click', function(event){
+          if(countryDropdown.hidden) return;
+          if(event.target.closest('.phone-row')) return;
+          closeCountryDropdown();
         });
         whatsappLocal.addEventListener('input', syncFullPhoneNumber);
 
