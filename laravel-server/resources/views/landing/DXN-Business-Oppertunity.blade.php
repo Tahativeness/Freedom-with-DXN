@@ -161,6 +161,7 @@
     .lead{color:var(--muted);font-size:clamp(1rem,1.6vw,1.16rem)}
     .dark{background:var(--green-900);color:var(--white)}
     .hero.dark,#qualifier.section.dark,.final-cta.section.dark{background:#E5F2EC}
+    .hero.dark,.hero.dark h1,.hero.dark .trust-pill,.hero.dark .hero-sub,.hero.dark .chip,.hero.dark .reassurance,#qualifier.section.dark .section-head .eyebrow,#qualifier.section.dark .section-head h2,#qualifier.section.dark .section-head .lead,.final-cta.section.dark .urgency,.final-cta.section.dark h2,.final-cta.section.dark .lead,.final-cta.section.dark .trust-line{color:#000!important}
     .dark .lead,.dark .muted{color:rgba(255,255,255,.76)}
     .cream{background:var(--cream)}
     .light{background:var(--white)}
