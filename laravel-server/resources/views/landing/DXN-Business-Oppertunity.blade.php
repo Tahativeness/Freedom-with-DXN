@@ -324,6 +324,9 @@
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
+      .trust-row{display:flex;gap:22px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+      .trust-row::-webkit-scrollbar{display:none}
+      .trust-item{flex:0 0 auto}
       .mobile-sticky{display:block}
       .whatsapp-float{right:18px;bottom:88px;width:54px;height:54px}
       body{padding-bottom:76px}
