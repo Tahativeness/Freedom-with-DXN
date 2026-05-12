@@ -399,6 +399,16 @@
       </div>
     </section>
 
+    <section class="trust-strip" aria-label="Trust indicators">
+      <div class="container trust-row">
+        <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
+        <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
+        <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+        <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
+        <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+      </div>
+    </section>
+
     <section class="overview-video" id="overview-video">
       <div class="container">
         <div class="section-head">
@@ -418,16 +428,6 @@
               allowfullscreen></iframe>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="trust-strip" aria-label="Trust indicators">
-      <div class="container trust-row">
-        <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
-        <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-        <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
-        <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
-        <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
       </div>
     </section>
 
