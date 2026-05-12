@@ -131,6 +131,7 @@
       --red-text:#791F1F;
       --blue-bg:#E6F1FB;
       --blue-text:#0C447C;
+      --mint-bg:#EFF8F3;
       --container:1140px;
       --pad:clamp(20px,5vw,48px);
       --radius:14px;
@@ -161,6 +162,12 @@
     .lead{color:var(--muted);font-size:clamp(1rem,1.6vw,1.16rem)}
     .dark{background:var(--green-900);color:var(--white)}
     .dark .lead,.dark .muted{color:rgba(255,255,255,.76)}
+    .mint-section{background:var(--mint-bg);color:var(--text)}
+    .mint-section h1,.mint-section h2{color:var(--text)!important}
+    .mint-section .eyebrow{color:var(--green-700)!important}
+    .mint-section .lead,.mint-section .hero-sub,.mint-section .reassurance,.mint-section .trust-line{color:var(--muted)}
+    .mint-section .trust-pill,.mint-section .chip,.mint-section .urgency{border-color:rgba(4,52,44,.18);color:var(--green-900);background:rgba(255,255,255,.45)}
+    .mint-section .pulse,.mint-section .chip i,.mint-section .reassurance i,.mint-section .urgency i{color:var(--green-700)}
     .cream{background:var(--cream)}
     .light{background:var(--white)}
 
@@ -365,7 +372,7 @@
   </header>
 
   <main id="main">
-    <section class="hero dark">
+    <section class="hero dark mint-section">
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 6+ million members in 180+ countries</div>
@@ -534,7 +541,7 @@
       </div>
     </section>
 
-    <section class="section dark" id="qualifier">
+    <section class="section dark mint-section" id="qualifier">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow" style="color:#7DD9B7">Free qualifier</p>
@@ -642,7 +649,7 @@
       </div>
     </section>
 
-    <section class="section dark final-cta">
+    <section class="section dark final-cta mint-section">
       <div class="container">
         <div class="urgency"><i class="ti ti-clock" aria-hidden="true"></i>Limited new-member spots this month</div>
         <h2 style="color:#fff">Your health and financial future starts with one click</h2>
