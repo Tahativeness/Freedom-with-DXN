@@ -281,7 +281,8 @@
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
     .phone-row{display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,1fr);border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:visible}
     .phone-row:focus-within{border-color:var(--green-700);box-shadow:0 0 0 4px rgba(15,110,86,.12)}
-    .phone-country{min-width:0;border-right:1px solid var(--border);background:#F8FCFA;border-radius:14px 0 0 14px}
+    .phone-country{position:relative;min-width:0;border-right:1px solid var(--border);background:#F8FCFA;border-radius:14px 0 0 14px}
+    .country-selected-label{position:absolute;left:12px;right:28px;top:50%;z-index:2;transform:translateY(-50%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:700;font-size:.94rem;pointer-events:none}
     .country-code-select{width:100%;min-height:54px;border:0;background:transparent;padding:0 12px;color:var(--text);font-weight:600}
     .phone-number-input{min-width:0;width:100%;min-height:54px;border:0!important;border-radius:0 14px 14px 0!important;padding:12px 14px!important}
     .phone-number-input:focus{outline:0!important;box-shadow:none!important}
@@ -289,7 +290,7 @@
     .phone-validator-shell{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
     .phone-country .ts-wrapper{min-height:54px}
     .phone-country .ts-control{min-height:54px;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:14px 0 0 14px;padding:12px!important;color:var(--text);font-weight:600}
-    .phone-country .ts-control .item{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .phone-country .ts-control .item{opacity:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .phone-country .ts-dropdown{border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);margin-top:8px;z-index:120}
     .phone-country .ts-dropdown .option{padding:10px 12px}
     .phone-country .ts-control input{min-height:0!important;border:0!important;padding:0!important}
@@ -354,6 +355,7 @@
       .stats{grid-template-columns:1fr}
       .phone-row{grid-template-columns:minmax(126px,.86fr) minmax(0,1fr)}
       .country-code-select{padding:0 10px}
+      .country-selected-label{left:10px;right:24px;font-size:.9rem}
       .phone-country .ts-control{padding:12px 10px!important}
       .trust-strip .container{width:max-content;max-width:none;padding:0}
       .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
@@ -635,6 +637,7 @@
                   <label for="whatsapp">WhatsApp Number</label>
                   <div class="phone-row">
                     <div class="phone-country">
+                      <span class="country-selected-label" id="country-selected-label">🇦🇪 UAE +971</span>
                       <select id="country-code" class="country-code-select" aria-label="Choose country code"></select>
                     </div>
                     <input id="whatsapp-local" class="phone-number-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Phone number" required>
@@ -721,6 +724,7 @@
       var whatsappInput = document.getElementById('whatsapp');
       var whatsappLocal = document.getElementById('whatsapp-local');
       var countrySelect = document.getElementById('country-code');
+      var countrySelectedLabel = document.getElementById('country-selected-label');
       var phoneHelp = document.getElementById('phone-help');
       var phonePicker = null;
       var countrySelectWidget = null;
@@ -778,6 +782,9 @@
         if(countrySelect && countrySelect.value !== activeCountry) countrySelect.value = activeCountry;
         if(countrySelectWidget && countrySelectWidget.getValue() !== activeCountry) countrySelectWidget.setValue(activeCountry, true);
         if(phonePicker) phonePicker.setCountry(activeCountry);
+        if(countrySelectedLabel){
+          countrySelectedLabel.textContent = getFlagEmoji(country.iso2) + ' ' + country.name.replace(/\s*\(.+?\)\s*/g, '') + ' +' + country.dialCode;
+        }
         if(whatsappLocal){
           var placeholder = getLocalPlaceholder(activeCountry);
           if(phonePicker && typeof phonePicker.getExampleNumber === 'function'){
