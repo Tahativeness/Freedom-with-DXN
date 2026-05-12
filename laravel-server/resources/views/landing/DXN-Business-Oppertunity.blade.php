@@ -32,6 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/css/intlTelInput.css">
 
   <script type="application/ld+json">
   {
@@ -277,6 +278,9 @@
     .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
+    .iti{width:100%}
+    .iti input{width:100%}
+    .iti__country-list{max-width:min(360px,calc(100vw - 48px));z-index:110}
     .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
     .privacy i{color:var(--green-700)}
     .form-error{display:none;color:#9F2D20;background:#FFF1EE;border:.5px solid #FFD4CB;border-radius:8px;padding:10px 12px;font-size:.9rem}
@@ -613,7 +617,7 @@
                 </div>
                 <div class="field">
                   <label for="whatsapp">WhatsApp</label>
-                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+971 ..." required>
+                  <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="50 123 4567" required>
                 </div>
                 <p class="form-error" id="form-error">Please complete your name, email, and WhatsApp number.</p>
                 <button class="btn btn-gold" type="submit">Get free access <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
@@ -677,6 +681,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/intlTelInput.min.js"></script>
   <script>
     (function(){
       var header = document.getElementById('site-header');
@@ -689,7 +694,28 @@
       var utm = {};
       var currentStep = 1;
       var params = new URLSearchParams(window.location.search);
+      var whatsappInput = document.getElementById('whatsapp');
+      var phonePicker = null;
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
+
+      function initPhonePicker(){
+        if(!window.intlTelInput || !whatsappInput) return;
+        phonePicker = window.intlTelInput(whatsappInput, {
+          initialCountry: 'ae',
+          separateDialCode: true,
+          nationalMode: false,
+          autoPlaceholder: 'aggressive',
+          loadUtils: function(){
+            return import('https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/utils.js');
+          }
+        });
+      }
+
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', initPhonePicker);
+      } else {
+        initPhonePicker();
+      }
 
       function updateHeader(){
         if(!header) return;
@@ -794,7 +820,8 @@
           var error = document.getElementById('form-error');
           var name = form.name.value.trim();
           var email = form.email.value.trim();
-          var whatsapp = form.whatsapp.value.trim();
+          var rawWhatsapp = form.whatsapp.value.trim();
+          var whatsapp = phonePicker && rawWhatsapp ? phonePicker.getNumber() : rawWhatsapp;
           if(!name || !email || !whatsapp){
             if(error) error.classList.add('show');
             return;
