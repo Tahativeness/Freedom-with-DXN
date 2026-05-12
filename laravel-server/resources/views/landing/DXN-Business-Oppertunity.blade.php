@@ -205,7 +205,7 @@
     .overview-card{background:var(--surface);color:var(--text);border:.5px solid rgba(255,255,255,.16);border-radius:18px;padding:24px}
     .video-panel{border:.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--white)}
     .video-media{aspect-ratio:16/10;background:var(--green-900);display:grid;place-items:center;position:relative}
-    .video-media picture,.video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46}
+    .video-media picture,.video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
     .play{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--gold-text);display:grid;place-items:center;font-size:1.65rem}
     .video-body{padding:18px}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
@@ -420,10 +420,8 @@
           <div class="video-panel">
             <div class="video-media">
               <picture>
-                <source srcset="https://picsum.photos/seed/dxn-wellness/720/450.webp" type="image/webp">
-                <img src="https://picsum.photos/seed/dxn-wellness/720/450.png" alt="" width="720" height="450">
+                <img src="{{ asset('images/landing-page-image.png') }}" alt="Freedom with DXN business opportunity overview" width="720" height="450">
               </picture>
-              <div class="play"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
             </div>
             <div class="video-body">
               <h2 style="font-size:1.28rem;margin-bottom:6px">Free 15-minute overview</h2>
