@@ -33,7 +33,6 @@
   <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/css/intlTelInput.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css">
 
   <script type="application/ld+json">
   {
@@ -282,18 +281,13 @@
     .phone-row{display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,1fr);border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:visible}
     .phone-row:focus-within{border-color:var(--green-700);box-shadow:0 0 0 4px rgba(15,110,86,.12)}
     .phone-country{position:relative;min-width:0;border-right:1px solid var(--border);background:#F8FCFA;border-radius:14px 0 0 14px}
-    .country-selected-label{position:absolute;left:12px;right:28px;top:50%;z-index:2;transform:translateY(-50%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:700;font-size:.94rem;pointer-events:none}
-    .country-code-select{width:100%;min-height:54px;border:0;background:transparent;padding:0 12px;color:var(--text);font-weight:600}
+    .phone-country::after{content:"";position:absolute;right:13px;top:50%;z-index:2;width:8px;height:8px;border-right:2px solid var(--text);border-bottom:2px solid var(--text);transform:translateY(-65%) rotate(45deg);pointer-events:none}
+    .country-selected-label{position:absolute;left:12px;right:34px;top:50%;z-index:1;transform:translateY(-50%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);font-weight:700;font-size:.94rem;pointer-events:none}
+    .country-code-select{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;opacity:0;cursor:pointer}
     .phone-number-input{min-width:0;width:100%;min-height:54px;border:0!important;border-radius:0 14px 14px 0!important;padding:12px 14px!important}
     .phone-number-input:focus{outline:0!important;box-shadow:none!important}
     .phone-hidden-validator{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
     .phone-validator-shell{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
-    .phone-country .ts-wrapper{min-height:54px}
-    .phone-country .ts-control{min-height:54px;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:14px 0 0 14px;padding:12px!important;color:var(--text);font-weight:600}
-    .phone-country .ts-control .item{opacity:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .phone-country .ts-dropdown{border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);margin-top:8px;z-index:120}
-    .phone-country .ts-dropdown .option{padding:10px 12px}
-    .phone-country .ts-control input{min-height:0!important;border:0!important;padding:0!important}
     .phone-help{display:block;margin-top:6px;color:var(--muted);font-size:.82rem}
     .privacy{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.88rem}
     .privacy i{color:var(--green-700)}
@@ -354,9 +348,7 @@
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
       .phone-row{grid-template-columns:minmax(126px,.86fr) minmax(0,1fr)}
-      .country-code-select{padding:0 10px}
       .country-selected-label{left:10px;right:24px;font-size:.9rem}
-      .phone-country .ts-control{padding:12px 10px!important}
       .trust-strip .container{width:max-content;max-width:none;padding:0}
       .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
       .trust-item{flex:0 0 auto}
@@ -637,7 +629,7 @@
                   <label for="whatsapp">WhatsApp Number</label>
                   <div class="phone-row">
                     <div class="phone-country">
-                      <span class="country-selected-label" id="country-selected-label">🇦🇪 UAE +971</span>
+                      <span class="country-selected-label" id="country-selected-label">UAE +971</span>
                       <select id="country-code" class="country-code-select" aria-label="Choose country code"></select>
                     </div>
                     <input id="whatsapp-local" class="phone-number-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Phone number" required>
@@ -708,7 +700,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/build/js/intlTelInput.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
   <script>
     (function(){
       var header = document.getElementById('site-header');
@@ -727,7 +718,6 @@
       var countrySelectedLabel = document.getElementById('country-selected-label');
       var phoneHelp = document.getElementById('phone-help');
       var phonePicker = null;
-      var countrySelectWidget = null;
       var countryData = [];
       var activeCountry = 'ae';
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
@@ -738,14 +728,13 @@
         return match ? match[1].toLowerCase() : '';
       }
 
-      function getFlagEmoji(iso2){
-        return iso2 ? iso2.toUpperCase().replace(/./g, function(char){
-          return String.fromCodePoint(127397 + char.charCodeAt(0));
-        }) : '';
-      }
-
       function getCountryByIso(iso2){
         return countryData.find(function(country){ return country.iso2 === iso2; }) || countryData[0];
+      }
+
+      function getDisplayCountryName(country){
+        var shortNames = {ae: 'UAE', us: 'USA', gb: 'UK'};
+        return shortNames[country.iso2] || country.name.replace(/\s*\(.+?\)\s*/g, '');
       }
 
       function getLocalPlaceholder(iso2){
@@ -780,10 +769,9 @@
         if(!country) return;
         activeCountry = country.iso2;
         if(countrySelect && countrySelect.value !== activeCountry) countrySelect.value = activeCountry;
-        if(countrySelectWidget && countrySelectWidget.getValue() !== activeCountry) countrySelectWidget.setValue(activeCountry, true);
         if(phonePicker) phonePicker.setCountry(activeCountry);
         if(countrySelectedLabel){
-          countrySelectedLabel.textContent = getFlagEmoji(country.iso2) + ' ' + country.name.replace(/\s*\(.+?\)\s*/g, '') + ' +' + country.dialCode;
+          countrySelectedLabel.textContent = getDisplayCountryName(country) + ' +' + country.dialCode;
         }
         if(whatsappLocal){
           var placeholder = getLocalPlaceholder(activeCountry);
@@ -820,21 +808,9 @@
         if(!window.intlTelInput || !whatsappInput || !countrySelect || !whatsappLocal) return;
         countryData = window.intlTelInput.getCountryData();
         countrySelect.innerHTML = countryData.map(function(country){
-          var label = getFlagEmoji(country.iso2) + ' ' + country.name + ' +' + country.dialCode;
+          var label = country.name + ' +' + country.dialCode;
           return '<option value="' + country.iso2 + '">' + label + '</option>';
         }).join('');
-
-        if(window.TomSelect){
-          countrySelectWidget = new TomSelect(countrySelect, {
-            maxItems: 1,
-            searchField: ['text'],
-            create: false,
-            render: {
-              item: function(data, escape){ return '<div>' + escape(data.text) + '</div>'; },
-              option: function(data, escape){ return '<div>' + escape(data.text) + '</div>'; }
-            }
-          });
-        }
 
         phonePicker = window.intlTelInput(whatsappInput, {
           initialCountry: 'ae',
