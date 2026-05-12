@@ -160,6 +160,7 @@
     p{margin-bottom:0}
     .lead{color:var(--muted);font-size:clamp(1rem,1.6vw,1.16rem)}
     .dark{background:var(--green-900);color:var(--white)}
+    .hero.dark,#qualifier.section.dark,.final-cta.section.dark{background:#E5F2EC}
     .dark .lead,.dark .muted{color:rgba(255,255,255,.76)}
     .cream{background:var(--cream)}
     .light{background:var(--white)}
