@@ -221,10 +221,11 @@
     .video-shell[data-zoom="small"]{max-width:820px}
     .video-frame{position:relative;aspect-ratio:16/9;border-radius:18px;padding:3px;background:linear-gradient(135deg,#198d45,#6248a8,#ef9f27,#d94b3f);box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
     .video-frame iframe{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
-    .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border)}
+    .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border);overflow:hidden}
     .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
     .trust-item{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--green-900);font-weight:500}
     .trust-item i{color:var(--green-700);font-size:1.2rem}
+    .trust-duplicate{display:none}
 
     .problem-grid,.step-grid,.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
     .problem-card{background:var(--surface);border:.5px solid var(--border);border-left:4px solid var(--coral);border-radius:12px;padding:20px}
@@ -304,6 +305,7 @@
 
     @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(66,200,131,0)}100%{box-shadow:0 0 0 0 rgba(66,200,131,0)}}
     @keyframes ctaFlow{0%{left:-45%}55%,100%{left:120%}}
+    @keyframes trustMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 14px))}}
 
     @media (max-width:900px){
       .hero{min-height:auto;padding-top:118px}
@@ -324,9 +326,10 @@
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
-      .trust-row{display:flex;gap:22px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-      .trust-row::-webkit-scrollbar{display:none}
+      .trust-strip .container{width:max-content;max-width:none;padding:0}
+      .trust-row{display:flex;gap:28px;white-space:nowrap;animation:trustMarquee 20s linear infinite;will-change:transform}
       .trust-item{flex:0 0 auto}
+      .trust-duplicate{display:flex}
       .mobile-sticky{display:block}
       .whatsapp-float{right:18px;bottom:88px;width:54px;height:54px}
       body{padding-bottom:76px}
@@ -334,6 +337,7 @@
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+      .trust-row{transform:none!important}
     }
   </style>
 </head>
@@ -404,6 +408,11 @@
         <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
         <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
         <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+        <div class="trust-item trust-duplicate" aria-hidden="true"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
+        <div class="trust-item trust-duplicate" aria-hidden="true"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
+        <div class="trust-item trust-duplicate" aria-hidden="true"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+        <div class="trust-item trust-duplicate" aria-hidden="true"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
+        <div class="trust-item trust-duplicate" aria-hidden="true"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
       </div>
     </section>
 
