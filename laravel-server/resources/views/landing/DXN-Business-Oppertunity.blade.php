@@ -202,8 +202,8 @@
     .reassurance i{color:#42C883}
     .overview-card{background:var(--surface);color:var(--text);border:.5px solid rgba(255,255,255,.16);border-radius:18px;padding:24px}
     .video-panel{border:.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--white)}
-    .video-media{aspect-ratio:16/10;background:var(--green-900);display:grid;place-items:center;position:relative}
-    .video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .video-media{aspect-ratio:1447/1087;background:var(--white);display:grid;place-items:center;position:relative}
+    .video-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
     .video-body{padding:18px}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
     .stat{border:.5px solid var(--border);border-radius:10px;padding:11px 8px;text-align:center;background:var(--surface)}
