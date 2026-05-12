@@ -237,6 +237,7 @@
     .step-badge{position:absolute;top:16px;left:16px;background:var(--green-900);color:var(--white);border-radius:999px;padding:5px 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
     .step-icon{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#E7F4EC,#FFF4DE);color:var(--green-900);display:grid;place-items:center;font-size:1.8rem;margin-bottom:16px;border:1px solid #CFE9D8;box-shadow:0 10px 24px rgba(4,52,44,.08)}
     .step-icon i,.step-icon i::before{color:#000;display:block;font-size:2rem;line-height:1}
+    .step-icon svg{width:30px;height:30px;stroke:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
     .story{background:var(--surface);border:.5px solid var(--border);border-radius:14px;padding:22px}
     .stars{color:var(--gold);letter-spacing:1px;margin-bottom:12px}
@@ -465,19 +466,25 @@
         <div class="step-grid">
           <article class="step-card">
             <span class="step-badge">Step 1</span>
-            <div class="step-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 4 8 4 15c0 2 1 4 1 6Z"/><path d="M9 15c2-3 5-5 10-7"/></svg>
+            </div>
             <h3>Use the products</h3>
             <p>Swap your daily coffee, tea, and supplements for Ganoderma-based wellness alternatives.</p>
           </article>
           <article class="step-card">
             <span class="step-badge">Step 2</span>
-            <div class="step-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
             <h3>Share with others</h3>
             <p>Recommend what's actually working for you with no cold calls and no pressure.</p>
           </article>
           <article class="step-card">
             <span class="step-badge">Step 3</span>
-            <div class="step-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-7"/></svg>
+            </div>
             <h3>Build long-term income</h3>
             <p>Compound your effort through a structured global compensation system.</p>
           </article>
