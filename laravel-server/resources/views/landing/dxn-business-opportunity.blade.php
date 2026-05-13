@@ -31,7 +31,8 @@
   <meta name="twitter:description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Get your free overview now.' }}">
   <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
 
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
