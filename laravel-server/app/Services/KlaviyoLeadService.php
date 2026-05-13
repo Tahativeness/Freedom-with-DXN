@@ -10,7 +10,7 @@ class KlaviyoLeadService
     public function subscribeLead(array $lead): bool
     {
         $apiKey = config('services.klaviyo.api_key');
-        $listId = config('services.klaviyo.list_id');
+        $listId = $this->normalizeListId(config('services.klaviyo.list_id'));
 
         if (empty($apiKey) || empty($listId)) {
             Log::warning('Klaviyo lead sync skipped: missing KLAVIYO_PRIVATE_API_KEY or KLAVIYO_LIST_ID');
@@ -115,5 +115,21 @@ class KlaviyoLeadService
         $parts = preg_split('/\s+/', trim($name), 2);
 
         return $parts[1] ?? null;
+    }
+
+    private function normalizeListId(?string $listId): ?string
+    {
+        if (empty($listId)) {
+            return null;
+        }
+
+        $listId = trim($listId);
+        $path = parse_url($listId, PHP_URL_PATH);
+
+        if (is_string($path) && preg_match('#/list/([^/]+)#', $path, $matches)) {
+            return $matches[1];
+        }
+
+        return $listId;
     }
 }
