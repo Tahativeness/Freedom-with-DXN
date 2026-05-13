@@ -235,7 +235,8 @@
     .video-shell[data-zoom="large"]{max-width:1160px}
     .video-shell[data-zoom="small"]{max-width:820px}
     .video-frame{position:relative;aspect-ratio:16/9;border-radius:18px;padding:3px;background:linear-gradient(135deg,#198d45,#6248a8,#ef9f27,#d94b3f);box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
-    .video-frame iframe{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
+    .video-frame iframe,.video-frame video{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
+    .video-frame video{object-fit:cover}
     .video-toolbar{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
     .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
     .video-tool:hover{background:#198d45;color:#fff}
@@ -484,13 +485,16 @@
 
         <div class="video-shell" id="overview-video-shell" data-zoom="normal">
           <div class="video-frame" id="overview-video-frame">
-            <iframe
+            <video
               id="overview-video-player"
-              src="<iframe width="951" height="535" src="https://www.youtube.com/embed/ltrQYyUNgU0" title="Say yes to your financial freedom. #networkmarketing  #NetworkMarketing #PassiveIncome" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
               title="Freedom with DXN business overview video"
-              loading="lazy"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
+              controls
+              preload="metadata"
+              playsinline
+              poster="{{ asset('images/landing-page-image.png') }}">
+              <source src="{{ asset('Video/watch-free-overview.mp4') }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
