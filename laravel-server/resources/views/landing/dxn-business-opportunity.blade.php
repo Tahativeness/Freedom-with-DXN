@@ -491,6 +491,9 @@
               id="overview-video-player"
               title="Freedom with DXN business overview video"
               controls
+              controlsList="nodownload"
+              disablePictureInPicture
+              oncontextmenu="return false"
               preload="metadata"
               playsinline>
               <source src="{{ asset('Video/watch-free-overview.mp4') }}" type="video/mp4">
