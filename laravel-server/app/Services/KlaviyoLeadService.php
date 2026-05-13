@@ -33,7 +33,6 @@ class KlaviyoLeadService
                                 'type' => 'profile',
                                 'attributes' => [
                                     'email' => $lead['email'],
-                                    'phone_number' => $lead['whatsapp'],
                                     'subscriptions' => [
                                         'email' => [
                                             'marketing' => [
@@ -93,7 +92,6 @@ class KlaviyoLeadService
                 'type' => 'profile',
                 'attributes' => [
                     'email' => $lead['email'],
-                    'phone_number' => $lead['whatsapp'],
                     'first_name' => $this->firstName($lead['name']),
                     'last_name' => $this->lastName($lead['name']),
                     'properties' => array_filter([
