@@ -1833,7 +1833,11 @@
             keepalive: true
           }).then(function(response){
             if(!response.ok){
-              throw new Error('Lead sync failed');
+              return response.json().catch(function(){
+                return {};
+              }).then(function(data){
+                throw new Error(data.message || 'Lead sync failed');
+              });
             }
 
             if(window.gtag){
@@ -1846,9 +1850,9 @@
 
             setScorePill(score);
             showStep(6);
-          }).catch(function(){
+          }).catch(function(submitError){
             if(error){
-              error.textContent = translateText('We could not submit your details right now. Please try again in a moment.');
+              error.textContent = submitError.message || translateText('We could not submit your details right now. Please try again in a moment.');
               error.classList.add('show');
             }
           });
