@@ -87,28 +87,33 @@ class KlaviyoLeadService
     {
         $timestamp = $lead['timestamp'] ?? now()->toISOString();
 
+        $attributes = [
+            'email' => $lead['email'],
+            'first_name' => $this->firstName($lead['name']),
+            'last_name' => $this->lastName($lead['name']),
+            'phone_number' => $this->phoneNumber($lead['whatsapp']),
+            'properties' => array_filter([
+                'Full Name' => $lead['name'],
+                'WhatsApp' => $lead['whatsapp'],
+                'WhatsApp Country Code' => $lead['country_code'] ?? null,
+                'WhatsApp Country' => $lead['country_name'] ?? null,
+                'Interest' => $lead['interest'],
+                'Seriousness' => $lead['seriousness'],
+                'Goal' => $lead['goal'],
+                'Learn' => $lead['learn'],
+                'Lead Score' => $lead['score'],
+                'Lead Source' => $lead['source'],
+                'Submitted At' => $timestamp,
+                'UTM Source' => $lead['utm_source'] ?? null,
+                'UTM Medium' => $lead['utm_medium'] ?? null,
+                'UTM Campaign' => $lead['utm_campaign'] ?? null,
+            ], fn ($value) => $value !== null && $value !== ''),
+        ];
+
         $payload = [
             'data' => [
                 'type' => 'profile',
-                'attributes' => [
-                    'email' => $lead['email'],
-                    'first_name' => $this->firstName($lead['name']),
-                    'last_name' => $this->lastName($lead['name']),
-                    'properties' => array_filter([
-                        'Full Name' => $lead['name'],
-                        'WhatsApp' => $lead['whatsapp'],
-                        'Interest' => $lead['interest'],
-                        'Seriousness' => $lead['seriousness'],
-                        'Goal' => $lead['goal'],
-                        'Learn' => $lead['learn'],
-                        'Lead Score' => $lead['score'],
-                        'Lead Source' => $lead['source'],
-                        'Submitted At' => $timestamp,
-                        'UTM Source' => $lead['utm_source'] ?? null,
-                        'UTM Medium' => $lead['utm_medium'] ?? null,
-                        'UTM Campaign' => $lead['utm_campaign'] ?? null,
-                    ], fn ($value) => $value !== null && $value !== ''),
-                ],
+                'attributes' => array_filter($attributes, fn ($value) => $value !== null && $value !== ''),
             ],
         ];
 
@@ -163,6 +168,17 @@ class KlaviyoLeadService
         $parts = preg_split('/\s+/', trim($name), 2);
 
         return $parts[1] ?? null;
+    }
+
+    private function phoneNumber(string $phone): ?string
+    {
+        $phone = preg_replace('/[^\d+]/', '', trim($phone));
+
+        if (! is_string($phone) || ! preg_match('/^\+\d{8,15}$/', $phone)) {
+            return null;
+        }
+
+        return $phone;
     }
 
     private function normalizeListId(?string $listId): ?string

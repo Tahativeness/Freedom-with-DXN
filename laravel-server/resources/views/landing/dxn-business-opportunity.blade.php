@@ -1809,6 +1809,8 @@
             name: name,
             email: email,
             whatsapp: whatsapp,
+            country_code: selectedCountry.code,
+            country_name: selectedCountry.name,
             interest: leadData.interest || '',
             seriousness: leadData.seriousness || '',
             goal: leadData.goal || '',

@@ -15,7 +15,9 @@ class DxnLeadController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'whatsapp' => ['required', 'string', 'max:40'],
+            'whatsapp' => ['required', 'string', 'max:40', 'regex:/^\+\d{8,15}$/'],
+            'country_code' => ['nullable', 'string', 'max:20'],
+            'country_name' => ['nullable', 'string', 'max:100'],
             'interest' => ['required', Rule::in(['Health', 'Income', 'Both'])],
             'seriousness' => ['required', Rule::in(['Exploring', 'SideIncome', 'Ready'])],
             'goal' => ['required', 'string', 'max:255'],
