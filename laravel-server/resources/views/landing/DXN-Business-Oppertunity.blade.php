@@ -602,13 +602,9 @@
             </section>
 
             <section class="q-step" data-step="3" hidden>
-              <h2>What's your monthly income goal?</h2>
-              <p class="q-sub">For matching you to the right content only.</p>
-              <div class="options">
-                <button class="option-btn" type="button" data-key="goal" data-value="1-3k">1,000–3,000 AED</button>
-                <button class="option-btn" type="button" data-key="goal" data-value="3-5k">3,000–5,000 AED</button>
-                <button class="option-btn" type="button" data-key="goal" data-value="5k+">5,000+ AED</button>
-              </div>
+              <h2 id="step-three-question">What affects your daily energy the most?</h2>
+              <p class="q-sub">This helps us send the most relevant overview.</p>
+              <div class="options" id="step-three-options"></div>
             </section>
 
             <section class="q-step" data-step="4" hidden>
@@ -1047,26 +1043,65 @@
         Health: {
           question: 'What health goal interests you most?',
           options: [
-            {label: 'More energy & better daily wellness', value: 'Exploring'},
-            {label: 'Weight management & fitness', value: 'SideIncome'},
-            {label: 'Better immunity & overall health', value: 'Ready'}
+            {label: 'More energy & better daily wellness', value: 'Exploring', stepThree: 'health-energy'},
+            {label: 'Weight management & fitness', value: 'SideIncome', stepThree: 'health-weight'},
+            {label: 'Better immunity & overall health', value: 'Ready', stepThree: 'health-immunity'}
           ]
         },
         Income: {
           question: 'What are you looking for financially?',
           options: [
-            {label: 'Extra side income', value: 'SideIncome'},
-            {label: 'Work from home opportunity', value: 'Exploring'},
-            {label: 'Financial freedom', value: 'Ready'}
+            {label: 'Extra side income', value: 'SideIncome', stepThree: 'income-side'},
+            {label: 'Work from home opportunity', value: 'Exploring', stepThree: 'income-home'},
+            {label: 'Financial freedom', value: 'Ready', stepThree: 'income-freedom'}
           ]
         },
         Both: {
           question: 'Which matters more to you right now?',
           options: [
-            {label: 'Better health & more energy', value: 'Exploring'},
-            {label: 'Extra monthly income', value: 'SideIncome'},
-            {label: 'Health and income together', value: 'Ready'}
+            {label: 'Better health & more energy', value: 'Exploring', stepThree: 'both-health'},
+            {label: 'Extra monthly income', value: 'SideIncome', stepThree: 'both-income'},
+            {label: 'Health and income together', value: 'Ready', stepThree: 'both-together'}
           ]
+        }
+      };
+
+      var stepThreeContent = {
+        'health-energy': {
+          question: 'What affects your daily energy the most?',
+          options: ['Low energy in the morning', 'Afternoon tiredness', 'Stress and busy lifestyle']
+        },
+        'health-weight': {
+          question: 'What is your biggest challenge with weight or fitness?',
+          options: ['Controlling food cravings', 'Staying consistent', 'Low energy for exercise']
+        },
+        'health-immunity': {
+          question: 'What kind of wellness support are you looking for?',
+          options: ['Daily immune support', 'Natural wellness products', 'Better long-term health habits']
+        },
+        'income-side': {
+          question: 'How much extra income would help you right now?',
+          options: ['Small monthly support', 'A serious second income', 'I want to grow step by step']
+        },
+        'income-home': {
+          question: 'Why does working from home interest you?',
+          options: ['More time freedom', 'Flexible part-time work', 'Build income around my schedule']
+        },
+        'income-freedom': {
+          question: 'What does financial freedom mean to you?',
+          options: ['Less monthly pressure', 'More savings', 'Build long-term passive income']
+        },
+        'both-health': {
+          question: 'Why do you want better health right now?',
+          options: ['Feel more active daily', 'Improve wellness naturally', 'Support my family better']
+        },
+        'both-income': {
+          question: 'What would extra income help you with most?',
+          options: ['Monthly expenses', 'Family support', 'Savings and future goals']
+        },
+        'both-together': {
+          question: 'Which result would make the biggest difference first?',
+          options: ['Better personal wellness', 'Extra monthly income', 'Build both step by step']
         }
       };
 
@@ -1084,7 +1119,27 @@
           button.dataset.key = 'seriousness';
           button.dataset.value = option.value;
           button.dataset.label = option.label;
+          button.dataset.stepThree = option.stepThree;
           button.textContent = option.label;
+          options.appendChild(button);
+        });
+      }
+
+      function renderStepThree(stepThreeKey){
+        var content = stepThreeContent[stepThreeKey] || stepThreeContent['health-energy'];
+        var question = document.getElementById('step-three-question');
+        var options = document.getElementById('step-three-options');
+        if(question) question.textContent = content.question;
+        if(!options) return;
+        options.innerHTML = '';
+        content.options.forEach(function(label, index){
+          var button = document.createElement('button');
+          button.className = 'option-btn';
+          button.type = 'button';
+          button.dataset.key = 'goal';
+          button.dataset.value = label;
+          button.dataset.scoreValue = index === 2 ? 'High' : index === 1 ? 'Medium' : 'Low';
+          button.textContent = label;
           options.appendChild(button);
         });
       }
@@ -1112,10 +1167,20 @@
           if(btn.dataset.label){
             leadData.stepTwoAnswer = btn.dataset.label;
           }
+          if(btn.dataset.scoreValue){
+            leadData.goalScore = btn.dataset.scoreValue;
+          }
           if(btn.dataset.key === 'interest'){
             delete leadData.seriousness;
             delete leadData.stepTwoAnswer;
+            delete leadData.goal;
+            delete leadData.goalScore;
             renderStepTwo(btn.dataset.value);
+          }
+          if(btn.dataset.key === 'seriousness'){
+            delete leadData.goal;
+            delete leadData.goalScore;
+            renderStepThree(btn.dataset.stepThree);
           }
           showStep(Math.min(currentStep + 1, 5));
         });
@@ -1130,7 +1195,7 @@
       function getScore(){
         var score = 'Cold';
         if (leadData.interest === 'Both' && leadData.seriousness === 'Ready' &&
-          (leadData.goal === '5k+' || leadData.goal === '3-5k') && leadData.learn === 'Yes') {
+          (leadData.goalScore === 'High' || leadData.goalScore === 'Medium') && leadData.learn === 'Yes') {
           score = 'Hot';
         } else if (leadData.interest !== 'Health' && leadData.seriousness !== 'Exploring' && leadData.learn !== 'No') {
           score = 'Warm';

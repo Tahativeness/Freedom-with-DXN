@@ -18,7 +18,7 @@ class DxnLeadController extends Controller
             'whatsapp' => ['required', 'string', 'max:40'],
             'interest' => ['required', Rule::in(['Health', 'Income', 'Both'])],
             'seriousness' => ['required', Rule::in(['Exploring', 'SideIncome', 'Ready'])],
-            'goal' => ['required', Rule::in(['1-3k', '3-5k', '5k+'])],
+            'goal' => ['required', 'string', 'max:255'],
             'learn' => ['required', Rule::in(['Yes', 'Maybe', 'No'])],
             'score' => ['required', Rule::in(['Hot', 'Warm', 'Cold'])],
             'source' => ['nullable', 'string', 'max:255'],
