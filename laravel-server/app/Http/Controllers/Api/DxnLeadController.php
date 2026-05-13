@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\BrevoLeadService;
+use App\Services\KlaviyoLeadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class DxnLeadController extends Controller
 {
-    public function store(Request $request, BrevoLeadService $brevo): JsonResponse
+    public function store(Request $request, KlaviyoLeadService $klaviyo): JsonResponse
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -30,14 +30,14 @@ class DxnLeadController extends Controller
 
         $data['source'] = $data['source'] ?? 'freedomwithdxn.com';
 
-        if (! $brevo->createOrUpdateContact($data)) {
+        if (! $klaviyo->subscribeLead($data)) {
             return response()->json([
-                'message' => 'Lead received, but Brevo sync failed. Please check server logs and Brevo configuration.',
+                'message' => 'Lead received, but Klaviyo sync failed. Please check server logs and Klaviyo configuration.',
             ], 502);
         }
 
         return response()->json([
-            'message' => 'Lead synced to Brevo.',
+            'message' => 'Lead synced to Klaviyo.',
             'score' => $data['score'],
         ]);
     }

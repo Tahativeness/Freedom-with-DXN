@@ -9,13 +9,11 @@ return [
         'graph_api_version' => env('META_GRAPH_API_VERSION', 'v18.0'),
     ],
 
-    'brevo' => [
-        'api_key' => env('BREVO_API_KEY'),
-        'base_url' => env('BREVO_BASE_URL', 'https://api.brevo.com/v3'),
-        'default_list_id' => env('BREVO_DEFAULT_LIST_ID'),
-        'hot_list_id' => env('BREVO_HOT_LIST_ID'),
-        'warm_list_id' => env('BREVO_WARM_LIST_ID'),
-        'cold_list_id' => env('BREVO_COLD_LIST_ID'),
+    'klaviyo' => [
+        'api_key' => env('KLAVIYO_PRIVATE_API_KEY'),
+        'base_url' => env('KLAVIYO_BASE_URL', 'https://a.klaviyo.com/api'),
+        'list_id' => env('KLAVIYO_LIST_ID'),
+        'revision' => env('KLAVIYO_REVISION', '2026-04-15'),
     ],
 
 ];
