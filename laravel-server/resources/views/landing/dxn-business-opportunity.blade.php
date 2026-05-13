@@ -241,6 +241,22 @@
     .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
     .video-tool:hover{background:#198d45;color:#fff}
 
+    .why-dxn{background:#fff;color:#000}
+    .why-layout{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:clamp(26px,5vw,54px);align-items:start}
+    .why-copy{position:sticky;top:108px}
+    .why-copy .eyebrow{color:var(--green-700)}
+    .why-copy h2{max-width:460px;color:#000}
+    .why-copy .lead{max-width:510px;color:var(--muted)}
+    .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .why-card{position:relative;overflow:hidden;background:var(--surface);border:.5px solid var(--border);border-top:3px solid var(--green-700);border-radius:14px;padding:22px;min-height:210px}
+    .why-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--green-700),var(--gold),var(--coral));opacity:.78}
+    .why-icon{width:46px;height:46px;border-radius:12px;background:var(--green-100);color:#000;display:grid;place-items:center;margin-bottom:18px}
+    .why-icon svg{width:25px;height:25px;display:block;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .why-card h3{color:#000;margin-bottom:10px}
+    .why-card p{color:var(--muted)}
+    .why-note{grid-column:1/-1;display:flex;align-items:center;gap:10px;background:var(--green-100);border:.5px solid #CFE9D8;border-radius:14px;padding:18px 20px;color:var(--green-900);font-weight:500}
+    .why-note svg{width:22px;height:22px;flex:0 0 auto;color:var(--green-700);stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
     .trust-strip{padding:24px 0;background:var(--surface);border-bottom:.5px solid var(--border);overflow:hidden}
     .trust-marquee{width:min(100%,var(--container));margin:0 auto;padding:0 var(--pad)}
     .trust-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
@@ -356,6 +372,8 @@
       .hero{min-height:auto;padding-top:118px}
       .hero-grid{grid-template-columns:1fr}
       .overview-card{max-width:560px}
+      .why-layout{grid-template-columns:1fr}
+      .why-copy{position:static}
       .video-shell[data-zoom="large"],.video-shell[data-zoom="small"]{max-width:100%}
     }
 
@@ -371,6 +389,9 @@
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr;max-width:none;gap:10px}
       .chip{width:100%;min-width:0;white-space:normal}
+      .why-grid{grid-template-columns:1fr}
+      .why-card{min-height:auto}
+      .why-note{align-items:flex-start}
       .stats{grid-template-columns:1fr}
       .phone-input-group{display:grid;grid-template-columns:1fr}
       .country-select{width:100%;flex-basis:auto}
@@ -402,6 +423,7 @@
       </a>
       <nav class="nav-links" id="nav-links" aria-label="Main menu">
         <a href="#how-it-works">How it works</a>
+        <a href="#why-dxn">Why DXN?</a>
         <a href="#products">Products</a>
         <a href="#stories">Stories</a>
         <a href="#faq">FAQ</a>
@@ -500,6 +522,74 @@
               Your browser does not support the video tag.
             </video>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why-dxn" id="why-dxn">
+      <div class="container why-layout">
+        <div class="why-copy">
+          <p class="eyebrow">Why DXN?</p>
+          <h2>A global wellness company built on real products</h2>
+          <p class="lead">DXN combines daily-use wellness products with a flexible business opportunity, so people can improve their lifestyle while sharing products they actually use.</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v18"></path>
+                <path d="M6 7h12"></path>
+                <path d="M8 7c0 5 1.5 9 4 11"></path>
+                <path d="M16 7c0 5-1.5 9-4 11"></path>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            </div>
+            <h3>35+ years of global experience</h3>
+            <p>DXN has been operating for more than three decades with a presence in many countries.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16"></path>
+                <path d="M6 7v12h12V7"></path>
+                <path d="M9 7a3 3 0 0 1 6 0"></path>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h4"></path>
+              </svg>
+            </div>
+            <h3>Products people use daily</h3>
+            <p>Coffee, supplements, personal care, food and beverages, and wellness products make it easier to share naturally.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 21c7-1 12-6 14-14"></path>
+                <path d="M9 17c-3-3-3-8 0-11 4 1 7 4 8 8"></path>
+                <path d="M4 10c3 0 6 2 8 5"></path>
+              </svg>
+            </div>
+            <h3>From farm to finished product</h3>
+            <p>DXN is known for cultivating, manufacturing, and distributing many of its own Ganoderma-based products.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19V5"></path>
+                <path d="M4 19h16"></path>
+                <path d="m7 15 4-4 3 3 5-7"></path>
+                <path d="M15 7h4v4"></path>
+              </svg>
+            </div>
+            <h3>Flexible for beginners</h3>
+            <p>You can start part-time, learn step by step, and grow at your own pace without needing previous business experience.</p>
+          </article>
+          <p class="why-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 5 6v5c0 4.5 2.8 8.6 7 10 4.2-1.4 7-5.5 7-10V6l-7-3z"></path>
+              <path d="m9 12 2 2 4-5"></path>
+            </svg>
+            No pressure. No experience needed. Just learn, use, and share responsibly.
+          </p>
         </div>
       </div>
     </section>
@@ -783,6 +873,7 @@
         'Open menu': 'فتح القائمة',
         'Close menu': 'إغلاق القائمة',
         'How it works': 'كيف يعمل',
+        'Why DXN?': 'لماذا DXN؟',
         'Products': 'المنتجات',
         'Stories': 'قصص النجاح',
         'FAQ': 'الأسئلة',
@@ -810,6 +901,17 @@
         'Watch this first': 'شاهد هذا أولًا',
         'Your journey to freedom begins now': 'رحلتك نحو الحرية تبدأ الآن',
         'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
+        'A global wellness company built on real products': 'شركة عافية عالمية مبنية على منتجات حقيقية',
+        'DXN combines daily-use wellness products with a flexible business opportunity, so people can improve their lifestyle while sharing products they actually use.': 'تجمع DXN بين منتجات عافية للاستخدام اليومي وفرصة عمل مرنة، حتى يتمكن الناس من تحسين نمط حياتهم ومشاركة منتجات يستخدمونها فعلًا.',
+        '35+ years of global experience': 'أكثر من 35 سنة من الخبرة العالمية',
+        'DXN has been operating for more than three decades with a presence in many countries.': 'تعمل DXN منذ أكثر من ثلاثة عقود ولها حضور في العديد من الدول.',
+        'Products people use daily': 'منتجات يستخدمها الناس يوميًا',
+        'Coffee, supplements, personal care, food and beverages, and wellness products make it easier to share naturally.': 'القهوة والمكملات والعناية الشخصية والأطعمة والمشروبات ومنتجات العافية تجعل المشاركة طبيعية وأسهل.',
+        'From farm to finished product': 'من المزرعة إلى المنتج النهائي',
+        'DXN is known for cultivating, manufacturing, and distributing many of its own Ganoderma-based products.': 'تُعرف DXN بزراعة وتصنيع وتوزيع العديد من منتجاتها المبنية على الجانوديرما.',
+        'Flexible for beginners': 'مرنة للمبتدئين',
+        'You can start part-time, learn step by step, and grow at your own pace without needing previous business experience.': 'يمكنك البدء بدوام جزئي، والتعلم خطوة بخطوة، والنمو حسب وقتك دون الحاجة إلى خبرة تجارية سابقة.',
+        'No pressure. No experience needed. Just learn, use, and share responsibly.': 'بدون ضغط. لا تحتاج إلى خبرة. فقط تعلّم واستخدم وشارك بمسؤولية.',
         'The reality in the UAE': 'الواقع في الإمارات',
         "If any of this sounds familiar, you're not alone": 'إذا كان هذا يشبه وضعك، فأنت لست وحدك',
         "Salary isn't enough": 'الراتب لا يكفي',
