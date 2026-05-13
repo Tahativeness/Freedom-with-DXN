@@ -596,13 +596,9 @@
             </section>
 
             <section class="q-step" data-step="2" hidden>
-              <h2>How serious are you right now?</h2>
-              <p class="q-sub">There's no wrong answer.</p>
-              <div class="options">
-                <button class="option-btn" type="button" data-key="seriousness" data-value="Exploring">Just exploring for now</button>
-                <button class="option-btn" type="button" data-key="seriousness" data-value="SideIncome">Open to a side income</button>
-                <button class="option-btn" type="button" data-key="seriousness" data-value="Ready">Ready to start now</button>
-              </div>
+              <h2 id="step-two-question">What health goal interests you most?</h2>
+              <p class="q-sub">Pick the one that matches you best.</p>
+              <div class="options" id="step-two-options"></div>
             </section>
 
             <section class="q-step" data-step="3" hidden>
@@ -1047,6 +1043,52 @@
         observer.observe(qualifier);
       }
 
+      var stepTwoContent = {
+        Health: {
+          question: 'What health goal interests you most?',
+          options: [
+            {label: 'More energy & better daily wellness', value: 'Exploring'},
+            {label: 'Weight management & fitness', value: 'SideIncome'},
+            {label: 'Better immunity & overall health', value: 'Ready'}
+          ]
+        },
+        Income: {
+          question: 'What are you looking for financially?',
+          options: [
+            {label: 'Extra side income', value: 'SideIncome'},
+            {label: 'Work from home opportunity', value: 'Exploring'},
+            {label: 'Financial freedom', value: 'Ready'}
+          ]
+        },
+        Both: {
+          question: 'Which matters more to you right now?',
+          options: [
+            {label: 'Better health & more energy', value: 'Exploring'},
+            {label: 'Extra monthly income', value: 'SideIncome'},
+            {label: 'Health and income together', value: 'Ready'}
+          ]
+        }
+      };
+
+      function renderStepTwo(interest){
+        var content = stepTwoContent[interest] || stepTwoContent.Health;
+        var question = document.getElementById('step-two-question');
+        var options = document.getElementById('step-two-options');
+        if(question) question.textContent = content.question;
+        if(!options) return;
+        options.innerHTML = '';
+        content.options.forEach(function(option){
+          var button = document.createElement('button');
+          button.className = 'option-btn';
+          button.type = 'button';
+          button.dataset.key = 'seriousness';
+          button.dataset.value = option.value;
+          button.dataset.label = option.label;
+          button.textContent = option.label;
+          options.appendChild(button);
+        });
+      }
+
       function showStep(step){
         currentStep = step;
         document.querySelectorAll('.q-step').forEach(function(el){
@@ -1062,12 +1104,22 @@
         if(backBtn) backBtn.hidden = step <= 1 || step >= 6;
       }
 
-      document.querySelectorAll('.option-btn').forEach(function(btn){
-        btn.addEventListener('click', function(){
+      if(qualifier){
+        qualifier.addEventListener('click', function(event){
+          var btn = event.target.closest ? event.target.closest('.option-btn') : null;
+          if(!btn || !qualifier.contains(btn)) return;
           leadData[btn.dataset.key] = btn.dataset.value;
+          if(btn.dataset.label){
+            leadData.stepTwoAnswer = btn.dataset.label;
+          }
+          if(btn.dataset.key === 'interest'){
+            delete leadData.seriousness;
+            delete leadData.stepTwoAnswer;
+            renderStepTwo(btn.dataset.value);
+          }
           showStep(Math.min(currentStep + 1, 5));
         });
-      });
+      }
 
       if(backBtn){
         backBtn.addEventListener('click', function(){
