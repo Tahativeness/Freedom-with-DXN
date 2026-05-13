@@ -10,8 +10,8 @@ class KlaviyoLeadService
 {
     public function subscribeLead(array $lead): bool
     {
-        $apiKey = config('services.klaviyo.api_key');
-        $listId = $this->normalizeListId(config('services.klaviyo.list_id'));
+        $apiKey = $this->klaviyoConfig('api_key', 'KLAVIYO_PRIVATE_API_KEY');
+        $listId = $this->normalizeListId($this->klaviyoConfig('list_id', 'KLAVIYO_LIST_ID'));
 
         if (empty($apiKey)) {
             Log::warning('Klaviyo lead sync skipped: missing KLAVIYO_PRIVATE_API_KEY');
@@ -67,7 +67,7 @@ class KlaviyoLeadService
 
         try {
             $response = $this->klaviyoRequest()
-                ->post(rtrim(config('services.klaviyo.base_url'), '/') . '/profile-subscription-bulk-create-jobs', $payload);
+                ->post($this->klaviyoUrl('/profile-subscription-bulk-create-jobs'), $payload);
 
             if ($response->status() !== 202) {
                 Log::warning('Klaviyo lead sync failed', [
@@ -128,7 +128,7 @@ class KlaviyoLeadService
 
         try {
             $response = $this->klaviyoRequest()
-                ->post(rtrim(config('services.klaviyo.base_url'), '/') . '/profile-import', $payload);
+                ->post($this->klaviyoUrl('/profile-import'), $payload);
 
             if (! in_array($response->status(), [200, 201], true)) {
                 Log::warning('Klaviyo profile import failed', [
@@ -159,10 +159,66 @@ class KlaviyoLeadService
             ->asJson()
             ->withHeaders([
                 'Accept' => 'application/vnd.api+json',
-                'Authorization' => 'Klaviyo-API-Key ' . config('services.klaviyo.api_key'),
+                'Authorization' => 'Klaviyo-API-Key ' . $this->klaviyoConfig('api_key', 'KLAVIYO_PRIVATE_API_KEY'),
                 'Content-Type' => 'application/vnd.api+json',
-                'revision' => config('services.klaviyo.revision'),
+                'revision' => $this->klaviyoConfig('revision', 'KLAVIYO_REVISION', '2026-04-15'),
             ]);
+    }
+
+    private function klaviyoUrl(string $path): string
+    {
+        $baseUrl = $this->klaviyoConfig('base_url', 'KLAVIYO_BASE_URL', 'https://a.klaviyo.com/api');
+
+        return rtrim($baseUrl, '/') . $path;
+    }
+
+    private function klaviyoConfig(string $configKey, string $envKey, ?string $default = null): ?string
+    {
+        $value = config('services.klaviyo.' . $configKey) ?: env($envKey);
+
+        if (! empty($value)) {
+            return trim((string) $value);
+        }
+
+        return $this->envFileValue($envKey) ?? $default;
+    }
+
+    private function envFileValue(string $key): ?string
+    {
+        $envPath = base_path('.env');
+
+        if (! is_readable($envPath)) {
+            return null;
+        }
+
+        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($lines ?: [] as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#') || ! str_contains($line, '=')) {
+                continue;
+            }
+
+            [$lineKey, $value] = explode('=', $line, 2);
+
+            if (trim($lineKey) !== $key) {
+                continue;
+            }
+
+            $value = trim($value);
+
+            if (
+                (str_starts_with($value, '"') && str_ends_with($value, '"')) ||
+                (str_starts_with($value, "'") && str_ends_with($value, "'"))
+            ) {
+                $value = substr($value, 1, -1);
+            }
+
+            return $value === '' ? null : $value;
+        }
+
+        return null;
     }
 
     private function firstName(string $name): string
