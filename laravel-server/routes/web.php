@@ -152,15 +152,15 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
 
 // Landing pages
 Route::get('/passive-income', function () {
-    return view('landing.DXN-Business-Opportunity');
+    return view('landing.dxn-business-opportunity');
 })->name('landing.passive-income');
 
 Route::get('/DXN-Business-Oppertunity', function () {
-    return view('landing.DXN-Business-Opportunity');
+    return view('landing.dxn-business-opportunity');
 })->name('landing.dxn-business-oppertunity');
 
 Route::get('/DXN-Business-Opportunity', function () {
-    return view('landing.DXN-Business-Opportunity');
+    return view('landing.dxn-business-opportunity');
 })->name('landing.dxn-business-opportunity');
 
 Route::get('/landing/{slug}', [LandingController::class, 'show'])->name('landing');
