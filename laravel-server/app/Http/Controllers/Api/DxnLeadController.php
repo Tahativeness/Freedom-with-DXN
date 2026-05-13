@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DxnLead;
 use App\Services\KlaviyoLeadService;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -32,15 +34,40 @@ class DxnLeadController extends Controller
 
         $data['source'] = $data['source'] ?? 'freedomwithdxn.com';
 
-        if (! $klaviyo->subscribeLead($data)) {
-            return response()->json([
-                'message' => 'Lead received, but Klaviyo sync failed. Please check server logs and Klaviyo configuration.',
-            ], 502);
-        }
+        $lead = DxnLead::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'whatsapp' => $data['whatsapp'],
+            'country_code' => $data['country_code'] ?? null,
+            'country_name' => $data['country_name'] ?? null,
+            'interest' => $data['interest'],
+            'seriousness' => $data['seriousness'],
+            'goal' => $data['goal'],
+            'learn' => $data['learn'],
+            'score' => $data['score'],
+            'source' => $data['source'],
+            'submitted_at' => isset($data['timestamp']) ? Carbon::parse($data['timestamp']) : now(),
+            'utm_source' => $data['utm_source'] ?? null,
+            'utm_medium' => $data['utm_medium'] ?? null,
+            'utm_campaign' => $data['utm_campaign'] ?? null,
+            'payload' => $data,
+            'klaviyo_sync_status' => 'pending',
+        ]);
+
+        $klaviyoSynced = $klaviyo->subscribeLead($data);
+
+        $lead->forceFill([
+            'klaviyo_synced' => $klaviyoSynced,
+            'klaviyo_sync_status' => $klaviyoSynced ? 'synced' : 'failed',
+            'klaviyo_synced_at' => $klaviyoSynced ? now() : null,
+            'klaviyo_error' => $klaviyoSynced ? null : 'Klaviyo sync failed. Lead was saved locally first.',
+        ])->save();
 
         return response()->json([
-            'message' => 'Lead synced to Klaviyo.',
+            'message' => 'Thank you. Your submission has been received.',
+            'lead_id' => $lead->id,
             'score' => $data['score'],
+            'klaviyo_synced' => $klaviyoSynced,
         ]);
     }
 }

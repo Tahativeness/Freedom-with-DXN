@@ -800,8 +800,8 @@
 
             <section class="q-step success" data-step="6" hidden>
               <div class="success-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
-              <h2>You're in.</h2>
-              <p class="q-sub">Check your WhatsApp in the next 60 seconds. Your free overview video is on the way.</p>
+              <h2>Thank you.</h2>
+              <p class="q-sub">Your submission has been received. We will send your free overview shortly.</p>
               <div class="score-pill" id="score-pill">Nurture sequence started</div>
             </section>
           </div>
@@ -1037,8 +1037,8 @@
         'Please complete your name, a valid email, and a valid WhatsApp number.': 'يرجى إدخال الاسم وبريد إلكتروني صحيح ورقم واتساب صحيح.',
         'We could not submit your details right now. Please try again in a moment.': 'لم نتمكن من إرسال بياناتك الآن. يرجى المحاولة بعد قليل.',
         'Your information is private. Unsubscribe anytime.': 'معلوماتك خاصة. يمكنك إلغاء الاشتراك في أي وقت.',
-        "You're in.": 'تم التسجيل.',
-        'Check your WhatsApp in the next 60 seconds. Your free overview video is on the way.': 'تحقق من واتساب خلال 60 ثانية. فيديو العرض المجاني في الطريق إليك.',
+        'Thank you.': 'شكرًا لك.',
+        'Your submission has been received. We will send your free overview shortly.': 'تم استلام طلبك. سنرسل لك العرض المجاني قريبًا.',
         'Hot lead — priority call within 1 hour': 'عميل مهتم جدًا — اتصال أولوية خلال ساعة',
         'Warm lead — follow-up within 24 hours': 'عميل مهتم — متابعة خلال 24 ساعة',
         'Nurture sequence started': 'بدأت سلسلة المتابعة',
