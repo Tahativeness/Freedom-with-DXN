@@ -208,9 +208,9 @@
     .pulse{width:9px;height:9px;border-radius:50%;background:#42C883;box-shadow:0 0 0 0 rgba(66,200,131,.7);animation:pulse 1.9s infinite}
     .hero-copy{max-width:660px}
     .hero-sub{font-size:clamp(1.05rem,1.8vw,1.24rem);color:rgba(255,255,255,.78);margin-bottom:28px}
-    .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px;margin-bottom:28px}
-    .chip{display:flex;align-items:center;gap:9px;min-height:44px;padding:11px 12px;border:.5px solid rgba(255,255,255,.18);border-radius:10px;color:rgba(255,255,255,.88)}
-    .chip i{color:#42C883;font-size:1.1rem}
+    .chips{display:grid;grid-template-columns:repeat(2,max-content);align-items:start;gap:12px 20px;max-width:650px;margin-bottom:28px}
+    .chip{display:flex;align-items:center;justify-content:center;gap:9px;width:max-content;min-width:198px;min-height:58px;padding:14px 22px;border:.5px solid var(--border);border-radius:12px;background:rgba(250,250,247,.62);color:#000;box-shadow:inset 0 1px 0 rgba(255,255,255,.82);white-space:nowrap}
+    .chip i{display:none}
     .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:16px}
     .reassurance{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:.92rem}
     .reassurance i{color:#42C883}
@@ -366,7 +366,8 @@
       .nav-links .btn:hover{background:#126b35;color:#fff}
       .menu-toggle{display:grid;place-items:center}
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
-      .chips{grid-template-columns:1fr}
+      .chips{grid-template-columns:1fr;max-width:none;gap:10px}
+      .chip{width:100%;min-width:0;white-space:normal}
       .stats{grid-template-columns:1fr}
       .phone-input-group{display:grid;grid-template-columns:1fr}
       .country-select{width:100%;flex-basis:auto}
