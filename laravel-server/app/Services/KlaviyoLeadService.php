@@ -13,13 +13,22 @@ class KlaviyoLeadService
         $apiKey = config('services.klaviyo.api_key');
         $listId = $this->normalizeListId(config('services.klaviyo.list_id'));
 
-        if (empty($apiKey) || empty($listId)) {
-            Log::warning('Klaviyo lead sync skipped: missing KLAVIYO_PRIVATE_API_KEY or KLAVIYO_LIST_ID');
+        if (empty($apiKey)) {
+            Log::warning('Klaviyo lead sync skipped: missing KLAVIYO_PRIVATE_API_KEY');
             return false;
         }
 
         if (! $this->createOrUpdateProfile($lead)) {
             return false;
+        }
+
+        if (empty($listId)) {
+            Log::warning('Klaviyo list subscription skipped: missing KLAVIYO_LIST_ID', [
+                'email' => $lead['email'],
+                'score' => $lead['score'],
+            ]);
+
+            return true;
         }
 
         $payload = [
@@ -68,7 +77,7 @@ class KlaviyoLeadService
                     'score' => $lead['score'],
                 ]);
 
-                return false;
+                return true;
             }
         } catch (\Throwable $e) {
             Log::warning('Klaviyo lead sync exception', [
@@ -77,7 +86,7 @@ class KlaviyoLeadService
                 'score' => $lead['score'],
             ]);
 
-            return false;
+            return true;
         }
 
         return true;
