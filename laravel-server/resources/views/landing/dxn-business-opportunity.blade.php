@@ -490,8 +490,7 @@
               title="Freedom with DXN business overview video"
               controls
               preload="metadata"
-              playsinline
-              poster="{{ asset('images/landing-page-image.png') }}">
+              playsinline>
               <source src="{{ asset('Video/watch-free-overview.mp4') }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
