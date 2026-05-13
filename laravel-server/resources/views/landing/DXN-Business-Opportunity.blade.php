@@ -1,12 +1,18 @@
 ﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+@php
+  $lang = session('lang', 'en');
+  $lang = in_array($lang, ['en', 'ar'], true) ? $lang : 'en';
+  $isAr = $lang === 'ar';
+  $dir = $isAr ? 'rtl' : 'ltr';
+@endphp
+<html lang="{{ $lang }}" dir="{{ $dir }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#04342C">
 
-  <title>Build Better Health & Side Income in UAE | FreedomWithDXN</title>
-  <meta name="description" content="Join a globally trusted wellness opportunity in the UAE. Free training, flexible part-time start, Halal-certified products. Get your free overview now.">
+  <title>{{ $isAr ? 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN' : 'Build Better Health & Side Income in UAE | FreedomWithDXN' }}</title>
+  <meta name="description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. تدريب مجاني، بداية مرنة بدوام جزئي، ومنتجات حلال. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Free training, flexible part-time start, Halal-certified products. Get your free overview now.' }}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://freedomwithdxn.com/">
   <link rel="alternate" hreflang="en-AE" href="https://freedomwithdxn.com/">
@@ -15,14 +21,14 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://freedomwithdxn.com/">
-  <meta property="og:title" content="Build better health and a second income in the UAE">
-  <meta property="og:description" content="Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.">
+  <meta property="og:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
+  <meta property="og:description" content="{{ $isAr ? 'تدريب مجاني، بداية مرنة بدوام جزئي، منتجات حلال، وعرض بسيط للمقيمين في الإمارات.' : 'Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.' }}">
   <meta property="og:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
-  <meta property="og:locale" content="en_AE">
+  <meta property="og:locale" content="{{ $isAr ? 'ar_AE' : 'en_AE' }}">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Build better health and a second income in the UAE">
-  <meta name="twitter:description" content="Join a globally trusted wellness opportunity in the UAE. Get your free overview now.">
+  <meta name="twitter:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
+  <meta name="twitter:description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Get your free overview now.' }}">
   <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
 
   <link rel="icon" href="/favicon.ico">
@@ -140,6 +146,9 @@
     html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.6;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
     body.menu-open{overflow:hidden}
+    body.rtl{text-align:right}
+    body.rtl .hero-grid,body.rtl .hero-copy,body.rtl .overview-card,body.rtl .qualifier-card{direction:rtl}
+    body.rtl .ti-arrow-right,body.rtl .ti-arrow-left{transform:scaleX(-1)}
     img{max-width:100%;height:auto;display:block}
     a{color:inherit;text-decoration:none}
     button,input{font:inherit}
@@ -185,6 +194,9 @@
     .nav-links{display:flex;align-items:center;gap:22px;color:#000;font-size:.94rem;font-weight:700}
     .site-header.is-scrolled .nav-links{color:#000}
     .nav-links a:hover{color:var(--green-700)}
+    .language-switch{display:flex;align-items:center;gap:4px;border:.5px solid var(--border);border-radius:999px;padding:3px;background:var(--surface)}
+    .language-switch a{min-width:34px;min-height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-size:.78rem;font-weight:700;color:#000}
+    .language-switch a.is-active{background:#198d45;color:#fff}
     .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid var(--border);background:transparent;color:#000}
     .menu-lines{width:22px;display:grid;gap:5px}
     .menu-lines span{display:block;height:2px;background:#000;border-radius:999px}
@@ -376,7 +388,7 @@
     }
   </style>
 </head>
-<body>
+<body class="{{ $isAr ? 'rtl' : '' }}">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="site-header">
@@ -389,6 +401,10 @@
         <a href="#products">Products</a>
         <a href="#stories">Stories</a>
         <a href="#faq">FAQ</a>
+        <div class="language-switch" aria-label="Language switch">
+          <a href="{{ route('lang.switch', 'en') }}" class="{{ $lang === 'en' ? 'is-active' : '' }}" lang="en">EN</a>
+          <a href="{{ route('lang.switch', 'ar') }}" class="{{ $lang === 'ar' ? 'is-active' : '' }}" lang="ar">AR</a>
+        </div>
         <a class="btn btn-dark" href="#qualifier" data-scroll>Start free <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
       </nav>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
@@ -608,12 +624,12 @@
             </section>
 
             <section class="q-step" data-step="4" hidden>
-              <h2>Are you willing to learn the system?</h2>
-              <p class="q-sub">Training is free, but it does take effort.</p>
+              <h2>How soon would you like to take the next step?</h2>
+              <p class="q-sub">This helps us follow up at the right time.</p>
               <div class="options">
-                <button class="option-btn" type="button" data-key="learn" data-value="Yes">Yes, I'll put in the time</button>
-                <button class="option-btn" type="button" data-key="learn" data-value="Maybe">Maybe — depends on the time needed</button>
-                <button class="option-btn" type="button" data-key="learn" data-value="No">Not really, just curious</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="Yes">I want guidance today</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="Maybe">This week is good for me</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="No">I'm just exploring for now</button>
               </div>
             </section>
 
@@ -728,6 +744,253 @@
       var currentStep = 1;
       var params = new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
+      var isArabic = document.documentElement.lang === 'ar';
+      var arabicText = {
+        'Skip to content': 'تخطي إلى المحتوى',
+        'Main menu': 'القائمة الرئيسية',
+        'Open menu': 'فتح القائمة',
+        'Close menu': 'إغلاق القائمة',
+        'How it works': 'كيف يعمل',
+        'Products': 'المنتجات',
+        'Stories': 'قصص النجاح',
+        'FAQ': 'الأسئلة',
+        'Start free': 'ابدأ مجانًا',
+        'Trusted by 6+ million members in 180+ countries': 'موثوق به من أكثر من 6 ملايين عضو في أكثر من 180 دولة',
+        'Build better health and a DXN Business Opportunity in UAE': 'ابنِ صحة أفضل وفرصة عمل DXN في الإمارات',
+        'Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.': 'انضم إلى علامة عافية موثوقة عالميًا. احصل على نظام تدريب خطوة بخطوة، ومرشد شخصي، وفرصة دخل جانبي مرنة تناسب المقيمين في الإمارات.',
+        'Start part-time': 'ابدأ بدوام جزئي',
+        'No experience needed': 'لا تحتاج إلى خبرة',
+        'Free training included': 'التدريب المجاني مشمول',
+        'Work from anywhere': 'اعمل من أي مكان',
+        'Watch free overview': 'شاهد العرض المجاني',
+        '2-minute qualifier · No spam · Free to start': 'تأهيل خلال دقيقتين · بدون إزعاج · بداية مجانية',
+        'Free 15-minute overview': 'عرض مجاني لمدة 15 دقيقة',
+        'See the products, the business model, and the training path before you decide.': 'شاهد المنتجات ونموذج العمل ومسار التدريب قبل أن تقرر.',
+        'years': 'سنة',
+        'countries': 'دولة',
+        'members': 'عضو',
+        'Halal certified · GMP · ISO 9001': 'حلال · GMP · ISO 9001',
+        'Global brand': 'علامة عالمية',
+        'Halal certified': 'معتمد حلال',
+        '6M+ members': 'أكثر من 6M عضو',
+        'Wellness leader': 'رائدة في العافية',
+        'Award winning': 'حائزة على جوائز',
+        'Watch this first': 'شاهد هذا أولًا',
+        'Your journey to freedom begins now': 'رحلتك نحو الحرية تبدأ الآن',
+        'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
+        'The reality in the UAE': 'الواقع في الإمارات',
+        "If any of this sounds familiar, you're not alone": 'إذا كان هذا يشبه وضعك، فأنت لست وحدك',
+        "Salary isn't enough": 'الراتب لا يكفي',
+        'Rent, school fees, and family back home keep climbing.': 'الإيجار ورسوم المدارس ودعم العائلة في الوطن تزداد باستمرار.',
+        'No time freedom': 'لا توجد حرية وقت',
+        'Long shifts and fixed hours leaving little room for life.': 'ساعات العمل الطويلة والثابتة تترك مساحة قليلة للحياة.',
+        'Energy crashes daily': 'انخفاض الطاقة يوميًا',
+        'Stress, poor sleep, and that 3pm slump every afternoon.': 'الضغط وقلة النوم والتعب بعد الظهر تتكرر كل يوم.',
+        'One paycheck only': 'دخل واحد فقط',
+        'If one income stops, everything stops with it.': 'إذا توقف مصدر دخل واحد، تتوقف معه أشياء كثيرة.',
+        'What if you could improve both your health and your income at the same time without quitting your job?': 'ماذا لو استطعت تحسين صحتك ودخلك في نفس الوقت بدون ترك وظيفتك؟',
+        'The opportunity': 'الفرصة',
+        'A smarter way to build health and income': 'طريقة أذكى لبناء الصحة والدخل',
+        'Three simple steps. A proven 35-year-old system. Yours to follow.': 'ثلاث خطوات بسيطة. نظام مثبت منذ أكثر من 35 سنة. يمكنك اتباعه.',
+        'Step 1': 'الخطوة 1',
+        'Step 2': 'الخطوة 2',
+        'Step 3': 'الخطوة 3',
+        'Step 1 of 5': 'الخطوة 1 من 5',
+        'Step 2 of 5': 'الخطوة 2 من 5',
+        'Step 3 of 5': 'الخطوة 3 من 5',
+        'Step 4 of 5': 'الخطوة 4 من 5',
+        'Step 5 of 5': 'الخطوة 5 من 5',
+        'Use the products': 'استخدم المنتجات',
+        'Swap your daily coffee, tea, and supplements for Ganoderma-based wellness alternatives.': 'استبدل قهوتك وشايك ومكملاتك اليومية ببدائل عافية مبنية على الجانوديرما.',
+        'Share with others': 'شارك مع الآخرين',
+        "Recommend what's actually working for you with no cold calls and no pressure.": 'رشح ما يفيدك فعلًا بدون مكالمات مزعجة وبدون ضغط.',
+        'Build long-term income': 'ابنِ دخلًا طويل المدى',
+        'Compound your effort through a structured global compensation system.': 'راكم جهدك من خلال نظام تعويض عالمي منظم.',
+        'Real stories from the UAE': 'قصص حقيقية من الإمارات',
+        'People building lives they love': 'أشخاص يبنون حياة يحبونها',
+        '"I started while keeping my job in Dubai. After 8 months I had a real side income, and my morning energy was completely different."': '"بدأت وأنا محتفظ بعملي في دبي. بعد 8 أشهر أصبح لدي دخل جانبي حقيقي، وتغيرت طاقتي الصباحية تمامًا."',
+        '"As a mum I needed flexibility. The training was clear and I never felt pushed. It just made sense."': '"كأم كنت أحتاج إلى المرونة. كان التدريب واضحًا ولم أشعر بأي ضغط. الأمر كان منطقيًا جدًا."',
+        '"No cold-calling, no awkward pitches. Just sharing what I genuinely use every day."': '"بدون مكالمات باردة وبدون عروض محرجة. فقط أشارك ما أستخدمه فعلًا كل يوم."',
+        'Ahmed H.': 'أحمد ح.',
+        'Sara M.': 'سارة م.',
+        'Rashid K.': 'راشد ك.',
+        'Dubai · Distributor since 2023': 'دبي · موزع منذ 2023',
+        'Abu Dhabi · 1 year in': 'أبوظبي · منذ سنة',
+        'Sharjah · 6 months in': 'الشارقة · منذ 6 أشهر',
+        'Individual experiences. Not a guarantee of income or health outcomes.': 'تجارب فردية. ليست ضمانًا للدخل أو النتائج الصحية.',
+        'Your journey': 'رحلتك',
+        'How to get started in 4 simple steps': 'كيف تبدأ في 4 خطوات بسيطة',
+        'Fill the form': 'املأ النموذج',
+        '2 minutes': 'دقيقتان',
+        'Watch overview': 'شاهد العرض',
+        '15 minutes': '15 دقيقة',
+        'Get trained': 'احصل على التدريب',
+        'Self-paced': 'حسب وقتك',
+        'Start building': 'ابدأ البناء',
+        'At your pace': 'بالسرعة المناسبة لك',
+        'Free qualifier': 'تأهيل مجاني',
+        'Find your best next step': 'اعرف خطوتك التالية الأنسب',
+        'Answer 5 quick questions and get matched with the right overview and follow-up.': 'أجب عن 5 أسئلة سريعة لتحصل على العرض والمتابعة المناسبة لك.',
+        'Back': 'رجوع',
+        'Complete': 'مكتمل',
+        'What interests you most?': 'ما الذي يهمك أكثر؟',
+        'Pick the one that matches you best.': 'اختر الإجابة الأقرب لك.',
+        'Better health': 'صحة أفضل',
+        'Extra income': 'دخل إضافي',
+        'Both — health and income': 'كلاهما — الصحة والدخل',
+        'What health goal interests you most?': 'ما الهدف الصحي الذي يهمك أكثر؟',
+        'More energy & better daily wellness': 'طاقة أكثر وعافية يومية أفضل',
+        'Weight management & fitness': 'إدارة الوزن واللياقة',
+        'Better immunity & overall health': 'مناعة أفضل وصحة عامة',
+        'What are you looking for financially?': 'ما الذي تبحث عنه ماليًا؟',
+        'Extra side income': 'دخل جانبي إضافي',
+        'Work from home opportunity': 'فرصة عمل من المنزل',
+        'Financial freedom': 'حرية مالية',
+        'Which matters more to you right now?': 'ما الأهم لك الآن؟',
+        'Better health & more energy': 'صحة أفضل وطاقة أكثر',
+        'Extra monthly income': 'دخل شهري إضافي',
+        'Health and income together': 'الصحة والدخل معًا',
+        'This helps us send the most relevant overview.': 'هذا يساعدنا على إرسال العرض الأنسب لك.',
+        'What affects your daily energy the most?': 'ما أكثر شيء يؤثر على طاقتك اليومية؟',
+        'Low energy in the morning': 'طاقة منخفضة في الصباح',
+        'Afternoon tiredness': 'تعب بعد الظهر',
+        'Stress and busy lifestyle': 'ضغط ونمط حياة مزدحم',
+        'What is your biggest challenge with weight or fitness?': 'ما أكبر تحدي لديك في الوزن أو اللياقة؟',
+        'Controlling food cravings': 'السيطرة على الرغبة في الأكل',
+        'Staying consistent': 'الاستمرار بانتظام',
+        'Low energy for exercise': 'طاقة قليلة للتمرين',
+        'What kind of wellness support are you looking for?': 'ما نوع دعم العافية الذي تبحث عنه؟',
+        'Daily immune support': 'دعم يومي للمناعة',
+        'Natural wellness products': 'منتجات عافية طبيعية',
+        'Better long-term health habits': 'عادات صحية أفضل على المدى الطويل',
+        'How much extra income would help you right now?': 'كم دخل إضافي سيساعدك الآن؟',
+        'Small monthly support': 'دعم شهري بسيط',
+        'A serious second income': 'دخل ثانٍ جاد',
+        'I want to grow step by step': 'أريد النمو خطوة بخطوة',
+        'Why does working from home interest you?': 'لماذا تهمك فرصة العمل من المنزل؟',
+        'More time freedom': 'حرية وقت أكثر',
+        'Flexible part-time work': 'عمل مرن بدوام جزئي',
+        'Build income around my schedule': 'بناء دخل حول جدولي',
+        'What does financial freedom mean to you?': 'ماذا تعني لك الحرية المالية؟',
+        'Less monthly pressure': 'ضغط شهري أقل',
+        'More savings': 'مدخرات أكثر',
+        'Build long-term passive income': 'بناء دخل طويل المدى',
+        'Why do you want better health right now?': 'لماذا تريد صحة أفضل الآن؟',
+        'Feel more active daily': 'الشعور بنشاط يومي أكثر',
+        'Improve wellness naturally': 'تحسين العافية بشكل طبيعي',
+        'Support my family better': 'دعم عائلتي بشكل أفضل',
+        'What would extra income help you with most?': 'ما الذي سيساعدك فيه الدخل الإضافي أكثر؟',
+        'Monthly expenses': 'المصاريف الشهرية',
+        'Family support': 'دعم العائلة',
+        'Savings and future goals': 'الادخار وأهداف المستقبل',
+        'Which result would make the biggest difference first?': 'أي نتيجة ستصنع الفرق الأكبر أولًا؟',
+        'Better personal wellness': 'عافية شخصية أفضل',
+        'Build both step by step': 'بناء الاثنين خطوة بخطوة',
+        'How soon would you like to take the next step?': 'متى تريد اتخاذ الخطوة التالية؟',
+        'This helps us follow up at the right time.': 'هذا يساعدنا على المتابعة في الوقت المناسب.',
+        'I want guidance today': 'أريد إرشادًا اليوم',
+        'This week is good for me': 'هذا الأسبوع مناسب لي',
+        "I'm just exploring for now": 'أنا أستكشف فقط الآن',
+        'Get free access': 'احصل على الدخول المجاني',
+        'Overview video + WhatsApp welcome in 60 seconds.': 'فيديو العرض + رسالة ترحيب واتساب خلال 60 ثانية.',
+        'Full name': 'الاسم الكامل',
+        'Email': 'البريد الإلكتروني',
+        'WhatsApp Number': 'رقم واتساب',
+        'No countries found.': 'لم يتم العثور على دول.',
+        'Choose your country code, then enter your WhatsApp number.': 'اختر رمز الدولة ثم أدخل رقم واتساب.',
+        'Please complete your name, email, and WhatsApp number.': 'يرجى إكمال الاسم والبريد الإلكتروني ورقم واتساب.',
+        'Please complete your name, a valid email, and a valid WhatsApp number.': 'يرجى إدخال الاسم وبريد إلكتروني صحيح ورقم واتساب صحيح.',
+        'We could not submit your details right now. Please try again in a moment.': 'لم نتمكن من إرسال بياناتك الآن. يرجى المحاولة بعد قليل.',
+        'Your information is private. Unsubscribe anytime.': 'معلوماتك خاصة. يمكنك إلغاء الاشتراك في أي وقت.',
+        "You're in.": 'تم التسجيل.',
+        'Check your WhatsApp in the next 60 seconds. Your free overview video is on the way.': 'تحقق من واتساب خلال 60 ثانية. فيديو العرض المجاني في الطريق إليك.',
+        'Hot lead — priority call within 1 hour': 'عميل مهتم جدًا — اتصال أولوية خلال ساعة',
+        'Warm lead — follow-up within 24 hours': 'عميل مهتم — متابعة خلال 24 ساعة',
+        'Nurture sequence started': 'بدأت سلسلة المتابعة',
+        'Common questions': 'أسئلة شائعة',
+        'Before you ask': 'قبل أن تسأل',
+        'Do I need any experience?': 'هل أحتاج إلى خبرة؟',
+        'Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.': 'لا أبدًا. يتم توفير تدريب خطوة بخطوة من خلال بوابة الأعضاء، بالإضافة إلى مرشد شخصي يساعدك في أول 30 يومًا.',
+        'Can I do this part-time?': 'هل يمكنني القيام بهذا بدوام جزئي؟',
+        'Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.': 'نعم، ومعظم الناس يفعلون ذلك. كثير من الأعضاء يحتفظون بوظائفهم ويخصصون الأمسيات أو عطلات نهاية الأسبوع للبناء.',
+        'Is this available in the UAE?': 'هل هذا متاح في الإمارات؟',
+        'Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.': 'نعم، متاح في دبي وأبوظبي والشارقة وعجمان وباقي الإمارات، مع دعم باللغتين العربية والإنجليزية.',
+        'How much does it cost to start?': 'كم تكلفة البداية؟',
+        "There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.": 'هناك باقة بداية صغيرة لمرة واحدة. سترى الرقم الدقيق في العرض. لا توجد رسوم شهرية أو تكاليف مخفية أو حد أدنى للشراء.',
+        'Is this a pyramid scheme?': 'هل هذا نظام هرمي؟',
+        'No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.': 'لا. DXN شركة تسويق شبكي عمرها أكثر من 35 سنة مبنية على منتجات عافية حقيقية، مثل مكملات الجانوديرما والقهوة والعناية الشخصية، وتباع في أكثر من 180 دولة. الدخل يعتمد على بيع وترشيح المنتجات، وليس على التسجيل فقط.',
+        'What if I change my mind?': 'ماذا لو غيرت رأيي؟',
+        "You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.": 'يمكنك التوقف في أي وقت. لا يوجد عقد أو التزام أو رسوم إلغاء. منتجات باقة البداية تبقى لك.',
+        'Limited new-member spots this month': 'أماكن الأعضاء الجدد محدودة هذا الشهر',
+        'Your health and financial future starts with one click': 'مستقبل صحتك ودخلك يبدأ بنقرة واحدة',
+        'Join thousands of UAE residents already building a better lifestyle. Free to start. No pressure. Your pace.': 'انضم إلى آلاف المقيمين في الإمارات الذين يبنون أسلوب حياة أفضل. بداية مجانية. بدون ضغط. حسب وقتك.',
+        'Get free information': 'احصل على معلومات مجانية',
+        'Private & secure · 2-minute signup · Unsubscribe anytime': 'خاص وآمن · تسجيل خلال دقيقتين · إلغاء الاشتراك في أي وقت',
+        'Start free qualifier': 'ابدأ التأهيل المجاني',
+        '© 2026 Freedom with DXN. All rights reserved.': '© 2026 Freedom with DXN. جميع الحقوق محفوظة.',
+        'Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.': 'موزع DXN مستقل. DXN علامة تجارية مسجلة لشركة DXN Holdings Berhad.'
+      };
+      var arabicAttributes = {
+        'FreedomWithDXN home': 'الصفحة الرئيسية FreedomWithDXN',
+        'Key benefits': 'الفوائد الرئيسية',
+        'Watch the free overview video': 'شاهد العرض المجاني',
+        'Free overview summary': 'ملخص العرض المجاني',
+        'Freedom with DXN business opportunity overview': 'عرض فرصة عمل Freedom with DXN',
+        'DXN global statistics': 'إحصاءات DXN العالمية',
+        'Trust indicators': 'مؤشرات الثقة',
+        'Freedom with DXN business overview video': 'فيديو عرض فرصة Freedom with DXN',
+        'Go back to the previous question': 'الرجوع إلى السؤال السابق',
+        'Search country code': 'البحث عن رمز الدولة',
+        'Country codes': 'رموز الدول',
+        'Chat on WhatsApp': 'تواصل عبر واتساب'
+      };
+
+      function translateText(text){
+        return isArabic && arabicText[text] ? arabicText[text] : text;
+      }
+
+      function translatePage(){
+        if(!isArabic) return;
+        document.title = 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN';
+        var metaDescription = document.querySelector('meta[name="description"]');
+        if(metaDescription) metaDescription.setAttribute('content', 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. تدريب مجاني، بداية مرنة بدوام جزئي، ومنتجات حلال. احصل على العرض المجاني الآن.');
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode: function(node){
+            if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            if(node.parentElement && ['SCRIPT','STYLE'].indexOf(node.parentElement.tagName) !== -1) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        var textNodes = [];
+        while(walker.nextNode()) textNodes.push(walker.currentNode);
+        textNodes.forEach(function(node){
+          var original = node.nodeValue.trim();
+          if(arabicText[original]){
+            node.nodeValue = node.nodeValue.replace(original, arabicText[original]);
+          }
+        });
+        document.querySelectorAll('[aria-label], [title], [alt], [placeholder]').forEach(function(el){
+          ['aria-label', 'title', 'alt', 'placeholder'].forEach(function(attr){
+            var value = el.getAttribute(attr);
+            if(!value) return;
+            if(arabicAttributes[value]){
+              el.setAttribute(attr, arabicAttributes[value]);
+            } else if(arabicText[value]){
+              el.setAttribute(attr, arabicText[value]);
+            } else if(attr === 'placeholder' && value === 'Your full name'){
+              el.setAttribute(attr, 'اسمك الكامل');
+            } else if(attr === 'placeholder' && value === 'Search country or code'){
+              el.setAttribute(attr, 'ابحث عن الدولة أو الرمز');
+            } else if(attr === 'placeholder' && value === 'Phone number'){
+              el.setAttribute(attr, 'رقم الهاتف');
+            }
+          });
+        });
+        var whatsappLink = document.querySelector('.whatsapp-float');
+        if(whatsappLink){
+          whatsappLink.href = 'https://wa.me/971555574958?text=' + encodeURIComponent('مرحبًا! أنا مهتم بفرصة عمل DXN.');
+        }
+      }
       var countries = [
         {name:'Afghanistan', code:'+93', flag:'🇦🇫', iso:'AF'},
         {name:'Albania', code:'+355', flag:'🇦🇱', iso:'AL'},
@@ -987,7 +1250,7 @@
           document.body.classList.toggle('menu-open', open);
           header.classList.toggle('menu-active', open);
           menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          menuBtn.setAttribute('aria-label', open ? translateText('Close menu') : translateText('Open menu'));
         });
         menu.querySelectorAll('a').forEach(function(link){
           link.addEventListener('click', function(){
@@ -995,7 +1258,7 @@
             document.body.classList.remove('menu-open');
             header.classList.remove('menu-active');
             menuBtn.setAttribute('aria-expanded','false');
-            menuBtn.setAttribute('aria-label','Open menu');
+            menuBtn.setAttribute('aria-label', translateText('Open menu'));
           });
         });
       }
@@ -1109,7 +1372,7 @@
         var content = stepTwoContent[interest] || stepTwoContent.Health;
         var question = document.getElementById('step-two-question');
         var options = document.getElementById('step-two-options');
-        if(question) question.textContent = content.question;
+        if(question) question.textContent = translateText(content.question);
         if(!options) return;
         options.innerHTML = '';
         content.options.forEach(function(option){
@@ -1120,7 +1383,7 @@
           button.dataset.value = option.value;
           button.dataset.label = option.label;
           button.dataset.stepThree = option.stepThree;
-          button.textContent = option.label;
+          button.textContent = translateText(option.label);
           options.appendChild(button);
         });
       }
@@ -1129,7 +1392,7 @@
         var content = stepThreeContent[stepThreeKey] || stepThreeContent['health-energy'];
         var question = document.getElementById('step-three-question');
         var options = document.getElementById('step-three-options');
-        if(question) question.textContent = content.question;
+        if(question) question.textContent = translateText(content.question);
         if(!options) return;
         options.innerHTML = '';
         content.options.forEach(function(label, index){
@@ -1139,7 +1402,7 @@
           button.dataset.key = 'goal';
           button.dataset.value = label;
           button.dataset.scoreValue = index === 2 ? 'High' : index === 1 ? 'Medium' : 'Low';
-          button.textContent = label;
+          button.textContent = translateText(label);
           options.appendChild(button);
         });
       }
@@ -1153,7 +1416,7 @@
         var percent = document.getElementById('step-percent');
         var fill = document.getElementById('progress-fill');
         var progress = step >= 6 ? 100 : Math.round((step / 5) * 100);
-        if(label) label.textContent = step >= 6 ? 'Complete' : 'Step ' + step + ' of 5';
+        if(label) label.textContent = step >= 6 ? translateText('Complete') : (isArabic ? 'الخطوة ' + step + ' من 5' : 'Step ' + step + ' of 5');
         if(percent) percent.textContent = progress + '%';
         if(fill) fill.style.width = progress + '%';
         if(backBtn) backBtn.hidden = step <= 1 || step >= 6;
@@ -1212,7 +1475,7 @@
           Cold: 'Nurture sequence started'
         };
         pill.className = 'score-pill score-' + score.toLowerCase();
-        pill.textContent = messages[score];
+        pill.textContent = translateText(messages[score]);
       }
 
       var selectedCountry = countries.find(function(country){ return country.iso === 'AE'; }) || countries[0];
@@ -1401,7 +1664,7 @@
           var whatsapp = buildWhatsAppNumber();
           updateCombinedWhatsApp();
           if(!name || !email || !emailInput || !emailInput.checkValidity() || !phoneIsValid()){
-            if(error) error.textContent = 'Please complete your name, a valid email, and a valid WhatsApp number.';
+            if(error) error.textContent = translateText('Please complete your name, a valid email, and a valid WhatsApp number.');
             if(error) error.classList.add('show');
             return;
           }
@@ -1448,12 +1711,13 @@
             showStep(6);
           }).catch(function(){
             if(error){
-              error.textContent = 'We could not submit your details right now. Please try again in a moment.';
+              error.textContent = translateText('We could not submit your details right now. Please try again in a moment.');
               error.classList.add('show');
             }
           });
         });
       }
+      translatePage();
     })();
   </script>
 </body>

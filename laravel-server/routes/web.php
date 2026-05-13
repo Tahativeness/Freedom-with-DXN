@@ -30,7 +30,7 @@ Route::get('/sitemap.xml', function () {
         ['url' => '/about', 'priority' => '0.7', 'changefreq' => 'monthly'],
         ['url' => '/join', 'priority' => '0.8', 'changefreq' => 'monthly'],
         ['url' => '/contact', 'priority' => '0.6', 'changefreq' => 'monthly'],
-        ['url' => '/DXN-Business-Oppertunity', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['url' => '/DXN-Business-Opportunity', 'priority' => '0.9', 'changefreq' => 'weekly'],
         ['url' => '/passive-income', 'priority' => '0.8', 'changefreq' => 'weekly'],
     ];
 
@@ -152,11 +152,15 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
 
 // Landing pages
 Route::get('/passive-income', function () {
-    return view('landing.DXN-Business-Oppertunity');
+    return view('landing.DXN-Business-Opportunity');
 })->name('landing.passive-income');
 
 Route::get('/DXN-Business-Oppertunity', function () {
-    return view('landing.DXN-Business-Oppertunity');
+    return view('landing.DXN-Business-Opportunity');
 })->name('landing.dxn-business-oppertunity');
+
+Route::get('/DXN-Business-Opportunity', function () {
+    return view('landing.DXN-Business-Opportunity');
+})->name('landing.dxn-business-opportunity');
 
 Route::get('/landing/{slug}', [LandingController::class, 'show'])->name('landing');
