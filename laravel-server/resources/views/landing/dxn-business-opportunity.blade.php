@@ -204,7 +204,7 @@
     .menu-lines span{display:block;height:2px;background:#000;border-radius:999px}
     .site-header.is-scrolled .menu-toggle,.site-header.menu-active .menu-toggle{color:#000;border-color:var(--border)}
 
-    .hero{min-height:760px;padding:132px 0 86px;display:grid;align-items:center}
+    .hero{min-height:720px;padding:106px 0 72px;display:grid;align-items:center}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.82fr);gap:clamp(34px,6vw,74px);align-items:center}
     .trust-pill{display:inline-flex;align-items:center;gap:10px;border:.5px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;color:rgba(255,255,255,.88);font-size:.9rem;margin-bottom:24px}
     .pulse{width:9px;height:9px;border-radius:50%;background:#42C883;box-shadow:0 0 0 0 rgba(66,200,131,.7);animation:pulse 1.9s infinite}
@@ -385,7 +385,7 @@
     @keyframes trustMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
     @media (max-width:900px){
-      .hero{min-height:auto;padding-top:118px}
+      .hero{min-height:auto;padding-top:92px;padding-bottom:60px}
       .hero-grid{grid-template-columns:1fr}
       .overview-card{max-width:560px}
       .why-layout{grid-template-columns:1fr}
