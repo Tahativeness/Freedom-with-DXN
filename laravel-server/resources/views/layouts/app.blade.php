@@ -88,7 +88,9 @@
 
     @stack('styles')
 
-    @php($metaPixelId = config('services.meta.pixel_id'))
+    @php
+        $metaPixelId = config('services.meta.pixel_id');
+    @endphp
     @if($metaPixelId)
     <!-- Meta Pixel Code -->
 <script>
@@ -123,7 +125,9 @@ src="https://www.facebook.com/tr?id=1700817390920320&ev=PageView&noscript=1"
     </script>
     @endif
 
-    @php($klaviyoCompanyId = config('klaviyo.company_id') ?: config('services.klaviyo.company_id'))
+    @php
+        $klaviyoCompanyId = config('klaviyo.company_id') ?: config('services.klaviyo.company_id');
+    @endphp
     @if($klaviyoCompanyId)
     <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/{{ $klaviyoCompanyId }}/klaviyo.js?company_id={{ $klaviyoCompanyId }}"></script>
     <script type="text/javascript">
