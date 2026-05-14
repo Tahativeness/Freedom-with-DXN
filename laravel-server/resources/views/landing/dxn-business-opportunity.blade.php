@@ -469,7 +469,7 @@
     <section class="hero dark">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 6+ million members in 180+ countries</div>
+          <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 22M+ members in 180+ countries</div>
           <h1>Build Passive Income Globally with DXN — Better Health, Real Freedom</h1>
           <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
           <div class="chips" aria-label="Key benefits">
@@ -497,7 +497,7 @@
               <div class="stats" aria-label="DXN global statistics">
                 <div class="stat"><strong>35+</strong><span>years</span></div>
                 <div class="stat"><strong>180+</strong><span>countries</span></div>
-                <div class="stat"><strong>6M+</strong><span>members</span></div>
+                <div class="stat"><strong>22M+</strong><span>members</span></div>
               </div>
               <p class="cert"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified · GMP · ISO 9001</p>
             </div>
@@ -511,14 +511,14 @@
         <div class="trust-row">
           <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
           <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>22M+ members</div>
           <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
           <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
         </div>
         <div class="trust-row trust-row-copy" aria-hidden="true">
           <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
           <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>6M+ members</div>
+          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>22M+ members</div>
           <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
           <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
         </div>
@@ -949,7 +949,7 @@
         'Stories': 'قصص النجاح',
         'FAQ': 'الأسئلة',
         'Start free': 'ابدأ مجانًا',
-        'Trusted by 6+ million members in 180+ countries': 'موثوق به من أكثر من 6 ملايين عضو في أكثر من 180 دولة',
+        'Trusted by 22M+ members in 180+ countries': 'موثوق به من أكثر من 22 مليون عضو في أكثر من 180 دولة',
         'Build Passive Income Globally with DXN — Better Health, Real Freedom': 'ابنِ دخلًا سلبيًا عالميًا مع DXN — صحة أفضل وحرية حقيقية',
         'Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.': 'انضم إلى علامة عافية موثوقة عالميًا. احصل على نظام تدريب خطوة بخطوة، ومرشد شخصي، وفرصة دخل جانبي مرنة تناسب المقيمين في الإمارات.',
         'Start part-time': 'ابدأ بدوام جزئي',
@@ -966,7 +966,7 @@
         'Halal certified · GMP · ISO 9001': 'حلال · GMP · ISO 9001',
         'Global brand': 'علامة عالمية',
         'Halal certified': 'معتمد حلال',
-        '6M+ members': 'أكثر من 6M عضو',
+        '22M+ members': 'أكثر من 22M عضو',
         'Wellness leader': 'رائدة في العافية',
         'Award winning': 'حائزة على جوائز',
         'Watch this first': 'شاهد هذا أولًا',
