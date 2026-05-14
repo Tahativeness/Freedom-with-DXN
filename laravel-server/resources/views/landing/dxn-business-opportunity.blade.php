@@ -198,6 +198,7 @@
     .language-switch{display:flex;align-items:center;gap:4px;border:.5px solid var(--border);border-radius:999px;padding:3px;background:var(--surface)}
     .language-switch a{min-width:34px;min-height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-size:.78rem;font-weight:700;color:#000}
     .language-switch a.is-active{background:#198d45;color:#fff}
+    .header-actions{display:flex;align-items:center;gap:16px;margin-left:-8px;direction:ltr}
     .menu-toggle{display:none;width:44px;height:44px;border-radius:10px;border:.5px solid var(--border);background:transparent;color:#000}
     .menu-lines{width:22px;display:grid;gap:5px}
     .menu-lines span{display:block;height:2px;background:#000;border-radius:999px}
@@ -394,13 +395,16 @@
     }
 
     @media (max-width:767px){
-      .nav{min-height:68px}
+      .nav{min-height:68px;gap:12px}
       .brand-logo{height:56px}
       .nav-links{position:absolute;top:100%;left:0;right:0;width:100%;background:#fff;color:#000;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:22px var(--pad) 26px;display:flex;align-items:stretch;flex-direction:column;gap:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease;font-weight:700;box-shadow:0 16px 30px rgba(0,0,0,.08)}
       .nav-links.is-open{opacity:1;visibility:visible;transform:translateY(0)}
       .nav-links a{min-height:44px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;text-align:center}
       .nav-links .btn{margin-top:8px;background:#198d45;color:#fff;justify-content:center;font-weight:700;width:100%}
       .nav-links .btn:hover{background:#126b35;color:#fff}
+      .header-actions{margin-left:auto;gap:10px}
+      body.rtl .header-actions{margin-left:0;margin-right:auto}
+      .header-actions .language-switch{flex:0 0 auto}
       .menu-toggle{display:grid;place-items:center}
       .site-header:not(.is-scrolled):not(.menu-active) .brand{color:#000}
       .chips{grid-template-columns:1fr;max-width:none;gap:10px}
@@ -446,15 +450,17 @@
         <a href="#products">Products</a>
         <a href="#stories">Stories</a>
         <a href="#faq">FAQ</a>
+        <a class="btn btn-dark" href="#qualifier" data-scroll>Start free <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </nav>
+      <div class="header-actions">
         <div class="language-switch" aria-label="Language switch">
           <a href="{{ route('lang.switch', 'en') }}" class="{{ $lang === 'en' ? 'is-active' : '' }}" lang="en">EN</a>
           <a href="{{ route('lang.switch', 'ar') }}" class="{{ $lang === 'ar' ? 'is-active' : '' }}" lang="ar">AR</a>
         </div>
-        <a class="btn btn-dark" href="#qualifier" data-scroll>Start free <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
-      </nav>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
-        <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
+          <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
     </div>
   </header>
 
