@@ -471,7 +471,7 @@
         <div class="hero-copy">
           <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 22M+ members in 180+ countries</div>
           <h1>Build Real Freedom from Anywhere in the World — Health, Income & the DXN Opportunity</h1>
-          <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
+          <p class="hero-sub">Join a Globally Trusted Wellness Brand — Get a Proven Training System, a Personal Mentor, and a Flexible Income Opportunity Built for Everywhere in the World</p>
           <div class="chips" aria-label="Key benefits">
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>No experience needed</div>
@@ -951,7 +951,7 @@
         'Start free': 'ابدأ مجانًا',
         'Trusted by 22M+ members in 180+ countries': 'موثوق به من أكثر من 22 مليون عضو في أكثر من 180 دولة',
         'Build Real Freedom from Anywhere in the World — Health, Income & the DXN Opportunity': 'ابنِ حرية حقيقية من أي مكان في العالم — الصحة والدخل وفرصة DXN',
-        'Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.': 'انضم إلى علامة عافية موثوقة عالميًا. احصل على نظام تدريب خطوة بخطوة، ومرشد شخصي، وفرصة دخل جانبي مرنة تناسب المقيمين في الإمارات.',
+        'Join a Globally Trusted Wellness Brand — Get a Proven Training System, a Personal Mentor, and a Flexible Income Opportunity Built for Everywhere in the World': 'انضم إلى علامة عافية موثوقة عالميًا — احصل على نظام تدريب مثبت، ومرشد شخصي، وفرصة دخل مرنة مناسبة لكل مكان في العالم',
         'Start part-time': 'ابدأ بدوام جزئي',
         'No experience needed': 'لا تحتاج إلى خبرة',
         'Free training included': 'التدريب المجاني مشمول',
