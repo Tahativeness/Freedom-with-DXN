@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#04342C">
 
-  <title>{{ $isAr ? 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN' : 'Build Passive Income Globally with DXN — Better Health, Real Freedom | FreedomWithDXN' }}</title>
+  <title>{{ $isAr ? 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN' : 'Build Better Health & Side Income in UAE | FreedomWithDXN' }}</title>
   <meta name="description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. تدريب مجاني، بداية مرنة بدوام جزئي، ومنتجات حلال. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Free training, flexible part-time start, Halal-certified products. Get your free overview now.' }}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://freedomwithdxn.com/">
@@ -21,13 +21,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://freedomwithdxn.com/">
-  <meta property="og:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build Passive Income Globally with DXN — Better Health, Real Freedom' }}">
+  <meta property="og:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
   <meta property="og:description" content="{{ $isAr ? 'تدريب مجاني، بداية مرنة بدوام جزئي، منتجات حلال، وعرض بسيط للمقيمين في الإمارات.' : 'Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.' }}">
   <meta property="og:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
   <meta property="og:locale" content="{{ $isAr ? 'ar_AE' : 'en_AE' }}">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build Passive Income Globally with DXN — Better Health, Real Freedom' }}">
+  <meta name="twitter:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
   <meta name="twitter:description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Get your free overview now.' }}">
   <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
 
