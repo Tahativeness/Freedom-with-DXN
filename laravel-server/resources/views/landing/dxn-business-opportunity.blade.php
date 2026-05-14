@@ -554,7 +554,7 @@
           <div class="gift-offer-head">
             <div>
               <p class="gift-offer-kicker">Your special gift box</p>
-              <h3>What is the offer you can’t reject after watching this video?</h3>
+              <h3>The Offer You'll Love After Watching This Video!</h3>
             </div>
             <div class="gift-badge" aria-hidden="true">🎁</div>
           </div>
@@ -973,7 +973,7 @@
         'Your journey to freedom begins now': 'رحلتك نحو الحرية تبدأ الآن',
         'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
         'Your special gift box': 'صندوق هديتك الخاصة',
-        'What is the offer you can’t reject after watching this video?': 'ما العرض الذي لا يمكنك رفضه بعد مشاهدة هذا الفيديو؟',
+        'The Offer You\'ll Love After Watching This Video!': 'العرض الذي ستحبه بعد مشاهدة هذا الفيديو!',
         'Registration Free': 'التسجيل مجاني',
         'Consulting Free': 'الاستشارة مجانية',
         'Business Guidance Free': 'إرشاد العمل مجاني',
