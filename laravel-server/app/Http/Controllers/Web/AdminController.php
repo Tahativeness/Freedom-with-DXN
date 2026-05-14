@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\DxnLead;
 use App\Models\LandingPage;
 use App\Models\Order;
 use App\Models\Product;
@@ -20,6 +21,7 @@ class AdminController extends Controller
             'products' => Product::count(),
             'orders' => Order::count(),
             'users' => User::count(),
+            'leads' => DxnLead::count(),
             'revenue' => Order::where('status', 'delivered')->sum('total_amount'),
         ];
 

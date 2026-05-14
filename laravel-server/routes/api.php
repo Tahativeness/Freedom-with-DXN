@@ -27,7 +27,8 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::post('/dxn-lead', [DxnLeadController::class, 'store']);
+Route::post('/dxn-lead', [DxnLeadController::class, 'store'])
+    ->middleware('throttle:dxn-leads');
 
 // ─── Products ────────────────────────────────────────────────────────────────
 Route::prefix('products')->group(function () {

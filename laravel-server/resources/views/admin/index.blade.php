@@ -11,7 +11,7 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     {{-- Stats --}}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
         <div class="card p-5 text-center">
             <div class="text-3xl font-bold text-dxn-darkgreen">{{ $stats['products'] }}</div>
             <div class="text-sm text-gray-500">Products</div>
@@ -28,10 +28,14 @@
             <div class="text-3xl font-bold text-dxn-gold">${{ number_format($stats['revenue'], 2) }}</div>
             <div class="text-sm text-gray-500">Revenue</div>
         </div>
+        <div class="card p-5 text-center">
+            <div class="text-3xl font-bold text-dxn-darkgreen">{{ $stats['leads'] }}</div>
+            <div class="text-sm text-gray-500">Leads</div>
+        </div>
     </div>
 
     {{-- Quick Links --}}
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
         <a href="{{ route('admin.products') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
             <div class="text-3xl mb-2">📦</div>
             <h3 class="font-bold text-dxn-darkgreen">Products</h3>
@@ -56,6 +60,11 @@
             <div class="text-3xl mb-2">🚀</div>
             <h3 class="font-bold text-dxn-darkgreen">Landing Pages</h3>
             <p class="text-sm text-gray-500">Product pages</p>
+        </a>
+        <a href="{{ route('admin.leads') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-2">Leads</div>
+            <h3 class="font-bold text-dxn-darkgreen">Leads</h3>
+            <p class="text-sm text-gray-500">Klaviyo status</p>
         </a>
     </div>
 </div>

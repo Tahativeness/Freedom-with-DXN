@@ -20,6 +20,7 @@ npm-debug.log*
 
 # Laravel
 laravel-server/vendor/
+laravel-server/composer.phar
 laravel-server/storage/*.key
 laravel-server/storage/framework/cache/*
 laravel-server/storage/framework/sessions/*

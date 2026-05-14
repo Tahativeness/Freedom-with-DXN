@@ -316,6 +316,7 @@
     .option-btn{min-height:52px;width:100%;border:1px solid var(--border);border-radius:8px;background:var(--white);padding:14px 16px;text-align:left;color:var(--text);transition:border-color .18s ease,background .18s ease}
     .option-btn:hover{border-color:var(--green-700);background:var(--surface)}
     .lead-form{display:grid;gap:14px}
+    .lead-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .field label{display:block;font-size:.9rem;color:var(--green-900);margin-bottom:6px}
     .field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:8px;padding:12px 13px;background:var(--white);color:var(--text)}
     .field input:focus{border-color:var(--green-700);outline:3px solid rgba(15,110,86,.16)}
@@ -805,6 +806,12 @@
               <h2>Get free access</h2>
               <p class="q-sub">Overview video + WhatsApp welcome in 60 seconds.</p>
               <form class="lead-form needs-validation" id="lead-form" novalidate>
+                <div class="lead-hp" aria-hidden="true">
+                  <label for="company-website">Company website</label>
+                  <input id="company-website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+                <input id="lead-idempotency-key" name="idempotency_key" type="hidden" value="">
+                <input id="form-started-at" name="form_started_at" type="hidden" value="">
                 <div class="field mb-3">
                   <label class="form-label" for="full-name">Full name</label>
                   <input class="form-control" id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
@@ -1108,6 +1115,7 @@
         'Please complete your name, email, and WhatsApp number.': 'يرجى إكمال الاسم والبريد الإلكتروني ورقم واتساب.',
         'Please complete your name, a valid email, and a valid WhatsApp number.': 'يرجى إدخال الاسم وبريد إلكتروني صحيح ورقم واتساب صحيح.',
         'We could not submit your details right now. Please try again in a moment.': 'لم نتمكن من إرسال بياناتك الآن. يرجى المحاولة بعد قليل.',
+        'Submitting...': 'جارٍ الإرسال...',
         'Your information is private. Unsubscribe anytime.': 'معلوماتك خاصة. يمكنك إلغاء الاشتراك في أي وقت.',
         'Thank you.': 'شكرًا لك.',
         'Your submission has been received. We will send your free overview shortly.': 'تم استلام طلبك. سنرسل لك العرض المجاني قريبًا.',
@@ -1900,10 +1908,47 @@
         }
       });
 
+      function generateLeadIdempotencyKey(){
+        if(window.crypto && typeof window.crypto.randomUUID === 'function'){
+          return window.crypto.randomUUID();
+        }
+        return 'lead-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+      }
+
+      function getLeadIdempotencyKey(){
+        var storageKey = 'dxn_lead_idempotency_key';
+        try {
+          var existingKey = window.sessionStorage ? window.sessionStorage.getItem(storageKey) : '';
+          if(existingKey) return existingKey;
+          var newKey = generateLeadIdempotencyKey();
+          if(window.sessionStorage) window.sessionStorage.setItem(storageKey, newKey);
+          return newKey;
+        } catch(storageError){
+          return generateLeadIdempotencyKey();
+        }
+      }
+
+      function clearLeadIdempotencyKey(){
+        try {
+          if(window.sessionStorage) window.sessionStorage.removeItem('dxn_lead_idempotency_key');
+        } catch(storageError){}
+      }
+
       var form = document.getElementById('lead-form');
       if(form){
+        var submitButton = form.querySelector('[type="submit"]');
+        var submitButtonHtml = submitButton ? submitButton.innerHTML : '';
+        var idempotencyInput = document.getElementById('lead-idempotency-key');
+        var formStartedAtInput = document.getElementById('form-started-at');
+        var companyWebsiteInput = document.getElementById('company-website');
+        var isSubmitting = false;
+
+        if(idempotencyInput) idempotencyInput.value = getLeadIdempotencyKey();
+        if(formStartedAtInput) formStartedAtInput.value = String(Date.now());
+
         form.addEventListener('submit', function(event){
           event.preventDefault();
+          if(isSubmitting) return;
           var error = document.getElementById('form-error');
           var nameInput = form.querySelector('[name="name"]');
           var emailInput = form.querySelector('[name="email"]');
@@ -1917,6 +1962,11 @@
             return;
           }
           if(error) error.classList.remove('show');
+          isSubmitting = true;
+          if(submitButton){
+            submitButton.disabled = true;
+            submitButton.textContent = translateText('Submitting...');
+          }
           var score = getScore();
           var payload = {
             name: name,
@@ -1933,7 +1983,10 @@
             timestamp: new Date().toISOString(),
             utm_source: utm.utm_source,
             utm_medium: utm.utm_medium,
-            utm_campaign: utm.utm_campaign
+            utm_campaign: utm.utm_campaign,
+            idempotency_key: idempotencyInput ? idempotencyInput.value : getLeadIdempotencyKey(),
+            form_started_at: formStartedAtInput ? formStartedAtInput.value : '',
+            company_website: companyWebsiteInput ? companyWebsiteInput.value : ''
           };
 
           fetch('/api/dxn-lead', {
@@ -1961,9 +2014,15 @@
               window.fbq('track', 'Lead', {value: scoreValue});
             }
 
+            clearLeadIdempotencyKey();
             setScorePill(score);
             showStep(6);
           }).catch(function(submitError){
+            isSubmitting = false;
+            if(submitButton){
+              submitButton.disabled = false;
+              submitButton.innerHTML = submitButtonHtml;
+            }
             if(error){
               error.textContent = submitError.message || translateText('We could not submit your details right now. Please try again in a moment.');
               error.classList.add('show');
