@@ -352,12 +352,15 @@
     .score-cold{background:var(--blue-bg);color:var(--blue-text)}
 
     .faq-list{max-width:820px;margin:0 auto;display:grid;gap:10px}
-    details{background:var(--surface);border:.5px solid var(--border);border-radius:12px;padding:0}
-    summary{list-style:none;cursor:pointer;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;font-weight:500;color:var(--green-900)}
-    summary::-webkit-details-marker{display:none}
-    summary i{transition:transform .18s ease;color:var(--green-700)}
-    details[open] summary i{transform:rotate(180deg)}
-    details p{padding:0 18px 18px;color:var(--muted)}
+    .faq-item{background:var(--surface);border:.5px solid var(--border);border-radius:12px;overflow:hidden}
+    .faq-question{width:100%;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px;border:0;background:transparent;padding:16px 18px;text-align:left;font-weight:500;color:var(--green-900)}
+    body.rtl .faq-question{text-align:right}
+    .faq-question i{flex:0 0 auto;transition:transform .2s ease;color:var(--green-700)}
+    .faq-item.is-open .faq-question i{transform:rotate(180deg)}
+    .faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .24s ease}
+    .faq-item.is-open .faq-answer{grid-template-rows:1fr}
+    .faq-answer-inner{overflow:hidden}
+    .faq-answer p{padding:0 18px 18px;color:var(--muted)}
 
     .final-cta{text-align:center}
     .urgency{display:inline-flex;align-items:center;gap:8px;border:.5px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 12px;color:rgba(255,255,255,.82);margin-bottom:18px}
@@ -851,13 +854,31 @@
           <p class="eyebrow">Common questions</p>
           <h2>Before you ask</h2>
         </div>
-        <div class="faq-list">
-          <details><summary>Do I need any experience?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</p></details>
-          <details><summary>Can I do this part-time?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</p></details>
-          <details><summary>Is this available in the UAE?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</p></details>
-          <details><summary>How much does it cost to start?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</p></details>
-          <details><summary>Is this a pyramid scheme?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</p></details>
-          <details><summary>What if I change my mind?<i class="ti ti-chevron-down" aria-hidden="true"></i></summary><p>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</p></details>
+        <div class="faq-list" data-faq-accordion>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">Do I need any experience?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden><div class="faq-answer-inner"><p>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">Can I do this part-time?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" hidden><div class="faq-answer-inner"><p>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">Is this available in the UAE?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" hidden><div class="faq-answer-inner"><p>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">How much does it cost to start?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" hidden><div class="faq-answer-inner"><p>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">Is this a pyramid scheme?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5" hidden><div class="faq-answer-inner"><p>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">What if I change my mind?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6" hidden><div class="faq-answer-inner"><p>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</p></div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -1451,6 +1472,46 @@
             event.preventDefault();
             target.scrollIntoView({behavior:'smooth', block:'start'});
           }
+        });
+      });
+
+      document.querySelectorAll('[data-faq-accordion]').forEach(function(accordion){
+        var items = Array.prototype.slice.call(accordion.querySelectorAll('.faq-item'));
+
+        function setFaqItem(item, open){
+          var button = item.querySelector('.faq-question');
+          var answer = item.querySelector('.faq-answer');
+          if(!button || !answer) return;
+
+          button.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+          if(open){
+            answer.hidden = false;
+            window.requestAnimationFrame(function(){
+              item.classList.add('is-open');
+            });
+            return;
+          }
+
+          item.classList.remove('is-open');
+          window.setTimeout(function(){
+            if(!item.classList.contains('is-open')){
+              answer.hidden = true;
+            }
+          }, 240);
+        }
+
+        items.forEach(function(item){
+          setFaqItem(item, false);
+          var button = item.querySelector('.faq-question');
+          if(!button) return;
+
+          button.addEventListener('click', function(){
+            var shouldOpen = !item.classList.contains('is-open');
+            items.forEach(function(otherItem){
+              setFaqItem(otherItem, otherItem === item && shouldOpen);
+            });
+          });
         });
       });
 
