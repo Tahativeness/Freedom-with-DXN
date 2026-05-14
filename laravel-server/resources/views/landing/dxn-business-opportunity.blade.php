@@ -238,6 +238,16 @@
     .video-frame{position:relative;aspect-ratio:16/9;border-radius:18px;padding:3px;background:linear-gradient(135deg,#198d45,#6248a8,#ef9f27,#d94b3f);box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
     .video-frame iframe,.video-frame video{width:100%;height:100%;display:block;border:0;border-radius:15px;background:#000}
     .video-frame video{object-fit:cover}
+    .gift-offer{width:min(100%,980px);margin:28px auto 0;background:#fff;border:.5px solid rgba(25,141,69,.28);border-top:4px solid var(--gold);border-radius:14px;padding:22px;box-shadow:0 18px 48px rgba(25,141,69,.12)}
+    .gift-offer-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .gift-offer-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:7px;color:var(--green-700);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .gift-offer h3{font-size:clamp(1.22rem,2.2vw,1.58rem);color:#000;margin-bottom:0}
+    .gift-badge{width:54px;height:54px;border-radius:14px;background:var(--amber-bg);display:grid;place-items:center;font-size:1.7rem;flex:0 0 auto}
+    .gift-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0 0 18px;padding:0;list-style:none}
+    .gift-list li{display:flex;align-items:center;gap:8px;min-height:54px;border:.5px solid var(--border);border-radius:10px;background:var(--surface);padding:10px 12px;color:#000;font-size:.92rem;font-weight:500;line-height:1.25}
+    .gift-list i{color:#198d45;font-size:1.08rem;flex:0 0 auto}
+    .gift-offer-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:.5px solid var(--border);padding-top:16px}
+    .gift-offer-foot p{color:var(--muted);font-size:.95rem}
     .video-toolbar{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
     .video-tool{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border:.5px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-weight:700}
     .video-tool:hover{background:#198d45;color:#fff}
@@ -376,6 +386,8 @@
       .why-layout{grid-template-columns:1fr}
       .why-copy{position:static}
       .video-shell[data-zoom="large"],.video-shell[data-zoom="small"]{max-width:100%}
+      .gift-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .gift-offer-foot{align-items:flex-start;flex-direction:column}
     }
 
     @media (max-width:767px){
@@ -393,6 +405,9 @@
       .why-grid{grid-template-columns:1fr}
       .why-card{min-height:auto}
       .why-note{align-items:flex-start}
+      .gift-offer{padding:18px}
+      .gift-offer-head{align-items:flex-start}
+      .gift-list{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
       .phone-input-group{display:grid;grid-template-columns:1fr}
       .country-select{width:100%;flex-basis:auto}
@@ -522,6 +537,27 @@
               <source src="{{ asset('Video/watch-free-overview.mp4') }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+          </div>
+        </div>
+
+        <div class="gift-offer" aria-label="Special free offer after watching the video">
+          <div class="gift-offer-head">
+            <div>
+              <p class="gift-offer-kicker">Your special gift box</p>
+              <h3>What is the offer you can’t reject after watching this video?</h3>
+            </div>
+            <div class="gift-badge" aria-hidden="true">🎁</div>
+          </div>
+          <ul class="gift-list">
+            <li><i class="ti ti-check" aria-hidden="true"></i>Registration Free</li>
+            <li><i class="ti ti-check" aria-hidden="true"></i>Consulting Free</li>
+            <li><i class="ti ti-check" aria-hidden="true"></i>Business Guidance Free</li>
+            <li><i class="ti ti-check" aria-hidden="true"></i>Health & Product Education Free</li>
+            <li><i class="ti ti-check" aria-hidden="true"></i>Personal Success Support</li>
+          </ul>
+          <div class="gift-offer-foot">
+            <p>Everything is prepared to help you understand the opportunity clearly before you decide.</p>
+            <a class="btn btn-gold" href="#qualifier" data-scroll>Claim free support <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -902,6 +938,15 @@
         'Watch this first': 'شاهد هذا أولًا',
         'Your journey to freedom begins now': 'رحلتك نحو الحرية تبدأ الآن',
         'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
+        'Your special gift box': 'صندوق هديتك الخاصة',
+        'What is the offer you can’t reject after watching this video?': 'ما العرض الذي لا يمكنك رفضه بعد مشاهدة هذا الفيديو؟',
+        'Registration Free': 'التسجيل مجاني',
+        'Consulting Free': 'الاستشارة مجانية',
+        'Business Guidance Free': 'إرشاد العمل مجاني',
+        'Health & Product Education Free': 'تعليم الصحة والمنتجات مجاني',
+        'Personal Success Support': 'دعم شخصي للنجاح',
+        'Everything is prepared to help you understand the opportunity clearly before you decide.': 'كل شيء جاهز لمساعدتك على فهم الفرصة بوضوح قبل أن تقرر.',
+        'Claim free support': 'احصل على الدعم المجاني',
         'A global wellness company built on real products': 'شركة عافية عالمية مبنية على منتجات حقيقية',
         'DXN combines daily-use wellness products with a flexible business opportunity, so people can improve their lifestyle while sharing products they actually use.': 'تجمع DXN بين منتجات عافية للاستخدام اليومي وفرصة عمل مرنة، حتى يتمكن الناس من تحسين نمط حياتهم ومشاركة منتجات يستخدمونها فعلًا.',
         '35+ years of global experience': 'أكثر من 35 سنة من الخبرة العالمية',
@@ -1074,6 +1119,7 @@
         'DXN global statistics': 'إحصاءات DXN العالمية',
         'Trust indicators': 'مؤشرات الثقة',
         'Freedom with DXN business overview video': 'فيديو عرض فرصة Freedom with DXN',
+        'Special free offer after watching the video': 'عرض مجاني خاص بعد مشاهدة الفيديو',
         'Go back to the previous question': 'الرجوع إلى السؤال السابق',
         'Search country code': 'البحث عن رمز الدولة',
         'Country codes': 'رموز الدول',
