@@ -470,7 +470,7 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 22M+ members in 180+ countries</div>
-          <h1>Build Passive Income Globally with DXN — Better Health, Real Freedom</h1>
+          <h1>Build Real Freedom from Anywhere in the World — Health, Income & the DXN Opportunity</h1>
           <p class="hero-sub">Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.</p>
           <div class="chips" aria-label="Key benefits">
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
@@ -950,7 +950,7 @@
         'FAQ': 'الأسئلة',
         'Start free': 'ابدأ مجانًا',
         'Trusted by 22M+ members in 180+ countries': 'موثوق به من أكثر من 22 مليون عضو في أكثر من 180 دولة',
-        'Build Passive Income Globally with DXN — Better Health, Real Freedom': 'ابنِ دخلًا سلبيًا عالميًا مع DXN — صحة أفضل وحرية حقيقية',
+        'Build Real Freedom from Anywhere in the World — Health, Income & the DXN Opportunity': 'ابنِ حرية حقيقية من أي مكان في العالم — الصحة والدخل وفرصة DXN',
         'Join a globally trusted wellness brand. Get a step-by-step training system, a personal mentor, and a flexible side opportunity built for people in the UAE.': 'انضم إلى علامة عافية موثوقة عالميًا. احصل على نظام تدريب خطوة بخطوة، ومرشد شخصي، وفرصة دخل جانبي مرنة تناسب المقيمين في الإمارات.',
         'Start part-time': 'ابدأ بدوام جزئي',
         'No experience needed': 'لا تحتاج إلى خبرة',
