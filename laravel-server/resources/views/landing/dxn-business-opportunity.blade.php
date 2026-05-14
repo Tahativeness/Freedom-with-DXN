@@ -524,7 +524,7 @@
               oncontextmenu="return false"
               preload="metadata"
               playsinline>
-              <source src="{{ asset('Video/watch-free-overview.mp4') }}" type="video/mp4">
+              <source src="{{ asset('Video/free-overview.mp4') }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
