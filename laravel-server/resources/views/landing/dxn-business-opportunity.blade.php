@@ -529,7 +529,7 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Watch this first</p>
-          <h2>Your journey to freedom begins now</h2>
+          <h2>Your Freedom Is One Video Away — Watch How the DXN Journey to Freedom Really Works</h2>
           <p class="lead">A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.</p>
         </div>
 
@@ -970,7 +970,7 @@
         'Wellness leader': 'رائدة في العافية',
         'Award winning': 'حائزة على جوائز',
         'Watch this first': 'شاهد هذا أولًا',
-        'Your journey to freedom begins now': 'رحلتك نحو الحرية تبدأ الآن',
+        'Your Freedom Is One Video Away — Watch How the DXN Journey to Freedom Really Works': 'حريتك على بعد فيديو واحد — شاهد كيف تعمل رحلة DXN نحو الحرية حقًا',
         'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
         'Your special gift box': 'صندوق هديتك الخاصة',
         'The Offer You\'ll Love After Watching This Video!': 'العرض الذي ستحبه بعد مشاهدة هذا الفيديو!',
