@@ -232,6 +232,7 @@
     .overview-video .eyebrow{color:#000;margin-bottom:18px}
     .overview-video .section-head{margin-bottom:44px}
     .overview-video h2{color:#000;font-size:clamp(2rem,4vw,3rem)}
+    .overview-video-title{white-space:nowrap;font-size:clamp(1.45rem,5.8vw,3rem)!important}
     .overview-video .lead{color:#000}
     .video-shell{width:min(100%,980px);margin:0 auto;transition:max-width .22s ease}
     .video-shell[data-zoom="large"]{max-width:1160px}
@@ -529,7 +530,7 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Watch this first</p>
-          <h2>Your Freedom Is One Video Away — Watch How the DXN Journey to Freedom Really Works</h2>
+          <h2 class="overview-video-title">Your Freedom Is One Video Away</h2>
           <p class="lead">A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.</p>
         </div>
 
@@ -970,7 +971,7 @@
         'Wellness leader': 'رائدة في العافية',
         'Award winning': 'حائزة على جوائز',
         'Watch this first': 'شاهد هذا أولًا',
-        'Your Freedom Is One Video Away — Watch How the DXN Journey to Freedom Really Works': 'حريتك على بعد فيديو واحد — شاهد كيف تعمل رحلة DXN نحو الحرية حقًا',
+        'Your Freedom Is One Video Away': 'حريتك على بعد فيديو واحد',
         'A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.': 'عرض قصير يوضح ما هي DXN، وكيف تعمل الفرصة، وكيف يمكنك البدء بدون ضغط.',
         'Your special gift box': 'صندوق هديتك الخاصة',
         'The Offer You\'ll Love After Watching This Video!': 'العرض الذي ستحبه بعد مشاهدة هذا الفيديو!',
