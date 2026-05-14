@@ -522,7 +522,8 @@
               controlsList="nodownload"
               disablePictureInPicture
               oncontextmenu="return false"
-              preload="metadata"
+              poster="{{ asset('images/free-overview-poster.png') }}"
+              preload="auto"
               playsinline>
               <source src="{{ asset('Video/free-overview.mp4') }}" type="video/mp4">
               Your browser does not support the video tag.
