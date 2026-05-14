@@ -69,33 +69,8 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Do I need any experience?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days."}
-      },
-      {
-        "@type": "Question",
-        "name": "Can I do this part-time?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this."}
-      },
-      {
-        "@type": "Question",
-        "name": "Is this available in the UAE?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support."}
-      },
-      {
-        "@type": "Question",
-        "name": "How much does it cost to start?",
-        "acceptedAnswer": {"@type": "Answer", "text": "There is a small one-time starter pack. You will see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements."}
-      },
-      {
-        "@type": "Question",
-        "name": "Is this a pyramid scheme?",
-        "acceptedAnswer": {"@type": "Answer", "text": "No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone."}
-      },
-      {
-        "@type": "Question",
-        "name": "What if I change my mind?",
-        "acceptedAnswer": {"@type": "Answer", "text": "You can stop at any time. There is no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep."}
+        "name": "Is DXN Right for Me — Even If I'm a Beginner, Have a Full-Time Job, and Have Never Done This Before?",
+        "acceptedAnswer": {"@type": "Answer", "text": "1. Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days. 2. Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this. 3. Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support. 4. There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements. 5. No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone. 6. You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep."}
       }
     ]
   }
@@ -364,6 +339,10 @@
     .faq-item.is-open .faq-answer{grid-template-rows:1fr}
     .faq-answer-inner{overflow:hidden}
     .faq-answer p{padding:0 18px 18px;color:var(--muted)}
+    .faq-answer-list{margin:0;padding:0 18px 18px 42px;color:var(--muted)}
+    .faq-answer-list li{padding-left:6px;margin-bottom:10px}
+    .faq-answer-list li:last-child{margin-bottom:0}
+    body.rtl .faq-answer-list{padding:0 42px 18px 18px}
 
     .final-cta{text-align:center}
     .urgency{display:inline-flex;align-items:center;gap:8px;border:.5px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 12px;color:rgba(255,255,255,.82);margin-bottom:18px}
@@ -870,28 +849,19 @@
         </div>
         <div class="faq-list" data-faq-accordion>
           <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">Do I need any experience?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden><div class="faq-answer-inner"><p>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">Can I do this part-time?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" hidden><div class="faq-answer-inner"><p>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">Is this available in the UAE?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" hidden><div class="faq-answer-inner"><p>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">How much does it cost to start?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" hidden><div class="faq-answer-inner"><p>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">Is this a pyramid scheme?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5" hidden><div class="faq-answer-inner"><p>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</p></div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">What if I change my mind?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6" hidden><div class="faq-answer-inner"><p>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</p></div></div>
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">Is DXN Right for Me — Even If I'm a Beginner, Have a Full-Time Job, and Have Never Done This Before?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden>
+              <div class="faq-answer-inner">
+                <ol class="faq-answer-list">
+                  <li>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</li>
+                  <li>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</li>
+                  <li>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</li>
+                  <li>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</li>
+                  <li>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</li>
+                  <li>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1125,6 +1095,7 @@
         'Nurture sequence started': 'بدأت سلسلة المتابعة',
         'Common questions': 'أسئلة شائعة',
         'Before you ask': 'قبل أن تسأل',
+        "Is DXN Right for Me — Even If I'm a Beginner, Have a Full-Time Job, and Have Never Done This Before?": 'هل DXN مناسبة لي — حتى لو كنت مبتدئًا، ولدي وظيفة بدوام كامل، ولم أجرب هذا من قبل؟',
         'Do I need any experience?': 'هل أحتاج إلى خبرة؟',
         'Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.': 'لا أبدًا. يتم توفير تدريب خطوة بخطوة من خلال بوابة الأعضاء، بالإضافة إلى مرشد شخصي يساعدك في أول 30 يومًا.',
         'Can I do this part-time?': 'هل يمكنني القيام بهذا بدوام جزئي؟',
