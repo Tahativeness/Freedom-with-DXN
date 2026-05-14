@@ -1493,9 +1493,13 @@
           if(!button) return;
 
           button.addEventListener('click', function(){
-            var shouldOpen = !item.classList.contains('is-open');
+            if(item.classList.contains('is-open')){
+              setFaqItem(item, false);
+              return;
+            }
+
             items.forEach(function(otherItem){
-              setFaqItem(otherItem, otherItem === item && shouldOpen);
+              setFaqItem(otherItem, otherItem === item);
             });
           });
         });
