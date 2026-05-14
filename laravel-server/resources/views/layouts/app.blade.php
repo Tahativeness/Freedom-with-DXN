@@ -88,23 +88,26 @@
 
     @stack('styles')
 
+    @php($metaPixelId = config('services.meta.pixel_id'))
+    @if($metaPixelId)
     <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1700817390920320');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1700817390920320&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1700817390920320');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1700817390920320&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    @endif
 
     @if(session('fbq_purchase'))
     @php
@@ -117,6 +120,14 @@
     window.addEventListener('load', function () {
         if (window.fbq) fbq('track', 'Purchase', @json($fbqPurchase)@if($fbqPurchaseEventId), { eventID: @json($fbqPurchaseEventId) }@endif);
     });
+    </script>
+    @endif
+
+    @php($klaviyoCompanyId = config('klaviyo.company_id') ?: config('services.klaviyo.company_id'))
+    @if($klaviyoCompanyId)
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/{{ $klaviyoCompanyId }}/klaviyo.js?company_id={{ $klaviyoCompanyId }}"></script>
+    <script type="text/javascript">
+        !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
     </script>
     @endif
 </head>
@@ -269,9 +280,5 @@
     @include('partials.whatsapp-float')
 
     @stack('scripts')
-    <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/Rks7DY/klaviyo.js?company_id=Rks7DY'></script>
-          <script type="text/javascript"> 
-          //Initialize Klaviyo object on page load
-          !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}(); </script>
 </body>
 </html>

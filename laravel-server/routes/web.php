@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
 use App\Http\Controllers\Web\LeadController;
+use App\Http\Controllers\KlaviyoController;
 use Illuminate\Support\Facades\Route;
 
 // Sitemap
@@ -148,6 +149,7 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::get('/leads', [LeadController::class, 'adminIndex'])->name('leads');
     Route::put('/leads/{lead}', [LeadController::class, 'adminUpdate'])->name('leads.update');
     Route::delete('/leads/{lead}', [LeadController::class, 'adminDestroy'])->name('leads.destroy');
+    Route::get('/klaviyo/status', [KlaviyoController::class, 'status'])->name('klaviyo.status');
 });
 
 // Landing pages

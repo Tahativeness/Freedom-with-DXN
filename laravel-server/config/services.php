@@ -11,6 +11,7 @@ return [
 
     'klaviyo' => [
         'api_key' => env('KLAVIYO_PRIVATE_API_KEY'),
+        'company_id' => env('KLAVIYO_COMPANY_ID', 'Rks7DY'),
         'base_url' => env('KLAVIYO_BASE_URL', 'https://a.klaviyo.com/api'),
         'list_id' => env('KLAVIYO_LIST_ID'),
         'revision' => env('KLAVIYO_REVISION', '2026-04-15'),
