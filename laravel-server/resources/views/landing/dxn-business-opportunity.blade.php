@@ -17,6 +17,20 @@
       }
       return asset($path);
   };
+  $optimizedLandingAsset = function (?string $path) use ($landingAsset) {
+      $path = trim((string) $path);
+      if ($path === '' || preg_match('/^(https?:)?\/\//', $path)) {
+          return $landingAsset($path);
+      }
+
+      $publicPath = ltrim($path, '/');
+      $webpPath = preg_replace('/\.(png|jpe?g)$/i', '.webp', $publicPath);
+      if ($webpPath && $webpPath !== $publicPath && file_exists(public_path($webpPath))) {
+          return asset($webpPath);
+      }
+
+      return $landingAsset($path);
+  };
   $whatsappBaseUrl = $content['whatsapp_url'] ?? 'https://wa.me/971555574958';
   $whatsappHref = $whatsappBaseUrl . (str_contains($whatsappBaseUrl, '?') ? '&' : '?') . 'text=' . rawurlencode($content['whatsapp_message'] ?? '');
   $lineList = function (?string $text) {
@@ -68,6 +82,7 @@
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="{{ asset('images/landing-page-image-720.webp') }}" imagesrcset="{{ asset('images/landing-page-image-720.webp') }} 720w, {{ asset('images/landing-page-image-1080.webp') }} 1080w, {{ asset('images/landing-page-image.webp') }} 1447w" imagesizes="(max-width: 900px) calc(100vw - 40px), 430px" fetchpriority="high">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -162,6 +177,7 @@
     a{color:inherit;text-decoration:none}
     button,input{font:inherit}
     button{cursor:pointer}
+    a,button{touch-action:manipulation}
     :focus-visible{outline:3px solid rgba(239,159,39,.75);outline-offset:3px}
 
     .skip-link{position:absolute;left:12px;top:-80px;z-index:200;background:var(--gold);color:var(--gold-text);padding:10px 14px;border-radius:8px;font-weight:500}
@@ -500,7 +516,8 @@
           <div class="video-panel">
             <div class="video-media">
               <picture>
-                <img src="{{ asset('images/landing-page-image.png') }}" alt="Freedom with DXN business opportunity overview" width="1447" height="1087">
+                <source type="image/webp" srcset="{{ asset('images/landing-page-image-720.webp') }} 720w, {{ asset('images/landing-page-image-1080.webp') }} 1080w, {{ asset('images/landing-page-image.webp') }} 1447w" sizes="(max-width: 900px) calc(100vw - 40px), 430px">
+                <img src="{{ asset('images/landing-page-image.png') }}" alt="Freedom with DXN business opportunity overview" width="1447" height="1087" loading="eager" decoding="async" fetchpriority="high">
               </picture>
             </div>
             <div class="video-body">
@@ -550,8 +567,8 @@
               controlsList="nodownload"
               disablePictureInPicture
               oncontextmenu="return false"
-              poster="{{ $landingAsset($content['video_poster'] ?? '') }}"
-              preload="auto"
+              poster="{{ $optimizedLandingAsset($content['video_poster'] ?? '') }}"
+              preload="none"
               playsinline>
               <source src="{{ $landingAsset($content['video_source'] ?? '') }}" type="video/mp4">
               Your browser does not support the video tag.
@@ -866,7 +883,7 @@
       var params = new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(function(key){utm[key] = params.get(key) || '';});
       var isArabic = document.documentElement.lang === 'ar';
-      var arabicText = {
+      var arabicText = isArabic ? {
         'Skip to content': 'تخطي إلى المحتوى',
         'Main menu': 'القائمة الرئيسية',
         'Open menu': 'فتح القائمة',
@@ -1073,8 +1090,8 @@
         'Start free qualifier': 'ابدأ التأهيل المجاني',
         '© 2026 Freedom with DXN. All rights reserved.': '© 2026 Freedom with DXN. جميع الحقوق محفوظة.',
         'Independent DXN Distributor. DXN is a registered trademark of DXN Holdings Berhad.': 'موزع DXN مستقل. DXN علامة تجارية مسجلة لشركة DXN Holdings Berhad.'
-      };
-      var arabicAttributes = {
+      } : {};
+      var arabicAttributes = isArabic ? {
         'FreedomWithDXN home': 'الصفحة الرئيسية FreedomWithDXN',
         'Key benefits': 'الفوائد الرئيسية',
         'Watch the free overview video': 'شاهد العرض المجاني',
@@ -1088,7 +1105,7 @@
         'Search country code': 'البحث عن رمز الدولة',
         'Country codes': 'رموز الدول',
         'Chat on WhatsApp': 'تواصل عبر واتساب'
-      };
+      } : {};
 
       function translateText(text){
         return isArabic && arabicText[text] ? arabicText[text] : text;
@@ -1384,7 +1401,10 @@
 
       function updateHeader(){
         if(!header) return;
-        header.classList.toggle('is-scrolled', window.scrollY > 20);
+        var shouldBeScrolled = window.scrollY > 20;
+        if(header.classList.contains('is-scrolled') !== shouldBeScrolled){
+          header.classList.toggle('is-scrolled', shouldBeScrolled);
+        }
       }
       window.addEventListener('scroll', updateHeader, {passive:true});
       updateHeader();
@@ -1797,7 +1817,6 @@
       }
 
       setSelectedCountry(selectedCountry);
-      renderCountries('');
 
       if(countryToggle){
         countryToggle.addEventListener('click', function(){
