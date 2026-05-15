@@ -3,9 +3,14 @@
 
 @section('content')
 <div class="bg-dxn-darkgreen py-10 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-        <h1 class="text-2xl font-bold text-white">DXN Leads</h1>
-        <p class="text-gray-300 mt-1">Landing page submissions and Klaviyo sync status</p>
+    <div class="max-w-7xl mx-auto flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-white">DXN Leads</h1>
+            <p class="text-gray-300 mt-1">Landing page submissions and Klaviyo sync status</p>
+        </div>
+        <a href="{{ route('admin.dxn-business-landing') }}" class="bg-white text-dxn-darkgreen px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+            Back to DXN Business Landing page
+        </a>
     </div>
 </div>
 
