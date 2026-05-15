@@ -19,6 +19,24 @@
   };
   $whatsappBaseUrl = $content['whatsapp_url'] ?? 'https://wa.me/971555574958';
   $whatsappHref = $whatsappBaseUrl . (str_contains($whatsappBaseUrl, '?') ? '&' : '?') . 'text=' . rawurlencode($content['whatsapp_message'] ?? '');
+  $lineList = function (?string $text) {
+      return array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', (string) $text))));
+  };
+  $pipeRows = function (?string $text) use ($lineList) {
+      return array_map(fn ($line) => array_map('trim', explode('|', $line)), $lineList($text));
+  };
+  $chips = $lineList($content['chips_text'] ?? '');
+  $stats = $pipeRows($content['stats_text'] ?? '');
+  $trustItems = $lineList($content['trust_items_text'] ?? '');
+  $giftItems = $lineList($content['gift_items_text'] ?? '');
+  $whyCards = $pipeRows($content['why_cards_text'] ?? '');
+  $problemCards = $pipeRows($content['problem_cards_text'] ?? '');
+  $opportunitySteps = $pipeRows($content['opportunity_steps_text'] ?? '');
+  $testimonials = $pipeRows($content['testimonials_text'] ?? '');
+  $journeySteps = $pipeRows($content['journey_steps_text'] ?? '');
+  $faqItems = $pipeRows($content['faq_items_text'] ?? '');
+  $trustIcons = ['ti-world', 'ti-certificate', 'ti-users', 'ti-leaf', 'ti-award'];
+  $problemIcons = ['ti-wallet-off', 'ti-clock-pause', 'ti-battery-2', 'ti-receipt-off'];
 @endphp
 <html lang="{{ $lang }}" dir="{{ $dir }}">
 <head>
@@ -468,10 +486,9 @@
           <h1>{{ $content['hero_title'] }}</h1>
           <p class="hero-sub">{{ $content['hero_subtitle'] }}</p>
           <div class="chips" aria-label="Key benefits">
-            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
-            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>No experience needed</div>
-            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Free training included</div>
-            <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Work from anywhere</div>
+            @foreach($chips as $chip)
+              <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>{{ $chip }}</div>
+            @endforeach
           </div>
           <div class="hero-actions">
             <a class="btn btn-gold" href="#overview-video" data-scroll aria-label="{{ $content['primary_cta_text'] }}">{{ $content['primary_cta_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
@@ -490,9 +507,9 @@
               <h2 style="font-size:1.28rem;margin-bottom:6px">{{ $content['overview_card_title'] }}</h2>
               <p class="lead" style="font-size:.98rem">{{ $content['overview_card_text'] }}</p>
               <div class="stats" aria-label="DXN global statistics">
-                <div class="stat"><strong>35+</strong><span>years</span></div>
-                <div class="stat"><strong>180+</strong><span>countries</span></div>
-                <div class="stat"><strong>22M+</strong><span>members</span></div>
+                @foreach($stats as $stat)
+                  <div class="stat"><strong>{{ $stat[0] ?? '' }}</strong><span>{{ $stat[1] ?? '' }}</span></div>
+                @endforeach
               </div>
               <p class="cert"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified · GMP · ISO 9001</p>
             </div>
@@ -504,18 +521,14 @@
     <section class="trust-strip" aria-label="Trust indicators">
       <div class="trust-marquee">
         <div class="trust-row">
-          <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
-          <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>22M+ members</div>
-          <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
-          <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+          @foreach($trustItems as $trustItem)
+            <div class="trust-item"><i class="ti {{ $trustIcons[$loop->index % count($trustIcons)] }}" aria-hidden="true"></i>{{ $trustItem }}</div>
+          @endforeach
         </div>
         <div class="trust-row trust-row-copy" aria-hidden="true">
-          <div class="trust-item"><i class="ti ti-world" aria-hidden="true"></i>Global brand</div>
-          <div class="trust-item"><i class="ti ti-certificate" aria-hidden="true"></i>Halal certified</div>
-          <div class="trust-item"><i class="ti ti-users" aria-hidden="true"></i>22M+ members</div>
-          <div class="trust-item"><i class="ti ti-leaf" aria-hidden="true"></i>Wellness leader</div>
-          <div class="trust-item"><i class="ti ti-award" aria-hidden="true"></i>Award winning</div>
+          @foreach($trustItems as $trustItem)
+            <div class="trust-item"><i class="ti {{ $trustIcons[$loop->index % count($trustIcons)] }}" aria-hidden="true"></i>{{ $trustItem }}</div>
+          @endforeach
         </div>
       </div>
     </section>
@@ -555,11 +568,9 @@
             <div class="gift-badge" aria-hidden="true">🎁</div>
           </div>
           <ul class="gift-list">
-            <li><i class="ti ti-check" aria-hidden="true"></i>Registration Free</li>
-            <li><i class="ti ti-check" aria-hidden="true"></i>Consulting Free</li>
-            <li><i class="ti ti-check" aria-hidden="true"></i>Business Guidance Free</li>
-            <li><i class="ti ti-check" aria-hidden="true"></i>Health & Product Education Free</li>
-            <li><i class="ti ti-check" aria-hidden="true"></i>Personal Success Support</li>
+            @foreach($giftItems as $giftItem)
+              <li><i class="ti ti-check" aria-hidden="true"></i>{{ $giftItem }}</li>
+            @endforeach
           </ul>
           <div class="gift-offer-foot">
             <p>{{ $content['gift_description'] }}</p>
@@ -572,66 +583,29 @@
     <section class="section why-dxn" id="why-dxn">
       <div class="container why-layout">
         <div class="why-copy">
-          <p class="eyebrow">Why DXN?</p>
-          <h2>A global wellness company built on real products</h2>
-          <p class="lead">DXN combines daily-use wellness products with a flexible business opportunity, so people can improve their lifestyle while sharing products they actually use.</p>
+          <p class="eyebrow">{{ $content['why_eyebrow'] }}</p>
+          <h2>{{ $content['why_title'] }}</h2>
+          <p class="lead">{{ $content['why_description'] }}</p>
         </div>
         <div class="why-grid">
-          <article class="why-card">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3v18"></path>
-                <path d="M6 7h12"></path>
-                <path d="M8 7c0 5 1.5 9 4 11"></path>
-                <path d="M16 7c0 5-1.5 9-4 11"></path>
-                <circle cx="12" cy="12" r="9"></circle>
-              </svg>
-            </div>
-            <h3>35+ years of global experience</h3>
-            <p>DXN has been operating for more than three decades with a presence in many countries.</p>
-          </article>
-          <article class="why-card">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 7h16"></path>
-                <path d="M6 7v12h12V7"></path>
-                <path d="M9 7a3 3 0 0 1 6 0"></path>
-                <path d="M9 12h6"></path>
-                <path d="M9 16h4"></path>
-              </svg>
-            </div>
-            <h3>Products people use daily</h3>
-            <p>Coffee, supplements, personal care, food and beverages, and wellness products make it easier to share naturally.</p>
-          </article>
-          <article class="why-card">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 21c7-1 12-6 14-14"></path>
-                <path d="M9 17c-3-3-3-8 0-11 4 1 7 4 8 8"></path>
-                <path d="M4 10c3 0 6 2 8 5"></path>
-              </svg>
-            </div>
-            <h3>From farm to finished product</h3>
-            <p>DXN is known for cultivating, manufacturing, and distributing many of its own Ganoderma-based products.</p>
-          </article>
-          <article class="why-card">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 19V5"></path>
-                <path d="M4 19h16"></path>
-                <path d="m7 15 4-4 3 3 5-7"></path>
-                <path d="M15 7h4v4"></path>
-              </svg>
-            </div>
-            <h3>Flexible for beginners</h3>
-            <p>You can start part-time, learn step by step, and grow at your own pace without needing previous business experience.</p>
-          </article>
+          @foreach($whyCards as $whyCard)
+            <article class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3 5 6v5c0 4.5 2.8 8.6 7 10 4.2-1.4 7-5.5 7-10V6l-7-3z"></path>
+                  <path d="m9 12 2 2 4-5"></path>
+                </svg>
+              </div>
+              <h3>{{ $whyCard[0] ?? '' }}</h3>
+              <p>{{ $whyCard[1] ?? '' }}</p>
+            </article>
+          @endforeach
           <p class="why-note">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3 5 6v5c0 4.5 2.8 8.6 7 10 4.2-1.4 7-5.5 7-10V6l-7-3z"></path>
               <path d="m9 12 2 2 4-5"></path>
             </svg>
-            No pressure. No experience needed. Just learn, use, and share responsibly.
+            {{ $content['why_note'] }}
           </p>
         </div>
       </div>
@@ -640,68 +614,41 @@
     <section class="section light">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">The reality in the UAE</p>
-          <h2>If any of this sounds familiar, you're not alone</h2>
+          <p class="eyebrow">{{ $content['problem_eyebrow'] }}</p>
+          <h2>{{ $content['problem_title'] }}</h2>
         </div>
         <div class="problem-grid">
-          <article class="problem-card"><i class="ti ti-wallet-off" aria-hidden="true"></i><h3>Salary isn't enough</h3><p>Rent, school fees, and family back home keep climbing.</p></article>
-          <article class="problem-card"><i class="ti ti-clock-pause" aria-hidden="true"></i><h3>No time freedom</h3><p>Long shifts and fixed hours leaving little room for life.</p></article>
-          <article class="problem-card"><i class="ti ti-battery-2" aria-hidden="true"></i><h3>Energy crashes daily</h3><p>Stress, poor sleep, and that 3pm slump every afternoon.</p></article>
-          <article class="problem-card"><i class="ti ti-receipt-off" aria-hidden="true"></i><h3>One paycheck only</h3><p>If one income stops, everything stops with it.</p></article>
+          @foreach($problemCards as $problemCard)
+            <article class="problem-card"><i class="ti {{ $problemIcons[$loop->index % count($problemIcons)] }}" aria-hidden="true"></i><h3>{{ $problemCard[0] ?? '' }}</h3><p>{{ $problemCard[1] ?? '' }}</p></article>
+          @endforeach
         </div>
-        <div class="bridge-box">What if you could improve both your health and your income at the same time without quitting your job?</div>
+        <div class="bridge-box">{{ $content['problem_bridge'] }}</div>
       </div>
     </section>
 
     <section class="section cream" id="products">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">The opportunity</p>
-          <h2>A smarter way to build health and income</h2>
-          <p class="lead">Three simple steps. A proven 35-year-old system. Yours to follow.</p>
+          <p class="eyebrow">{{ $content['opportunity_eyebrow'] }}</p>
+          <h2>{{ $content['opportunity_title'] }}</h2>
+          <p class="lead">{{ $content['opportunity_description'] }}</p>
         </div>
         <div class="step-grid">
-          <article class="step-card">
-            <span class="step-badge">Step 1</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 7h11v5a5 5 0 0 1-5 5H9a3 3 0 0 1-3-3V7z"></path>
-                <path d="M17 9h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-                <path d="M5 21h14"></path>
-                <path d="M9 3v2"></path>
-                <path d="M13 3v2"></path>
-              </svg>
-            </div>
-            <h3>Use the products</h3>
-            <p>Swap your daily coffee, tea, and supplements for Ganoderma-based wellness alternatives.</p>
-          </article>
-          <article class="step-card">
-            <span class="step-badge">Step 2</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="18" cy="5" r="3"></circle>
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="19" r="3"></circle>
-                <path d="M8.6 10.6 15.4 6.4"></path>
-                <path d="M8.6 13.4 15.4 17.6"></path>
-              </svg>
-            </div>
-            <h3>Share with others</h3>
-            <p>Recommend what's actually working for you with no cold calls and no pressure.</p>
-          </article>
-          <article class="step-card">
-            <span class="step-badge">Step 3</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 19V5"></path>
-                <path d="M4 19h16"></path>
-                <path d="m7 15 4-4 3 3 5-7"></path>
-                <path d="M15 7h4v4"></path>
-              </svg>
-            </div>
-            <h3>Build long-term income</h3>
-            <p>Compound your effort through a structured global compensation system.</p>
-          </article>
+          @foreach($opportunitySteps as $step)
+            <article class="step-card">
+              <span class="step-badge">{{ $step[0] ?? '' }}</span>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="m7 15 4-4 3 3 5-7"></path>
+                  <path d="M15 7h4v4"></path>
+                </svg>
+              </div>
+              <h3>{{ $step[1] ?? '' }}</h3>
+              <p>{{ $step[2] ?? '' }}</p>
+            </article>
+          @endforeach
         </div>
       </div>
     </section>
@@ -709,41 +656,32 @@
     <section class="section light" id="stories">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Real stories from the UAE</p>
-          <h2>People building lives they love</h2>
+          <p class="eyebrow">{{ $content['stories_eyebrow'] }}</p>
+          <h2>{{ $content['stories_title'] }}</h2>
         </div>
         <div class="story-grid">
-          <article class="story">
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <blockquote>"I started while keeping my job in Dubai. After 8 months I had a real side income, and my morning energy was completely different."</blockquote>
-            <div class="person"><div class="avatar">AH</div><div><strong>Ahmed H.</strong><small>Dubai · Distributor since 2023</small></div></div>
-          </article>
-          <article class="story">
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <blockquote>"As a mum I needed flexibility. The training was clear and I never felt pushed. It just made sense."</blockquote>
-            <div class="person"><div class="avatar">SM</div><div><strong>Sara M.</strong><small>Abu Dhabi · 1 year in</small></div></div>
-          </article>
-          <article class="story">
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <blockquote>"No cold-calling, no awkward pitches. Just sharing what I genuinely use every day."</blockquote>
-            <div class="person"><div class="avatar">RK</div><div><strong>Rashid K.</strong><small>Sharjah · 6 months in</small></div></div>
-          </article>
+          @foreach($testimonials as $testimonial)
+            <article class="story">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>"{{ $testimonial[0] ?? '' }}"</blockquote>
+              <div class="person"><div class="avatar">{{ $testimonial[3] ?? '' }}</div><div><strong>{{ $testimonial[1] ?? '' }}</strong><small>{{ $testimonial[2] ?? '' }}</small></div></div>
+            </article>
+          @endforeach
         </div>
-        <p class="proof-note">Individual experiences. Not a guarantee of income or health outcomes.</p>
+        <p class="proof-note">{{ $content['proof_note'] }}</p>
       </div>
     </section>
 
     <section class="section cream" id="how-it-works">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Your journey</p>
-          <h2>How to get started in 4 simple steps</h2>
+          <p class="eyebrow">{{ $content['journey_eyebrow'] }}</p>
+          <h2>{{ $content['journey_title'] }}</h2>
         </div>
         <div class="journey-grid">
-          <article class="journey-card"><div class="journey-num">1</div><h3>Fill the form</h3><p>2 minutes</p></article>
-          <article class="journey-card"><div class="journey-num">2</div><h3>Watch overview</h3><p>15 minutes</p></article>
-          <article class="journey-card"><div class="journey-num">3</div><h3>Get trained</h3><p>Self-paced</p></article>
-          <article class="journey-card"><div class="journey-num">4</div><h3>Start building</h3><p>At your pace</p></article>
+          @foreach($journeySteps as $journeyStep)
+            <article class="journey-card"><div class="journey-num">{{ $journeyStep[0] ?? $loop->iteration }}</div><h3>{{ $journeyStep[1] ?? '' }}</h3><p>{{ $journeyStep[2] ?? '' }}</p></article>
+          @endforeach
         </div>
       </div>
     </section>
@@ -840,6 +778,10 @@
                   <input id="whatsapp" name="whatsapp" type="hidden" value="">
                   <p class="phone-help">{{ $formSettings['phone_help'] }}</p>
                 </div>
+                <div class="field mb-3">
+                  <label class="form-label" for="address">{{ $formSettings['address_label'] }}</label>
+                  <input class="form-control" id="address" name="address" type="text" autocomplete="street-address" placeholder="{{ $formSettings['address_placeholder'] }}">
+                </div>
                 <p class="form-error" id="form-error">{{ $formSettings['validation_error'] }}</p>
                 <button class="btn btn-gold" type="submit">{{ $formSettings['submit_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
                 <p class="privacy"><i class="ti ti-lock" aria-hidden="true"></i>{{ $formSettings['privacy_text'] }}</p>
@@ -860,44 +802,43 @@
     <section class="section light" id="faq">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Common questions</p>
-          <h2>Before you ask</h2>
+          <p class="eyebrow">{{ $content['faq_eyebrow'] }}</p>
+          <h2>{{ $content['faq_title'] }}</h2>
         </div>
         <div class="faq-list" data-faq-accordion>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">Is DXN Right for Me — Even If I'm a Beginner, Have a Full-Time Job, and Have Never Done This Before?<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
-            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden>
-              <div class="faq-answer-inner">
-                <ol class="faq-answer-list">
-                  <li>Not at all. Full step-by-step training is provided through the member portal, plus a personal mentor to guide you in your first 30 days.</li>
-                  <li>Yes, and most people do. The majority of our members keep their full-time job and dedicate evenings or weekends to building this.</li>
-                  <li>Yes, fully active across Dubai, Abu Dhabi, Sharjah, Ajman, and the wider UAE, with local Arabic and English support.</li>
-                  <li>There's a small one-time starter pack. You'll see the exact number on the overview. No monthly fees, no hidden costs, no minimum purchase requirements.</li>
-                  <li>No. DXN is a 35+ year old network marketing company built on real wellness products, including Ganoderma supplements, coffee, and personal care, sold in 180+ countries. Income depends on selling and recommending products, not on recruitment alone.</li>
-                  <li>You can stop at any time. There's no contract, no lock-in, and no cancellation fees. The starter pack products are yours to keep.</li>
-                </ol>
+          @foreach($faqItems as $faqItem)
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-{{ $loop->iteration }}" id="faq-question-{{ $loop->iteration }}">{{ $faqItem[0] ?? '' }}<i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+              <div class="faq-answer" id="faq-answer-{{ $loop->iteration }}" role="region" aria-labelledby="faq-question-{{ $loop->iteration }}" hidden>
+                <div class="faq-answer-inner">
+                  <ol class="faq-answer-list">
+                    @foreach(array_slice($faqItem, 1) as $answer)
+                      <li>{{ $answer }}</li>
+                    @endforeach
+                  </ol>
+                </div>
               </div>
             </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </section>
 
     <section class="section dark final-cta">
       <div class="container">
-        <div class="urgency"><i class="ti ti-clock" aria-hidden="true"></i>Limited new-member spots this month</div>
-        <h2 style="color:#fff">Your health and financial future starts with one click</h2>
-        <p class="lead">Join thousands of UAE residents already building a better lifestyle. Free to start. No pressure. Your pace.</p>
+        <div class="urgency"><i class="ti ti-clock" aria-hidden="true"></i>{{ $content['final_urgency'] }}</div>
+        <h2 style="color:#fff">{{ $content['final_title'] }}</h2>
+        <p class="lead">{{ $content['final_description'] }}</p>
         <div style="margin-top:24px">
-          <a class="btn btn-gold" href="#qualifier" data-scroll>Get free information <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-gold" href="#qualifier" data-scroll>{{ $content['final_button_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <p class="trust-line">Private & secure · 2-minute signup · Unsubscribe anytime</p>
+        <p class="trust-line">{{ $content['final_trust_line'] }}</p>
       </div>
     </section>
   </main>
 
   <div class="mobile-sticky" id="mobile-sticky">
-    <a class="btn btn-gold" href="#qualifier" data-scroll>Start free qualifier <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    <a class="btn btn-gold" href="#qualifier" data-scroll>{{ $content['mobile_cta_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
   </div>
 
   <a href="{{ $whatsappHref }}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -1944,8 +1885,10 @@
           var error = document.getElementById('form-error');
           var nameInput = form.querySelector('[name="name"]');
           var emailInput = form.querySelector('[name="email"]');
+          var addressInput = form.querySelector('[name="address"]');
           var name = nameInput ? nameInput.value.trim() : '';
           var email = emailInput ? emailInput.value.trim() : '';
+          var address = addressInput ? addressInput.value.trim() : '';
           var whatsapp = buildWhatsAppNumber();
           updateCombinedWhatsApp();
           if(!name || !email || !emailInput || !emailInput.checkValidity() || !phoneIsValid()){
@@ -1966,6 +1909,7 @@
             whatsapp: whatsapp,
             country_code: selectedCountry.code,
             country_name: selectedCountry.name,
+            address: address,
             interest: leadData.interest || '',
             seriousness: leadData.seriousness || '',
             goal: leadData.goal || '',

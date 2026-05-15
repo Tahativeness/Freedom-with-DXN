@@ -39,6 +39,11 @@ class LeadController extends Controller
         return view('admin.leads', compact('leads', 'counts', 'status'));
     }
 
+    public function adminShow(DxnLead $lead): View
+    {
+        return view('admin.lead-show', compact('lead'));
+    }
+
     public function adminUpdate(Request $request, DxnLead $lead): RedirectResponse
     {
         $action = $request->input('action');

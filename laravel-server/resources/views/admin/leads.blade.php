@@ -59,8 +59,9 @@
                                 {{ optional($lead->submitted_at ?? $lead->created_at)->format('M j, Y g:i A') }}
                             </td>
                             <td class="px-4 py-4 text-right">
+                                <a href="{{ route('admin.leads.show', $lead) }}" class="text-sm font-semibold text-dxn-green hover:underline">View</a>
                                 @if($lead->klaviyo_sync_status !== \App\Models\DxnLead::KLAVIYO_STATUS_SYNCED)
-                                    <form method="POST" action="{{ route('admin.leads.update', $lead) }}" class="inline">
+                                    <form method="POST" action="{{ route('admin.leads.update', $lead) }}" class="inline ml-4">
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="action" value="retry">

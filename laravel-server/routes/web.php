@@ -149,6 +149,7 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::put('/landing-pages/{landingPage}', [AdminController::class, 'landingPageUpdate'])->name('landing-pages.update');
     Route::delete('/landing-pages/{landingPage}', [AdminController::class, 'landingPageDestroy'])->name('landing-pages.destroy');
     Route::get('/leads', [LeadController::class, 'adminIndex'])->name('leads');
+    Route::get('/leads/{lead}', [LeadController::class, 'adminShow'])->name('leads.show');
     Route::put('/leads/{lead}', [LeadController::class, 'adminUpdate'])->name('leads.update');
     Route::delete('/leads/{lead}', [LeadController::class, 'adminDestroy'])->name('leads.destroy');
     Route::get('/klaviyo/status', [KlaviyoController::class, 'status'])->name('klaviyo.status');

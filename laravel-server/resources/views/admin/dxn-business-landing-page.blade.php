@@ -88,6 +88,10 @@
                             <input name="content[reassurance]" class="input-field" value="{{ $value('content.reassurance') }}">
                         </div>
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Hero chips (one per line)</label>
+                        <textarea name="content[chips_text]" rows="4" class="input-field">{{ $value('content.chips_text') }}</textarea>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Overview card title</label>
@@ -96,6 +100,17 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Overview card text</label>
                             <input name="content[overview_card_text]" class="input-field" value="{{ $value('content.overview_card_text') }}" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Stats</label>
+                            <textarea name="content[stats_text]" rows="4" class="input-field" placeholder="35+|years">{{ $value('content.stats_text') }}</textarea>
+                            <p class="text-xs text-gray-400 mt-1">Format: number|label, one per line.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Trust strip items</label>
+                            <textarea name="content[trust_items_text]" rows="4" class="input-field">{{ $value('content.trust_items_text') }}</textarea>
                         </div>
                     </div>
                     <div>
@@ -130,6 +145,10 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">Gift description</label>
                         <textarea name="content[gift_description]" rows="2" class="input-field">{{ $value('content.gift_description') }}</textarea>
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Offer/gift list (one per line)</label>
+                        <textarea name="content[gift_items_text]" rows="5" class="input-field">{{ $value('content.gift_items_text') }}</textarea>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Gift button text</label>
@@ -147,6 +166,61 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Qualifier description</label>
                         <textarea name="content[qualifier_description]" rows="2" class="input-field" required>{{ $value('content.qualifier_description') }}</textarea>
+                    </div>
+                    <div class="border-t pt-5 mt-5 space-y-4">
+                        <h3 class="font-bold text-dxn-darkgreen">Middle page sections</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Why eyebrow</label><input name="content[why_eyebrow]" class="input-field" value="{{ $value('content.why_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Why title</label><input name="content[why_title]" class="input-field" value="{{ $value('content.why_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Why description</label><textarea name="content[why_description]" rows="2" class="input-field">{{ $value('content.why_description') }}</textarea></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Why cards</label><textarea name="content[why_cards_text]" rows="5" class="input-field">{{ $value('content.why_cards_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: title|description, one card per line.</p></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Why note</label><input name="content[why_note]" class="input-field" value="{{ $value('content.why_note') }}"></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Problem eyebrow</label><input name="content[problem_eyebrow]" class="input-field" value="{{ $value('content.problem_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Problem title</label><input name="content[problem_title]" class="input-field" value="{{ $value('content.problem_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Problem cards</label><textarea name="content[problem_cards_text]" rows="4" class="input-field">{{ $value('content.problem_cards_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: title|description, one card per line.</p></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Problem bridge</label><textarea name="content[problem_bridge]" rows="2" class="input-field">{{ $value('content.problem_bridge') }}</textarea></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Opportunity eyebrow</label><input name="content[opportunity_eyebrow]" class="input-field" value="{{ $value('content.opportunity_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Opportunity title</label><input name="content[opportunity_title]" class="input-field" value="{{ $value('content.opportunity_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Opportunity description</label><input name="content[opportunity_description]" class="input-field" value="{{ $value('content.opportunity_description') }}"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Opportunity steps</label><textarea name="content[opportunity_steps_text]" rows="4" class="input-field">{{ $value('content.opportunity_steps_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: badge|title|description, one step per line.</p></div>
+                    </div>
+
+                    <div class="border-t pt-5 mt-5 space-y-4">
+                        <h3 class="font-bold text-dxn-darkgreen">Testimonials, FAQ, and final CTA</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Stories eyebrow</label><input name="content[stories_eyebrow]" class="input-field" value="{{ $value('content.stories_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Stories title</label><input name="content[stories_title]" class="input-field" value="{{ $value('content.stories_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Testimonials</label><textarea name="content[testimonials_text]" rows="5" class="input-field">{{ $value('content.testimonials_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: quote|name|location/status|initials, one testimonial per line.</p></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Proof note</label><input name="content[proof_note]" class="input-field" value="{{ $value('content.proof_note') }}"></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Journey eyebrow</label><input name="content[journey_eyebrow]" class="input-field" value="{{ $value('content.journey_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Journey title</label><input name="content[journey_title]" class="input-field" value="{{ $value('content.journey_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Journey steps</label><textarea name="content[journey_steps_text]" rows="4" class="input-field">{{ $value('content.journey_steps_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: number|title|description, one step per line.</p></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">FAQ eyebrow</label><input name="content[faq_eyebrow]" class="input-field" value="{{ $value('content.faq_eyebrow') }}"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">FAQ title</label><input name="content[faq_title]" class="input-field" value="{{ $value('content.faq_title') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">FAQ items</label><textarea name="content[faq_items_text]" rows="6" class="input-field">{{ $value('content.faq_items_text') }}</textarea><p class="text-xs text-gray-400 mt-1">Format: question|answer 1|answer 2, one FAQ per line.</p></div>
+
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Final urgency</label><input name="content[final_urgency]" class="input-field" value="{{ $value('content.final_urgency') }}"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Final title</label><input name="content[final_title]" class="input-field" value="{{ $value('content.final_title') }}" required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Final description</label><textarea name="content[final_description]" rows="2" class="input-field">{{ $value('content.final_description') }}</textarea></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Final button text</label><input name="content[final_button_text]" class="input-field" value="{{ $value('content.final_button_text') }}" required></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile CTA text</label><input name="content[mobile_cta_text]" class="input-field" value="{{ $value('content.mobile_cta_text') }}" required></div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Final trust line</label><input name="content[final_trust_line]" class="input-field" value="{{ $value('content.final_trust_line') }}"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -199,6 +273,8 @@
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">Email placeholder</label><input name="form[email_placeholder]" class="input-field" value="{{ $value('form.email_placeholder') }}" required></div>
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp label</label><input name="form[whatsapp_label]" class="input-field" value="{{ $value('form.whatsapp_label') }}" required></div>
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">Phone placeholder</label><input name="form[phone_placeholder]" class="input-field" value="{{ $value('form.phone_placeholder') }}" required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Address label</label><input name="form[address_label]" class="input-field" value="{{ $value('form.address_label') }}" required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Address placeholder</label><input name="form[address_placeholder]" class="input-field" value="{{ $value('form.address_placeholder') }}" required></div>
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">Country search placeholder</label><input name="form[country_search_placeholder]" class="input-field" value="{{ $value('form.country_search_placeholder') }}" required></div>
                         <div><label class="block text-sm font-medium text-gray-700 mb-1">Country empty text</label><input name="form[country_empty_text]" class="input-field" value="{{ $value('form.country_empty_text') }}" required></div>
                     </div>
@@ -233,7 +309,7 @@
                 </div>
                 <div class="space-y-3">
                     @forelse($recentLeads as $lead)
-                        <div class="border border-gray-100 rounded-lg p-3">
+                        <a href="{{ route('admin.leads.show', $lead) }}" class="block border border-gray-100 rounded-lg p-3 hover:border-dxn-green hover:shadow-sm transition">
                             <div class="flex items-start justify-between gap-3">
                                 <div>
                                     <div class="font-semibold text-gray-900">{{ $lead->name }}</div>
@@ -242,7 +318,7 @@
                                 <span class="text-xs font-semibold rounded-full bg-gray-100 px-2 py-1">{{ $lead->score }}</span>
                             </div>
                             <div class="text-xs text-gray-500 mt-2">{{ optional($lead->submitted_at ?? $lead->created_at)->format('M j, Y g:i A') }}</div>
-                        </div>
+                        </a>
                     @empty
                         <p class="text-sm text-gray-500">No leads yet.</p>
                     @endforelse
