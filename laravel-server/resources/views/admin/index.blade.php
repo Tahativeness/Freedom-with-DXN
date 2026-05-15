@@ -35,7 +35,7 @@
     </div>
 
     {{-- Quick Links --}}
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <a href="{{ route('admin.products') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
             <div class="text-3xl mb-2">📦</div>
             <h3 class="font-bold text-dxn-darkgreen">Products</h3>
@@ -65,6 +65,11 @@
             <div class="text-3xl mb-2">Leads</div>
             <h3 class="font-bold text-dxn-darkgreen">Leads</h3>
             <p class="text-sm text-gray-500">Klaviyo status</p>
+        </a>
+        <a href="{{ route('admin.dxn-business-landing') }}" class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-2 font-bold text-dxn-gold">DXN</div>
+            <h3 class="font-bold text-dxn-darkgreen">DXN Business Landing page</h3>
+            <p class="text-sm text-gray-500">Edit content, form, leads</p>
         </a>
     </div>
 </div>

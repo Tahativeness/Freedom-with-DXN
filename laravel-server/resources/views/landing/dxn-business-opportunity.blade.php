@@ -4,6 +4,21 @@
   $lang = in_array($lang, ['en', 'ar'], true) ? $lang : 'en';
   $isAr = $lang === 'ar';
   $dir = $isAr ? 'rtl' : 'ltr';
+  $dxnLandingSettings = array_replace_recursive(config('dxn_business_landing'), $dxnLandingSettings ?? []);
+  $content = $dxnLandingSettings['content'] ?? [];
+  $formSettings = $dxnLandingSettings['form'] ?? [];
+  $landingAsset = function (?string $path) {
+      $path = trim((string) $path);
+      if ($path === '') {
+          return '';
+      }
+      if (preg_match('/^(https?:)?\/\//', $path) || str_starts_with($path, '/')) {
+          return $path;
+      }
+      return asset($path);
+  };
+  $whatsappBaseUrl = $content['whatsapp_url'] ?? 'https://wa.me/971555574958';
+  $whatsappHref = $whatsappBaseUrl . (str_contains($whatsappBaseUrl, '?') ? '&' : '?') . 'text=' . rawurlencode($content['whatsapp_message'] ?? '');
 @endphp
 <html lang="{{ $lang }}" dir="{{ $dir }}">
 <head>
@@ -11,8 +26,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#04342C">
 
-  <title>{{ $isAr ? 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN' : 'Build Better Health & Side Income in UAE | FreedomWithDXN' }}</title>
-  <meta name="description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. تدريب مجاني، بداية مرنة بدوام جزئي، ومنتجات حلال. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Free training, flexible part-time start, Halal-certified products. Get your free overview now.' }}">
+  <title>{{ $isAr ? 'صحة أفضل ودخل إضافي في الإمارات | FreedomWithDXN' : $content['seo_title'] }}</title>
+  <meta name="description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. تدريب مجاني، بداية مرنة بدوام جزئي، ومنتجات حلال. احصل على العرض المجاني الآن.' : $content['meta_description'] }}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://freedomwithdxn.com/">
   <link rel="alternate" hreflang="en-AE" href="https://freedomwithdxn.com/">
@@ -22,13 +37,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://freedomwithdxn.com/">
   <meta property="og:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
-  <meta property="og:description" content="{{ $isAr ? 'تدريب مجاني، بداية مرنة بدوام جزئي، منتجات حلال، وعرض بسيط للمقيمين في الإمارات.' : 'Free training, flexible part-time start, Halal-certified products, and a simple overview for UAE residents.' }}">
+  <meta property="og:description" content="{{ $isAr ? 'تدريب مجاني، بداية مرنة بدوام جزئي، منتجات حلال، وعرض بسيط للمقيمين في الإمارات.' : $content['meta_description'] }}">
   <meta property="og:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
   <meta property="og:locale" content="{{ $isAr ? 'ar_AE' : 'en_AE' }}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $isAr ? 'ابنِ صحة أفضل ودخلًا إضافيًا في الإمارات' : 'Build better health and a second income in the UAE' }}">
-  <meta name="twitter:description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. احصل على العرض المجاني الآن.' : 'Join a globally trusted wellness opportunity in the UAE. Get your free overview now.' }}">
+  <meta name="twitter:description" content="{{ $isAr ? 'انضم إلى فرصة عافية موثوقة عالميًا في الإمارات. احصل على العرض المجاني الآن.' : $content['meta_description'] }}">
   <meta name="twitter:image" content="https://freedomwithdxn.com/images/og-business-opportunity.webp">
 
   <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96">
@@ -449,9 +464,9 @@
     <section class="hero dark">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>Trusted by 22M+ members in 180+ countries</div>
-          <h1>Build Real Freedom from Anywhere in the World — Health, Income & the DXN Opportunity</h1>
-          <p class="hero-sub">Join a Globally Trusted Wellness Brand — Get a Proven Training System, a Personal Mentor, and a Flexible Income Opportunity Built for Everywhere in the World</p>
+          <div class="trust-pill"><span class="pulse" aria-hidden="true"></span>{{ $content['hero_trust'] }}</div>
+          <h1>{{ $content['hero_title'] }}</h1>
+          <p class="hero-sub">{{ $content['hero_subtitle'] }}</p>
           <div class="chips" aria-label="Key benefits">
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Start part-time</div>
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>No experience needed</div>
@@ -459,9 +474,9 @@
             <div class="chip"><i class="ti ti-circle-check" aria-hidden="true"></i>Work from anywhere</div>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="#overview-video" data-scroll aria-label="Watch the free overview video">Watch free overview <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            <a class="btn btn-gold" href="#overview-video" data-scroll aria-label="{{ $content['primary_cta_text'] }}">{{ $content['primary_cta_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
           </div>
-          <p class="reassurance"><i class="ti ti-shield-check" aria-hidden="true"></i>2-minute qualifier · No spam · Free to start</p>
+          <p class="reassurance"><i class="ti ti-shield-check" aria-hidden="true"></i>{{ $content['reassurance'] }}</p>
         </div>
 
         <aside class="overview-card" aria-label="Free overview summary">
@@ -472,8 +487,8 @@
               </picture>
             </div>
             <div class="video-body">
-              <h2 style="font-size:1.28rem;margin-bottom:6px">Free 15-minute overview</h2>
-              <p class="lead" style="font-size:.98rem">See the products, the business model, and the training path before you decide.</p>
+              <h2 style="font-size:1.28rem;margin-bottom:6px">{{ $content['overview_card_title'] }}</h2>
+              <p class="lead" style="font-size:.98rem">{{ $content['overview_card_text'] }}</p>
               <div class="stats" aria-label="DXN global statistics">
                 <div class="stat"><strong>35+</strong><span>years</span></div>
                 <div class="stat"><strong>180+</strong><span>countries</span></div>
@@ -509,8 +524,8 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Watch this first</p>
-          <h2 class="overview-video-title">Your Freedom Is One Video Away</h2>
-          <p class="lead">A short overview that shows what DXN is, how the opportunity works, and how you can start without pressure.</p>
+          <h2 class="overview-video-title">{{ $content['overview_title'] }}</h2>
+          <p class="lead">{{ $content['overview_description'] }}</p>
         </div>
 
         <div class="video-shell" id="overview-video-shell" data-zoom="normal">
@@ -522,10 +537,10 @@
               controlsList="nodownload"
               disablePictureInPicture
               oncontextmenu="return false"
-              poster="{{ asset('images/free-overview-poster.png') }}"
+              poster="{{ $landingAsset($content['video_poster'] ?? '') }}"
               preload="auto"
               playsinline>
-              <source src="{{ asset('Video/free-overview.mp4') }}" type="video/mp4">
+              <source src="{{ $landingAsset($content['video_source'] ?? '') }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -534,8 +549,8 @@
         <div class="gift-offer" aria-label="Special free offer after watching the video">
           <div class="gift-offer-head">
             <div>
-              <p class="gift-offer-kicker">Your special gift box</p>
-              <h3>The Offer You'll Love After Watching This Video!</h3>
+              <p class="gift-offer-kicker">{{ $content['gift_kicker'] }}</p>
+              <h3>{{ $content['gift_title'] }}</h3>
             </div>
             <div class="gift-badge" aria-hidden="true">🎁</div>
           </div>
@@ -547,8 +562,8 @@
             <li><i class="ti ti-check" aria-hidden="true"></i>Personal Success Support</li>
           </ul>
           <div class="gift-offer-foot">
-            <p>Everything is prepared to help you understand the opportunity clearly before you decide.</p>
-            <a class="btn btn-gold" href="#qualifier" data-scroll>Claim free support <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            <p>{{ $content['gift_description'] }}</p>
+            <a class="btn btn-gold" href="#qualifier" data-scroll>{{ $content['gift_cta_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -736,9 +751,9 @@
     <section class="section dark" id="qualifier">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow" style="color:#7DD9B7">Free qualifier</p>
-          <h2 style="color:#fff">Find your best next step</h2>
-          <p class="lead">Answer 5 quick questions and get matched with the right overview and follow-up.</p>
+          <p class="eyebrow" style="color:#7DD9B7">{{ $content['qualifier_eyebrow'] }}</p>
+          <h2 style="color:#fff">{{ $content['qualifier_title'] }}</h2>
+          <p class="lead">{{ $content['qualifier_description'] }}</p>
         </div>
 
         <div class="qualifier-wrap">
@@ -752,12 +767,12 @@
             <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
 
             <section class="q-step" data-step="1">
-              <h2>What interests you most?</h2>
-              <p class="q-sub">Pick the one that matches you best.</p>
+              <h2>{{ $formSettings['step_one_title'] }}</h2>
+              <p class="q-sub">{{ $formSettings['step_one_subtitle'] }}</p>
               <div class="options">
-                <button class="option-btn" type="button" data-key="interest" data-value="Health">Better health</button>
-                <button class="option-btn" type="button" data-key="interest" data-value="Income">Extra income</button>
-                <button class="option-btn" type="button" data-key="interest" data-value="Both">Both — health and income</button>
+                <button class="option-btn" type="button" data-key="interest" data-value="Health">{{ $formSettings['interest_health_label'] }}</button>
+                <button class="option-btn" type="button" data-key="interest" data-value="Income">{{ $formSettings['interest_income_label'] }}</button>
+                <button class="option-btn" type="button" data-key="interest" data-value="Both">{{ $formSettings['interest_both_label'] }}</button>
               </div>
             </section>
 
@@ -774,18 +789,18 @@
             </section>
 
             <section class="q-step" data-step="4" hidden>
-              <h2>How soon would you like to take the next step?</h2>
-              <p class="q-sub">This helps us follow up at the right time.</p>
+              <h2>{{ $formSettings['step_four_title'] }}</h2>
+              <p class="q-sub">{{ $formSettings['step_four_subtitle'] }}</p>
               <div class="options">
-                <button class="option-btn" type="button" data-key="learn" data-value="Yes">I want guidance today</button>
-                <button class="option-btn" type="button" data-key="learn" data-value="Maybe">This week is good for me</button>
-                <button class="option-btn" type="button" data-key="learn" data-value="No">I'm just exploring for now</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="Yes">{{ $formSettings['learn_yes_label'] }}</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="Maybe">{{ $formSettings['learn_maybe_label'] }}</button>
+                <button class="option-btn" type="button" data-key="learn" data-value="No">{{ $formSettings['learn_no_label'] }}</button>
               </div>
             </section>
 
             <section class="q-step" data-step="5" hidden>
-              <h2>Get free access</h2>
-              <p class="q-sub">Overview video + WhatsApp welcome in 60 seconds.</p>
+              <h2>{{ $formSettings['contact_title'] }}</h2>
+              <p class="q-sub">{{ $formSettings['contact_subtitle'] }}</p>
               <form class="lead-form needs-validation" id="lead-form" novalidate>
                 <div class="lead-hp" aria-hidden="true">
                   <label for="company-website">Company website</label>
@@ -794,15 +809,15 @@
                 <input id="lead-idempotency-key" name="idempotency_key" type="hidden" value="">
                 <input id="form-started-at" name="form_started_at" type="hidden" value="">
                 <div class="field mb-3">
-                  <label class="form-label" for="full-name">Full name</label>
-                  <input class="form-control" id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
+                  <label class="form-label" for="full-name">{{ $formSettings['name_label'] }}</label>
+                  <input class="form-control" id="full-name" name="name" type="text" autocomplete="name" placeholder="{{ $formSettings['name_placeholder'] }}" required>
                 </div>
                 <div class="field mb-3">
-                  <label class="form-label" for="email">Email</label>
-                  <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                  <label class="form-label" for="email">{{ $formSettings['email_label'] }}</label>
+                  <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="{{ $formSettings['email_placeholder'] }}" required>
                 </div>
                 <div class="field mb-3">
-                  <label class="form-label" for="whatsapp-phone">WhatsApp Number</label>
+                  <label class="form-label" for="whatsapp-phone">{{ $formSettings['whatsapp_label'] }}</label>
                   <div class="phone-input-group input-group">
                     <div class="country-select" data-country-select>
                       <button class="country-toggle" id="country-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="country-list">
@@ -813,29 +828,29 @@
                         <i class="ti ti-chevron-down" aria-hidden="true"></i>
                       </button>
                       <div class="country-menu" id="country-menu">
-                        <input class="country-search" id="country-search" type="search" autocomplete="off" placeholder="Search country or code" aria-label="Search country code">
+                        <input class="country-search" id="country-search" type="search" autocomplete="off" placeholder="{{ $formSettings['country_search_placeholder'] }}" aria-label="{{ $formSettings['country_search_placeholder'] }}">
                         <div class="country-list" id="country-list" role="listbox" aria-label="Country codes"></div>
-                        <div class="country-empty" id="country-empty">No countries found.</div>
+                        <div class="country-empty" id="country-empty">{{ $formSettings['country_empty_text'] }}</div>
                       </div>
                     </div>
-                    <input class="phone-number-input form-control" id="whatsapp-phone" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Phone number" required>
+                    <input class="phone-number-input form-control" id="whatsapp-phone" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="{{ $formSettings['phone_placeholder'] }}" required>
                   </div>
                   <input id="country-code" name="country_code" type="hidden" value="+971">
                   <input id="country-name" name="country_name" type="hidden" value="United Arab Emirates">
                   <input id="whatsapp" name="whatsapp" type="hidden" value="">
-                  <p class="phone-help">Choose your country code, then enter your WhatsApp number.</p>
+                  <p class="phone-help">{{ $formSettings['phone_help'] }}</p>
                 </div>
-                <p class="form-error" id="form-error">Please complete your name, email, and WhatsApp number.</p>
-                <button class="btn btn-gold" type="submit">Get free access <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
-                <p class="privacy"><i class="ti ti-lock" aria-hidden="true"></i>Your information is private. Unsubscribe anytime.</p>
+                <p class="form-error" id="form-error">{{ $formSettings['validation_error'] }}</p>
+                <button class="btn btn-gold" type="submit">{{ $formSettings['submit_text'] }} <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+                <p class="privacy"><i class="ti ti-lock" aria-hidden="true"></i>{{ $formSettings['privacy_text'] }}</p>
               </form>
             </section>
 
             <section class="q-step success" data-step="6" hidden>
               <div class="success-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
-              <h2>Thank you.</h2>
-              <p class="q-sub">Your submission has been received. We will send your free overview shortly.</p>
-              <div class="score-pill" id="score-pill">Nurture sequence started</div>
+              <h2>{{ $formSettings['success_title'] }}</h2>
+              <p class="q-sub">{{ $formSettings['success_message'] }}</p>
+              <div class="score-pill" id="score-pill">{{ $formSettings['success_badge'] }}</div>
             </section>
           </div>
         </div>
@@ -885,7 +900,7 @@
     <a class="btn btn-gold" href="#qualifier" data-scroll>Start free qualifier <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
   </div>
 
-  <a href="https://wa.me/971555574958?text=Hi%21%20I%27m%20interested%20in%20the%20DXN%20Business%20Oppertunity." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="{{ $whatsappHref }}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.85 11.85 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.12 1.6 5.92L0 24l6.42-1.69a11.83 11.83 0 0 0 5.63 1.43h.01c6.54 0 11.85-5.3 11.85-11.84 0-3.16-1.23-6.13-3.39-8.42zM12.06 21.5h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.81 1 1.02-3.71-.23-.38a9.62 9.62 0 0 1-1.46-5.02C2.32 6.6 6.69 2.23 12.06 2.23a9.62 9.62 0 0 1 6.84 2.84 9.6 9.6 0 0 1 2.84 6.83c0 5.36-4.37 9.6-9.68 9.6zm5.46-7.18c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.23-.25-.6-.5-.51-.68-.52l-.58-.01c-.2 0-.53.07-.8.38-.28.3-1.05 1.03-1.05 2.5 0 1.48 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/></svg>
   </a>
 

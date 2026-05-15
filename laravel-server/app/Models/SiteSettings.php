@@ -9,7 +9,7 @@ class SiteSettings extends Model
     protected $table = 'site_settings';
 
     protected $fillable = [
-        'colors', 'fonts', 'hero', 'contact', 'social', 'seo', 'footer', 'navbar', 'charts',
+        'colors', 'fonts', 'hero', 'contact', 'social', 'seo', 'footer', 'navbar', 'charts', 'dxn_business_landing',
     ];
 
     protected $casts = [
@@ -22,6 +22,7 @@ class SiteSettings extends Model
         'footer'  => 'array',
         'navbar'  => 'array',
         'charts'  => 'array',
+        'dxn_business_landing' => 'array',
     ];
 
     /**
@@ -86,6 +87,7 @@ class SiteSettings extends Model
                 'categoryChartType' => 'pie',
                 'revenueChartType'  => 'bar',
             ],
+            'dxn_business_landing' => config('dxn_business_landing'),
         ]);
     }
 }

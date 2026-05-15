@@ -198,6 +198,88 @@ class AdminController extends Controller
         return view('admin.landing-pages', compact('pages', 'products'));
     }
 
+    public function dxnBusinessLandingPage()
+    {
+        $settings = SiteSettings::global();
+        $landingSettings = $this->dxnBusinessLandingSettings($settings);
+        $recentLeads = DxnLead::latest()->limit(8)->get();
+        $leadCounts = DxnLead::query()
+            ->selectRaw('score, count(*) as total')
+            ->groupBy('score')
+            ->pluck('total', 'score');
+
+        return view('admin.dxn-business-landing-page', compact('landingSettings', 'recentLeads', 'leadCounts'));
+    }
+
+    public function dxnBusinessLandingPageUpdate(Request $request)
+    {
+        $data = $request->validate([
+            'content.seo_title' => 'required|string|max:255',
+            'content.meta_description' => 'required|string|max:500',
+            'content.hero_trust' => 'required|string|max:255',
+            'content.hero_title' => 'required|string|max:500',
+            'content.hero_subtitle' => 'required|string|max:700',
+            'content.primary_cta_text' => 'required|string|max:120',
+            'content.reassurance' => 'nullable|string|max:255',
+            'content.overview_card_title' => 'required|string|max:255',
+            'content.overview_card_text' => 'required|string|max:500',
+            'content.overview_title' => 'required|string|max:255',
+            'content.overview_description' => 'required|string|max:500',
+            'content.video_poster' => 'nullable|string|max:500',
+            'content.video_source' => 'nullable|string|max:500',
+            'content.gift_kicker' => 'nullable|string|max:120',
+            'content.gift_title' => 'required|string|max:255',
+            'content.gift_description' => 'nullable|string|max:500',
+            'content.gift_cta_text' => 'required|string|max:120',
+            'content.qualifier_eyebrow' => 'nullable|string|max:120',
+            'content.qualifier_title' => 'required|string|max:255',
+            'content.qualifier_description' => 'required|string|max:500',
+            'content.whatsapp_url' => 'required|string|max:500',
+            'content.whatsapp_message' => 'required|string|max:500',
+            'form.step_one_title' => 'required|string|max:255',
+            'form.step_one_subtitle' => 'required|string|max:255',
+            'form.interest_health_label' => 'required|string|max:120',
+            'form.interest_income_label' => 'required|string|max:120',
+            'form.interest_both_label' => 'required|string|max:120',
+            'form.step_four_title' => 'required|string|max:255',
+            'form.step_four_subtitle' => 'required|string|max:255',
+            'form.learn_yes_label' => 'required|string|max:120',
+            'form.learn_maybe_label' => 'required|string|max:120',
+            'form.learn_no_label' => 'required|string|max:120',
+            'form.contact_title' => 'required|string|max:255',
+            'form.contact_subtitle' => 'required|string|max:255',
+            'form.name_label' => 'required|string|max:120',
+            'form.name_placeholder' => 'required|string|max:120',
+            'form.email_label' => 'required|string|max:120',
+            'form.email_placeholder' => 'required|string|max:120',
+            'form.whatsapp_label' => 'required|string|max:120',
+            'form.country_search_placeholder' => 'required|string|max:120',
+            'form.country_empty_text' => 'required|string|max:120',
+            'form.phone_placeholder' => 'required|string|max:120',
+            'form.phone_help' => 'nullable|string|max:255',
+            'form.validation_error' => 'required|string|max:255',
+            'form.submit_text' => 'required|string|max:120',
+            'form.privacy_text' => 'required|string|max:255',
+            'form.success_title' => 'required|string|max:120',
+            'form.success_message' => 'required|string|max:255',
+            'form.success_badge' => 'required|string|max:120',
+        ]);
+
+        $settings = SiteSettings::global();
+        $settings->update([
+            'dxn_business_landing' => array_replace_recursive($this->dxnBusinessLandingSettings($settings), $data),
+        ]);
+
+        return back()->with('success', 'DXN Business Landing page updated!');
+    }
+
+    private function dxnBusinessLandingSettings(SiteSettings $settings): array
+    {
+        $saved = is_array($settings->dxn_business_landing) ? $settings->dxn_business_landing : [];
+
+        return array_replace_recursive(config('dxn_business_landing'), $saved);
+    }
+
     public function landingPageCreate()
     {
         $products = Product::orderBy('name')->get();

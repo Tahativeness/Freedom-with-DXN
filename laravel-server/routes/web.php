@@ -140,6 +140,8 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
     Route::delete('/blogs/{blog}', [AdminController::class, 'blogDestroy'])->name('blogs.destroy');
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
     Route::put('/settings', [AdminController::class, 'settingsUpdate'])->name('settings.update');
+    Route::get('/dxn-business-landing-page', [AdminController::class, 'dxnBusinessLandingPage'])->name('dxn-business-landing');
+    Route::put('/dxn-business-landing-page', [AdminController::class, 'dxnBusinessLandingPageUpdate'])->name('dxn-business-landing.update');
     Route::get('/landing-pages', [AdminController::class, 'landingPages'])->name('landing-pages');
     Route::get('/landing-pages/create', [AdminController::class, 'landingPageCreate'])->name('landing-pages.create');
     Route::post('/landing-pages', [AdminController::class, 'landingPageStore'])->name('landing-pages.store');
@@ -153,16 +155,19 @@ Route::middleware(['auth', 'admin.web'])->prefix('admin')->name('admin.')->group
 });
 
 // Landing pages
-Route::get('/passive-income', function () {
-    return view('landing.dxn-business-opportunity');
-})->name('landing.passive-income');
+$dxnBusinessLandingView = function () {
+    $settings = \App\Models\SiteSettings::global();
+    $saved = is_array($settings->dxn_business_landing) ? $settings->dxn_business_landing : [];
 
-Route::get('/DXN-Business-Oppertunity', function () {
-    return view('landing.dxn-business-opportunity');
-})->name('landing.dxn-business-oppertunity');
+    return view('landing.dxn-business-opportunity', [
+        'dxnLandingSettings' => array_replace_recursive(config('dxn_business_landing'), $saved),
+    ]);
+};
 
-Route::get('/DXN-Business-Opportunity', function () {
-    return view('landing.dxn-business-opportunity');
-})->name('landing.dxn-business-opportunity');
+Route::get('/passive-income', $dxnBusinessLandingView)->name('landing.passive-income');
+
+Route::get('/DXN-Business-Oppertunity', $dxnBusinessLandingView)->name('landing.dxn-business-oppertunity');
+
+Route::get('/DXN-Business-Opportunity', $dxnBusinessLandingView)->name('landing.dxn-business-opportunity');
 
 Route::get('/landing/{slug}', [LandingController::class, 'show'])->name('landing');
