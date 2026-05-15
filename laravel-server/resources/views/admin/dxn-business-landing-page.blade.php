@@ -3,7 +3,6 @@
 
 @php
     $value = fn (string $key) => old($key, data_get($landingSettings, $key, ''));
-    $leadTotal = $recentLeads->count();
 @endphp
 
 @section('content')
@@ -50,8 +49,8 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        <form method="POST" action="{{ route('admin.dxn-business-landing.update') }}" class="xl:col-span-2 space-y-6">
+    <div>
+        <form method="POST" action="{{ route('admin.dxn-business-landing.update') }}" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -295,36 +294,6 @@
                 <a href="{{ route('landing.dxn-business-opportunity') }}" target="_blank" class="text-dxn-green hover:underline">Preview page</a>
             </div>
         </form>
-
-        <aside class="space-y-6">
-            <div class="card p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-lg font-bold text-dxn-darkgreen">View leads</h2>
-                    <a href="{{ route('admin.leads') }}" class="text-dxn-green hover:underline text-sm">All leads</a>
-                </div>
-                <div class="grid grid-cols-3 gap-3 mb-5">
-                    <div class="bg-red-50 text-red-700 rounded-lg p-3 text-center"><div class="text-xl font-bold">{{ $leadCounts['Hot'] ?? 0 }}</div><div class="text-xs">Hot</div></div>
-                    <div class="bg-yellow-50 text-yellow-700 rounded-lg p-3 text-center"><div class="text-xl font-bold">{{ $leadCounts['Warm'] ?? 0 }}</div><div class="text-xs">Warm</div></div>
-                    <div class="bg-blue-50 text-blue-700 rounded-lg p-3 text-center"><div class="text-xl font-bold">{{ $leadCounts['Cold'] ?? 0 }}</div><div class="text-xs">Cold</div></div>
-                </div>
-                <div class="space-y-3">
-                    @forelse($recentLeads as $lead)
-                        <a href="{{ route('admin.leads.show', $lead) }}" class="block border border-gray-100 rounded-lg p-3 hover:border-dxn-green hover:shadow-sm transition">
-                            <div class="flex items-start justify-between gap-3">
-                                <div>
-                                    <div class="font-semibold text-gray-900">{{ $lead->name }}</div>
-                                    <div class="text-xs text-gray-500">{{ $lead->email }}</div>
-                                </div>
-                                <span class="text-xs font-semibold rounded-full bg-gray-100 px-2 py-1">{{ $lead->score }}</span>
-                            </div>
-                            <div class="text-xs text-gray-500 mt-2">{{ optional($lead->submitted_at ?? $lead->created_at)->format('M j, Y g:i A') }}</div>
-                        </a>
-                    @empty
-                        <p class="text-sm text-gray-500">No leads yet.</p>
-                    @endforelse
-                </div>
-            </div>
-        </aside>
     </div>
 </div>
 @endsection

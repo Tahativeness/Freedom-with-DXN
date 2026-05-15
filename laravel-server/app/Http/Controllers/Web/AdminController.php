@@ -202,13 +202,12 @@ class AdminController extends Controller
     {
         $settings = SiteSettings::global();
         $landingSettings = $this->dxnBusinessLandingSettings($settings);
-        $recentLeads = DxnLead::latest()->limit(8)->get();
         $leadCounts = DxnLead::query()
             ->selectRaw('score, count(*) as total')
             ->groupBy('score')
             ->pluck('total', 'score');
 
-        return view('admin.dxn-business-landing-page', compact('landingSettings', 'recentLeads', 'leadCounts'));
+        return view('admin.dxn-business-landing-page', compact('landingSettings', 'leadCounts'));
     }
 
     public function dxnBusinessLandingPageUpdate(Request $request)

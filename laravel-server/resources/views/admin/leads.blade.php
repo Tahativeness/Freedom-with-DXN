@@ -41,7 +41,14 @@
                 </thead>
                 <tbody class="divide-y divide-gray-100 bg-white">
                     @forelse($leads as $lead)
-                        <tr>
+                        <tr
+                            class="cursor-pointer hover:bg-gray-50 transition-colors"
+                            onclick="window.location.href='{{ route('admin.leads.show', $lead) }}'"
+                            tabindex="0"
+                            role="link"
+                            aria-label="View details for {{ $lead->name }}"
+                            onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); window.location.href='{{ route('admin.leads.show', $lead) }}'; }"
+                        >
                             <td class="px-4 py-4">
                                 <div class="font-semibold text-gray-900">{{ $lead->name }}</div>
                                 <div class="text-sm text-gray-600">{{ $lead->email }}</div>
@@ -63,7 +70,7 @@
                             <td class="px-4 py-4 text-sm text-gray-600">
                                 {{ optional($lead->submitted_at ?? $lead->created_at)->format('M j, Y g:i A') }}
                             </td>
-                            <td class="px-4 py-4 text-right">
+                            <td class="px-4 py-4 text-right" onclick="event.stopPropagation()">
                                 <a href="{{ route('admin.leads.show', $lead) }}" class="text-sm font-semibold text-dxn-green hover:underline">View</a>
                                 @if($lead->klaviyo_sync_status !== \App\Models\DxnLead::KLAVIYO_STATUS_SYNCED)
                                     <form method="POST" action="{{ route('admin.leads.update', $lead) }}" class="inline ml-4">
