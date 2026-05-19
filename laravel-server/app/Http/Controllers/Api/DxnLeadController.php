@@ -41,7 +41,21 @@ class DxnLeadController extends Controller
         $existingLead = $this->findExistingSubmission($data);
 
         if ($existingLead) {
-            Log::info('DXN duplicate lead submission ignored', [
+            if (! $existingLead->klaviyo_synced) {
+                Log::info('DXN duplicate lead submission found; retrying Klaviyo sync', [
+                    'lead_id' => $existingLead->id,
+                    'email' => $existingLead->email,
+                    'status' => $existingLead->klaviyo_sync_status,
+                    'has_idempotency_key' => ! empty($data['idempotency_key'] ?? null),
+                ]);
+
+                $this->queueKlaviyoSync($existingLead);
+                $existingLead->refresh();
+
+                return $this->acceptedResponse($existingLead, $existingLead->klaviyo_sync_status);
+            }
+
+            Log::info('DXN duplicate lead submission ignored because Klaviyo is already synced', [
                 'lead_id' => $existingLead->id,
                 'email' => $existingLead->email,
                 'status' => $existingLead->klaviyo_sync_status,
