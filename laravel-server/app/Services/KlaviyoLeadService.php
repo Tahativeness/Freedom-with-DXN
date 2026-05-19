@@ -83,6 +83,7 @@ class KlaviyoLeadService
                 'WhatsApp' => $lead['whatsapp'],
                 'WhatsApp Country Code' => $lead['country_code'] ?? null,
                 'WhatsApp Country' => $lead['country_name'] ?? null,
+                'Address' => $lead['address'] ?? null,
                 'Interest' => $lead['interest'],
                 'Seriousness' => $lead['seriousness'],
                 'Goal' => $lead['goal'],
@@ -287,7 +288,10 @@ class KlaviyoLeadService
 
     private function klaviyoConfig(string $configKey, string $envKey, ?string $default = null): ?string
     {
-        $value = config('services.klaviyo.' . $configKey) ?: env($envKey, $default);
+        $klaviyoConfigKey = $configKey === 'api_key' ? 'private_api_key' : $configKey;
+        $value = config('services.klaviyo.' . $configKey)
+            ?: config('klaviyo.' . $klaviyoConfigKey)
+            ?: env($envKey, $default);
 
         return empty($value) ? $default : trim((string) $value);
     }
@@ -368,7 +372,7 @@ class KlaviyoLeadService
         $listId = trim($listId);
         $path = parse_url($listId, PHP_URL_PATH);
 
-        if (is_string($path) && preg_match('#/list/([^/]+)#', $path, $matches)) {
+        if (is_string($path) && preg_match('#/lists?/([^/]+)#', $path, $matches)) {
             return $matches[1];
         }
 

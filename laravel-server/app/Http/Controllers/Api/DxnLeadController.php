@@ -86,6 +86,7 @@ class DxnLeadController extends Controller
         }
 
         $this->queueKlaviyoSync($lead);
+        $lead->refresh();
 
         return $this->acceptedResponse($lead, $lead->klaviyo_sync_status);
     }
